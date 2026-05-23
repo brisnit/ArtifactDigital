@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+
+# Local env files
+.env
+.env.local
+.env.*.local
+
+# Vite cache
+.vite/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local-only originals (not referenced by the site)
+brand_assets*PM/
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

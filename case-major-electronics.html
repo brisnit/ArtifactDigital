@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Major Electronics Company — AR Showroom · Artifact Interactive</title>
+    <meta
+      name="description"
+      content="An immersive in-store AR showroom for a global electronics brand — QR-launched, app-free, and rich with real-time product context."
+    />
+    <link rel="icon" type="image/png" href="brand_assets/Logo_25.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="case-page">
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+
+    <div class="page-loader" aria-hidden="true">
+      <div class="page-loader__inner">
+        <span class="page-loader__mark"></span>
+        <span class="page-loader__text">Artifact Digital</span>
+      </div>
+      <span class="page-loader__bar"><span></span></span>
+    </div>
+
+    <header class="page-header is-stuck" id="pageHeader">
+      <div class="container navbar">
+        <a class="brand" href="index.html#home" aria-label="Artifact home">
+          <picture>
+            <source media="(max-width: 760px)" srcset="brand_assets/A_Logo_Mobile3.png" />
+            <img
+              src="brand_assets/A_Logo_DT3.png"
+              alt="Artifact"
+              class="brand-logo"
+            />
+          </picture>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="index.html#services"><span>Services</span></a>
+          <a href="index.html#work"><span>Work</span></a>
+          <a href="index.html#approach"><span>Approach</span></a>
+          <a href="index.html#contact"><span>Contact</span></a>
+        </nav>
+        <a class="nav-cta" href="index.html#contact">
+          Start a project
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+            <path
+              d="M1 7h12M8 2l5 5-5 5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- CASE HERO -->
+      <section class="case-hero">
+        <div class="container">
+          <a class="case-back reveal" href="index.html#work">
+            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+              <path
+                d="M13 7H1M6 12 1 7l5-5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Back to work
+          </a>
+          <span class="eyebrow reveal"
+            ><span class="eyebrow-dot"></span>Case study · Digital for retail</span
+          >
+          <h1 class="case-title">
+            <span class="reveal-line"
+              ><span>Reimagining retail</span></span
+            >
+            <span class="reveal-line italic"
+              ><span>with a global electronics</span></span
+            >
+            <span class="reveal-line"><span>brand.</span></span>
+          </h1>
+          <p class="case-lede reveal">
+            We partnered with a leading electronics brand to build an immersive
+            AR showroom — bringing premium appliances to life through
+            interactive in-store technology that drives engagement and informed
+            purchases.
+          </p>
+          <dl class="case-meta">
+            <div class="reveal">
+              <dt>Client</dt>
+              <dd>Major Electronics Co.</dd>
+            </div>
+            <div class="reveal">
+              <dt>Year</dt>
+              <dd>2023</dd>
+            </div>
+            <div class="reveal">
+              <dt>Scope</dt>
+              <dd>AR strategy · Design · Build</dd>
+            </div>
+            <div class="reveal">
+              <dt>Channels</dt>
+              <dd>In-store · Mobile web</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- FEATURED MEDIA -->
+      <section class="case-feature">
+        <div class="container">
+          <div class="case-feature__media reveal-card">
+            <video
+              class="case-video"
+              data-src="brand_assets/IMG_6257.MOV"
+              muted
+              loop
+              playsinline
+              preload="none"
+              aria-label="In-store AR experience"
+            ></video>
+          </div>
+          <p class="case-caption reveal">
+            QR-launched AR running directly in the customer's browser — no app,
+            no waiting.
+          </p>
+        </div>
+      </section>
+
+      <!-- PILLARS -->
+      <section class="section case-pillars">
+        <div class="container">
+          <header class="section-head">
+            <span class="section-tag reveal"
+              ><span class="tag-dot"></span>The opportunity</span
+            >
+            <h2 class="section-heading reveal-line">
+              <span>Boost engagement. Ease entry. Sharpen discovery.</span>
+            </h2>
+          </header>
+          <div class="pillar-grid">
+            <article class="pillar reveal-card">
+              <span class="pillar__num">01</span>
+              <h3>Boost engagement</h3>
+              <p>
+                A magnetic attractor loop pulled curious shoppers in and turned
+                passive browsing into active exploration.
+              </p>
+            </article>
+            <article class="pillar reveal-card">
+              <span class="pillar__num">02</span>
+              <h3>Easy entry</h3>
+              <p>
+                A single QR scan launched the experience straight on the
+                customer's phone — no download, no friction.
+              </p>
+            </article>
+            <article class="pillar reveal-card">
+              <span class="pillar__num">03</span>
+              <h3>Smart discovery</h3>
+              <p>
+                Object detection recognized appliances on the floor and
+                surfaced features, 3D animations and lifestyle context in real
+                time.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- STORY -->
+      <section class="section case-story">
+        <div class="container case-story__grid">
+          <div class="case-story__copy">
+            <span class="section-tag reveal"
+              ><span class="tag-dot"></span>The experience</span
+            >
+            <h2 class="case-story__heading">
+              <span class="reveal-line"
+                ><span>A showroom you could</span></span
+              >
+              <span class="reveal-line italic"><span>scan into.</span></span>
+            </h2>
+            <p class="reveal">
+              A QR-powered attractor loop opened the AR journey straight on the
+              customer's phone — no app, no store account, no waiting. Object
+              detection recognized each appliance on the floor and unlocked
+              interactive overlays: feature highlights, 3D animations, and
+              lifestyle context tuned to the product in front of them.
+            </p>
+            <p class="reveal">
+              The roll-out covered select premium appliance stores, fully
+              integrated with the brand's high-end aesthetic. Visually striking
+              codes invited interaction, while intuitive, app-free navigation
+              made access effortless — sparking curiosity and deeper engagement
+              right at the point of decision.
+            </p>
+          </div>
+          <figure class="case-story__media reveal-card">
+            <img
+              data-src="brand_assets/IMG_6255.jpg"
+              alt="In-store AR showroom moment"
+              loading="lazy"
+            />
+            <figcaption>
+              Mobile-first overlays composed for in-store context.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- HIGHLIGHTS -->
+      <section class="section case-highlights">
+        <div class="container">
+          <header class="section-head">
+            <span class="section-tag reveal"
+              ><span class="tag-dot"></span>Outcomes</span
+            >
+            <h2 class="section-heading reveal-line">
+              <span>What it delivered.</span>
+            </h2>
+          </header>
+          <ul class="highlight-list">
+            <li class="highlight reveal-row">
+              <span class="highlight__num">01</span>
+              <div>
+                <h3>App-free AR via QR</h3>
+                <p>Zero install — scan to play, anywhere on the floor.</p>
+              </div>
+            </li>
+            <li class="highlight reveal-row">
+              <span class="highlight__num">02</span>
+              <div>
+                <h3>Real-time object detection</h3>
+                <p>Recognizes appliances and triggers the right overlay.</p>
+              </div>
+            </li>
+            <li class="highlight reveal-row">
+              <span class="highlight__num">03</span>
+              <div>
+                <h3>3D animations &amp; lifestyle context</h3>
+                <p>Feature reveals layered with how the product fits a home.</p>
+              </div>
+            </li>
+            <li class="highlight reveal-row">
+              <span class="highlight__num">04</span>
+              <div>
+                <h3>Premium store integration</h3>
+                <p>A visual system tuned to the brand's high-end retail tone.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section case-cta">
+        <div class="container case-cta__inner">
+          <h2 class="case-cta__heading reveal-line">
+            <span>Have a retail moment you want to reimagine?</span>
+          </h2>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="index.html#contact">
+              Start a project
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                <path
+                  d="M1 7h12M8 2l5 5-5 5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+            <a class="btn btn-secondary" href="index.html#work">
+              See more work
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                <path
+                  d="M1 7h12M8 2l5 5-5 5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <div class="container page-footer__inner">
+          <span>© <span id="year"></span> Artifact Interactive</span>
+          <span>Designed &amp; built in-studio</span>
+        </div>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
