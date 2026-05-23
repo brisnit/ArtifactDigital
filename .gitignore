@@ -20,6 +20,9 @@ Thumbs.db
 # Local-only originals (not referenced by the site)
 brand_assets*PM/
 
+# Local staging area for media to upload to GitHub Releases
+_uploads/
+
 # Editor
 .vscode/
 .idea/
