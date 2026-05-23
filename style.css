@@ -1499,6 +1499,15 @@ body.cursor-hover .cursor {
 .case-cta {
   background: var(--stone);
 }
+.case-cta .btn-secondary {
+  color: var(--ink);
+  border-color: rgba(17, 17, 17, 0.4);
+}
+.case-cta .btn-secondary:hover {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
 .case-cta__inner {
   display: flex;
   flex-direction: column;
