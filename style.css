@@ -1538,4 +1538,8 @@ body.cursor-hover .cursor {
     opacity: 1 !important;
     transform: none !important;
   }
+  .marquee-track {
+    animation-duration: 60s !important;
+    animation-iteration-count: infinite !important;
+  }
 }
