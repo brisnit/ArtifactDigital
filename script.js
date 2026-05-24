@@ -95,38 +95,31 @@
   lazyImages.forEach((img) => imageObserver.observe(img));
 
   // ---------- Lazy-load + play videos ----------
-  // On small screens, skip video entirely and let the poster image show.
-  // The hosted .mp4 files are QuickTime-containered and unreliable on mobile.
-  const skipVideoOnMobile = window.matchMedia('(max-width: 760px)').matches;
   const lazyVideos = document.querySelectorAll('video[data-src]');
-  if (!skipVideoOnMobile) {
-    const videoObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const vid = entry.target;
-          if (entry.isIntersecting) {
-            if (!vid.src && vid.dataset.src) {
-              vid.src = vid.dataset.src;
-              vid.addEventListener(
-                'loadeddata',
-                () => vid.classList.add('is-loaded'),
-                { once: true }
-              );
-              vid.load();
-            }
-            const play = vid.play();
-            if (play && typeof play.catch === 'function') play.catch(() => {});
-          } else {
-            if (!vid.paused) vid.pause();
+  const videoObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const vid = entry.target;
+        if (entry.isIntersecting) {
+          if (!vid.src && vid.dataset.src) {
+            vid.src = vid.dataset.src;
+            vid.addEventListener(
+              'loadeddata',
+              () => vid.classList.add('is-loaded'),
+              { once: true }
+            );
+            vid.load();
           }
-        });
-      },
-      { rootMargin: '0px 0px 20% 0px', threshold: 0.2 }
-    );
-    lazyVideos.forEach((v) => videoObserver.observe(v));
-  } else {
-    lazyVideos.forEach((v) => v.classList.add('is-loaded'));
-  }
+          const play = vid.play();
+          if (play && typeof play.catch === 'function') play.catch(() => {});
+        } else {
+          if (!vid.paused) vid.pause();
+        }
+      });
+    },
+    { rootMargin: '0px 0px 20% 0px', threshold: 0.2 }
+  );
+  lazyVideos.forEach((v) => videoObserver.observe(v));
 
   // ---------- Stat count-up ----------
   const statEls = document.querySelectorAll('.stat__num');
