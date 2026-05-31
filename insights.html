@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Insights — Artifact Interactive</title>
+    <meta
+      name="description"
+      content="Insights from Artifact Interactive — essays on design, AI, and building bold digital experiences, straight from our Medium."
+    />
+    <link rel="icon" type="image/png" href="brand_assets/favicon.png" />
+    <link rel="apple-touch-icon" href="brand_assets/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="case-page">
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+
+    <div class="page-loader" aria-hidden="true">
+      <div class="page-loader__inner">
+        <span class="page-loader__mark"></span>
+        <span class="page-loader__text">Artifact Digital</span>
+      </div>
+      <span class="page-loader__bar"><span></span></span>
+    </div>
+
+    <header class="page-header is-stuck" id="pageHeader">
+      <div class="container navbar">
+        <a class="brand" href="index.html#home" aria-label="Artifact home">
+          <picture>
+            <source media="(max-width: 760px)" srcset="brand_assets/A_Logo_Mobile3.png" />
+            <img src="brand_assets/A_Logo_DT3.png" alt="Artifact" class="brand-logo" />
+          </picture>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="index.html#services"><span>Services</span></a>
+          <a href="index.html#work"><span>Work</span></a>
+          <a href="index.html#approach"><span>Approach</span></a>
+          <a href="insights.html"><span>Insights</span></a>
+          <a href="index.html#contact"><span>Contact</span></a>
+        </nav>
+        <a class="nav-cta" href="index.html#contact">
+          Start a project
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+            <path d="M1 7h12M8 2l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- INSIGHTS HERO -->
+      <section class="insights-hero">
+        <div class="container">
+          <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Insights · From our Medium</span>
+          <h1 class="insights-title">
+            <span class="reveal-line"><span>Ideas on design,</span></span>
+            <span class="reveal-line italic"><span>AI &amp; building</span></span>
+            <span class="reveal-line"><span>for the web.</span></span>
+          </h1>
+          <p class="insights-lede reveal">
+            Field notes, essays, and experiments from the studio — published on
+            Medium, read here.
+          </p>
+        </div>
+      </section>
+
+      <!-- POSTS -->
+      <section class="section insights-list">
+        <div class="container">
+          <div class="project-grid" id="postGrid" aria-live="polite">
+            <p class="insights-state" id="postState">Loading the latest posts…</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <div class="container page-footer__inner">
+          <span>© <span id="year"></span> Artifact Interactive</span>
+          <span>Designed &amp; built in-studio</span>
+        </div>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+    <script type="module">
+      const grid = document.getElementById('postGrid');
+      const state = document.getElementById('postState');
+
+      function fmtDate(iso) {
+        const d = new Date(iso);
+        if (isNaN(d)) return '';
+        return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      }
+
+      // Reveal + image-fade for cards injected after the initial page load
+      // (script.js's observers only see elements present at load time).
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (!entry.isIntersecting) return;
+          entry.target.style.transitionDelay = `${i * 80}ms`;
+          entry.target.classList.add('is-in');
+          revealObserver.unobserve(entry.target);
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+
+      function card(post) {
+        const a = document.createElement('a');
+        a.className = 'project-card-link';
+        a.href = `insight.html?id=${encodeURIComponent(post.id)}`;
+        a.setAttribute('aria-label', `Read: ${post.title}`);
+
+        const tags = (post.categories || []).slice(0, 3)
+          .map((t) => `<li>${t}</li>`).join('');
+
+        const media = post.thumbnail
+          ? `<div class="project-card__media" style="--media-bg:#0e0e0e;">
+               <img alt="" loading="lazy" />
+               <span class="project-card__hover">Read post →</span>
+             </div>`
+          : `<div class="project-card__media post-card__media--blank" style="--media-bg:#111;">
+               <span class="post-card__mark">Aa</span>
+               <span class="project-card__hover">Read post →</span>
+             </div>`;
+
+        a.innerHTML = `
+          <article class="project-card reveal-card">
+            ${media}
+            <div class="project-card__meta">
+              <span>Insight</span>
+              <span>${fmtDate(post.pubDate)}</span>
+            </div>
+            <h3 class="project-card__title">${post.title}</h3>
+            <p class="project-card__copy">${post.excerpt || ''}</p>
+            ${tags ? `<ul class="project-card__tags">${tags}</ul>` : ''}
+          </article>`;
+
+        // Fade the thumbnail in the same way as the rest of the site.
+        if (post.thumbnail) {
+          const img = a.querySelector('img');
+          const pre = new Image();
+          pre.onload = () => { img.src = post.thumbnail; img.classList.add('is-loaded'); };
+          pre.src = post.thumbnail;
+        }
+        return a;
+      }
+
+      (async () => {
+        try {
+          const res = await fetch('/api/medium');
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const posts = await res.json();
+          grid.innerHTML = '';
+          if (!Array.isArray(posts) || posts.length === 0) {
+            grid.innerHTML = '<p class="insights-state">No posts yet — check back soon.</p>';
+            return;
+          }
+          posts.forEach((post) => {
+            const el = card(post);
+            grid.appendChild(el);
+            revealObserver.observe(el.querySelector('.reveal-card'));
+          });
+        } catch (err) {
+          grid.innerHTML =
+            '<p class="insights-state">Couldn’t load posts right now. ' +
+            'Read them on <a href="https://medium.com/@brittmidgette_72905" target="_blank" rel="noopener">Medium</a>.</p>';
+        }
+      })();
+    </script>
+  </body>
+</html>
