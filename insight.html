@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Insight — Artifact Interactive</title>
+    <meta name="description" content="An essay from Artifact Interactive." />
+    <link rel="icon" type="image/png" href="brand_assets/favicon.png" />
+    <link rel="apple-touch-icon" href="brand_assets/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="case-page">
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+
+    <div class="page-loader" aria-hidden="true">
+      <div class="page-loader__inner">
+        <span class="page-loader__mark"></span>
+        <span class="page-loader__text">Artifact Digital</span>
+      </div>
+      <span class="page-loader__bar"><span></span></span>
+    </div>
+
+    <header class="page-header is-stuck" id="pageHeader">
+      <div class="container navbar">
+        <a class="brand" href="index.html#home" aria-label="Artifact home">
+          <picture>
+            <source media="(max-width: 760px)" srcset="brand_assets/A_Logo_Mobile3.png" />
+            <img src="brand_assets/A_Logo_DT3.png" alt="Artifact" class="brand-logo" />
+          </picture>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="index.html#services"><span>Services</span></a>
+          <a href="index.html#work"><span>Work</span></a>
+          <a href="index.html#approach"><span>Approach</span></a>
+          <a href="insights.html"><span>Insights</span></a>
+          <a href="index.html#contact"><span>Contact</span></a>
+        </nav>
+        <a class="nav-cta" href="index.html#contact">
+          Start a project
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+            <path d="M1 7h12M8 2l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <article class="post">
+        <header class="post-hero">
+          <div class="container post-hero__inner">
+            <a class="case-back" href="insights.html">
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                <path d="M13 7H1M6 12 1 7l5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              Back to insights
+            </a>
+            <p class="post-meta" id="postMeta"></p>
+            <h1 class="post-title" id="postTitle">Loading…</h1>
+            <ul class="project-card__tags post-tags" id="postTags"></ul>
+          </div>
+        </header>
+
+        <div class="container">
+          <div class="post-article" id="postArticle"></div>
+
+          <div class="post-source" id="postSource"></div>
+
+          <div class="post-cta">
+            <a class="btn btn-secondary" href="insights.html">
+              More insights
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                <path d="M1 7h12M8 2l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <footer class="page-footer">
+        <div class="container page-footer__inner">
+          <span>© <span id="year"></span> Artifact Interactive</span>
+          <span>Designed &amp; built in-studio</span>
+        </div>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+    <script type="module">
+      const titleEl = document.getElementById('postTitle');
+      const metaEl = document.getElementById('postMeta');
+      const tagsEl = document.getElementById('postTags');
+      const articleEl = document.getElementById('postArticle');
+      const sourceEl = document.getElementById('postSource');
+
+      function fmtDate(iso) {
+        const d = new Date(iso);
+        if (isNaN(d)) return '';
+        return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+      }
+
+      const id = new URLSearchParams(location.search).get('id');
+
+      (async () => {
+        if (!id) {
+          titleEl.textContent = 'Post not found';
+          articleEl.innerHTML = '<p>No post was specified. <a href="insights.html">Back to insights</a>.</p>';
+          return;
+        }
+        try {
+          const res = await fetch(`/api/medium?id=${encodeURIComponent(id)}`);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const post = await res.json();
+
+          document.title = `${post.title} — Artifact Interactive`;
+          titleEl.textContent = post.title;
+          const parts = [post.author, fmtDate(post.pubDate)].filter(Boolean);
+          metaEl.textContent = parts.join(' · ');
+
+          tagsEl.innerHTML = (post.categories || [])
+            .slice(0, 5).map((t) => `<li>${t}</li>`).join('');
+
+          // Medium delivers the full article body as HTML in the feed; the
+          // content is the user's own authored work.
+          articleEl.innerHTML = post.content || '<p>This post has no inline content.</p>';
+
+          if (post.link) {
+            sourceEl.innerHTML =
+              `<a href="${post.link}" target="_blank" rel="noopener">Read the original on Medium →</a>`;
+          }
+
+          // Fade article images in to match the site's image treatment.
+          articleEl.querySelectorAll('img').forEach((img) => {
+            if (img.complete) { img.classList.add('is-loaded'); }
+            else { img.addEventListener('load', () => img.classList.add('is-loaded'), { once: true }); }
+          });
+        } catch (err) {
+          titleEl.textContent = 'Couldn’t load this post';
+          articleEl.innerHTML =
+            '<p>Something went wrong fetching this post. ' +
+            'Read it on <a href="https://medium.com/@brittmidgette_72905" target="_blank" rel="noopener">Medium</a> instead.</p>';
+        }
+      })();
+    </script>
+  </body>
+</html>
