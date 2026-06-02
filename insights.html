@@ -3,11 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Insights — Artifact Interactive</title>
+    <title>Insights — Essays on Design &amp; AI · Artifact Digital</title>
     <meta
       name="description"
-      content="Insights from Artifact Interactive — essays on design, AI, and building bold digital experiences, straight from our Medium."
+      content="Insights from Artifact Digital — essays on design, AI, and building bold digital experiences for the web."
     />
+    <link rel="canonical" href="https://artifactdigital.co/insights" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="author" content="Artifact Digital" />
+    <meta name="theme-color" content="#0b0b0b" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Artifact Digital" />
+    <meta property="og:title" content="Insights — Essays on Design &amp; AI · Artifact Digital" />
+    <meta property="og:description" content="Essays on design, AI, and building bold digital experiences for the web." />
+    <meta property="og:url" content="https://artifactdigital.co/insights" />
+    <meta property="og:image" content="https://artifactdigital.co/brand_assets/og-default.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Insights — Essays on Design &amp; AI · Artifact Digital" />
+    <meta name="twitter:description" content="Essays on design, AI, and building bold digital experiences for the web." />
+    <meta name="twitter:image" content="https://artifactdigital.co/brand_assets/og-default.png" />
+
     <link rel="icon" type="image/png" href="brand_assets/favicon.png" />
     <link rel="apple-touch-icon" href="brand_assets/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,6 +39,26 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+
+    <!-- Structured data: blog -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "@id": "https://artifactdigital.co/insights#blog",
+      "name": "Artifact Digital Insights",
+      "description": "Essays on design, AI, and building bold digital experiences for the web.",
+      "url": "https://artifactdigital.co/insights",
+      "inLanguage": "en-US",
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://artifactdigital.co/#organization",
+        "name": "Artifact Digital",
+        "url": "https://artifactdigital.co/",
+        "logo": "https://artifactdigital.co/brand_assets/A_Logo_DT3.png"
+      }
+    }
+    </script>
   </head>
   <body class="case-page">
     <div class="cursor" aria-hidden="true"></div>
@@ -82,7 +124,7 @@
 
       <footer class="page-footer">
         <div class="container page-footer__inner">
-          <span>© <span id="year"></span> Artifact Interactive</span>
+          <span>© <span id="year"></span> Artifact Digital</span>
           <span>Designed &amp; built in-studio</span>
         </div>
       </footer>
@@ -151,6 +193,33 @@
         return a;
       }
 
+      // Inject an ItemList of BlogPostings so JS-rendering crawlers (e.g.
+      // Google) can see the post list as structured data.
+      function injectPostsJsonLd(posts) {
+        const data = {
+          '@context': 'https://schema.org',
+          '@type': 'ItemList',
+          itemListElement: posts.map((p, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            url: `https://artifactdigital.co/insight?id=${encodeURIComponent(p.id)}`,
+            item: {
+              '@type': 'BlogPosting',
+              headline: p.title,
+              datePublished: new Date(p.pubDate).toISOString(),
+              image: p.thumbnail || undefined,
+              author: { '@type': 'Person', name: p.author || 'Artifact Digital' },
+              url: `https://artifactdigital.co/insight?id=${encodeURIComponent(p.id)}`,
+              mainEntityOfPage: p.link,
+            },
+          })),
+        };
+        const s = document.createElement('script');
+        s.type = 'application/ld+json';
+        s.textContent = JSON.stringify(data);
+        document.head.appendChild(s);
+      }
+
       (async () => {
         try {
           const res = await fetch('/api/medium');
@@ -166,6 +235,7 @@
             grid.appendChild(el);
             revealObserver.observe(el.querySelector('.reveal-card'));
           });
+          injectPostsJsonLd(posts);
         } catch (err) {
           grid.innerHTML =
             '<p class="insights-state">Couldn’t load posts right now. ' +
