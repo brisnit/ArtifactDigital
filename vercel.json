@@ -3,5 +3,10 @@
   "installCommand": "",
   "outputDirectory": ".",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/insights", "destination": "/api/insights" },
+    { "source": "/insights/:slug", "destination": "/api/insight?slug=:slug" },
+    { "source": "/sitemap.xml", "destination": "/api/sitemap" }
+  ]
 }
