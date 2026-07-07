@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE, orgNode, breadcrumb } from '../data/site';
+
+const updated = 'July 7, 2026';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'Privacy', path: '/privacy' },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title="Privacy Policy · Artifact Digital"
+  description="How Artifact Digital collects, uses, and protects the information you share with us."
+  canonical="/privacy"
+  bodyClass="case-page legal-page"
+  robots="noindex, follow"
+  jsonLd={jsonLd}
+  hideStickyCta={true}
+>
+  <section class="case-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Privacy' }]} />
+      <h1 class="case-title"><span class="reveal-line"><span>Privacy Policy</span></span></h1>
+      <p class="legal-updated">Last updated {updated}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container legal-prose">
+      <p><strong>This is a starting template. Have it reviewed by counsel before you rely on it.</strong></p>
+
+      <h2>Who we are</h2>
+      <p>Artifact Digital ("we", "us") is a digital innovation studio based in {SITE.location}. You can reach us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+
+      <h2>What we collect</h2>
+      <p>We collect only what you choose to give us. When you submit our contact or newsletter forms, we collect the details you provide — such as your name, email address, company, and message. We may also collect standard, aggregated analytics about how the site is used (pages visited, general location, device type) to improve the experience.</p>
+
+      <h2>How we use it</h2>
+      <ul>
+        <li>To respond to your enquiry and, where relevant, discuss working together.</li>
+        <li>To send you Insights updates, if you subscribe. You can unsubscribe at any time.</li>
+        <li>To understand and improve how the site performs.</li>
+      </ul>
+
+      <h2>What we don't do</h2>
+      <p>We don't sell your personal information. We don't share it except with the service providers that help us operate — for example, our email delivery provider — and only as needed to provide the service.</p>
+
+      <h2>Your choices</h2>
+      <p>You can ask us to access, correct, or delete the personal information we hold about you. Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and we'll take care of it.</p>
+
+      <h2>Changes</h2>
+      <p>We may update this policy from time to time. The date at the top reflects the latest revision.</p>
+    </div>
+  </section>
+</BaseLayout>

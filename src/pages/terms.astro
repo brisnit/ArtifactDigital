@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE, orgNode, breadcrumb } from '../data/site';
+
+const updated = 'July 7, 2026';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'Terms', path: '/terms' },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title="Terms of Use · Artifact Digital"
+  description="The terms that govern your use of the Artifact Digital website."
+  canonical="/terms"
+  bodyClass="case-page legal-page"
+  robots="noindex, follow"
+  jsonLd={jsonLd}
+  hideStickyCta={true}
+>
+  <section class="case-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Terms' }]} />
+      <h1 class="case-title"><span class="reveal-line"><span>Terms of Use</span></span></h1>
+      <p class="legal-updated">Last updated {updated}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container legal-prose">
+      <p><strong>This is a starting template. Have it reviewed by counsel before you rely on it.</strong></p>
+
+      <h2>Using this site</h2>
+      <p>This website is provided by Artifact Digital for general information about our studio and our work. By using it, you agree to these terms. If you don't agree, please don't use the site.</p>
+
+      <h2>Our content</h2>
+      <p>The content on this site — writing, designs, images, and code — belongs to Artifact Digital or is used with permission, unless stated otherwise. You're welcome to read, share, and link to it. You may not republish it as your own or use it commercially without our written consent.</p>
+
+      <h2>Client work</h2>
+      <p>Some of the work shown here is anonymized at our clients' request. The problems, decisions, and outcomes described are accurate; identifying details are withheld where confidentiality requires it.</p>
+
+      <h2>No warranty</h2>
+      <p>We work to keep this site accurate and available, but we provide it "as is", without warranties of any kind. We're not liable for any loss arising from your use of the site or reliance on its content.</p>
+
+      <h2>Links</h2>
+      <p>We sometimes link to other sites. We're not responsible for their content or practices.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about these terms? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+    </div>
+  </section>
+</BaseLayout>

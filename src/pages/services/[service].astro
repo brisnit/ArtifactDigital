@@ -1,0 +1,209 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { SITE, orgNode, breadcrumb, CTA } from '../../data/site';
+import { relatedCases } from '../../lib/related';
+
+export const getStaticPaths = (async () => {
+  const services = await getCollection('services');
+  return services.map((entry) => ({ params: { service: entry.id }, props: { entry } }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const d = entry.data;
+const path = `/services/${entry.id}`;
+const url = `${SITE.url}${path}`;
+
+const allServices = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const cases = await relatedCases(d.relatedTags);
+const related = d.relatedServices.length
+  ? allServices.filter((s) => d.relatedServices.includes(s.id))
+  : allServices.filter((s) => s.id !== entry.id).slice(0, 3);
+
+const serviceNode = {
+  '@type': 'Service',
+  '@id': `${url}#service`,
+  name: d.title,
+  serviceType: d.title,
+  description: d.description,
+  url,
+  provider: { '@id': `${SITE.url}/#organization` },
+  areaServed: 'Worldwide',
+  audience: { '@type': 'BusinessAudience', audienceType: 'Enterprise and ambitious brands' },
+};
+const faqNode = d.faq.length
+  ? {
+      '@type': 'FAQPage',
+      '@id': `${url}#faq`,
+      mainEntity: d.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : null;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    serviceNode,
+    ...(faqNode ? [faqNode] : []),
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'Services', path: '/services' },
+      { name: d.title, path },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title={d.metaTitle}
+  description={d.description}
+  canonical={path}
+  bodyClass="case-page service-page"
+  jsonLd={jsonLd}
+>
+  <section class="case-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Services', href: '/services' }, { name: d.navLabel }]} />
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>{d.eyebrow}</span>
+      <h1 class="case-title">
+        {d.heroTitleLines.map((l) => (
+          <span class:list={["reveal-line", l.italic && "italic"]}><span>{l.text}</span></span>
+        ))}
+      </h1>
+      <p class="case-lede reveal">{d.lede}</p>
+    </div>
+  </section>
+
+  <!-- INTRO / what it actually is -->
+  <section class="section service-intro">
+    <div class="container service-prose">
+      {d.intro.map((p) => <p class="reveal">{p}</p>)}
+    </div>
+  </section>
+
+  <!-- TEACHING SECTIONS -->
+  {d.sections.map((s) => (
+    <section class="section service-section">
+      <div class="container service-section__grid">
+        <div class="service-section__head">
+          <h2 class="service-section__heading reveal-line"><span>{s.heading}</span></h2>
+        </div>
+        <div class="service-prose service-section__body">
+          {s.body.map((p) => <p class="reveal">{p}</p>)}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- PROCESS -->
+  <section class="section case-pillars">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>How we work</span>
+        <h2 class="section-heading reveal-line"><span>The engagement</span></h2>
+      </header>
+      <div class="pillar-grid">
+        {d.process.map((p, i) => (
+          <article class="pillar reveal-card">
+            <span class="pillar__num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{p.title}</h3>
+            <p>{p.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERABLES + WHO IT'S FOR -->
+  <section class="section service-lists">
+    <div class="container service-lists__grid">
+      <div>
+        <h2 class="service-list__title reveal-line"><span>What you get</span></h2>
+        <ul class="ticklist">
+          {d.deliverables.map((x) => <li class="reveal">{x}</li>)}
+        </ul>
+      </div>
+      <div>
+        <h2 class="service-list__title reveal-line"><span>Who it's for</span></h2>
+        <ul class="ticklist">
+          {d.whoFor.map((x) => <li class="reveal">{x}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED WORK -->
+  {cases.length > 0 && (
+    <section class="section related-work">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-tag reveal"><span class="tag-dot"></span>Related work</span>
+          <h2 class="section-heading reveal-line"><span>Proof, not promises</span></h2>
+        </header>
+        <div class="project-grid">
+          {cases.map((c) => (
+            <a class="project-card-link" href={`/${c.id}`} aria-label={`Read the ${c.data.title} case study`}>
+              <article class="project-card reveal-card">
+                <div class="project-card__media project-card__media--contain" style="--media-bg: #f4f4f4;">
+                  <img data-src={c.data.card.image} alt={c.data.card.imageAlt} loading="lazy" />
+                  <span class="project-card__hover">View case →</span>
+                </div>
+                <div class="project-card__meta"><span>{c.data.category}</span><span>{c.data.year}</span></div>
+                <h3 class="project-card__title">{c.data.title}</h3>
+                <p class="project-card__copy">{c.data.card.blurb}</p>
+              </article>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ -->
+  {d.faq.length > 0 && (
+    <section class="section service-faq">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-tag reveal"><span class="tag-dot"></span>Questions</span>
+          <h2 class="section-heading reveal-line"><span>Common questions</span></h2>
+        </header>
+        <dl class="faq-list">
+          {d.faq.map((f) => (
+            <div class="faq-item reveal">
+              <dt>{f.q}</dt>
+              <dd>{f.a}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  )}
+
+  <!-- RELATED SERVICES -->
+  {related.length > 0 && (
+    <section class="section related-services">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-tag reveal"><span class="tag-dot"></span>Explore more</span>
+          <h2 class="section-heading reveal-line"><span>Related services</span></h2>
+        </header>
+        <div class="service-link-grid">
+          {related.map((s) => (
+            <a class="service-link-card reveal-card" href={`/services/${s.id}`}>
+              <h3>{s.data.navLabel}</h3>
+              <p>{s.data.summary}</p>
+              <span class="service-link-card__more">Explore →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CtaBand heading={d.ctaHeading} primary={CTA.primary} secondary={CTA.audit} />
+</BaseLayout>

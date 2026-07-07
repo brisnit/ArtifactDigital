@@ -1,0 +1,63 @@
+{
+  "title": "Product Design",
+  "navLabel": "Product Design",
+  "metaTitle": "Product Design Services · Artifact Digital",
+  "description": "Product design for software that has to work at speed and scale — SaaS, dashboards, and customer-facing apps designed for clarity, not just screens.",
+  "order": 7,
+  "eyebrow": "Service · Product Design",
+  "heroTitleLines": [
+    { "text": "Software designed for" },
+    { "text": "clarity at speed.", "italic": true }
+  ],
+  "lede": "Product design isn't decorating features. It's the ongoing discipline of making complex software feel simple to the person using it — release after release, as the product and the stakes grow.",
+  "summary": "SaaS, dashboards, and apps designed for clarity as they scale.",
+  "intro": [
+    "Marketing sites and products are different animals, and treating them the same is a common, expensive mistake. A marketing site makes a first impression; a product has to hold up on the ten-thousandth use. A site can lean on a beautiful moment; a product has to survive edge cases, permissions, error states, data that's messier than the demo, and users who are tired and in a hurry.",
+    "Product design is the practice of keeping software clear as it accumulates complexity. Every product tends toward entropy — more features, more settings, more special cases — and without deliberate design, that complexity leaks straight onto the user. The job is to absorb it: to make a genuinely complex system feel obvious to the person who just needs to get something done.",
+    "This is especially unforgiving in the software people use for work — SaaS, dashboards, internal tools, anything operational. These aren't casual experiences; they're where someone spends their day. Small frictions compound into real cost, and clarity isn't a nicety, it's productivity."
+  ],
+  "sections": [
+    {
+      "heading": "Design the system, not the screen",
+      "body": [
+        "You can't design a real product screen by screen, because the screens have to add up to something coherent, and users move between them constantly. So we design the system underneath — the patterns, the components, the rules for how things behave — and let the individual screens fall out of it consistently.",
+        "This is what makes a product feel considered rather than assembled by committee. When navigation, states, and interactions follow a consistent logic, users learn the product once and apply that learning everywhere. When they don't, every screen is a small new puzzle, and the product feels harder than it is."
+      ]
+    },
+    {
+      "heading": "Clarity under real complexity",
+      "body": [
+        "Anyone can make a simple thing look simple. The craft is making a complex thing feel simple — a dashboard dense with data that still reads at a glance, a workflow with a dozen states that never leaves the user lost. That's the work we're built for.",
+        "It comes from ruthless prioritization on every screen: what is this view actually for, what's the one thing the user came to do, and how does everything else get out of the way without disappearing when it's needed? Answered honestly, screen after screen, that question is what keeps a growing product usable."
+      ]
+    }
+  ],
+  "process": [
+    { "title": "Understand the work", "body": "We learn the real jobs, the real data, and the real conditions your product operates under — not the tidy version in the pitch." },
+    { "title": "Design the system", "body": "We establish the patterns and components that keep the product coherent, then design flows on top of that foundation." },
+    { "title": "Prototype and test", "body": "We put working prototypes in front of real users under realistic complexity, because that's where product design is proven." },
+    { "title": "Ship and evolve", "body": "We design for the long arc — release after release — keeping the experience clear as features and scale accumulate." }
+  ],
+  "deliverables": [
+    "A product design system that keeps quality consistent as you ship",
+    "End-to-end flows designed for real data, states, and edge cases",
+    "Dashboards and complex views that stay legible under density",
+    "Prototypes tested with real users doing real tasks",
+    "Design specs your engineers can build from with confidence",
+    "A design approach built to survive many releases, not just a launch"
+  ],
+  "whoFor": [
+    "SaaS teams whose product has grown complex faster than it's stayed clear",
+    "Companies with powerful software that feels harder to use than it should",
+    "Teams building dashboards or operational tools people rely on all day",
+    "Founders who need product design to be a durable capability, not a one-off"
+  ],
+  "faq": [
+    { "q": "How is product design different from UX/UI design?", "a": "They overlap heavily, but product design emphasizes the ongoing, systemic nature of software — designing for many releases, real data, and accumulating complexity, rather than a single polished deliverable. In practice we bring the same craft to both; the difference is the time horizon and the operational reality we design against." },
+    { "q": "Do you work embedded with our product team?", "a": "Often, yes. Product design works best close to engineering and product management, so we frequently operate as a senior, embedded part of your team — in your rituals, your tools, and your roadmap — rather than at arm's length." },
+    { "q": "Can you help us build a design system?", "a": "Yes. For most products past a certain size, a design system isn't optional — it's how you keep quality consistent as more people ship more surface area. We design systems that are practical and adopted, not a pristine library nobody uses." }
+  ],
+  "relatedTags": ["UX/UI", "UX", "Experience"],
+  "relatedServices": ["ux-ui-design", "ai-experience-design", "ux-research"],
+  "ctaHeading": "Has your product grown complex faster than it's stayed clear?"
+}

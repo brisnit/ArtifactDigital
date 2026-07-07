@@ -1,0 +1,63 @@
+{
+  "title": "Accessibility",
+  "navLabel": "Accessibility",
+  "metaTitle": "Digital Accessibility Services (WCAG) · Artifact Digital",
+  "description": "Accessibility done as design, not a compliance checklist. We build experiences that work for everyone and meet WCAG — because accessible design is simply better design.",
+  "order": 9,
+  "eyebrow": "Service · Accessibility",
+  "heroTitleLines": [
+    { "text": "Accessible is just" },
+    { "text": "better design.", "italic": true }
+  ],
+  "lede": "Accessibility gets treated as a compliance tax bolted on at the end. That's exactly why it goes wrong. Done right, it's a design discipline that makes the experience clearer, sturdier, and better for everyone — not just the people it's legally meant to protect.",
+  "summary": "WCAG-conformant experiences built as design, not a last-minute checklist.",
+  "intro": [
+    "Let's start with the reframe, because it's the whole game. Accessibility is not a checklist you run at the end to avoid a lawsuit. It's a set of design constraints that, taken seriously, make your experience better for absolutely everyone. Captions help people in loud rooms. Good contrast helps people in bright sunlight. Clear focus states and keyboard support help power users. Designing for the edges sharpens the middle.",
+    "The reason accessibility so often fails is timing. When it's an afterthought — a remediation pass jammed in before launch — it's expensive, incomplete, and resented. When it's a design input from the first sketch, it's mostly free, because the hard decisions get made when they're still cheap to make. The cost of accessibility is almost entirely the cost of doing it late.",
+    "There's a legal and reputational dimension too, and it's real — WCAG conformance, ADA exposure, procurement requirements that increasingly demand it. But if compliance is your only motivation, you'll do the minimum and miss the point. The organizations that get this right treat accessibility as a quality standard, and compliance falls out of doing the work well."
+  ],
+  "sections": [
+    {
+      "heading": "Designed in, not bolted on",
+      "body": [
+        "We build accessibility into the process from the start — in the structure, the color and contrast decisions, the interaction patterns, the content. Semantic markup, sensible focus order, proper labels, keyboard operability, and meaningful alternatives aren't a phase; they're just how the work gets made.",
+        "This is dramatically cheaper and more thorough than remediation. When accessibility is a first-class concern during design, most issues never get created. The team learns to make accessible choices by default, and the standard holds as the product grows instead of decaying between audits."
+      ]
+    },
+    {
+      "heading": "Tested with tools and with people",
+      "body": [
+        "Automated tools catch maybe a third to a half of real accessibility issues — the mechanical ones. They can't tell you whether a screen actually makes sense to someone navigating by screen reader, or whether a workflow is genuinely operable by keyboard under real conditions. So we combine automated testing with expert manual evaluation against WCAG, and, where it matters, testing with people who use assistive technology.",
+        "That combination is what separates 'passes the scanner' from 'actually works.' Plenty of sites clear an automated check and remain miserable to use with a screen reader. We're after the second thing, because that's the thing that matters to the human on the other end."
+      ]
+    }
+  ],
+  "process": [
+    { "title": "Assess", "body": "We evaluate the current experience against WCAG using automated tooling, expert manual review, and assistive-technology testing where it counts." },
+    { "title": "Prioritize", "body": "We rank issues by user impact and severity so the most harmful barriers get addressed first, not just the easiest ones." },
+    { "title": "Remediate or design in", "body": "For existing products we fix issues at the root; for new work we build accessibility into the design from the first sketch." },
+    { "title": "Sustain", "body": "We help your team build the habits, patterns, and standards that keep the experience accessible as it evolves." }
+  ],
+  "deliverables": [
+    "A WCAG conformance assessment grounded in manual and automated testing",
+    "Issues prioritized by real user impact, not just ease of fixing",
+    "Root-cause remediation, or accessibility built into new design from the start",
+    "Accessible components and patterns your team can reuse",
+    "Guidance and standards that keep the experience accessible over time",
+    "Clear documentation to support compliance and procurement requirements"
+  ],
+  "whoFor": [
+    "Organizations facing accessibility requirements from law, procurement, or risk",
+    "Teams who want to design accessibility in rather than remediate it later",
+    "Products in healthcare, finance, and government where the bar is highest",
+    "Companies that see accessibility as a quality standard, not just compliance"
+  ],
+  "faq": [
+    { "q": "What WCAG level should we target?", "a": "WCAG 2.1 or 2.2 Level AA is the practical standard most organizations should aim for, and what most regulations and procurement processes reference. AAA is appropriate for specific high-stakes contexts but is rarely required wholesale. We'll help you set the right target for your risk and audience." },
+    { "q": "Isn't an automated accessibility tool enough?", "a": "No — and relying on one is a common, costly mistake. Automated tools catch only the mechanical portion of issues, roughly a third to a half. The problems that most affect real users — confusing structure, unusable keyboard flows, meaningless labels — need expert manual evaluation and, ideally, testing with assistive-technology users." },
+    { "q": "We're launching soon. Is it too late?", "a": "It's never too late to improve, though it's cheaper the earlier you start. If you're close to launch we'll triage by impact — fix the barriers that actually harm users first — and give you a realistic plan to reach conformance without derailing your timeline." }
+  ],
+  "relatedTags": ["UX/UI", "Research", "Strategy"],
+  "relatedServices": ["experience-audits", "ux-ui-design", "product-design"],
+  "ctaHeading": "Want an experience that works for everyone — and meets the bar?"
+}

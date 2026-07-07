@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE, orgNode, breadcrumb } from '../data/site';
+
+const personNode = {
+  '@type': 'Person',
+  '@id': `${SITE.url}/about#britt-midgette`,
+  name: 'Britt Midgette',
+  jobTitle: 'Founder & Experience Design Director',
+  worksFor: { '@id': `${SITE.url}/#organization` },
+  url: `${SITE.url}/about`,
+  sameAs: [SITE.linkedin],
+  knowsAbout: [
+    'Digital strategy',
+    'UX strategy',
+    'Experience design',
+    'AI experience design',
+    'Enterprise CMS',
+    'Design leadership',
+  ],
+};
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'AboutPage',
+      '@id': `${SITE.url}/about#page`,
+      url: `${SITE.url}/about`,
+      name: 'About Artifact Digital',
+      isPartOf: { '@id': `${SITE.url}/#website` },
+      about: { '@id': `${SITE.url}/#organization` },
+      mainEntity: { '@id': `${SITE.url}/#organization` },
+    },
+    orgNode,
+    personNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'About', path: '/about' },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title="About · Artifact Digital"
+  description="Artifact Digital is a senior-led digital innovation studio. No handoffs, no juniors learning on your project — the people who set the strategy design and ship it."
+  canonical="/about"
+  bodyClass="case-page about-page"
+  jsonLd={jsonLd}
+>
+  <section class="case-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'About' }]} />
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>About</span>
+      <h1 class="case-title">
+        <span class="reveal-line"><span>Senior people,</span></span>
+        <span class="reveal-line italic"><span>doing the actual work.</span></span>
+      </h1>
+      <p class="case-lede reveal">
+        Artifact is a small, senior-led digital studio by design. We pair strategy,
+        design, AI and engineering under one roof, and the people who sell the work
+        are the people who do it. No handoffs. No juniors learning on your budget.
+      </p>
+    </div>
+  </section>
+
+  <section class="section service-intro">
+    <div class="container service-prose">
+      <p class="reveal">
+        Most agencies are built like pyramids. Senior people win the work, then hand
+        it down through progressively more junior hands until, somewhere near the
+        bottom, the actual thing gets made by whoever was available. The client
+        pays for the people at the top and gets the output of the people at the
+        bottom. We think that model is quietly broken, and we built Artifact to be
+        its opposite.
+      </p>
+      <p class="reveal">
+        We keep the team small on purpose. It means the strategist who understands
+        your business is the same person shaping the experience, and often the same
+        person in the room when it ships. Nothing gets lost in translation between
+        teams, because there are no walls to translate across. You get judgment at
+        every step, not just in the pitch.
+      </p>
+    </div>
+  </section>
+
+  <!-- Leadership philosophy -->
+  <section class="section service-section">
+    <div class="container service-section__grid">
+      <div class="service-section__head">
+        <h2 class="service-section__heading reveal-line"><span>How we think about the work</span></h2>
+      </div>
+      <div class="service-prose service-section__body">
+        <p class="reveal">
+          A belief that runs through everything we do: leadership isn't about being
+          right, it's about being appropriate. Anyone can have opinions. The value
+          is in knowing which decision fits this business, this audience, this
+          moment — and being willing to take a position and defend it. We bring
+          nuance to the table, the kind that comes from years of doing this across
+          very different industries and stakes.
+        </p>
+        <p class="reveal">
+          We're also unromantic about tools, including AI. We've been building with
+          these tools since the early days, and our view is simple: AI is a force
+          multiplier for people who own outcomes, and a crutch for people who don't.
+          We use it to move faster and explore wider, and we keep human judgment
+          exactly where the consequences live. Technology changes constantly. The
+          craft of making good decisions under ambiguity doesn't.
+        </p>
+        <p class="reveal">
+          And we care about craft in the parts most people skip — the empty state,
+          the error message, the loading moment, the sentence that could be shorter.
+          Those details are where an experience either feels considered or feels
+          cheap. Getting them right, over and over, is most of what separates work
+          that's fine from work that's memorable.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder -->
+  <section class="section service-section" id="britt-midgette">
+    <div class="container service-section__grid">
+      <div class="service-section__head">
+        <span class="section-tag"><span class="tag-dot"></span>Leadership</span>
+        <h2 class="service-section__heading reveal-line"><span>Britt Midgette</span></h2>
+        <p class="founder-role">Founder &amp; Experience Design Director</p>
+      </div>
+      <div class="service-prose service-section__body">
+        <p class="reveal">
+          I've spent my career leading digital strategy and experience design for
+          organizations across retail, education, healthcare, financial services,
+          and global consumer brands — the kind of complex, high-stakes work where
+          the details matter and the politics are real. Before tech, I was a pastor
+          in a former life, which is a stranger background for a design leader than
+          it sounds, and a more useful one: both jobs are ultimately about
+          understanding people and helping them make hard decisions together.
+        </p>
+        <p class="reveal">
+          I started Artifact to do the work the way I always believed it should be
+          done — senior-led, honest, and close to the craft. I write regularly about
+          strategy, design, and AI over in <a href="/insights">Insights</a>, mostly
+          to think out loud and start better conversations. If any of it resonates,
+          I'd genuinely like to hear from you.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section stats">
+    <div class="container stats-grid">
+      <div class="stat reveal">
+        <span class="stat__num" data-count="10">0</span><span class="stat__suffix">+</span>
+        <p>Years leading digital strategy &amp; design</p>
+      </div>
+      <div class="stat reveal">
+        <span class="stat__num" data-count="40">0</span><span class="stat__suffix">+</span>
+        <p>Product, web and digital launches delivered</p>
+      </div>
+      <div class="stat reveal">
+        <span class="stat__num" data-count="100">0</span><span class="stat__suffix">%</span>
+        <p>Senior-led on every project — no handoffs</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand heading="Like how we think? Let's talk about your work." />
+</BaseLayout>

@@ -6,7 +6,7 @@ import { glob } from 'astro/loaders';
 // rendered by src/pages/[case].astro. Slugs preserve the original live URLs.
 const work = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/content/work' }),
-  schema: ({ image }) =>
+  schema: () =>
     z.object({
       title: z.string(),
       metaTitle: z.string(),
@@ -73,4 +73,33 @@ const insights = defineCollection({
   }),
 });
 
-export const collections = { work, insights };
+// --- Services ---------------------------------------------------------------
+// Full-depth, teaching-oriented service pages in Britt's voice. Data-driven so
+// the Services hub, nav, and schema all stay in sync from one source.
+const services = defineCollection({
+  loader: glob({ pattern: '**/*.json', base: './src/content/services' }),
+  schema: z.object({
+    title: z.string(),
+    navLabel: z.string(),
+    metaTitle: z.string(),
+    description: z.string(),
+    order: z.number().default(99),
+    eyebrow: z.string(),
+    heroTitleLines: z.array(z.object({ text: z.string(), italic: z.boolean().default(false) })),
+    lede: z.string(),
+    summary: z.string(), // one-liner for the hub + nav
+    // Teaching body
+    intro: z.array(z.string()),
+    sections: z.array(z.object({ heading: z.string(), body: z.array(z.string()) })),
+    process: z.array(z.object({ title: z.string(), body: z.string() })),
+    deliverables: z.array(z.string()),
+    whoFor: z.array(z.string()),
+    faq: z.array(z.object({ q: z.string(), a: z.string() })),
+    // Cross-linking
+    relatedTags: z.array(z.string()).default([]),
+    relatedServices: z.array(z.string()).default([]),
+    ctaHeading: z.string(),
+  }),
+});
+
+export const collections = { work, insights, services };

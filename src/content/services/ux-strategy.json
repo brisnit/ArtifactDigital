@@ -1,0 +1,62 @@
+{
+  "title": "UX Strategy",
+  "navLabel": "UX Strategy",
+  "metaTitle": "UX Strategy Consulting · Artifact Digital",
+  "description": "UX strategy that decides what to build and why — a defensible point of view on the experience, grounded in real user goals and business outcomes.",
+  "order": 2,
+  "eyebrow": "Service · UX Strategy",
+  "heroTitleLines": [
+    { "text": "Deciding what to build" },
+    { "text": "before you build it.", "italic": true }
+  ],
+  "lede": "UX strategy is the discipline of choosing what experience to create and why — before a single screen gets designed. It's the difference between a product that's coherent and one that's just a pile of features.",
+  "summary": "A defensible point of view on the experience, grounded in real user goals.",
+  "intro": [
+    "People conflate UX strategy with UX design, and the two are not the same. Design is how the experience looks and behaves. Strategy is the argument for why that experience should exist in the first place — which users it serves, which jobs it does for them, and how doing those jobs well moves the business.",
+    "You can spot a product built without UX strategy from a mile away. It has a settings screen with forty toggles because no one would decide on defaults. It has five ways to do the same thing and no clear way to do the important thing. Every feature was somebody's good idea, and none of them add up to a point of view. UX strategy is what supplies the point of view.",
+    "Our job is to give the experience a spine — a small set of principles and priorities clear enough that hundreds of downstream decisions can be made consistently, by different people, without a meeting for each one."
+  ],
+  "sections": [
+    {
+      "heading": "Anchored in jobs, not features",
+      "body": [
+        "We lean heavily on jobs-to-be-done thinking, because features are a trap. Customers don't want a feature; they hire your product to make progress on something they care about. When you understand the job — the real one, in the customer's context, with all its emotional and social weight — the feature decisions get dramatically easier.",
+        "So we map the jobs your experience is being hired for, rank them honestly, and use that ranking as the tiebreaker for everything downstream. It's remarkable how many roadmap arguments simply dissolve once everyone agrees on which job matters most."
+      ]
+    },
+    {
+      "heading": "A strategy you can hold in your head",
+      "body": [
+        "A UX strategy that lives in a hundred-page document is useless, because no one reads it and no one can act on it under pressure. The strategies that actually change how a team works are short enough to remember: a handful of principles, a clear priority order, a few things you've explicitly decided not to do.",
+        "We write for the moment of decision — when a designer, engineer, or PM is staring at a tradeoff at 4pm and needs to know which way to lean. If the strategy doesn't help in that moment, it isn't strategy, it's paperwork."
+      ]
+    }
+  ],
+  "process": [
+    { "title": "Understand the jobs", "body": "We map what users are really trying to accomplish, in their context, and separate the jobs that matter from the ones that don't." },
+    { "title": "Take a position", "body": "We define the experience principles and priorities — a clear, defensible point of view on what this product should be and refuse to be." },
+    { "title": "Pressure-test", "body": "We stress the strategy against real scenarios and edge cases to make sure it holds up before anyone invests in design." },
+    { "title": "Operationalize", "body": "We turn the point of view into something teams use daily — principles, priority order, and decision rules that travel." }
+  ],
+  "deliverables": [
+    "A prioritized map of the jobs your experience is hired to do",
+    "A short, memorable set of experience principles with real teeth",
+    "An explicit list of what the product will and won't do",
+    "Decision rules that let teams stay consistent without constant escalation",
+    "A north-star framing that connects the experience to business outcomes"
+  ],
+  "whoFor": [
+    "Product teams whose feature list has outgrown any coherent point of view",
+    "Organizations planning a major build who want to decide before they design",
+    "Leaders tired of relitigating the same roadmap arguments every quarter",
+    "Teams that have research but haven't turned it into a position"
+  ],
+  "faq": [
+    { "q": "Isn't this just product strategy?", "a": "They overlap and should talk constantly. Product strategy tends to focus on market, business model, and what to build. UX strategy focuses on the experience of using it — the jobs, the priorities, the principles that make it coherent. Done well, each sharpens the other." },
+    { "q": "Can you do UX strategy without a lot of research?", "a": "We can start with what you have, and we're honest about the gaps. Sometimes the right first move is a focused round of research; sometimes there's enough signal in existing data and customer-facing teams to take a defensible position now and refine it. We'll tell you which situation you're in." },
+    { "q": "How does this connect to design?", "a": "Directly and without a handoff. Because our strategists and designers are the same senior people, the strategy carries straight into UX research, IA, and UI without the usual translation loss between teams." }
+  ],
+  "relatedTags": ["Strategy", "UX/UI", "Web"],
+  "relatedServices": ["digital-strategy", "ux-research", "ux-ui-design"],
+  "ctaHeading": "Building something big? Decide what it should be first."
+}

@@ -1,0 +1,63 @@
+{
+  "title": "AI Experience Design",
+  "navLabel": "AI Experience Design",
+  "metaTitle": "AI Experience Design · Artifact Digital",
+  "description": "AI experience design that puts human judgment first — AI-powered features and generative interfaces that earn trust, not gimmicks bolted onto a product.",
+  "order": 6,
+  "eyebrow": "Service · AI Experience Design",
+  "heroTitleLines": [
+    { "text": "AI that supports" },
+    { "text": "human judgment.", "italic": true }
+  ],
+  "lede": "The interesting question isn't whether to add AI to your product. It's where AI genuinely makes the experience better — and where it just adds a confident-sounding layer of risk. We help you tell the difference.",
+  "summary": "AI-powered features and generative interfaces that earn trust, not gimmicks.",
+  "intro": [
+    "I've been living inside these tools since late 2020, back when the outputs were rough and the hype was already deafening. Here's what I've learned: AI is otherworldly at generating options, drafting artifacts, and speeding up thinking — and it's genuinely bad at owning an outcome, reading a room, or being accountable when something goes wrong. The design opportunity lives exactly on that line.",
+    "Most 'AI features' being shipped right now are a text box bolted onto an existing product with a sparkle icon next to it. Sometimes that's the right call. Usually it isn't. The better move is to ask what job the user is really trying to do, then decide where AI removes friction from that job and where it introduces new friction — hallucinated answers, unpredictable behavior, a loss of the user's sense of control.",
+    "Good AI experience design is mostly about trust and control. Can the user tell what the system did and why? Can they steer it, correct it, and fall back to a reliable path when it's wrong? Get those right and AI feels like leverage. Get them wrong and you've built something impressive in a demo that quietly erodes confidence in production."
+  ],
+  "sections": [
+    {
+      "heading": "Design for the wrong answer",
+      "body": [
+        "Traditional software is deterministic: given the same input, it does the same thing. AI isn't. It's probabilistic, occasionally confidently wrong, and that changes the design problem fundamentally. The interface has to assume the model will sometimes be mistaken and make that failure graceful instead of dangerous.",
+        "So we design the unhappy path first — how the user notices an error, how they correct it, how much they should trust a given output, what the safe fallback is. An AI feature that only works when the model is right isn't finished. The design that handles the wrong answer well is what separates a real product from a demo."
+      ]
+    },
+    {
+      "heading": "Keep the human in the loop that matters",
+      "body": [
+        "The most durable AI experiences don't try to replace human judgment — they compress the time between a question and a good decision, and leave the decision with the person accountable for it. AI generates the options; the human sets priorities, makes the tradeoffs, and owns the result.",
+        "We design for that division of labor deliberately. Automate the toil, surface the options, and preserve human agency at the points that carry consequence. That's not a hedge against the technology — it's how you build something people actually trust enough to rely on."
+      ]
+    }
+  ],
+  "process": [
+    { "title": "Find the real job", "body": "We identify where AI genuinely reduces friction in a job users care about — and rule out the places it would only add risk." },
+    { "title": "Prototype fast", "body": "We build rough, working prototypes early, because AI experiences have to be felt to be judged. Static mockups lie about how they behave." },
+    { "title": "Design the failure", "body": "We design the wrong-answer path first — error, correction, trust cues, and safe fallbacks — so the feature holds up in production." },
+    { "title": "Ship and learn", "body": "We instrument the experience, watch how people actually use it, and refine where trust and usefulness diverge." }
+  ],
+  "deliverables": [
+    "A clear-eyed assessment of where AI helps your experience and where it doesn't",
+    "Working prototypes of AI features you can actually feel, not just review",
+    "Interaction patterns for trust, control, correction, and graceful failure",
+    "Generative and assistive interfaces designed around real user jobs",
+    "Guardrails and fallbacks that keep the experience reliable when the model isn't",
+    "A point of view on the human-in-the-loop division of labor"
+  ],
+  "whoFor": [
+    "Product teams under pressure to 'add AI' who want to do it well, not just fast",
+    "Companies exploring generative features and unsure where they truly help",
+    "Leaders wary of shipping AI that looks impressive but erodes user trust",
+    "Organizations that want AI to amplify their people, not sideline them"
+  ],
+  "faq": [
+    { "q": "Do you build the models, or design the experience around them?", "a": "We focus on the experience — the interface, the interaction patterns, the trust and control mechanics — and we work alongside your data science or ML team, or capable model providers, for the underlying models. Our value is making the technology usable, trustworthy, and genuinely helpful in context." },
+    { "q": "Is it too early to invest in AI features?", "a": "It's rarely too early to prototype and learn; it's often too early to bet the roadmap. We're big believers in cheap, fast experiments that tell you where AI earns its place before you commit serious engineering to it. That's the responsible way to move fast." },
+    { "q": "How do you handle the risk of AI getting things wrong?", "a": "By designing for it from the start rather than treating it as an edge case. We design the error and correction paths, the trust cues, and the safe fallbacks as first-class parts of the experience — because in a probabilistic system, the wrong answer isn't an exception, it's a certainty you plan for." }
+  ],
+  "relatedTags": ["AI", "Experience", "UX/UI"],
+  "relatedServices": ["product-design", "ux-ui-design", "digital-strategy"],
+  "ctaHeading": "Want AI in your product that people actually trust?"
+}

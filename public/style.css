@@ -2101,3 +2101,164 @@ button:focus-visible {
   .contact-layout__grid { grid-template-columns: 1fr; }
   .newsletter__inner { grid-template-columns: 1fr; }
 }
+
+/* ==========================================================
+   Phase 2 — Information architecture (services, hub, legal, footer)
+   ========================================================== */
+
+/* -------------------- Breadcrumbs -------------------- */
+.breadcrumbs { margin: 0 0 1.5rem; }
+.breadcrumbs ol {
+  list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem;
+  padding: 0; margin: 0;
+  font-family: 'DM Sans', sans-serif; font-size: 0.82rem;
+  letter-spacing: 0.04em; color: var(--steel);
+}
+.breadcrumbs li { display: flex; align-items: center; gap: 0.5rem; }
+.breadcrumbs a { color: var(--steel); text-decoration: none; }
+.breadcrumbs a:hover { color: var(--ink); }
+.breadcrumbs [aria-current="page"] { color: var(--ink); }
+.breadcrumbs__sep { color: var(--steel-soft); }
+
+/* -------------------- Service prose + sections -------------------- */
+.service-prose {
+  max-width: 68ch;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.08rem, 1.5vw, 1.25rem);
+  line-height: 1.75;
+  color: var(--ink);
+}
+.service-prose p { margin: 0 0 1.4rem; }
+.service-prose p:last-child { margin-bottom: 0; }
+.service-prose a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--accent); }
+
+.service-intro { padding-bottom: clamp(2rem, 4vw, 3rem); }
+
+.service-section { padding: clamp(3rem, 6vw, 5rem) 0; border-top: 1px solid rgba(17,17,17,0.08); }
+.service-section__grid {
+  display: grid; grid-template-columns: 0.7fr 1.3fr;
+  gap: clamp(1.5rem, 5vw, 4rem); align-items: start;
+}
+.service-section__heading {
+  font-family: 'DM Sans', sans-serif; font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2.25rem); line-height: 1.1;
+  letter-spacing: -0.025em; margin: 0;
+}
+.founder-role { color: var(--steel); font-family: 'DM Sans', sans-serif; margin: 0.75rem 0 0; }
+
+/* -------------------- Deliverables / who-for lists -------------------- */
+.service-lists { border-top: 1px solid rgba(17,17,17,0.08); }
+.service-lists__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); }
+.service-list__title {
+  font-family: 'DM Sans', sans-serif; font-weight: 700;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem); letter-spacing: -0.02em; margin: 0 0 1.5rem;
+}
+.ticklist { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.9rem; }
+.ticklist li {
+  position: relative; padding-left: 1.9rem; line-height: 1.55; color: var(--ink);
+}
+.ticklist li::before {
+  content: ""; position: absolute; left: 0; top: 0.5em;
+  width: 0.7rem; height: 0.7rem; border-radius: 50%;
+  background: var(--accent);
+}
+
+/* -------------------- FAQ -------------------- */
+.faq-list { max-width: 80ch; margin: 0; }
+.faq-item { padding: 1.6rem 0; border-top: 1px solid rgba(17,17,17,0.1); }
+.faq-item:last-child { border-bottom: 1px solid rgba(17,17,17,0.1); }
+.faq-item dt {
+  font-family: 'DM Sans', sans-serif; font-weight: 700;
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem); letter-spacing: -0.01em; margin: 0 0 0.6rem;
+}
+.faq-item dd { margin: 0; color: var(--steel); line-height: 1.65; font-size: 1.05rem; }
+
+/* -------------------- Related services grid -------------------- */
+.service-link-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+.service-link-card {
+  display: flex; flex-direction: column; gap: 0.6rem;
+  padding: 1.75rem; border: 1px solid rgba(17,17,17,0.1); border-radius: var(--radius-md);
+  text-decoration: none; color: var(--ink);
+  transition: transform 0.3s var(--easing), box-shadow 0.3s var(--easing), border-color 0.3s var(--easing);
+}
+.service-link-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); border-color: rgba(17,17,17,0.2); }
+.service-link-card h3 { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1.2rem; margin: 0; }
+.service-link-card p { color: var(--steel); margin: 0; font-size: 0.98rem; line-height: 1.5; flex: 1; }
+.service-link-card__more { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem; }
+
+/* -------------------- Services hub -------------------- */
+.hub-list { list-style: none; padding: 0; margin: 0; }
+.hub-row { border-top: 1px solid rgba(17,17,17,0.12); }
+.hub-row:last-child { border-bottom: 1px solid rgba(17,17,17,0.12); }
+.hub-row__link {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center;
+  gap: clamp(1rem, 3vw, 2.5rem); padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+  text-decoration: none; color: var(--ink);
+  transition: padding-left 0.3s var(--easing);
+}
+.hub-row__link:hover { padding-left: 0.5rem; }
+.hub-row__num { font-family: 'DM Sans', sans-serif; font-weight: 500; color: var(--steel-soft); font-size: 1rem; }
+.hub-row__title {
+  font-family: 'DM Sans', sans-serif; font-weight: 700;
+  font-size: clamp(1.5rem, 3.5vw, 2.4rem); letter-spacing: -0.025em; margin: 0 0 0.3rem; line-height: 1.05;
+}
+.hub-row__summary { color: var(--steel); margin: 0; font-size: 1.02rem; }
+.hub-row__cta { font-family: 'DM Sans', sans-serif; font-weight: 500; color: var(--accent); white-space: nowrap; }
+
+/* -------------------- Legal + 404 -------------------- */
+.legal-updated { color: var(--steel); font-family: 'DM Sans', sans-serif; margin: 1rem 0 0; }
+.legal-prose { max-width: 72ch; font-size: 1.05rem; line-height: 1.7; }
+.legal-prose h2 { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1.4rem; margin: 2.5rem 0 0.75rem; }
+.legal-prose p, .legal-prose ul { color: var(--steel); margin: 0 0 1rem; }
+.legal-prose ul { padding-left: 1.25rem; }
+.legal-prose li { margin: 0 0 0.5rem; }
+.legal-prose a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--accent); }
+
+.notfound-links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin: 3rem 0 0; }
+.notfound-links a {
+  font-family: 'DM Sans', sans-serif; font-weight: 500; color: var(--ink);
+  text-decoration: none; border-bottom: 2px solid transparent; padding-bottom: 2px;
+}
+.notfound-links a:hover { border-color: var(--accent); }
+
+/* -------------------- Enriched footer -------------------- */
+.page-footer { background: var(--ink); color: #fff; padding: clamp(3.5rem, 7vw, 6rem) 0 2rem; margin-top: clamp(3rem,6vw,5rem); }
+.footer-cta {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 1.5rem; padding-bottom: clamp(2.5rem, 5vw, 4rem);
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+}
+.footer-cta__heading {
+  font-family: 'DM Sans', sans-serif; font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 3rem); letter-spacing: -0.03em; margin: 0;
+}
+.footer-nav {
+  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  gap: clamp(2rem, 4vw, 3rem); padding: clamp(2.5rem, 5vw, 4rem) 0;
+}
+.footer-col h3 {
+  font-family: 'DM Sans', sans-serif; font-size: 0.78rem; text-transform: uppercase;
+  letter-spacing: 0.16em; color: rgba(255,255,255,0.55); margin: 0 0 1.1rem; font-weight: 500;
+}
+.footer-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; }
+.footer-col:first-child ul { grid-template-columns: 1fr 1fr; }
+.footer-col a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.98rem; }
+.footer-col a:hover { color: #fff; }
+.footer-muted { color: rgba(255,255,255,0.5); font-size: 0.98rem; }
+.page-footer__inner {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
+  padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.14);
+  color: rgba(255,255,255,0.6); font-size: 0.85rem;
+}
+.footer-legal { display: flex; gap: 1.5rem; }
+.footer-legal a { color: rgba(255,255,255,0.6); text-decoration: none; }
+.footer-legal a:hover { color: #fff; }
+
+@media (max-width: 860px) {
+  .service-section__grid { grid-template-columns: 1fr; }
+  .service-lists__grid { grid-template-columns: 1fr; gap: 3rem; }
+  .hub-row__link { grid-template-columns: auto 1fr; }
+  .hub-row__cta { display: none; }
+  .footer-nav { grid-template-columns: 1fr 1fr; }
+  .footer-col:first-child { grid-column: 1 / -1; }
+}

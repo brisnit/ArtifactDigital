@@ -1,0 +1,79 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { SITE, orgNode, breadcrumb } from '../../data/site';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+
+const itemList = {
+  '@type': 'ItemList',
+  '@id': `${SITE.url}/services#list`,
+  name: 'Artifact Digital services',
+  itemListElement: services.map((s, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: s.data.title,
+    url: `${SITE.url}/services/${s.id}`,
+  })),
+};
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    itemList,
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'Services', path: '/services' },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title="Services · Digital Strategy, UX & AI · Artifact Digital"
+  description="Digital strategy, UX strategy and research, UX/UI and product design, enterprise CMS, AI experience design, experience audits, and accessibility — senior-led, no handoffs."
+  canonical="/services"
+  bodyClass="case-page services-hub"
+  jsonLd={jsonLd}
+>
+  <section class="case-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Services' }]} />
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Services</span>
+      <h1 class="case-title">
+        <span class="reveal-line"><span>Strategy, design & AI —</span></span>
+        <span class="reveal-line italic"><span>held by senior people.</span></span>
+      </h1>
+      <p class="case-lede reveal">
+        We don't hand your work down a chain of increasingly junior people. The
+        same senior team that sets the strategy designs and ships it. Here's what
+        we do, and how each piece connects to the rest.
+      </p>
+    </div>
+  </section>
+
+  <section class="section services-hub__list">
+    <div class="container">
+      <ol class="hub-list">
+        {services.map((s) => (
+          <li class="hub-row">
+            <a class="hub-row__link" href={`/services/${s.id}`}>
+              <span class="hub-row__num">{String(s.data.order).padStart(2, '0')}</span>
+              <div class="hub-row__body">
+                <h2 class="hub-row__title">{s.data.title}</h2>
+                <p class="hub-row__summary">{s.data.summary}</p>
+              </div>
+              <span class="hub-row__cta" aria-hidden="true">Explore →</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Not sure which of these you need?"
+    sub="That's a good reason to talk. Tell us the problem and we'll tell you honestly where to start — even if the answer is smaller than a full engagement."
+  />
+</BaseLayout>

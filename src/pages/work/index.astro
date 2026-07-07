@@ -1,0 +1,82 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { sectors } from '../../data/testimonials';
+import { SITE, orgNode, breadcrumb } from '../../data/site';
+
+const projects = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+
+const itemList = {
+  '@type': 'ItemList',
+  '@id': `${SITE.url}/work#list`,
+  name: 'Artifact Digital case studies',
+  itemListElement: projects.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: p.data.title,
+    url: `${SITE.url}/${p.id}`,
+  })),
+};
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    itemList,
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'Work', path: '/work' },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title="Case Studies · Selected Work · Artifact Digital"
+  description="Selected work from Artifact Digital — anonymized case studies in retail, education, apparel, and global food & nutrition, told through problem, approach, and outcome."
+  canonical="/work"
+  bodyClass="case-page work-index"
+  jsonLd={jsonLd}
+>
+  <section class="case-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Work' }]} />
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Selected work</span>
+      <h1 class="case-title">
+        <span class="reveal-line"><span>Proof, not</span></span>
+        <span class="reveal-line italic"><span>promises.</span></span>
+      </h1>
+      <p class="case-lede reveal">
+        A selection of the work we can show. Many of our engagements are under
+        wrap, so several studies are anonymized — the problems, decisions, and
+        outcomes are real; only the logos are withheld.
+      </p>
+      <ul class="sector-list reveal" aria-label="Industries served">
+        {sectors.map((s) => <li>{s}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section work">
+    <div class="container">
+      <div class="project-grid">
+        {projects.map((p) => (
+          <a class="project-card-link" href={`/${p.id}`} aria-label={`Read the ${p.data.title} case study`}>
+            <article class:list={["project-card", "reveal-card", p.data.card.wide && "project-card--wide"]}>
+              <div class="project-card__media project-card__media--contain" style="--media-bg: #f4f4f4;">
+                <img data-src={p.data.card.image} alt={p.data.card.imageAlt} loading="lazy" />
+                <span class="project-card__hover">View case →</span>
+              </div>
+              <div class="project-card__meta"><span>{p.data.card.eyebrow}</span><span>{p.data.year}</span></div>
+              <h2 class="project-card__title">{p.data.title}</h2>
+              <p class="project-card__copy">{p.data.card.blurb}</p>
+              <ul class="project-card__tags">{p.data.card.tags.map((t) => <li>{t}</li>)}</ul>
+            </article>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand heading="Want to be the next case study?" />
+</BaseLayout>

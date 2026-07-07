@@ -1,9 +1,54 @@
 ---
+import { getCollection } from 'astro:content';
+import { SITE, CTA } from '../data/site';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 const year = new Date().getFullYear();
 ---
 <footer class="page-footer">
-  <div class="container page-footer__inner">
-    <span>© {year} Artifact Digital</span>
-    <span>Designed &amp; built in-studio</span>
+  <div class="container">
+    <div class="footer-cta">
+      <h2 class="footer-cta__heading">Let's build something better.</h2>
+      <a class="btn btn-primary" href={CTA.primary.href}>
+        {CTA.primary.label}
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+          <path d="M1 7h12M8 2l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer">
+      <div class="footer-col">
+        <h3>Services</h3>
+        <ul>
+          {services.map((s) => <li><a href={`/services/${s.id}`}>{s.data.navLabel}</a></li>)}
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Studio</h3>
+        <ul>
+          <li><a href="/work">Case studies</a></li>
+          <li><a href="/insights">Insights</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Connect</h3>
+        <ul>
+          <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+          <li><a href={SITE.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a></li>
+          <li><span class="footer-muted">{SITE.location}</span></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="page-footer__inner">
+      <span>© {year} Artifact Digital</span>
+      <span class="footer-legal">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </span>
+    </div>
   </div>
 </footer>

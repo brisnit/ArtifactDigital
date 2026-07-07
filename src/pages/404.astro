@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import { CTA } from '../data/site';
+---
+<BaseLayout
+  title="Page not found · Artifact Digital"
+  description="The page you're looking for doesn't exist or has moved."
+  canonical="/404"
+  bodyClass="case-page notfound-page"
+  robots="noindex, follow"
+  hideStickyCta={true}
+>
+  <section class="case-hero">
+    <div class="container">
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>404</span>
+      <h1 class="case-title">
+        <span class="reveal-line"><span>This page</span></span>
+        <span class="reveal-line italic"><span>wandered off.</span></span>
+      </h1>
+      <p class="case-lede reveal">
+        The link is broken or the page has moved. Let's get you back to something
+        useful.
+      </p>
+      <div class="hero-actions" style="margin-top: 2rem;">
+        <Button href="/" label="Back to home" variant="primary" />
+        <Button href="/work" label="See our work" variant="secondary" />
+      </div>
+
+      <nav class="notfound-links" aria-label="Popular pages">
+        <a href="/services">Services</a>
+        <a href="/work">Case studies</a>
+        <a href="/insights">Insights</a>
+        <a href="/about">About</a>
+        <a href={CTA.primary.href}>Contact</a>
+      </nav>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,71 @@
+{
+  "title": "Digital Strategy",
+  "navLabel": "Digital Strategy",
+  "metaTitle": "Digital Strategy Consulting · Artifact Digital",
+  "description": "Digital strategy that connects business goals to the actual experience customers touch. We turn ambition into a sequenced, fundable plan your teams can ship.",
+  "order": 1,
+  "eyebrow": "Service · Digital Strategy",
+  "heroTitleLines": [
+    { "text": "Strategy that survives" },
+    { "text": "contact with reality.", "italic": true }
+  ],
+  "lede": "Most digital strategy dies in a slide deck. Ours is built to be executed — a clear line from what the business needs to what the customer touches, sequenced so your teams can actually ship it.",
+  "summary": "Connect business goals to the experience customers touch — and a plan teams can ship.",
+  "intro": [
+    "Digital strategy is one of the most abused phrases in our industry. It gets used to describe everything from a marketing campaign to a technology roadmap to a vague sense that a company should \"do more online.\" So let's be precise about what we mean.",
+    "Strategy is a set of choices about where you'll compete and how you'll win — and, just as importantly, what you won't do. A digital strategy applies that discipline to the experiences your customers, employees, and partners actually interact with: the website, the product, the content, the tools, the journey across all of them. It's the connective tissue between a business goal and a screen someone taps.",
+    "When strategy is missing, you can feel it. Teams argue about features instead of outcomes. The website grows to six thousand pages because nobody could say no. Every stakeholder gets their box on the homepage. The roadmap is a list of everyone's wishes, ranked by who complained loudest. We've walked into a lot of these situations. The work is rarely to invent something new — it's to make the hard choices the organization has been avoiding."
+  ],
+  "sections": [
+    {
+      "heading": "We start with the business, not the interface",
+      "body": [
+        "It's tempting to open a strategy engagement by auditing the website. We don't start there. We start with the P&L, the growth targets, and the friction the leadership team feels but hasn't named yet. If we don't understand how the business makes money and where it's trying to go, any recommendation we make about design or technology is just taste.",
+        "So the first conversations are about outcomes. What has to be true in eighteen months? Where is revenue leaking? Which customer segments matter most, and which ones are quietly subsidizing the rest? Only once we understand the shape of the business do we look at the digital experience — and then the gaps tend to announce themselves."
+      ]
+    },
+    {
+      "heading": "The experience is the strategy",
+      "body": [
+        "Here's a belief that shapes everything we do: for most modern companies, the experience is the strategy. Your customers don't experience your org chart or your tech stack. They experience the thing in front of them — how quickly they found what they needed, whether it felt trustworthy, whether it respected their time. That experience is where strategy either becomes real or falls apart.",
+        "This is why we refuse to separate \"strategy\" from \"design\" and \"build\" into tidy phases handed between different teams. A strategy that can't be designed is a fantasy. A design that ignores the business is decoration. We keep them in the same room, held by the same senior people, because that's where good decisions actually get made."
+      ]
+    },
+    {
+      "heading": "Prioritization is the whole game",
+      "body": [
+        "Almost every organization we work with has more ideas than capacity. The value of a strategy isn't the ideas — it's the sequence. What do you do first, what do you deliberately defer, and what do you kill? A good roadmap makes tradeoffs visible so leadership can make them on purpose instead of by accident.",
+        "We're opinionated here. We'll tell you when a beloved initiative isn't worth the effort, and we'll show our reasoning. You don't need a consultant who agrees with you. You need one who's spent enough time in the arena to know which battles are worth fighting, and who'll take a position and defend it."
+      ]
+    }
+  ],
+  "process": [
+    { "title": "Immerse", "body": "We get inside the business — leadership interviews, the numbers, the customer research you already have, and the friction nobody's written down yet." },
+    { "title": "Frame", "body": "We define the real problem and the outcomes that matter, then map the current experience against them to find where value is leaking." },
+    { "title": "Decide", "body": "We make the hard calls — what to build, what to defer, what to stop — and sequence them into a roadmap that's fundable and shippable." },
+    { "title": "Mobilize", "body": "We turn the plan into something teams can act on Monday morning, with clear ownership, success measures, and a first move." }
+  ],
+  "deliverables": [
+    "A clear articulation of the business outcomes the digital experience must drive",
+    "A current-state assessment that names where value is leaking and why",
+    "A prioritized, sequenced roadmap with rationale for every tradeoff",
+    "A north-star experience direction the whole organization can rally behind",
+    "Success measures that connect experience metrics to business results",
+    "A first, concrete move — not a plan to make a plan"
+  ],
+  "whoFor": [
+    "Leadership teams who feel the friction but can't get alignment on what to do first",
+    "Organizations whose digital footprint has sprawled beyond anyone's control",
+    "Companies treating a website or product rebuild as a purely technical project",
+    "Teams with more roadmap than capacity who need someone to help them choose"
+  ],
+  "faq": [
+    { "q": "How is this different from a marketing or SEO strategy?", "a": "Marketing strategy is about how you reach and persuade an audience. Digital strategy is broader: it's about the whole experience an organization delivers across its digital surfaces, and how that experience serves the business. Marketing and SEO are inputs to it, not substitutes for it." },
+    { "q": "Do we need to have our goals figured out before we start?", "a": "No. Half the value of the engagement is helping leadership get honest and specific about goals. Most teams have goals — they just haven't reconciled the competing ones or made the tradeoffs explicit. That reconciliation is part of the work." },
+    { "q": "How long does a strategy engagement take?", "a": "Most run six to ten weeks, depending on the size of the organization and how much research already exists. We keep them tight on purpose. Strategy work that drags on for months usually means the hard decisions are being avoided." },
+    { "q": "What happens after the strategy is delivered?", "a": "That's the point of building it to be executed. Because the same senior team can carry it into UX, design, and engineering, there's no handoff cliff. We can lead the delivery, support your internal teams, or hand off a plan clear enough that someone else can run it." }
+  ],
+  "relatedTags": ["Strategy", "UX/UI", "Web"],
+  "relatedServices": ["ux-strategy", "enterprise-cms", "experience-audits"],
+  "ctaHeading": "Have a digital experience that's outgrown its strategy?"
+}

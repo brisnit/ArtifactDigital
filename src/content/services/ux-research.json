@@ -1,0 +1,62 @@
+{
+  "title": "UX Research",
+  "navLabel": "UX Research",
+  "metaTitle": "UX Research Services · Artifact Digital",
+  "description": "UX research that changes decisions, not just decks. We ask the questions that matter, talk to the right people, and turn what we learn into action.",
+  "order": 3,
+  "eyebrow": "Service · UX Research",
+  "heroTitleLines": [
+    { "text": "Research that changes" },
+    { "text": "the decision.", "italic": true }
+  ],
+  "lede": "The point of research isn't to be seen doing research. It's to reduce the odds you build the wrong thing. We keep that goal in front of us the whole way — from the question we ask to the decision we help you make.",
+  "summary": "Ask the questions that matter, talk to the right people, act on what you learn.",
+  "intro": [
+    "There's a version of UX research that produces beautiful reports nobody uses. The team runs a study because the process says to, presents a deck full of findings, everyone nods, and the product ships exactly as it would have anyway. That's not research. That's theater with a methodology.",
+    "Real research starts from a decision you're about to make and a risk you're trying to reduce. If a study can't change what you do next, we'd rather not run it. That single filter — will this change the decision? — cuts most research waste out of the room before it starts.",
+    "One conversation, done right, can be worth more than a survey of a thousand people. We've built entire products on the back of a single hour with the right practitioner. What matters isn't sample size for its own sake — it's whether you talked to the right person and actually heard them."
+  ],
+  "sections": [
+    {
+      "heading": "The right method for the question",
+      "body": [
+        "Research isn't one thing. Understanding whether a concept resonates is a different question from whether people can complete a task, which is different again from how a workflow really unfolds on the floor. Each calls for a different method — generative interviews, usability testing, contextual inquiry, diary studies, a movement study in physical space.",
+        "We pick the method that fits the question and your constraints, not the one that's fashionable. Sometimes that's a rigorous protocol. Sometimes it's watching five people try to do the thing and taking honest notes. Rigor is about matching the method to the stakes, not about maximizing ceremony."
+      ]
+    },
+    {
+      "heading": "Findings that travel",
+      "body": [
+        "The hardest part of research isn't gathering insight — it's making it stick. Insight that lives in a researcher's head, or a PDF in a shared drive, doesn't change anything. So we design the output for how your team actually works: the two or three findings that matter, framed as decisions, with the evidence attached.",
+        "We're also careful to separate what we observed from what we're recommending. You deserve to see the raw signal and judge it yourself, not just inherit our conclusions. That's how research builds trust instead of just winning arguments."
+      ]
+    }
+  ],
+  "process": [
+    { "title": "Define the decision", "body": "We start from the choice you're trying to make and the risk you're trying to reduce, then write the questions worth answering." },
+    { "title": "Recruit and run", "body": "We reach the right participants and run the study with a method matched to the question — not a template applied by habit." },
+    { "title": "Synthesize", "body": "We separate signal from noise and turn hours of observation into the few findings that actually bear on the decision." },
+    { "title": "Land it", "body": "We frame findings as decisions your team can act on, with evidence attached, so the insight outlives the readout." }
+  ],
+  "deliverables": [
+    "A sharp research plan tied to a specific decision, not a fishing expedition",
+    "Well-recruited sessions with the people who actually matter",
+    "Synthesis that names the few findings worth acting on",
+    "Clear recommendations, kept separate from the raw observations",
+    "Artifacts your team will actually reuse — journey maps, top-task lists, personas only when they earn their keep"
+  ],
+  "whoFor": [
+    "Teams about to invest heavily and wanting to de-risk the direction first",
+    "Products with a nagging usability problem no one has pinned down",
+    "Organizations rich in analytics but poor in the 'why' behind the numbers",
+    "Leaders who want evidence to settle an internal debate honestly"
+  ],
+  "faq": [
+    { "q": "How many people do we need to talk to?", "a": "Fewer than you'd think, for most questions. Qualitative studies often reach the point of diminishing returns after five to eight well-chosen participants per audience. If you need statistical confidence — sizing a market, quantifying a preference — that's a different, larger study, and we'll say so." },
+    { "q": "We already have analytics. Do we still need research?", "a": "Analytics tell you what is happening; they rarely tell you why. The two are complementary. We often start from your analytics to find where behavior surprises you, then use qualitative research to explain it. Together they're far stronger than either alone." },
+    { "q": "Can you research something that doesn't exist yet?", "a": "Yes — that's generative and evaluative research with concepts and prototypes. We can test a direction with a rough prototype long before it's built, which is exactly when the learning is cheapest to act on." }
+  ],
+  "relatedTags": ["Research", "UX/UI", "Strategy"],
+  "relatedServices": ["ux-strategy", "ux-ui-design", "experience-audits"],
+  "ctaHeading": "About to make a big bet? Let's reduce the risk first."
+}

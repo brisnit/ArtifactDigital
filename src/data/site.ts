@@ -16,13 +16,12 @@ export const SITE = {
   logo: '/brand_assets/A_Logo_DT3.png',
 } as const;
 
-// Primary navigation. Anchors point at homepage sections today;
-// Phase 2 swaps these for standalone pages.
+// Primary navigation — page-based IA.
 export const NAV = [
-  { label: 'Services', href: '/#services' },
-  { label: 'Work', href: '/#work' },
-  { label: 'Approach', href: '/#approach' },
+  { label: 'Services', href: '/services' },
+  { label: 'Work', href: '/work' },
   { label: 'Insights', href: '/insights' },
+  { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ] as const;
 

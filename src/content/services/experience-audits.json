@@ -1,0 +1,63 @@
+{
+  "title": "Experience Audits",
+  "navLabel": "Experience Audits",
+  "metaTitle": "Experience Audit Services · Artifact Digital",
+  "description": "An experience audit that tells you the truth about your digital experience — where it's costing you, why, and what to do about it, prioritized by impact.",
+  "order": 8,
+  "eyebrow": "Service · Experience Audits",
+  "heroTitleLines": [
+    { "text": "The truth about" },
+    { "text": "your experience.", "italic": true }
+  ],
+  "lede": "Sometimes you don't need a rebuild. You need an honest, expert read on what's actually wrong, why it's costing you, and what to fix first. That's an experience audit — a diagnosis before you commit to treatment.",
+  "summary": "An expert diagnosis of what's wrong, why it costs you, and what to fix first.",
+  "intro": [
+    "Most organizations know something is off with their digital experience. Conversion is soft, support tickets cluster around the same screens, the sales team keeps apologizing for the demo, users go quiet at a particular step. What they don't have is a clear, unsentimental account of what's wrong and what to do about it — ranked by what actually moves the needle.",
+    "That's what an audit is for. It's a diagnosis, not a redesign. Before you spend real money treating the problem, it's worth knowing precisely what the problem is — because the obvious symptom and the actual cause are frequently in different places. The checkout isn't converting, but the real issue is a trust gap three screens earlier.",
+    "The value of an outside audit is partly expertise and partly distance. We've seen a lot of experiences, so patterns jump out at us that are invisible from the inside. And because we're not defending decisions we made, we can say the things your team already suspects but can't get heard. A good audit gives honest observations a place to land."
+  ],
+  "sections": [
+    {
+      "heading": "Grounded in evidence, not opinion",
+      "body": [
+        "An audit is only as good as what it's grounded in. So we triangulate: heuristic evaluation against established usability and accessibility principles, your own analytics and behavioral data, and — where it matters — real user observation. Expert judgment is fast and catches a lot, but it's strongest when it's checked against what people actually do.",
+        "We're careful to separate what we observed from what we recommend, and to show our reasoning. You should be able to see the evidence and judge it yourself, not just take our word for it. That's how an audit earns the trust it needs to actually change what happens next."
+      ]
+    },
+    {
+      "heading": "Prioritized by impact, not by our curiosity",
+      "body": [
+        "It's easy to produce a list of two hundred problems. That's not useful — it's overwhelming, and it lets everyone quietly ignore all of it. The hard, valuable work is ranking: which handful of issues are actually costing you the most, and which fixes give you the most return for the least effort?",
+        "So every audit we deliver is prioritized by impact and effort, with a clear recommendation on where to start. You get a sequence you can act on, not a catalog of grievances. And if the honest answer is that you don't need a rebuild — just a few targeted fixes — we'll tell you that, even though it's less work for us."
+      ]
+    }
+  ],
+  "process": [
+    { "title": "Frame", "body": "We agree on what the experience is supposed to achieve and what 'good' would look like, so the audit measures against the right bar." },
+    { "title": "Evaluate", "body": "We assess the experience through expert heuristics, your analytics, and — where warranted — real user observation." },
+    { "title": "Diagnose", "body": "We separate symptoms from causes and identify the issues that are genuinely costing you, with the evidence attached." },
+    { "title": "Prioritize", "body": "We rank findings by impact and effort and hand you a clear, sequenced plan for what to fix first." }
+  ],
+  "deliverables": [
+    "A clear, prioritized assessment of what's working and what isn't",
+    "Findings grounded in heuristics, analytics, and real behavior — not just opinion",
+    "Root-cause diagnosis that separates symptoms from underlying issues",
+    "An impact-versus-effort ranking so you know exactly where to start",
+    "Specific, actionable recommendations, not vague directions",
+    "An honest verdict on whether you need a rebuild or targeted fixes"
+  ],
+  "whoFor": [
+    "Teams who sense something is wrong but can't name it precisely",
+    "Leaders deciding whether to invest in a rebuild and wanting a diagnosis first",
+    "Products with soft conversion or support tickets clustered on the same screens",
+    "Organizations that need an outside, unsentimental read on their experience"
+  ],
+  "faq": [
+    { "q": "How long does an audit take?", "a": "Typically two to four weeks, depending on the size of the experience and how much analytics and research already exist. It's deliberately faster and lighter than a full engagement — the point is a timely, clear diagnosis you can act on." },
+    { "q": "Will you just tell us to rebuild everything?", "a": "No. We're genuinely agnostic about the answer, and often the honest recommendation is a set of targeted fixes rather than a rebuild. We'd rather give you the truth and earn the next engagement than manufacture a bigger project." },
+    { "q": "What do we get at the end?", "a": "A prioritized findings document you can act on immediately: the issues that matter most, the evidence behind each, and a clear, sequenced recommendation for what to fix first. It's built to be shared with leadership and handed to whoever does the work." }
+  ],
+  "relatedTags": ["Strategy", "UX/UI", "Research"],
+  "relatedServices": ["digital-strategy", "accessibility", "ux-research"],
+  "ctaHeading": "Want an honest read on what's really wrong?"
+}
