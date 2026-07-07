@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import CtaBand from '../components/CtaBand.astro';
+import LogoWall from '../components/LogoWall.astro';
 import { SITE, orgNode, websiteNode, CTA } from '../data/site';
 import { testimonials, sectors } from '../data/testimonials';
 
@@ -225,6 +226,9 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
       </div>
     </div>
   </section>
+
+  <!-- LOGO WALL -->
+  <LogoWall />
 
   <!-- APPROACH -->
   <section class="section approach" id="approach">

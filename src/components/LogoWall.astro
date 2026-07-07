@@ -1,0 +1,35 @@
+---
+interface Props { heading?: string; }
+const { heading = "Brands we've worked with" } = Astro.props;
+
+// Client logos. Alt text names the brand for accessibility + SEO.
+const brands = [
+  { name: 'Samsung', file: 'Samsung.png' },
+  { name: "Levi's", file: 'Levis.png' },
+  { name: 'Under Armour', file: 'Under.png' },
+  { name: 'Philips', file: 'Phiips.png' },
+  { name: 'Bose', file: 'Bose.png' },
+  { name: "L'Oréal", file: 'Loreal.png' },
+  { name: 'MAC Cosmetics', file: 'MAC.png' },
+  { name: 'LEGOLAND', file: 'LEGOLAND.png' },
+  { name: 'CompTIA', file: 'CompTIA.png' },
+  { name: 'ADM', file: 'ADM.png' },
+  { name: 'Shoe Carnival', file: 'SHOE-CARN.png' },
+  { name: 'SAG-AFTRA', file: 'Sag.png' },
+];
+---
+<section class="section logo-wall" aria-labelledby="logo-wall-heading">
+  <div class="container">
+    <header class="section-head">
+      <span class="section-tag reveal"><span class="tag-dot"></span>Clients</span>
+      <h2 class="section-heading reveal-line" id="logo-wall-heading"><span>{heading}</span></h2>
+    </header>
+    <ul class="logo-grid reveal">
+      {brands.map((b) => (
+        <li class="logo-grid__item">
+          <img src={`/brand_assets/brands/${b.file}`} alt={b.name} loading="lazy" width="160" height="60" />
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
