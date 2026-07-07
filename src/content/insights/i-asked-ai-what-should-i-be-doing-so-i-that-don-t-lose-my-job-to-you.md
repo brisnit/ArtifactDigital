@@ -3,6 +3,7 @@ title: "I Asked AI “What should I be doing so I that don’t lose my job to yo
 description: "Late in 2020, I was up in LA at a Reggie Watts listening party. My friend texted me about some new AI that was a game changer. It was OpenAI. I…"
 pubDate: 2026-01-17
 author: Britt Midgette
+heroImage: "/brand_assets/insights/i-asked-ai-what-should-i-be-doing-so-i-that-don-t-lose-my-job-to-you.png"
 cluster: "AI"
 tags: ["the-future-of-work"]
 draft: false

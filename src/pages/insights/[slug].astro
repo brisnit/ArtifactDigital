@@ -76,6 +76,14 @@ const jsonLd = {
       </div>
     </header>
 
+    {d.heroImage && (
+      <div class="container">
+        <figure class="post-lead">
+          <img src={d.heroImage} alt={`Illustration for “${d.title}”`} />
+        </figure>
+      </div>
+    )}
+
     <div class="container">
       <div class="post-article">
         <Content />

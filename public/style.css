@@ -2222,7 +2222,7 @@ button:focus-visible {
 .notfound-links a:hover { border-color: var(--accent); }
 
 /* -------------------- Enriched footer -------------------- */
-.page-footer { background: var(--ink); color: #fff; padding: clamp(3.5rem, 7vw, 6rem) 0 2rem; margin-top: clamp(3rem,6vw,5rem); }
+.page-footer { background: var(--ink); color: #fff; padding: clamp(3.5rem, 7vw, 6rem) 0 2rem; margin-top: 0; }
 .footer-cta {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
   gap: 1.5rem; padding-bottom: clamp(2.5rem, 5vw, 4rem);
@@ -2261,4 +2261,25 @@ button:focus-visible {
   .hub-row__cta { display: none; }
   .footer-nav { grid-template-columns: 1fr 1fr; }
   .footer-col:first-child { grid-column: 1 / -1; }
+}
+
+/* -------------------- Insights imagery -------------------- */
+.post-lead {
+  margin: clamp(1.5rem, 3vw, 2.5rem) 0 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--stone);
+  max-width: 900px;
+}
+.post-lead img { width: 100%; height: auto; display: block; }
+
+.insight-card__media {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: var(--stone);
+}
+.insight-card__media img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
 }

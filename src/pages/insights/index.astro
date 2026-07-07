@@ -67,7 +67,12 @@ const jsonLd = {
       ) : (
         <div class="insights-grid">
           {posts.map((p) => (
-            <a class="insight-card reveal-card" href={`/insights/${p.id}`}>
+            <a class:list={["insight-card", "reveal-card", p.data.heroImage && "insight-card--has-media"]} href={`/insights/${p.id}`}>
+              {p.data.heroImage && (
+                <div class="insight-card__media">
+                  <img src={p.data.heroImage} alt="" loading="lazy" />
+                </div>
+              )}
               <div class="insight-card__meta">
                 <span>{p.data.cluster}</span>
                 <span>{fmtDate(p.data.pubDate)}</span>
