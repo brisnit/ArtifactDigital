@@ -1,0 +1,61 @@
+{
+  "title": "American Big Food",
+  "metaTitle": "Global Nutrition. Unified. · Artifact Digital",
+  "description": "Unifying a global food and nutrition brand's marketing ecosystem across 15+ business units — 30+ design components, 100+ campaigns, 1,000+ placements.",
+  "order": 4,
+  "year": "2025",
+  "category": "Brand & marketing systems",
+  "card": {
+    "eyebrow": "02 / Strategy — Design",
+    "blurb": "Consolidated a sprawling 6,500-page ecosystem into a streamlined sub-1,000-page platform with a complete UX/UI redesign — now live.",
+    "image": "/brand_assets/ADM_Comp.png",
+    "imageAlt": "American Big Food platform",
+    "tags": ["Strategy", "UX/UI", "Web"],
+    "wide": false
+  },
+  "ogImage": "/brand_assets/ADM_Comp.png",
+  "heroEyebrow": "Case study · Brand & marketing systems",
+  "titleLines": [
+    { "text": "Global nutrition." },
+    { "text": "Unified.", "italic": true }
+  ],
+  "lede": "A global food and nutrition brand connecting supply chains, products and markets across six continents — operating at massive scale, with a worldwide workforce and an expansive business ecosystem.",
+  "meta": [
+    { "label": "Client", "value": "Global Food & Nutrition Co." },
+    { "label": "Year", "value": "2025" },
+    { "label": "Scope", "value": "Strategy · Systems · UX/UI" },
+    { "label": "Reach", "value": "15+ business units · 6 continents" }
+  ],
+  "feature": {
+    "video": "/brand_assets/ADM.mp4",
+    "poster": "/brand_assets/ADM.png",
+    "alt": "Global food and nutrition brand",
+    "caption": "From the source through the supply chain — a brand operating across six continents."
+  },
+  "pillarsTag": "The opportunity",
+  "pillarsHeading": "One system. Fifteen business units. Six continents.",
+  "pillars": [
+    { "title": "Unified ecosystem", "body": "We brought fragmented campaigns, technology and teams across 15+ business units under one smart, scalable system." },
+    { "title": "Experience by design", "body": "We mapped customer journeys and built 30+ design components — a kit of parts the global team could trust." },
+    { "title": "Localize & scale", "body": "We created tools that let regional teams localize and scale content effortlessly across markets without losing the system." }
+  ],
+  "storyTag": "The shift",
+  "storyHeadingLines": [
+    { "text": "From paid spend" },
+    { "text": "to a full-funnel ecosystem.", "italic": true }
+  ],
+  "storyParagraphs": [
+    "The brand's marketing footprint was vast — and fragmented. Disconnected campaigns, parallel tech stacks, and teams working in silos across 15+ business units. Our job was to unify it: one system, one design language, one way to ship work that still flexed to local markets.",
+    "From 100+ campaigns across 1,000+ placements, we helped shift the organization away from heavy paid-media dependence and toward a more connected, full-funnel marketing ecosystem — built to drive engagement and conversion at every stage of the customer journey."
+  ],
+  "storyImage": "/brand_assets/Farm.png",
+  "storyImageAlt": "Global food and nutrition brand — at the source",
+  "storyCaption": "A unified system spanning 15+ business units and 1,000+ placements.",
+  "highlights": [
+    { "title": "15+ business units unified", "body": "One scalable system across a global operating ecosystem." },
+    { "title": "30+ design components", "body": "A shared kit of parts mapped to real customer journeys." },
+    { "title": "Localization tools at scale", "body": "Regional teams ship content effortlessly across markets." },
+    { "title": "100+ campaigns · 1,000+ placements", "body": "A shift from paid-media dependence to full-funnel marketing." }
+  ],
+  "ctaHeading": "Need a global system that scales without losing the brand?"
+}

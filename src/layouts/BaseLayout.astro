@@ -1,0 +1,100 @@
+---
+import { SITE } from '../data/site';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Path (leading slash) or absolute URL for canonical + og:url. */
+  canonical?: string;
+  ogType?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  bodyClass?: string;
+  robots?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  canonical = Astro.url.pathname,
+  ogType = 'website',
+  ogImage = SITE.ogImage,
+  ogImageAlt = 'Artifact Digital — digital innovation agency',
+  bodyClass = '',
+  robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+  jsonLd,
+} = Astro.props;
+
+const abs = (p: string) => (p.startsWith('http') ? p : `${SITE.url}${p.startsWith('/') ? '' : '/'}${p}`);
+const canonicalUrl = abs(canonical);
+const ogImageUrl = abs(ogImage);
+const graphs = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content={robots} />
+    <meta name="author" content="Artifact Digital" />
+    <meta name="theme-color" content="#0b0b0b" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Artifact Digital" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="icon" type="image/png" href="/brand_assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/brand_assets/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+
+    {graphs.map((g) => (
+      <script type="application/ld+json" set:html={JSON.stringify(g).replace(/</g, '\\u003c')} />
+    ))}
+    <slot name="head" />
+  </head>
+  <body class={bodyClass}>
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+
+    <div class="page-loader" aria-hidden="true">
+      <div class="page-loader__inner">
+        <span class="page-loader__mark"></span>
+        <span class="page-loader__text">Artifact Digital</span>
+      </div>
+      <span class="page-loader__bar"><span></span></span>
+    </div>
+
+    <Header />
+
+    <main id="main">
+      <slot />
+      <Footer />
+    </main>
+
+    <script is:inline src="/script.js"></script>
+  </body>
+</html>

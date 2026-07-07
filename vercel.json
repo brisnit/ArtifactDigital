@@ -1,12 +1,8 @@
 {
-  "buildCommand": "",
-  "installCommand": "",
-  "outputDirectory": ".",
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "astro build",
+  "outputDirectory": "dist",
+  "framework": "astro",
   "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    { "source": "/insights", "destination": "/api/insights" },
-    { "source": "/insights/:slug", "destination": "/api/insight?slug=:slug" },
-    { "source": "/sitemap.xml", "destination": "/api/sitemap" }
-  ]
+  "trailingSlash": false
 }

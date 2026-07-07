@@ -1,0 +1,87 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArrowIcon from '../../components/ArrowIcon.astro';
+import { SITE, orgNode, breadcrumb } from '../../data/site';
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('insights', ({ data }) => !data.draft);
+  return posts.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+const path = `/insights/${entry.id}`;
+const url = `${SITE.url}${path}`;
+const iso = d.pubDate.toISOString();
+
+const fmtDate = (dt: Date) =>
+  dt.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+const postNode = {
+  '@type': 'BlogPosting',
+  '@id': `${url}#post`,
+  headline: d.title,
+  description: d.description,
+  datePublished: iso,
+  dateModified: (d.updatedDate ?? d.pubDate).toISOString(),
+  url,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  author: { '@type': 'Person', name: d.author, url: `${SITE.url}/about` },
+  keywords: d.keywords.length ? d.keywords.join(', ') : d.tags.join(', ') || undefined,
+  articleSection: d.cluster,
+  isPartOf: { '@id': `${SITE.url}/insights#blog` },
+  publisher: { '@id': `${SITE.url}/#organization` },
+  ...(d.heroImage ? { image: `${SITE.url}${d.heroImage}` } : {}),
+};
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    postNode,
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'Insights', path: '/insights' },
+      { name: d.title, path },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title={`${d.title} · Artifact Digital`}
+  description={d.description}
+  canonical={path}
+  ogType="article"
+  ogImage={d.heroImage ?? SITE.ogImage}
+  bodyClass="case-page"
+  jsonLd={jsonLd}
+>
+  <article class="post">
+    <header class="post-hero">
+      <div class="container post-hero__inner">
+        <a class="case-back" href="/insights">
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+            <path d="M13 7H1M6 12 1 7l5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          Back to insights
+        </a>
+        <p class="post-meta">{d.author} · {fmtDate(d.pubDate)} · {d.cluster}</p>
+        <h1 class="post-title">{d.title}</h1>
+        {d.tags.length > 0 && (
+          <ul class="project-card__tags post-tags">{d.tags.map((t) => <li>{t}</li>)}</ul>
+        )}
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="post-article">
+        <Content />
+      </div>
+      <div class="post-cta">
+        <a class="btn btn-secondary" href="/insights">More insights<ArrowIcon /></a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

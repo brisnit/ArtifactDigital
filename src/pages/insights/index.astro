@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE, orgNode, breadcrumb } from '../../data/site';
+
+const posts = (await getCollection('insights', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+const blogNode = {
+  '@type': 'Blog',
+  '@id': `${SITE.url}/insights#blog`,
+  name: 'Artifact Digital — Insights',
+  description: 'Essays on digital strategy, UX, AI, and building for the web — by Britt Midgette.',
+  url: `${SITE.url}/insights`,
+  publisher: { '@id': `${SITE.url}/#organization` },
+  inLanguage: 'en-US',
+  blogPost: posts.map((p) => ({
+    '@type': 'BlogPosting',
+    headline: p.data.title,
+    url: `${SITE.url}/insights/${p.id}`,
+    datePublished: p.data.pubDate.toISOString(),
+    author: { '@type': 'Person', name: p.data.author },
+  })),
+};
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    blogNode,
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'Insights', path: '/insights' },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title="Insights · Artifact Digital"
+  description="Essays on digital strategy, UX, AI, and building for the web — written by Britt Midgette of Artifact Digital."
+  canonical="/insights"
+  bodyClass="case-page"
+  jsonLd={jsonLd}
+>
+  <section class="case-hero">
+    <div class="container">
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Insights</span>
+      <h1 class="case-title">
+        <span class="reveal-line"><span>Field notes on strategy,</span></span>
+        <span class="reveal-line italic"><span>design &amp; AI.</span></span>
+      </h1>
+      <p class="case-lede reveal">
+        Practical, opinionated writing on how enterprise digital experiences
+        actually get built — and where AI fits into the work.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: clamp(2rem, 4vw, 3rem);">
+    <div class="container">
+      {posts.length === 0 ? (
+        <p class="insights-state">New writing is on the way.</p>
+      ) : (
+        <div class="insights-grid">
+          {posts.map((p) => (
+            <a class="insight-card reveal-card" href={`/insights/${p.id}`}>
+              <div class="insight-card__meta">
+                <span>{p.data.cluster}</span>
+                <span>{fmtDate(p.data.pubDate)}</span>
+              </div>
+              <h2 class="insight-card__title">{p.data.title}</h2>
+              <p class="insight-card__excerpt">{p.data.description}</p>
+              <span class="insight-card__more">Read the essay →</span>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,22 @@
+---
+import { NAV } from '../data/site';
+import ArrowIcon from './ArrowIcon.astro';
+---
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="page-header is-stuck" id="pageHeader">
+  <div class="container navbar">
+    <a class="brand" href="/#home" aria-label="Artifact Digital home">
+      <picture>
+        <source media="(max-width: 760px)" srcset="/brand_assets/A_Logo_Mobile3.png" />
+        <img src="/brand_assets/A_Logo_DT3.png" alt="Artifact Digital" class="brand-logo" width="171" height="57" />
+      </picture>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      {NAV.map((item) => <a href={item.href}><span>{item.label}</span></a>)}
+    </nav>
+    <a class="nav-cta" href="/#contact">
+      Start a project
+      <ArrowIcon />
+    </a>
+  </div>
+</header>
