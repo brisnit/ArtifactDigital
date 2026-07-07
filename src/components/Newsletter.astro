@@ -1,0 +1,71 @@
+---
+interface Props { heading?: string; sub?: string; }
+const {
+  heading = 'Field notes, occasionally.',
+  sub = 'Essays on strategy, UX, and AI — sent when there’s something worth saying. No noise.',
+} = Astro.props;
+---
+<section class="section newsletter" aria-labelledby="newsletter-heading">
+  <div class="container newsletter__inner">
+    <div class="newsletter__copy">
+      <h2 class="newsletter__heading" id="newsletter-heading">{heading}</h2>
+      <p class="newsletter__sub">{sub}</p>
+    </div>
+    <form class="newsletter__form" id="newsletterForm" novalidate action="/api/subscribe" method="POST">
+      <div class="newsletter__row">
+        <label class="visually-hidden" for="nl-email">Email address</label>
+        <input id="nl-email" name="email" type="email" required autocomplete="email"
+          placeholder="you@company.com" aria-describedby="nl-status" />
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </div>
+      <div class="hp" aria-hidden="true">
+        <label for="nl-website">Leave empty</label>
+        <input id="nl-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+      <p class="newsletter__status" id="nl-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var form = document.getElementById('newsletterForm');
+    if (!form) return;
+    var status = document.getElementById('nl-status');
+    var input = document.getElementById('nl-email');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      status.className = 'newsletter__status';
+      var email = (input.value || '').trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        status.classList.add('is-error');
+        status.textContent = 'Please enter a valid email address.';
+        input.focus();
+        return;
+      }
+      var btn = form.querySelector('button');
+      btn.disabled = true;
+      fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, website: form.website.value }),
+      })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (res) {
+          if (res.ok && res.j.ok) {
+            form.reset();
+            status.classList.add('is-success');
+            status.textContent = 'You’re on the list. Thanks for reading.';
+          } else {
+            status.classList.add('is-error');
+            status.textContent = (res.j && res.j.error) || 'Something went wrong. Please try again.';
+          }
+        })
+        .catch(function () {
+          status.classList.add('is-error');
+          status.textContent = 'Network error. Please try again.';
+        })
+        .finally(function () { btn.disabled = false; });
+    });
+  })();
+</script>

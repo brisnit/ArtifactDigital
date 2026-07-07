@@ -23,8 +23,18 @@ export const NAV = [
   { label: 'Work', href: '/#work' },
   { label: 'Approach', href: '/#approach' },
   { label: 'Insights', href: '/insights' },
-  { label: 'Contact', href: '/#contact' },
+  { label: 'Contact', href: '/contact' },
 ] as const;
+
+// Standardized CTA language. One vocabulary across the whole site so the
+// primary ask is always consistent and intentional.
+export const CTA = {
+  primary: { label: 'Book a Strategy Session', href: '/contact' },
+  audit: { label: 'Request an Experience Audit', href: '/contact?intent=audit' },
+  talk: { label: 'Talk With Artifact', href: '/contact' },
+  build: { label: "Let's Build Something Better", href: '/contact' },
+  work: { label: 'See our work', href: '/#work' },
+} as const;
 
 const abs = (path: string) => (path.startsWith('http') ? path : `${SITE.url}${path}`);
 

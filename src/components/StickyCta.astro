@@ -1,0 +1,9 @@
+---
+// Persistent conversion surface on small screens only (see CSS media query).
+import ArrowIcon from './ArrowIcon.astro';
+import { CTA } from '../data/site';
+---
+<a class="sticky-cta" href={CTA.primary.href} aria-label={CTA.primary.label}>
+  <span>{CTA.primary.label}</span>
+  <ArrowIcon />
+</a>

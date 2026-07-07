@@ -1,12 +1,15 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ArrowIcon from '../components/ArrowIcon.astro';
-import { SITE, orgNode, websiteNode } from '../data/site';
+import Button from '../components/Button.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE, orgNode, websiteNode, CTA } from '../data/site';
+import { testimonials, sectors } from '../data/testimonials';
 
 const projects = (await getCollection('work')).sort(
   (a, b) => a.data.order - b.data.order
 );
+const liveTestimonials = testimonials.filter((t) => t.approved);
 
 const serviceNode = {
   '@type': 'ProfessionalService',
@@ -72,8 +75,8 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
             premium, and built to scale.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="/#contact">Start a project<ArrowIcon /></a>
-            <a class="btn btn-secondary" href="/#work">See our work<ArrowIcon /></a>
+            <Button href={CTA.primary.href} label={CTA.primary.label} variant="primary" />
+            <Button href={CTA.work.href} label={CTA.work.label} variant="secondary" />
           </div>
         </div>
       </div>
@@ -274,13 +277,36 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
     </div>
   </section>
 
-  <!-- QUOTE -->
-  <section class="section quote-block">
+  <!-- TRUST / CREDIBILITY -->
+  <section class="section trust" id="trust" aria-labelledby="trust-heading">
     <div class="container">
-      <blockquote class="quote reveal-line">
-        <span>“Artifact Digital built us a Shopify experience that completely transformed our business. Since launch, we’ve seen our sales multiply and our brand finally feels as premium online as it does in person.”</span>
-      </blockquote>
-      <p class="quote-attr reveal">— Rob Chapman, Rob’s Brew Spot</p>
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Trusted work</span>
+        <h2 class="section-heading reveal-line" id="trust-heading"><span>Senior-led work for demanding brands</span></h2>
+      </header>
+      <p class="trust-lede reveal">
+        We've shaped digital experiences for organizations across regulated,
+        high-stakes industries — from healthcare and financial services to global
+        retail and consumer brands. Different sectors, same standard: strategy that
+        holds up, design that ships, and outcomes leadership can point to.
+      </p>
+      <ul class="sector-list reveal" aria-label="Industries served">
+        {sectors.map((s) => <li>{s}</li>)}
+      </ul>
+
+      {liveTestimonials.length > 0 && (
+        <div class="testimonial-grid">
+          {liveTestimonials.map((t) => (
+            <figure class="testimonial reveal-card">
+              <blockquote>{t.quote}</blockquote>
+              <figcaption>
+                <span class="testimonial__role">{t.role}</span>
+                <span class="testimonial__sector">{t.sector}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      )}
     </div>
   </section>
 
@@ -293,6 +319,11 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
         <span class="reveal-line"><span>Let's translate your brand</span></span>
         <span class="reveal-line"><span>into its <em>next chapter.</em></span></span>
       </h2>
+
+      <div class="hero-actions reveal" style="margin: 2rem 0 2.5rem;">
+        <Button href={CTA.primary.href} label={CTA.primary.label} variant="primary" />
+        <Button href={CTA.audit.href} label={CTA.audit.label} variant="secondary" />
+      </div>
 
       <a class="contact-email reveal" href="mailto:hello@artifactdigital.co">
         hello@artifactdigital.co

@@ -1,0 +1,212 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, orgNode, breadcrumb } from '../data/site';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ContactPage',
+      '@id': `${SITE.url}/contact#page`,
+      url: `${SITE.url}/contact`,
+      name: 'Contact Artifact Digital',
+      description:
+        'Book a strategy session or request an experience audit. Artifact Digital is a senior-led digital innovation agency.',
+      isPartOf: { '@id': `${SITE.url}/#website` },
+      about: { '@id': `${SITE.url}/#organization` },
+    },
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'Contact', path: '/contact' },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title="Contact · Book a Strategy Session · Artifact Digital"
+  description="Start a conversation with Artifact Digital. Book a strategy session, request an experience audit, or tell us about your project — senior-led, no handoffs."
+  canonical="/contact"
+  bodyClass="case-page contact-page"
+  jsonLd={jsonLd}
+  hideStickyCta={true}
+>
+  <section class="case-hero">
+    <div class="container">
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Contact</span>
+      <h1 class="case-title">
+        <span class="reveal-line"><span>Let's build something</span></span>
+        <span class="reveal-line italic"><span>better together.</span></span>
+      </h1>
+      <p class="case-lede reveal">
+        Tell us where you want to go. A principal — not a pipeline — reads every
+        message, and you'll hear back within two business days.
+      </p>
+    </div>
+  </section>
+
+  <section class="section contact-layout">
+    <div class="container contact-layout__grid">
+      <!-- Aside: what happens next + direct details -->
+      <aside class="contact-aside">
+        <div class="contact-aside__block">
+          <h2 class="contact-aside__title">What happens next</h2>
+          <ol class="contact-steps">
+            <li><span>01</span> We read your message and reply within two business days.</li>
+            <li><span>02</span> A short call to understand goals, constraints and timing.</li>
+            <li><span>03</span> A clear, no-obligation recommendation on the best next step.</li>
+          </ol>
+        </div>
+        <div class="contact-aside__block">
+          <h2 class="contact-aside__title">Prefer email?</h2>
+          <p><a class="contact-aside__email" href="mailto:hello@artifactdigital.co">hello@artifactdigital.co</a></p>
+          <p class="contact-aside__muted">San Diego, CA · Working with teams worldwide</p>
+          <p><a href={SITE.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a></p>
+        </div>
+      </aside>
+
+      <!-- Form -->
+      <div class="contact-form-wrap">
+        <form id="contactForm" class="contact-form" novalidate action="/api/contact" method="POST">
+          <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+
+          <div class="field">
+            <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
+            <input id="name" name="name" type="text" autocomplete="name" required
+              aria-required="true" aria-describedby="name-error" />
+            <p class="field-error" id="name-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" required
+              aria-required="true" aria-describedby="email-error" />
+            <p class="field-error" id="email-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="company">Company <span class="optional">(optional)</span></label>
+            <input id="company" name="company" type="text" autocomplete="organization" />
+          </div>
+
+          <div class="field">
+            <label for="intent">How can we help?</label>
+            <select id="intent" name="intent">
+              <option value="strategy">Book a strategy session</option>
+              <option value="audit">Request an experience audit</option>
+              <option value="project">Start a project</option>
+              <option value="general">Something else</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="message">Project / message <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="message" name="message" rows="6" required aria-required="true"
+              aria-describedby="message-error"
+              placeholder="A few sentences on what you're trying to do, and by when."></textarea>
+            <p class="field-error" id="message-error" aria-live="polite"></p>
+          </div>
+
+          <!-- Honeypot: hidden from users, catches bots -->
+          <div class="hp" aria-hidden="true">
+            <label for="website">Leave this field empty</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <button type="submit" class="btn btn-primary contact-submit" id="submitBtn">
+            <span class="btn-label">Send message</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+              <path d="M1 7h12M8 2l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <p class="form-fineprint">By sending this you agree we may contact you about your enquiry. We never share your details.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    var form = document.getElementById('contactForm');
+    if (!form) return;
+    var statusEl = document.getElementById('formStatus');
+    var btn = document.getElementById('submitBtn');
+    var label = btn.querySelector('.btn-label');
+
+    // Preselect intent from ?intent=audit etc.
+    try {
+      var intent = new URLSearchParams(location.search).get('intent');
+      var sel = document.getElementById('intent');
+      if (intent && sel) {
+        for (var i = 0; i < sel.options.length; i++) {
+          if (sel.options[i].value === intent) { sel.selectedIndex = i; break; }
+        }
+      }
+    } catch (e) {}
+
+    function setError(field, msg) {
+      var input = document.getElementById(field);
+      var err = document.getElementById(field + '-error');
+      if (err) err.textContent = msg || '';
+      if (input) {
+        if (msg) { input.setAttribute('aria-invalid', 'true'); input.classList.add('is-invalid'); }
+        else { input.removeAttribute('aria-invalid'); input.classList.remove('is-invalid'); }
+      }
+    }
+
+    function validate(data) {
+      var ok = true;
+      setError('name', ''); setError('email', ''); setError('message', '');
+      if (!data.name || data.name.trim().length < 2) { setError('name', 'Please enter your name.'); ok = false; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email || '')) { setError('email', 'Please enter a valid email address.'); ok = false; }
+      if (!data.message || data.message.trim().length < 10) { setError('message', 'Please add a little more detail.'); ok = false; }
+      return ok;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      statusEl.className = 'form-status';
+      statusEl.textContent = '';
+      var fd = new FormData(form);
+      var data = Object.fromEntries(fd.entries());
+      if (!validate(data)) {
+        statusEl.classList.add('is-error');
+        statusEl.textContent = 'Please fix the highlighted fields.';
+        var firstInvalid = form.querySelector('[aria-invalid="true"]');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+      btn.disabled = true;
+      label.textContent = 'Sending…';
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (res) {
+          if (res.ok && res.j.ok) {
+            form.reset();
+            statusEl.classList.add('is-success');
+            statusEl.textContent = 'Thanks — your message is on its way. We’ll be in touch within two business days.';
+            statusEl.focus && statusEl.focus();
+          } else {
+            if (res.j && res.j.errors) {
+              Object.keys(res.j.errors).forEach(function (k) { setError(k, res.j.errors[k]); });
+            }
+            statusEl.classList.add('is-error');
+            statusEl.textContent = (res.j && res.j.error) || 'Something went wrong. Please email hello@artifactdigital.co.';
+          }
+        })
+        .catch(function () {
+          statusEl.classList.add('is-error');
+          statusEl.textContent = 'Network error. Please email hello@artifactdigital.co.';
+        })
+        .finally(function () {
+          btn.disabled = false;
+          label.textContent = 'Send message';
+        });
+    });
+  })();
+</script>

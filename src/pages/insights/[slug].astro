@@ -3,6 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArrowIcon from '../../components/ArrowIcon.astro';
+import Newsletter from '../../components/Newsletter.astro';
 import { SITE, orgNode, breadcrumb } from '../../data/site';
 
 export const getStaticPaths = (async () => {
@@ -84,4 +85,6 @@ const jsonLd = {
       </div>
     </div>
   </article>
+
+  <Newsletter />
 </BaseLayout>

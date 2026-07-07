@@ -1,0 +1,30 @@
+---
+import Button from './Button.astro';
+import { CTA } from '../data/site';
+
+interface Props {
+  heading?: string;
+  sub?: string;
+  primary?: { label: string; href: string };
+  secondary?: { label: string; href: string };
+}
+const {
+  heading = "Let's translate your experience into its next chapter.",
+  sub = 'Tell us where you want to go. We’ll bring the strategy, design, AI and engineering to get you there.',
+  primary = CTA.primary,
+  secondary = CTA.work,
+} = Astro.props;
+---
+<section class="section cta-band" aria-labelledby="cta-band-heading">
+  <div class="container cta-band__inner">
+    <div class="cta-band__copy">
+      <span class="section-tag"><span class="tag-dot"></span>Get in touch</span>
+      <h2 class="cta-band__heading" id="cta-band-heading">{heading}</h2>
+      {sub && <p class="cta-band__sub">{sub}</p>}
+    </div>
+    <div class="cta-band__actions">
+      <Button href={primary.href} label={primary.label} variant="primary" />
+      {secondary && <Button href={secondary.href} label={secondary.label} variant="secondary" />}
+    </div>
+  </div>
+</section>

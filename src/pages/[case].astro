@@ -2,8 +2,8 @@
 import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ArrowIcon from '../components/ArrowIcon.astro';
-import { SITE, orgNode, breadcrumb } from '../data/site';
+import Button from '../components/Button.astro';
+import { SITE, orgNode, breadcrumb, CTA } from '../data/site';
 
 export const getStaticPaths = (async () => {
   const cases = await getCollection('work');
@@ -157,8 +157,8 @@ const jsonLd = {
     <div class="container case-cta__inner">
       <h2 class="case-cta__heading reveal-line"><span>{d.ctaHeading}</span></h2>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="/#contact">Start a project<ArrowIcon /></a>
-        <a class="btn btn-secondary" href="/#work">See more work<ArrowIcon /></a>
+        <Button href={CTA.primary.href} label={CTA.primary.label} variant="primary" />
+        <Button href="/#work" label="See more work" variant="secondary" />
       </div>
     </div>
   </section>

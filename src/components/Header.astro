@@ -1,5 +1,5 @@
 ---
-import { NAV } from '../data/site';
+import { NAV, CTA } from '../data/site';
 import ArrowIcon from './ArrowIcon.astro';
 ---
 <a class="skip-link" href="#main">Skip to content</a>
@@ -14,8 +14,8 @@ import ArrowIcon from './ArrowIcon.astro';
     <nav class="nav-links" aria-label="Primary">
       {NAV.map((item) => <a href={item.href}><span>{item.label}</span></a>)}
     </nav>
-    <a class="nav-cta" href="/#contact">
-      Start a project
+    <a class="nav-cta" href={CTA.primary.href}>
+      {CTA.primary.label}
       <ArrowIcon />
     </a>
   </div>

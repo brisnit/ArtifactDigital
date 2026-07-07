@@ -2,6 +2,7 @@
 import { SITE } from '../data/site';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import StickyCta from '../components/StickyCta.astro';
 
 interface Props {
   title: string;
@@ -14,6 +15,7 @@ interface Props {
   bodyClass?: string;
   robots?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  hideStickyCta?: boolean;
 }
 
 const {
@@ -26,6 +28,7 @@ const {
   bodyClass = '',
   robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
   jsonLd,
+  hideStickyCta = false,
 } = Astro.props;
 
 const abs = (p: string) => (p.startsWith('http') ? p : `${SITE.url}${p.startsWith('/') ? '' : '/'}${p}`);
@@ -94,6 +97,8 @@ const graphs = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
       <slot />
       <Footer />
     </main>
+
+    {!hideStickyCta && <StickyCta />}
 
     <script is:inline src="/script.js"></script>
   </body>
