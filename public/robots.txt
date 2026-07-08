@@ -50,4 +50,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://artifactdigital.co/sitemap-index.xml
+Sitemap: https://www.artifactdigital.co/sitemap-index.xml

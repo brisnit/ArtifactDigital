@@ -3,7 +3,7 @@
 
 export const SITE = {
   name: 'Artifact Digital',
-  url: 'https://artifactdigital.co',
+  url: 'https://www.artifactdigital.co',
   domain: 'artifactdigital.co',
   email: 'hello@artifactdigital.co',
   tagline: 'Digital Innovation Agency',
