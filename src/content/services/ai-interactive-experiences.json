@@ -1,0 +1,64 @@
+{
+  "title": "AI & Interactive Experiences",
+  "navLabel": "AI & Interactive Experiences",
+  "metaTitle": "AI & Interactive Experiences · Artifact Digital",
+  "description": "AI-powered features, generative interfaces, and motion-led experiences that make a product feel modern and alive — built around human judgment, not gimmicks.",
+  "order": 4,
+  "tier": "pillar",
+  "eyebrow": "What we build · AI & Interactive Experiences",
+  "heroTitleLines": [
+    { "text": "Modern, alive —" },
+    { "text": "and actually trusted.", "italic": true }
+  ],
+  "lede": "AI-powered features, generative interfaces, and motion-led experiences that make a product feel modern and alive. The interesting question isn't whether to add AI — it's where it genuinely makes the experience better.",
+  "summary": "AI features, generative interfaces, and motion-led experiences.",
+  "intro": [
+    "I've been building with these tools since late 2020, back when the outputs were rough and the hype was already deafening. Here's the short version of what I've learned: AI is otherworldly at generating options and speeding up thinking, and genuinely bad at owning an outcome or being accountable when it's wrong. The interesting design work lives right on that line.",
+    "Most 'AI features' shipping right now are a text box bolted onto a product with a sparkle icon next to it. Sometimes that's right. Usually it isn't. The better move is to ask what job the user is really doing, then decide where AI removes friction and where it adds new friction — hallucinated answers, unpredictable behavior, a lost sense of control.",
+    "The same goes for motion and interactivity. Used well, they make a product feel considered and alive; used carelessly, they're noise that gets in the way. We treat both AI and motion as means to an end — a clearer, more trustworthy, more memorable experience — never as decoration."
+  ],
+  "sections": [
+    {
+      "heading": "Design for the wrong answer",
+      "body": [
+        "Traditional software is deterministic. AI isn't — it's probabilistic and occasionally confidently wrong, and that changes the design problem. The interface has to assume the model will sometimes be mistaken and make that failure graceful instead of dangerous.",
+        "So we design the unhappy path first: how the user notices an error, how they correct it, how much to trust a given output, and what the safe fallback is. An AI feature that only works when the model is right isn't finished. Handling the wrong answer well is what separates a real product from a demo."
+      ]
+    },
+    {
+      "heading": "Motion with a purpose",
+      "body": [
+        "Interactive and motion-led experiences are part of what makes a product feel modern, but motion should always earn its place. We use it to guide attention, explain change, and give the interface personality — not to show off.",
+        "Done right, a considered transition or a well-timed interaction makes a product feel alive and trustworthy at the same time. Done wrong, it's friction dressed up as delight. We know the difference, and we design for the first one."
+      ]
+    }
+  ],
+  "process": [
+    { "title": "Find the real job", "body": "We identify where AI or interactivity genuinely improves the experience — and rule out where it would only add risk or noise." },
+    { "title": "Prototype fast", "body": "AI and motion have to be felt to be judged, so we build rough, working prototypes early rather than trusting static mockups." },
+    { "title": "Design the failure", "body": "We design the wrong-answer path — error, correction, trust cues, safe fallbacks — so the experience holds up in production." },
+    { "title": "Ship & learn", "body": "We instrument the experience, watch how people actually use it, and refine where trust and usefulness diverge." }
+  ],
+  "deliverables": [
+    "A clear-eyed view of where AI and interactivity help your experience — and where they don't",
+    "Working prototypes of AI or motion-led features you can actually feel",
+    "Interaction patterns for trust, control, correction, and graceful failure",
+    "Generative and assistive interfaces designed around real user jobs",
+    "Purposeful motion and interaction that clarifies rather than distracts",
+    "Guardrails and fallbacks that keep the experience reliable when the model isn't"
+  ],
+  "whoFor": [
+    "Product teams under pressure to 'add AI' who want to do it well, not just fast",
+    "Companies exploring generative features and unsure where they truly help",
+    "Teams that want motion and interactivity to feel intentional, not decorative",
+    "Leaders wary of shipping AI that looks impressive but erodes user trust"
+  ],
+  "faq": [
+    { "q": "Do you build the AI models or design the experience around them?", "a": "We focus on the experience — the interface, interaction patterns, and the trust and control mechanics — and work alongside your data science team or capable model providers for the models themselves. Our value is making the technology usable, trustworthy, and genuinely helpful in context." },
+    { "q": "Is it too early to invest in AI features?", "a": "It's rarely too early to prototype and learn; it's often too early to bet the roadmap. We favor cheap, fast experiments that tell you where AI earns its place before you commit serious engineering to it." },
+    { "q": "How is this different from your AI Experience Design service?", "a": "This is the broad capability — AI features and motion-led, interactive experiences together. AI Experience Design is the specific discipline within it. If you're unsure which depth you need, start here and we'll point you to the right one." }
+  ],
+  "relatedTags": ["AI", "Experience", "Motion"],
+  "relatedServices": ["ai-experience-design", "product-design"],
+  "ctaHeading": "Want AI and interactivity that people actually trust?"
+}

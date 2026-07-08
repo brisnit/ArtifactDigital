@@ -2325,3 +2325,17 @@ button:focus-visible {
   .logo-grid { grid-template-columns: repeat(2, 1fr); }
   .logo-grid__item { min-height: 80px; }
 }
+
+/* -------------------- Clickable "What we build" rows -------------------- */
+.service-row { cursor: pointer; }
+.service-row__link {
+  position: absolute;
+  inset: 0;
+  z-index: 2;           /* above .service-row > * (z-index:1) so the whole row is clickable */
+  text-indent: -9999px; /* purely a hit target; name comes from aria-label */
+  overflow: hidden;
+}
+.service-row__link:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: -3px;
+}

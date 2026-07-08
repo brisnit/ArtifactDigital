@@ -5,13 +5,15 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { SITE, orgNode, breadcrumb } from '../../data/site';
 
-const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const all = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const pillars = all.filter((s) => s.data.tier === 'pillar');
+const services = all.filter((s) => s.data.tier !== 'pillar');
 
 const itemList = {
   '@type': 'ItemList',
   '@id': `${SITE.url}/services#list`,
   name: 'Artifact Digital services',
-  itemListElement: services.map((s, i) => ({
+  itemListElement: all.map((s, i) => ({
     '@type': 'ListItem',
     position: i + 1,
     name: s.data.title,
@@ -53,8 +55,32 @@ const jsonLd = {
     </div>
   </section>
 
+  <!-- Tier 1: broad capabilities (the homepage "What we build") -->
+  <section class="section services-hub__pillars">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>What we build</span>
+        <h2 class="section-heading reveal-line"><span>Four ways we help</span></h2>
+      </header>
+      <div class="service-link-grid">
+        {pillars.map((s) => (
+          <a class="service-link-card reveal-card" href={`/services/${s.id}`}>
+            <h3>{s.data.navLabel}</h3>
+            <p>{s.data.summary}</p>
+            <span class="service-link-card__more">Explore →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Tier 2: specific disciplines -->
   <section class="section services-hub__list">
     <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Disciplines</span>
+        <h2 class="section-heading reveal-line"><span>Explore each discipline</span></h2>
+      </header>
       <ol class="hub-list">
         {services.map((s) => (
           <li class="hub-row">

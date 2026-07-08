@@ -1,0 +1,63 @@
+{
+  "title": "Product & Digital Strategy",
+  "navLabel": "Product & Digital Strategy",
+  "metaTitle": "Product & Digital Strategy · Artifact Digital",
+  "description": "Positioning, narrative, and direction for the digital products and experiences you're building next — strategy that decides what to build and why before you build it.",
+  "order": 1,
+  "tier": "pillar",
+  "eyebrow": "What we build · Product & Digital Strategy",
+  "heroTitleLines": [
+    { "text": "Clear direction before" },
+    { "text": "the first pixel.", "italic": true }
+  ],
+  "lede": "We translate your existing brand into clear positioning, narrative, and visual direction for the digital products and experiences you're building next. It's the thinking that makes everything downstream easier.",
+  "summary": "Positioning, narrative, and direction for what you build next.",
+  "intro": [
+    "This is where the work starts, and where most projects go wrong. Before anyone designs a screen or writes a line of code, someone has to decide what's actually being built, who it's for, and why it deserves to exist. That decision is strategy, and it's the difference between a product that's coherent and one that's just a pile of good intentions.",
+    "Our strategy work sits at the intersection of business and experience. We take what makes your brand credible and turn it into a clear point of view for the digital products you're launching next — the positioning, the narrative, the priorities, and the direction that keep hundreds of downstream decisions consistent without a meeting for each one.",
+    "We keep strategy and execution in the same hands on purpose. A strategy that can't be designed is a fantasy; a design with no strategy behind it is decoration. Holding both is what lets us make decisions that actually survive contact with reality."
+  ],
+  "sections": [
+    {
+      "heading": "From brand to digital direction",
+      "body": [
+        "You already have a brand — a reputation, a voice, a way customers think about you. The job isn't to reinvent that; it's to extend it into the digital experiences you're building so they feel unmistakably like you and clearly better than the alternative.",
+        "We translate that equity into concrete direction: how you position the product, the story it tells, the priorities it holds, and the visual and experiential language it speaks. That direction becomes the brief everything else is measured against."
+      ]
+    },
+    {
+      "heading": "Prioritization is the deliverable",
+      "body": [
+        "Almost every team we work with has more ideas than capacity. The value of strategy isn't the ideas — it's the sequence. What do you build first, what do you defer, and what do you kill? We make those tradeoffs visible so leadership can make them on purpose.",
+        "We're willing to take a position and defend it. You don't need a partner who agrees with everything; you need one who has spent enough time in the arena to tell you which battles are worth fighting."
+      ]
+    }
+  ],
+  "process": [
+    { "title": "Immerse", "body": "We get inside the business, the brand, and the customer — the goals, the friction, and the evidence behind both." },
+    { "title": "Frame", "body": "We define the real problem and the outcomes that matter, and map the opportunity against them." },
+    { "title": "Direct", "body": "We set the positioning, narrative, and experience direction, and sequence the roadmap into something fundable and shippable." },
+    { "title": "Mobilize", "body": "We turn the strategy into a brief teams can act on immediately, with clear ownership and a first move." }
+  ],
+  "deliverables": [
+    "Positioning and narrative for the product or experience you're building next",
+    "A north-star experience direction the whole team can rally behind",
+    "A prioritized, sequenced roadmap with the rationale for every tradeoff",
+    "Success measures that connect experience to business outcomes",
+    "A clear brief that carries straight into design and build"
+  ],
+  "whoFor": [
+    "Teams launching a new product or experience who want to decide before they design",
+    "Organizations whose digital ambitions have outrun any shared direction",
+    "Leaders who need alignment on what to build first — and what not to build",
+    "Brands with strong equity that hasn't yet been translated into digital"
+  ],
+  "faq": [
+    { "q": "How is this different from your Digital Strategy service?", "a": "Think of this as the broad capability; Digital Strategy and UX Strategy are the specific disciplines inside it. If you're not sure which you need, start here — a short conversation is usually enough for us to point you to the right depth." },
+    { "q": "Do we need to have our goals figured out first?", "a": "No. A lot of the value is helping leadership get honest and specific about goals and reconcile the competing ones. That's part of the work, not a prerequisite for it." },
+    { "q": "What do we walk away with?", "a": "A clear direction and a sequenced plan you can act on — not a deck that sits in a drawer. Because the same senior team can carry it into design and build, there's no handoff cliff afterward." }
+  ],
+  "relatedTags": ["Strategy", "UX/UI", "Web"],
+  "relatedServices": ["digital-strategy", "ux-strategy", "ux-research", "experience-audits"],
+  "ctaHeading": "Building something new? Let's get the direction right first."
+}

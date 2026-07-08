@@ -84,6 +84,9 @@ const services = defineCollection({
     metaTitle: z.string(),
     description: z.string(),
     order: z.number().default(99),
+    // "pillar" = broad capability area (the homepage "What we build" touts);
+    // "service" = a specific discipline. Lets the hub present two tiers.
+    tier: z.enum(['pillar', 'service']).default('service'),
     eyebrow: z.string(),
     heroTitleLines: z.array(z.object({ text: z.string(), italic: z.boolean().default(false) })),
     lede: z.string(),

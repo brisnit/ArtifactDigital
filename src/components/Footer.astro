@@ -2,7 +2,9 @@
 import { getCollection } from 'astro:content';
 import { SITE, CTA } from '../data/site';
 
-const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const services = (await getCollection('services'))
+  .filter((s) => s.data.tier === 'pillar')
+  .sort((a, b) => a.data.order - b.data.order);
 const year = new Date().getFullYear();
 ---
 <footer class="page-footer">
@@ -22,6 +24,7 @@ const year = new Date().getFullYear();
         <h3>Services</h3>
         <ul>
           {services.map((s) => <li><a href={`/services/${s.id}`}>{s.data.navLabel}</a></li>)}
+          <li><a href="/services">All services →</a></li>
         </ul>
       </div>
       <div class="footer-col">

@@ -1,0 +1,64 @@
+{
+  "title": "Website Design & Build",
+  "navLabel": "Website Design & Build",
+  "metaTitle": "Website Design & Build · Artifact Digital",
+  "description": "Marketing sites and editorial platforms with a strong visual signature, accessible structure, and purposeful motion — designed and built to perform and to last.",
+  "order": 2,
+  "tier": "pillar",
+  "eyebrow": "What we build · Website Design & Build",
+  "heroTitleLines": [
+    { "text": "Sites with a signature —" },
+    { "text": "and a spine.", "italic": true }
+  ],
+  "lede": "Marketing sites and editorial platforms with a strong visual signature, accessible structure, and purposeful motion. Distinctive on the surface, sound underneath, and built so your team can actually run it.",
+  "summary": "Marketing sites and editorial platforms, designed and built to last.",
+  "intro": [
+    "A website is the most public thing most organizations own. It's where first impressions get made, where trust is won or lost, and where a lot of expensive assumptions quietly go to die. We design and build sites that make the first impression count and hold up long after launch.",
+    "We refuse the usual tradeoff between beautiful and functional. A gorgeous site that's a nightmare to update, or an accessible one that looks like a template, is only half-built. We care about the visual signature, the underlying structure, and the authoring experience your content team lives in — because all three determine whether the site still works a year from now.",
+    "And we design the details other people skip: the empty state, the loading moment, the mobile experience, the transition between two pages. Those are where a site either feels crafted or feels cheap, and visitors register the difference instantly."
+  ],
+  "sections": [
+    {
+      "heading": "A visual signature, not a template",
+      "body": [
+        "Most modern websites look the same — same components, same gradients, same rounded rectangles. That sameness is a missed opportunity. Your site is a chance to feel like you and no one else, and a distinctive voice is a real competitive asset.",
+        "We build that signature deliberately — type with a point of view, considered color and space, motion with personality that never gets in the way — while keeping the structure clear and the experience fast. Distinctive and usable aren't in tension; the signature is what makes the usability feel like a brand."
+      ]
+    },
+    {
+      "heading": "Built for the people who run it",
+      "body": [
+        "The users of a website aren't only your visitors — they're your content team. If the CMS fights them, they'll route around it, and the site decays. So we design the authoring experience as carefully as the public-facing one, on the right platform for your team.",
+        "Whether that's a modern headless stack or an enterprise CMS like Optimizely or Sitecore, we model the content around how your business actually works and give editors guardrails that prevent mistakes without smothering flexibility. A site people reach for, not one they resent."
+      ]
+    }
+  ],
+  "process": [
+    { "title": "Structure", "body": "We map the content model, information architecture, and page structure around real audience goals before styling anything." },
+    { "title": "Design", "body": "We establish a distinctive visual signature and design the full experience — including the states and edge cases teams usually skip." },
+    { "title": "Build", "body": "We ship clean, fast, accessible front-end on the right CMS, with an authoring experience your content team actually wants to use." },
+    { "title": "Launch & sustain", "body": "We migrate deliberately, measure what matters, and set your team up to keep the site healthy long after go-live." }
+  ],
+  "deliverables": [
+    "A distinctive, on-brand visual direction — not a themed template",
+    "Content architecture and a model grounded in your business and audience",
+    "A fast, accessible, responsive front-end build",
+    "Implementation on the right CMS, headless or enterprise",
+    "An authoring experience your content team can run without us",
+    "A deliberate launch and migration plan, plus measures that connect to outcomes"
+  ],
+  "whoFor": [
+    "Organizations whose site no longer reflects how good they actually are",
+    "Teams whose CMS has become slower to use than the problem it replaced",
+    "Companies that need a marketing site or editorial platform to feel premium and perform",
+    "Brands facing a replatforming or migration who want to get it right"
+  ],
+  "faq": [
+    { "q": "Do you design and build, or just one?", "a": "Both, together. Front-end engineering is part of what we do, which keeps our designs grounded in what's actually buildable and protects the details through launch. When you have your own engineers, we design for a clean handoff and stay close through build." },
+    { "q": "Which CMS should we use?", "a": "It depends on your team, content, and roadmap — not on what's trendy. We'll help you weigh headless and composable against enterprise platforms like Optimizely or Sitecore with honest total-cost thinking, and if you've already chosen one, we make it work as well as it can." },
+    { "q": "Can you work with our existing brand?", "a": "Absolutely. We frequently translate an established brand into a digital experience, extending it thoughtfully rather than reinventing it — and we'll show you where it needs to stretch to work well on screen." }
+  ],
+  "relatedTags": ["Web", "UX/UI", "Strategy"],
+  "relatedServices": ["ux-ui-design", "enterprise-cms", "accessibility"],
+  "ctaHeading": "Ready for a site that performs as well as it looks?"
+}
