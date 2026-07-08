@@ -25,6 +25,7 @@
   --radius-md: 18px;
   --radius-lg: 28px;
   --radius-xl: 40px;
+  --radius-media: 4px; /* sharp, architectural corners for images + video */
   --shadow-card: 0 22px 60px rgba(17, 17, 17, 0.08);
   --shadow-pop: 0 30px 90px rgba(17, 17, 17, 0.12);
   --easing: cubic-bezier(0.22, 1, 0.36, 1);
@@ -367,7 +368,7 @@ body.cursor-hover .cursor {
   overflow: hidden;
   background: #0a0a0a;
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-media);
 }
 .hero-video {
   position: absolute;
@@ -420,12 +421,7 @@ body.cursor-hover .cursor {
   gap: 0.6rem;
 }
 .eyebrow-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  display: inline-block;
-  animation: pulse 1.8s var(--easing) infinite;
+  display: none;
 }
 
 .hero-heading {
@@ -630,10 +626,7 @@ body.cursor-hover .cursor {
   color: var(--steel);
 }
 .tag-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
+  display: none;
 }
 
 .intro-heading {
@@ -847,7 +840,7 @@ body.cursor-hover .cursor {
 .project-card__media {
   position: relative;
   overflow: hidden;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-media);
   background: var(--media-bg, #0e0e0e);
   aspect-ratio: 4 / 3;
 }
@@ -1689,7 +1682,7 @@ body.cursor-hover .cursor {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-media);
   opacity: 0;
   transform: scale(1.02);
   transition: opacity 0.9s var(--easing), transform 1.4s var(--easing);
@@ -2267,7 +2260,7 @@ button:focus-visible {
 /* -------------------- Insights imagery -------------------- */
 .post-lead {
   margin: clamp(1.5rem, 3vw, 2.5rem) 0 0;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-media);
   overflow: hidden;
   background: var(--stone);
   max-width: 900px;
@@ -2275,7 +2268,7 @@ button:focus-visible {
 .post-lead img { width: 100%; height: auto; display: block; }
 
 .insight-card__media {
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-media);
   overflow: hidden;
   aspect-ratio: 16 / 9;
   background: var(--stone);
