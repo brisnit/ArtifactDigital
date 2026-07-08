@@ -2332,3 +2332,13 @@ button:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: -3px;
 }
+
+/* -------------------- Founder portrait (About) -------------------- */
+.founder-portrait {
+  margin-top: clamp(1.5rem, 2.5vw, 2rem);
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  border-radius: var(--radius-media);
+  display: block;
+}
