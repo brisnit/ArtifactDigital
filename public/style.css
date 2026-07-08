@@ -1010,7 +1010,7 @@ body.cursor-hover .cursor {
 .approach-card {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-media);
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -1364,7 +1364,7 @@ body.cursor-hover .cursor {
 .pillar {
   padding: 2rem;
   background: var(--stone);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-media);
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
@@ -1776,7 +1776,7 @@ body.cursor-hover .cursor {
   gap: 0.9rem;
   padding: clamp(1.5rem, 2.5vw, 2.25rem);
   border: 1px solid rgba(17, 17, 17, 0.1);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-media);
   background: #fff;
   text-decoration: none;
   color: var(--ink);
@@ -1921,7 +1921,7 @@ button:focus-visible {
 .testimonial {
   margin: 0;
   padding: clamp(1.5rem, 2.5vw, 2.25rem);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-media);
   background: var(--stone);
 }
 .testimonial blockquote {
@@ -2000,7 +2000,7 @@ button:focus-visible {
 
 .contact-form-wrap {
   background: var(--stone);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-media);
   padding: clamp(1.5rem, 3vw, 2.75rem);
 }
 .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
@@ -2171,7 +2171,7 @@ button:focus-visible {
 .service-link-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
 .service-link-card {
   display: flex; flex-direction: column; gap: 0.6rem;
-  padding: 1.75rem; border: 1px solid rgba(17,17,17,0.1); border-radius: var(--radius-md);
+  padding: 1.75rem; border: 1px solid rgba(17,17,17,0.1); border-radius: var(--radius-media);
   text-decoration: none; color: var(--ink);
   transition: transform 0.3s var(--easing), box-shadow 0.3s var(--easing), border-color 0.3s var(--easing);
 }
