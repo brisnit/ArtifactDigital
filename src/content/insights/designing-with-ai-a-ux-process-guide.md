@@ -3,7 +3,7 @@ title: "Designing With AI: A UX Process Guide"
 description: "When it comes to AI for design, workflow is everything. AI is not one magic button. The real power is mapping AI to the right stage of design. As…"
 pubDate: 2026-02-16
 author: Britt Midgette
-heroImage: "/brand_assets/insights/designing-with-ai-a-ux-process-guide.jpg"
+heroImage: "/brand_assets/insights/AI-Process.png"
 cluster: "AI & Design"
 tags: ["ai-workflow", "ai", "ai-workflow-design", "ai-for-designers"]
 draft: false
