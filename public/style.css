@@ -2342,3 +2342,87 @@ button:focus-visible {
   border-radius: var(--radius-media);
   display: block;
 }
+
+/* ==========================================================
+   Mobile navigation — hamburger + full-screen menu
+   ========================================================== */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  padding: 0.5rem;
+  margin: -0.5rem -0.5rem -0.5rem 0;
+  cursor: pointer;
+  color: #fff;
+  z-index: 60; /* stay above the panel */
+}
+.nav-toggle__box {
+  position: relative;
+  display: block;
+  width: 26px;
+  height: 16px;
+}
+.nav-toggle__bar {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.3s var(--easing), opacity 0.2s var(--easing), top 0.3s var(--easing);
+}
+.nav-toggle__bar:nth-child(1) { top: 0; }
+.nav-toggle__bar:nth-child(2) { top: 7px; }
+.nav-toggle__bar:nth-child(3) { top: 14px; }
+.nav-toggle[aria-expanded='true'] .nav-toggle__bar:nth-child(1) { top: 7px; transform: rotate(45deg); }
+.nav-toggle[aria-expanded='true'] .nav-toggle__bar:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded='true'] .nav-toggle__bar:nth-child(3) { top: 7px; transform: rotate(-45deg); }
+.nav-toggle:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+.mobile-nav { display: none; }
+
+@media (max-width: 760px) {
+  .nav-cta { display: none; }       /* sticky bottom CTA covers conversion on mobile */
+  .nav-toggle { display: inline-flex; }
+
+  .mobile-nav {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    z-index: 55;                    /* below the header bar (60) so logo + X stay visible */
+    background: #0b0b0b;
+    color: #fff;
+    padding: clamp(6rem, 22vw, 8rem) var(--page-padding) 3rem;
+    opacity: 0;
+    visibility: hidden;             /* removes links from tab order when closed */
+    transform: translateY(-6px);
+    transition: opacity 0.32s var(--easing), transform 0.32s var(--easing), visibility 0.32s;
+  }
+  .mobile-nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  .mobile-nav__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    width: 100%;
+    margin: auto 0;
+  }
+  .mobile-nav__link {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.9rem, 9vw, 2.75rem);
+    letter-spacing: -0.02em;
+    color: #fff;
+    text-decoration: none;
+    width: 100%;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .mobile-nav__link:active { color: var(--blush); }
+  .mobile-nav__cta { margin-top: 2rem; }
+  body.menu-open { overflow: hidden; }
+}

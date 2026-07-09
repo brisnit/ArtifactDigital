@@ -218,4 +218,41 @@
   // ---------- Footer year ----------
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
+
+  // ---------- Mobile navigation (hamburger) ----------
+  const navToggle = document.getElementById('navToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  if (navToggle && mobileNav) {
+    const setMenu = (open) => {
+      navToggle.setAttribute('aria-expanded', String(open));
+      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      mobileNav.classList.toggle('is-open', open);
+      mobileNav.setAttribute('aria-hidden', String(!open));
+      document.body.classList.toggle('menu-open', open);
+      if (open) {
+        const first = mobileNav.querySelector('a');
+        if (first) first.focus();
+      }
+    };
+
+    navToggle.addEventListener('click', () => {
+      setMenu(navToggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    // Close on link tap, Escape, or resize back to desktop
+    mobileNav.querySelectorAll('a').forEach((a) =>
+      a.addEventListener('click', () => setMenu(false))
+    );
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
+        setMenu(false);
+        navToggle.focus();
+      }
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 760 && navToggle.getAttribute('aria-expanded') === 'true') {
+        setMenu(false);
+      }
+    });
+  }
 })();
