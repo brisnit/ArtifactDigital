@@ -40,9 +40,5 @@ import ArrowIcon from './ArrowIcon.astro';
     {NAV.map((item) => (
       <a class="mobile-nav__link" href={item.href}>{item.label}</a>
     ))}
-    <a class="mobile-nav__cta btn btn-primary" href={CTA.primary.href}>
-      {CTA.primary.label}
-      <ArrowIcon />
-    </a>
   </nav>
 </div>
