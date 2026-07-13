@@ -442,10 +442,12 @@ body.cursor-hover .cursor {
   font-style: italic;
   font-weight: 400;
   color: var(--blush);
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
+}
+/* Italic glyphs slant right/down — give the reveal mask a touch more room so
+   the trailing "s" isn't clipped. */
+.hero-heading .line.italic .reveal-word {
+  padding-right: 0.08em;
+  line-height: 1.22;
 }
 .reveal-word {
   display: inline-block;
