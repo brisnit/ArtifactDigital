@@ -428,7 +428,7 @@ body.cursor-hover .cursor {
   font-family: 'DM Sans', sans-serif;
   font-weight: 700;
   font-size: clamp(2rem, 5.4vw, 5.25rem);
-  line-height: 0.95;
+  line-height: 1.06;
   letter-spacing: -0.035em;
   margin: 0;
   color: #fff;
@@ -450,6 +450,7 @@ body.cursor-hover .cursor {
   display: inline-block;
   overflow: hidden;
   vertical-align: bottom;
+  line-height: 1.06; /* contain letter descenders inside the reveal mask */
 }
 .reveal-word > span {
   display: inline-block;
