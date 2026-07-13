@@ -2393,7 +2393,7 @@ button:focus-visible {
     display: flex;
     position: fixed;
     inset: 0;
-    z-index: 55;                    /* below the header bar (60) so logo + X stay visible */
+    z-index: 40;                    /* below the fixed header (50) so its logo + X toggle stay on top */
     background: #0b0b0b;
     color: #fff;
     padding: clamp(6rem, 22vw, 8rem) var(--page-padding) 3rem;
