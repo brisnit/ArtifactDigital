@@ -80,6 +80,6 @@
     { "q": "How does AI factor into how you build?", "a": "It makes us faster, not looser. We use AI-assisted development to compress the distance between an idea and working software, while the standards — design system, accessibility, performance, review — stay exactly where they were. Speed is leverage; it only helps if you're pointed the right way." }
   ],
   "relatedTags": ["Web", "UX/UI", "AR", "Experience", "Retail"],
-  "relatedServices": ["website-design-build", "digital-products-ux", "enterprise-cms", "ai-interactive-experiences"],
+  "relatedServices": ["front-end-engineering", "enterprise-cms", "accessibility", "product-design"],
   "ctaHeading": "Got something to build? Let's talk about it."
 }

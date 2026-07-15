@@ -1,0 +1,72 @@
+{
+  "title": "Front-End Engineering",
+  "navLabel": "Front-End Engineering",
+  "metaTitle": "Front-End Engineering Services · Artifact Digital",
+  "description": "Front-end engineering that protects the design intent — fast, accessible, component-driven builds for enterprise websites and products, by the team that designed them.",
+  "order": 10,
+  "tier": "service",
+  "eyebrow": "Service · Front-End Engineering",
+  "heroTitleLines": [
+    { "text": "Where the design" },
+    { "text": "survives or dies.", "italic": true }
+  ],
+  "lede": "The front-end is the last mile between a great design and the thing your customer actually touches. It's where intent gets protected or quietly lost. We treat it as craft, not translation.",
+  "summary": "Fast, accessible, component-driven builds that protect the design intent.",
+  "intro": [
+    "Front-end engineering has a reputation problem. In a lot of organizations it's treated as the translation layer — the place where somebody converts a design file into HTML and CSS, more clerical than creative. That framing is how good designs become mediocre products.",
+    "Everything a user experiences happens here. Not in the mockup, not in the spec, not in the database. Here. How fast it loads, whether it works on a bad connection, whether it responds when you tap it, whether it makes sense to a screen reader, whether the type sits right at 320px. Those are all front-end decisions, and every one of them is a design decision that just happens to be expressed in code.",
+    "So we don't hand designs to a separate build team and hope. The people who made the design decisions stay close to the code that implements them. That's the whole reason the details survive — the transition timing, the empty state, the sentence that had to be two words shorter to avoid an ugly wrap. Nobody has to defend those in a document, because nobody has to hand them off."
+  ],
+  "sections": [
+    {
+      "heading": "Performance is a feature, not a cleanup task",
+      "body": [
+        "Speed gets treated as something you fix at the end, once someone complains. By then it's expensive, because the causes are structural: the framework you chose, the images nobody compressed, the fonts blocking the first render, the third-party script marketing added in a hurry.",
+        "We set performance budgets early and design against them, because a page that's beautiful and slow is just a slow page. Users don't grade on a curve — they leave. And on the devices and networks a lot of your customers actually use, the difference between considered and careless engineering is the difference between a product they'll use and one they'll abandon."
+      ]
+    },
+    {
+      "heading": "Accessible by construction",
+      "body": [
+        "Most accessibility failures aren't malice or ignorance — they're the predictable result of doing it last. Retrofitting semantics onto markup that was built without them is miserable, expensive, and never quite complete.",
+        "Built into the code from the start, most of it is nearly free: real semantic HTML, sensible focus order, keyboard operability, labels that mean something, states that announce themselves. We test with the keyboard and with assistive technology, not just with a scanner that catches a third of the problems. Done this way, [accessibility](/services/accessibility) isn't a tax — it's just what competent front-end looks like."
+      ]
+    },
+    {
+      "heading": "Components, so quality holds at scale",
+      "body": [
+        "Any team can make one screen good. The hard part is the fiftieth screen, built by someone who wasn't there for the first, still feeling like it belongs to the same product.",
+        "That's what a real component system buys you: the good decisions get made once and then reused, instead of relitigated on every ticket. It's also what makes AI-assisted development safe rather than chaotic — the model composes from parts that were already thought through instead of inventing a new button every time it's asked. The system is the thing that lets you move fast without the product slowly falling apart."
+      ]
+    }
+  ],
+  "process": [
+    { "title": "Architect", "body": "We choose an approach that fits your team and roadmap — not our preferences — and set the performance and accessibility budgets up front." },
+    { "title": "Systematize", "body": "We build the component system first, so the fiftieth screen is as good as the first and quality doesn't depend on who's on the ticket." },
+    { "title": "Build", "body": "We implement with design and engineering in the same loop, so the details that matter survive all the way to production." },
+    { "title": "Hand over", "body": "We document, test, and set your team up to own it — including the parts we'd want explained to us if we were inheriting it." }
+  ],
+  "deliverables": [
+    "Production front-end code that matches the design intent, not an approximation of it",
+    "A component system your team can extend without our help",
+    "Performance budgets set early and held — measured on real devices, not just a fast laptop",
+    "WCAG-conformant markup, keyboard support, and assistive-technology testing built in",
+    "Responsive behavior designed for the messy middle, not just the two comps",
+    "Documentation and handover aimed at whoever inherits the codebase"
+  ],
+  "whoFor": [
+    "Teams whose shipped product never quite matches the design that was approved",
+    "Organizations with a beautiful site that's slow, fragile, or inaccessible",
+    "Product teams that need senior front-end help without hiring for it permanently",
+    "Anyone inheriting a front-end codebase that's become expensive to change"
+  ],
+  "faq": [
+    { "q": "Do you work with our existing engineering team?", "a": "Frequently. We often act as the senior front-end layer — setting the patterns, building the hard parts, and reviewing — while your team owns the rest. We're just as happy handing off cleanly as staying on. What we won't do is build something only we can maintain." },
+    { "q": "What do you build with?", "a": "Whatever genuinely fits — modern component frameworks, static site generators, or the front-end of an enterprise CMS like Optimizely or Sitecore. The right answer depends on your content, your team's skills, and your roadmap. We're happy to explain the tradeoffs and let you make the call." },
+    { "q": "Can you just build a design someone else made?", "a": "Yes, and we'll do it faithfully. We'll also tell you where the design will break under real data, edge cases, or small screens — because a comp can't answer those questions and production will. Most clients find that the useful part." },
+    { "q": "How does AI-assisted development fit in?", "a": "It removes the repetitive work and shortens the distance between an idea and something you can actually click. The standards don't move: the same component system, the same performance and accessibility budgets, the same critical review. AI is leverage, and leverage only helps if you're pointed the right way." }
+  ],
+  "relatedTags": ["Web", "UX/UI", "Design"],
+  "relatedServices": ["digital-product-engineering", "ux-ui-design", "accessibility"],
+  "ctaHeading": "Want a build that protects the design instead of diluting it?"
+}
