@@ -2494,17 +2494,6 @@ button:focus-visible {
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
-.speed-module__img--float {
-  position: absolute;
-  right: -6%;
-  bottom: -14%;
-  width: 46%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border: 6px solid var(--ink);
-  border-radius: var(--radius-media);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-}
 .speed-module .section-tag { color: rgba(255, 255, 255, 0.7); }
 .speed-module .tag-dot { background: var(--accent); }
 .speed-module__heading {
@@ -2558,7 +2547,6 @@ button:focus-visible {
 @media (max-width: 900px) {
   .speed-module__inner { grid-template-columns: 1fr; }
   .speed-module__media { order: -1; margin-bottom: 2.5rem; }
-  .speed-module__img--float { right: -3%; bottom: -10%; width: 40%; }
 }
 
 /* -------------------- weeks-not-months landing page -------------------- */
