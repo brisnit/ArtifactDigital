@@ -6,15 +6,20 @@
   "order": 5,
   "eyebrow": "Service · Enterprise CMS",
   "heroTitleLines": [
-    { "text": "A content platform" },
-    { "text": "your team can run.", "italic": true }
+    {
+      "text": "A content platform"
+    },
+    {
+      "text": "your team can run.",
+      "italic": true
+    }
   ],
   "lede": "Enterprise CMS projects rarely fail because of the technology. They fail because the content model was an afterthought and the people who'd use the system daily were never in the room. We fix both.",
   "summary": "Content modeling, migration, and implementation on platforms teams can run.",
   "intro": [
     "Enterprise content management is where a lot of ambitious digital strategies quietly go to die. A company picks a powerful platform — Optimizely, Sitecore, a composable stack — expecting it to solve their content problems. Eighteen months and a very large invoice later, the site is just as hard to update as before, editors have built a shadow system of workarounds, and everyone blames the software.",
     "The software is almost never the real problem. The real problem is that the content model — the underlying structure of how content is defined, related, and reused — was treated as a technical detail instead of the foundation it is. Get the model right and a good CMS feels like leverage. Get it wrong and even the best platform becomes a very expensive way to publish a webpage.",
-    "We've done the large, painful version of this work: consolidating a sprawling six-thousand-page ecosystem down to a focused platform, unifying content operations across a dozen-plus business units on six continents. The lesson from every one of those engagements is the same. Model the content around how the business actually works, involve the people who'll live in the system, and the technology takes care of itself."
+    "I've done the large, painful version of this work: consolidating a sprawling six-thousand-page ecosystem down to a focused platform, unifying content operations across a dozen-plus business units on six continents — in senior roles at agencies, before founding Artifact. The lesson from every one of those engagements is the same. Model the content around how the business actually works, involve the people who'll live in the system, and the technology takes care of itself."
   ],
   "sections": [
     {
@@ -40,10 +45,22 @@
     }
   ],
   "process": [
-    { "title": "Audit and model", "body": "We assess your content and operations, then design a content model that mirrors how the business and its audiences actually work." },
-    { "title": "Choose the platform", "body": "We match architecture to your team, content, and roadmap — traditional DXP, composable, or headless — with honest total-cost thinking." },
-    { "title": "Implement and migrate", "body": "We build the platform and move content deliberately, using the migration as a chance to consolidate rather than replicate the mess." },
-    { "title": "Enable the team", "body": "We design the authoring experience and governance so the people who run it every day are set up to succeed without us." }
+    {
+      "title": "Audit and model",
+      "body": "We assess your content and operations, then design a content model that mirrors how the business and its audiences actually work."
+    },
+    {
+      "title": "Choose the platform",
+      "body": "We match architecture to your team, content, and roadmap — traditional DXP, composable, or headless — with honest total-cost thinking."
+    },
+    {
+      "title": "Implement and migrate",
+      "body": "We build the platform and move content deliberately, using the migration as a chance to consolidate rather than replicate the mess."
+    },
+    {
+      "title": "Enable the team",
+      "body": "We design the authoring experience and governance so the people who run it every day are set up to succeed without us."
+    }
   ],
   "deliverables": [
     "A content model grounded in your business and audience, not your old sitemap",
@@ -60,11 +77,28 @@
     "Companies with content sprawl across many business units or regions"
   ],
   "faq": [
-    { "q": "Should we go headless or stick with a traditional CMS?", "a": "It depends on your content, your team's skills, and your roadmap — not on what's trendy. Headless and composable offer flexibility and clean multichannel delivery, but shift more responsibility onto engineering. Traditional DXPs give marketers more out of the box at the cost of some rigidity. We'll help you weigh it against your actual situation." },
-    { "q": "Do you work with our existing platform, or only greenfield builds?", "a": "Both. A lot of our highest-value work is making an already-chosen platform perform — fixing the content model, improving the authoring experience, cleaning up a migration that went sideways. We don't insist on starting over." },
-    { "q": "How do you handle content migration?", "a": "Deliberately, and as an opportunity. Migration is the rare moment when you're touching everything, so it's the best time to consolidate, retire dead content, and restructure around the new model. We plan it so you don't simply move the old mess into a new box." }
+    {
+      "q": "Should we go headless or stick with a traditional CMS?",
+      "a": "It depends on your content, your team's skills, and your roadmap — not on what's trendy. Headless and composable offer flexibility and clean multichannel delivery, but shift more responsibility onto engineering. Traditional DXPs give marketers more out of the box at the cost of some rigidity. We'll help you weigh it against your actual situation."
+    },
+    {
+      "q": "Do you work with our existing platform, or only greenfield builds?",
+      "a": "Both. A lot of our highest-value work is making an already-chosen platform perform — fixing the content model, improving the authoring experience, cleaning up a migration that went sideways. We don't insist on starting over."
+    },
+    {
+      "q": "How do you handle content migration?",
+      "a": "Deliberately, and as an opportunity. Migration is the rare moment when you're touching everything, so it's the best time to consolidate, retire dead content, and restructure around the new model. We plan it so you don't simply move the old mess into a new box."
+    }
   ],
-  "relatedTags": ["Strategy", "Web", "UX/UI"],
-  "relatedServices": ["digital-strategy", "ux-ui-design", "experience-audits"],
+  "relatedTags": [
+    "Strategy",
+    "Web",
+    "UX/UI"
+  ],
+  "relatedServices": [
+    "digital-strategy",
+    "ux-ui-design",
+    "experience-audits"
+  ],
   "ctaHeading": "Is your CMS working for your team, or against it?"
 }

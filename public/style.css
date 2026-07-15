@@ -2282,47 +2282,6 @@ button:focus-visible {
   object-fit: cover; display: block;
 }
 
-/* -------------------- Logo wall -------------------- */
-.logo-wall { padding-top: clamp(2.5rem, 5vw, 4rem); }
-.logo-grid {
-  list-style: none;
-  margin: clamp(2rem, 4vw, 3.5rem) 0 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: clamp(1rem, 2vw, 1.75rem);
-}
-.logo-grid__item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(1.25rem, 2.5vw, 2rem) 1rem;
-  background: #fff;
-  min-height: 96px;
-}
-.logo-grid__item img {
-  max-width: 100%;
-  width: auto;
-  height: auto;
-  max-height: 42px;
-  object-fit: contain;
-  opacity: 0.55;
-  filter: grayscale(1);
-  transition: opacity 0.3s var(--easing-soft), filter 0.3s var(--easing-soft);
-}
-.logo-grid__item:hover img {
-  opacity: 1;
-  filter: grayscale(0);
-}
-
-@media (max-width: 900px) {
-  .logo-grid { grid-template-columns: repeat(4, 1fr); }
-}
-@media (max-width: 560px) {
-  .logo-grid { grid-template-columns: repeat(2, 1fr); }
-  .logo-grid__item { min-height: 80px; }
-}
-
 /* -------------------- Clickable "What we build" rows -------------------- */
 .service-row { cursor: pointer; }
 .service-row__link {
@@ -2691,3 +2650,24 @@ button:focus-visible {
   color: rgba(255, 255, 255, 0.6);
   margin-top: 0.5rem;
 }
+
+/* -------------------- Honest attribution notes -------------------- */
+.work-attribution {
+  max-width: 62ch;
+  margin: 1.75rem 0 0;
+  color: var(--steel);
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+.case-attribution {
+  max-width: 68ch;
+  margin: 2rem 0 0;
+  padding: 1.1rem 1.25rem;
+  border-left: 3px solid var(--accent);
+  background: var(--stone);
+  border-radius: 0 var(--radius-media) var(--radius-media) 0;
+  color: var(--steel);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.case-attribution strong { color: var(--ink); font-weight: 700; }

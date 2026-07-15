@@ -10,22 +10,45 @@
     "blurb": "A social platform for major clothing brand Taylors to share work and services with a global clientele.",
     "image": "/brand_assets/Lev_Comp.webp",
     "imageAlt": "Major clothing brand tailor's tool",
-    "tags": ["Social", "Platform", "Web"],
+    "tags": [
+      "Social",
+      "Platform",
+      "Web"
+    ],
     "wide": false
   },
   "ogImage": "/brand_assets/Lev_Comp.webp",
   "heroEyebrow": "Case study · Retail tools",
   "titleLines": [
-    { "text": "Tailor's tools" },
-    { "text": "for a global clothing", "italic": true },
-    { "text": "brand." }
+    {
+      "text": "Tailor's tools"
+    },
+    {
+      "text": "for a global clothing",
+      "italic": true
+    },
+    {
+      "text": "brand."
+    }
   ],
   "lede": "A one-hour conversation with a tailor at a leading clothing brand surfaced the daily workflow of the tailoring team and shaped a tool that now lives in seven flagship stores worldwide.",
   "meta": [
-    { "label": "Client", "value": "Major Clothing Brand" },
-    { "label": "Year", "value": "2020" },
-    { "label": "Scope", "value": "Research · Design · Build" },
-    { "label": "Channels", "value": "In-store · Tablet" }
+    {
+      "label": "Client",
+      "value": "Major Clothing Brand"
+    },
+    {
+      "label": "Year",
+      "value": "2020"
+    },
+    {
+      "label": "Scope",
+      "value": "Research · Design · Build"
+    },
+    {
+      "label": "Channels",
+      "value": "In-store · Tablet"
+    }
   ],
   "feature": {
     "video": "/brand_assets/LevyVis.mp4",
@@ -36,27 +59,54 @@
   "pillarsTag": "The approach",
   "pillarsHeading": "Research. Sketch. Test. Ship.",
   "pillars": [
-    { "title": "Research with practitioners", "body": "A focused one-hour session with a working tailor mapped the day-to-day rituals of the team and the moments where they meet the customer." },
-    { "title": "Sketchin Sessions", "body": "We turned research into concepts fast, using rough wireframes to explore early ideas and lock alignment across the wider team." },
-    { "title": "Tested in motion", "body": "A movement study validated the interactions in physical space — proving the tool worked the way tailors actually move on the floor." }
+    {
+      "title": "Research with practitioners",
+      "body": "A focused one-hour session with a working tailor mapped the day-to-day rituals of the team and the moments where they meet the customer."
+    },
+    {
+      "title": "Sketchin Sessions",
+      "body": "I turned research into concepts fast, using rough wireframes to explore early ideas and lock alignment across the wider team."
+    },
+    {
+      "title": "Tested in motion",
+      "body": "A movement study validated the interactions in physical space — proving the tool worked the way tailors actually move on the floor."
+    }
   ],
   "storyTag": "The journey",
   "storyHeadingLines": [
-    { "text": "From insights" },
-    { "text": "to launch — globally.", "italic": true }
+    {
+      "text": "From insights"
+    },
+    {
+      "text": "to launch — globally.",
+      "italic": true
+    }
   ],
   "storyParagraphs": [
-    "The work started with a single, deep conversation. One hour with a tailor at a leading clothing brand gave us a clear read on the daily practices of his team and the way they interact with customers in-store.",
-    "We moved from insight to idea through Sketchin Sessions — rapid-fire wireframe rounds that let us explore concepts in the open and get the team aligned before pixels got precious. As the direction sharpened, we ran a movement study to validate the interactions in physical space, then rolled out the final app across seven flagship stores worldwide — starting in Shanghai."
+    "The work started with a single, deep conversation. One hour with a tailor at a leading clothing brand gave me a clear read on the daily practices of his team and the way they interact with customers in-store.",
+    "I moved from insight to idea through Sketchin Sessions — rapid-fire wireframe rounds that let me explore concepts in the open and get the team aligned before pixels got precious. As the direction sharpened, I ran a movement study to validate the interactions in physical space, then rolled out the final app across seven flagship stores worldwide — starting in Shanghai."
   ],
   "storyImage": "/brand_assets/clothing_insights.webp",
   "storyImageAlt": "Major clothing brand tailor's tool — research and concept work",
   "storyCaption": "From practitioner research through Sketchin Sessions to global launch.",
   "highlights": [
-    { "title": "Grounded in practitioner research", "body": "One hour with a working tailor shaped the entire product." },
-    { "title": "Sketchin Sessions for rapid alignment", "body": "Wireframe rounds that turned ideas into shared direction." },
-    { "title": "Movement study in physical space", "body": "Interactions validated the way tailors actually work." },
-    { "title": "Live in 7 flagship stores", "body": "Global roll-out, starting in Shanghai." }
+    {
+      "title": "Grounded in practitioner research",
+      "body": "One hour with a working tailor shaped the entire product."
+    },
+    {
+      "title": "Sketchin Sessions for rapid alignment",
+      "body": "Wireframe rounds that turned ideas into shared direction."
+    },
+    {
+      "title": "Movement study in physical space",
+      "body": "Interactions validated the way tailors actually work."
+    },
+    {
+      "title": "Live in 7 flagship stores",
+      "body": "Global roll-out, starting in Shanghai."
+    }
   ],
-  "ctaHeading": "Have a retail experience you want grounded in real users?"
+  "ctaHeading": "Have a retail experience you want grounded in real users?",
+  "priorRole": true
 }

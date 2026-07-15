@@ -1,40 +1,33 @@
-// Testimonials render only when `approved: true`, so nothing unverified ever
-// ships. Attribute by role + industry (never client name) per the anonymized
-// positioning. Replace the bracketed placeholders with real, approved quotes
-// and flip `approved` to true.
+// Two proofs, deliberately kept apart:
+//
+//  1. `testimonials` — real, named clients of ARTIFACT DIGITAL. Small and
+//     growing. Only `approved: true` entries render, so nothing unverified
+//     ever ships. This is the proof that compounds — add to it relentlessly.
+//
+//  2. `sectors` — industries Britt has worked in over his CAREER, in senior
+//     roles at previous agencies. Always attributed as career experience,
+//     never presented as Artifact's client list.
 export interface Testimonial {
   quote: string;
+  name: string;
   role: string;
-  sector: string;
   approved: boolean;
 }
 
 export const testimonials: Testimonial[] = [
   {
     quote:
-      '[Placeholder — add an approved 1–2 sentence, outcome-focused quote from this engagement.]',
-    role: 'VP, Digital Experience',
-    sector: 'Global consumer electronics brand',
-    approved: false,
+      'Artifact Digital built us a Shopify experience that completely transformed our business. Since launch, we’ve seen our sales multiply and our brand finally feels as premium online as it does in person.',
+    name: 'Rob Chapman',
+    role: 'Rob’s Brew Spot',
+    approved: true,
   },
-  {
-    quote:
-      '[Placeholder — add an approved quote emphasising strategy, clarity, or measurable results.]',
-    role: 'Head of Marketing Technology',
-    sector: 'Fortune 500 food & nutrition company',
-    approved: false,
-  },
-  {
-    quote:
-      '[Placeholder — add an approved quote about partnership, senior-led delivery, or craft.]',
-    role: 'Chief Executive Officer',
-    sector: 'IT training & certification platform',
-    approved: false,
-  },
+  // Add every Artifact client here as you finish. Ask for the quote at the
+  // moment they're happiest — right after launch. Real and small beats
+  // anonymous and large.
 ];
 
-// Sectors we've delivered across (from the wider client roster) — used for the
-// aggregate credibility line. Truthful and safe without naming any client.
+// Career experience only — see note above. Do not relabel as clients.
 export const sectors = [
   'Healthcare',
   'Financial services',

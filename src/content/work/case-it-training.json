@@ -10,21 +10,42 @@
     "blurb": "A leading online IT training and certification platform helping people build technology careers through certifications and guided learning pathways.",
     "image": "/brand_assets/Comp_Comp.webp",
     "imageAlt": "IT Training & Certification School platform",
-    "tags": ["Strategy", "UX/UI", "Web"],
+    "tags": [
+      "Strategy",
+      "UX/UI",
+      "Web"
+    ],
     "wide": false
   },
   "ogImage": "/brand_assets/Comp_Comp.webp",
   "heroEyebrow": "Case study · Education platform",
   "titleLines": [
-    { "text": "Digital careers." },
-    { "text": "Reimagined.", "italic": true }
+    {
+      "text": "Digital careers."
+    },
+    {
+      "text": "Reimagined.",
+      "italic": true
+    }
   ],
   "lede": "A leading online IT training and certification platform helping learners build technology careers through industry-recognized certifications, education pathways and workforce development programs.",
   "meta": [
-    { "label": "Client", "value": "IT Training & Certification School" },
-    { "label": "Year", "value": "2022" },
-    { "label": "Scope", "value": "Strategy · UX/UI · Build" },
-    { "label": "Scale", "value": "From CEO vision to strategic solution" }
+    {
+      "label": "Client",
+      "value": "IT Training & Certification School"
+    },
+    {
+      "label": "Year",
+      "value": "2022"
+    },
+    {
+      "label": "Scope",
+      "value": "Strategy · UX/UI · Build"
+    },
+    {
+      "label": "Scale",
+      "value": "From CEO vision to strategic solution"
+    }
   ],
   "feature": {
     "video": "/brand_assets/CompVid.mp4",
@@ -35,27 +56,54 @@
   "pillarsTag": "The approach",
   "pillarsHeading": "Vision. Architecture. System.",
   "pillars": [
-    { "title": "CEO-led vision", "body": "We partnered closely with the CEO to translate his vision — grounded in deep customer insight — into a modern, scalable digital experience." },
-    { "title": "Architecture, restructured", "body": "We rebuilt the site architecture around real user goals and mapped clear learning and certification journeys." },
-    { "title": "Flexible by design", "body": "A system of components and templates that simplifies navigation today and supports future growth and expansion." }
+    {
+      "title": "CEO-led vision",
+      "body": "I partnered closely with the CEO to translate his vision — grounded in deep customer insight — into a modern, scalable digital experience."
+    },
+    {
+      "title": "Architecture, restructured",
+      "body": "I rebuilt the site architecture around real user goals and mapped clear learning and certification journeys."
+    },
+    {
+      "title": "Flexible by design",
+      "body": "A system of components and templates that simplifies navigation today and supports future growth and expansion."
+    }
   ],
   "storyTag": "Experience by design",
   "storyHeadingLines": [
-    { "text": "From a sprawling ecosystem" },
-    { "text": "to a customer-centered platform.", "italic": true }
+    {
+      "text": "From a sprawling ecosystem"
+    },
+    {
+      "text": "to a customer-centered platform.",
+      "italic": true
+    }
   ],
   "storyParagraphs": [
-    "We worked side-by-side with the CEO to translate a deep understanding of customer needs, career journeys and learning pathways into a modern, scalable digital experience — one that could carry the brand forward as the product line grew.",
-    "We restructured the site architecture around real user goals, mapped learning and certification journeys, and designed a flexible system of components and templates that simplifies navigation while supporting future growth. The result: a more intuitive, customer-centered platform that guides users from exploration to certification with greater clarity, engagement and conversion."
+    "I worked side-by-side with the CEO to translate a deep understanding of customer needs, career journeys and learning pathways into a modern, scalable digital experience — one that could carry the brand forward as the product line grew.",
+    "I restructured the site architecture around real user goals, mapped learning and certification journeys, and designed a flexible system of components and templates that simplifies navigation while supporting future growth. The result: a more intuitive, customer-centered platform that guides users from exploration to certification with greater clarity, engagement and conversion."
   ],
   "storyImage": "/brand_assets/Serv2.webp",
   "storyImageAlt": "IT training and certification platform interface",
   "storyCaption": "A flexible system designed around real learner journeys.",
   "highlights": [
-    { "title": "6,500 → sub-1,000 pages", "body": "A sprawling ecosystem consolidated into a focused platform." },
-    { "title": "Architecture around real user goals", "body": "IA restructured to match how learners actually move forward." },
-    { "title": "Mapped certification & career journeys", "body": "Clear pathways from exploration to credential." },
-    { "title": "A flexible component & template system", "body": "Simpler navigation today; room to grow tomorrow." }
+    {
+      "title": "6,500 → sub-1,000 pages",
+      "body": "A sprawling ecosystem consolidated into a focused platform."
+    },
+    {
+      "title": "Architecture around real user goals",
+      "body": "IA restructured to match how learners actually move forward."
+    },
+    {
+      "title": "Mapped certification & career journeys",
+      "body": "Clear pathways from exploration to credential."
+    },
+    {
+      "title": "A flexible component & template system",
+      "body": "Simpler navigation today; room to grow tomorrow."
+    }
   ],
-  "ctaHeading": "Have a platform that needs to scale without losing its learners?"
+  "ctaHeading": "Have a platform that needs to scale without losing its learners?",
+  "priorRole": true
 }

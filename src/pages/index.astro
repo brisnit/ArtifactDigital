@@ -3,7 +3,6 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import CtaBand from '../components/CtaBand.astro';
-import LogoWall from '../components/LogoWall.astro';
 import SpeedModule from '../components/SpeedModule.astro';
 import { SITE, orgNode, websiteNode, CTA } from '../data/site';
 import { testimonials, sectors } from '../data/testimonials';
@@ -199,9 +198,14 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
   <section class="section work" id="work">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>03 — Selected work</span>
-        <h2 class="section-heading reveal-line"><span>Recent projects</span></h2>
+        <span class="section-tag reveal"><span class="tag-dot"></span>03 — Career work</span>
+        <h2 class="section-heading reveal-line"><span>Where I've done this</span></h2>
       </header>
+      <p class="work-attribution reveal">
+        Enterprise work I led in senior roles at previous agencies, before founding
+        Artifact. Clients aren't named here — the problems, decisions and outcomes are
+        exactly as they happened. This is the experience you're hiring.
+      </p>
 
       <div class="project-grid">
         {projects.map((p) => (
@@ -229,9 +233,6 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
 
   <!-- SPEED TO LEARNING -->
   <SpeedModule />
-
-  <!-- LOGO WALL -->
-  <LogoWall />
 
   <!-- APPROACH -->
   <section class="section approach" id="approach">
@@ -271,15 +272,15 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
     <div class="container stats-grid">
       <div class="stat reveal">
         <span class="stat__num" data-count="10">0</span><span class="stat__suffix">+</span>
-        <p>Years designing digital products</p>
+        <p>Years I've spent leading digital strategy &amp; design</p>
       </div>
       <div class="stat reveal">
         <span class="stat__num" data-count="40">0</span><span class="stat__suffix">+</span>
-        <p>Product, web and digital launches delivered</p>
+        <p>Product, web and digital launches I've helped deliver</p>
       </div>
       <div class="stat reveal">
         <span class="stat__num" data-count="100">0</span><span class="stat__suffix">%</span>
-        <p>Senior-led on every project — no handoffs</p>
+        <p>Senior-led at Artifact — no handoffs, no juniors on your budget</p>
       </div>
     </div>
   </section>
@@ -288,34 +289,45 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
   <section class="section trust" id="trust" aria-labelledby="trust-heading">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>Trusted work</span>
-        <h2 class="section-heading reveal-line" id="trust-heading"><span>Senior-led work for demanding brands</span></h2>
+        <span class="section-tag reveal"><span class="tag-dot"></span>Experience</span>
+        <h2 class="section-heading reveal-line" id="trust-heading"><span>Two decades of hard-won pattern recognition</span></h2>
       </header>
       <p class="trust-lede reveal">
-        We've shaped digital experiences for organizations across regulated,
-        high-stakes industries — from healthcare and financial services to global
-        retail and consumer brands. Different sectors, same standard: strategy that
-        holds up, design that ships, and outcomes leadership can point to.
+        Over my career I've led digital strategy and experience design for
+        organizations across regulated, high-stakes industries — from healthcare and
+        financial services to global retail and consumer brands. That work was
+        delivered in senior roles at agencies, before founding Artifact. It's the
+        judgment you're hiring when you hire me.
       </p>
-      <ul class="sector-list reveal" aria-label="Industries served">
+      <ul class="sector-list reveal" aria-label="Industries worked in">
         {sectors.map((s) => <li>{s}</li>)}
       </ul>
 
-      {liveTestimonials.length > 0 && (
+    </div>
+  </section>
+
+  <!-- ARTIFACT'S OWN CLIENTS -->
+  {liveTestimonials.length > 0 && (
+    <section class="section clients" aria-labelledby="clients-heading">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-tag reveal"><span class="tag-dot"></span>Artifact's clients</span>
+          <h2 class="section-heading reveal-line" id="clients-heading"><span>In their words</span></h2>
+        </header>
         <div class="testimonial-grid">
           {liveTestimonials.map((t) => (
             <figure class="testimonial reveal-card">
               <blockquote>{t.quote}</blockquote>
               <figcaption>
-                <span class="testimonial__role">{t.role}</span>
-                <span class="testimonial__sector">{t.sector}</span>
+                <span class="testimonial__role">{t.name}</span>
+                <span class="testimonial__sector">{t.role}</span>
               </figcaption>
             </figure>
           ))}
         </div>
-      )}
-    </div>
-  </section>
+      </div>
+    </section>
+  )}
 
   <!-- CONTACT -->
   <section class="section contact" id="contact">

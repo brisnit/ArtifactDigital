@@ -14,6 +14,10 @@ const work = defineCollection({
       order: z.number().default(99),
       year: z.string(),
       category: z.string(),
+      // True when the work was led by our founder in a senior role at a
+      // previous agency, before Artifact existed. Renders an explicit
+      // attribution note — never imply Artifact held the engagement.
+      priorRole: z.boolean().default(false),
       // Home Work grid
       card: z.object({
         eyebrow: z.string(),
