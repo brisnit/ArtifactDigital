@@ -1,0 +1,274 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Button from '../components/Button.astro';
+import { SITE, orgNode, breadcrumb } from '../data/site';
+
+const CONSULT = { label: 'Book a build consult', href: '/contact?intent=mvp' };
+const ARTICLE = {
+  label: 'Read the thinking',
+  href: '/insights/mvp-apps-in-weeks-not-months',
+};
+
+const phases = [
+  {
+    week: 'Week 1',
+    title: 'Frame the bet',
+    body: 'We get honest about the problem, the customer, and the assumption that would sink this if it were wrong. Then we decide what the smallest version worth building actually is.',
+  },
+  {
+    week: 'Weeks 2–3',
+    title: 'Build something real',
+    body: 'Not a deck. Not a clickable mockup. Working software you can put in front of a person and watch them use — because that is the only thing that tells the truth.',
+  },
+  {
+    week: 'Week 4',
+    title: 'Find out',
+    body: "Real users, real tasks, real behavior. We learn what holds up and what doesn't, and we say so plainly — including when the answer is that the idea needs to change.",
+  },
+  {
+    week: 'Weeks 5–8',
+    title: 'Build the MVP',
+    body: 'With the core validated, production gets focused. We build the right features on architecture that can grow, instead of every feature on architecture that cannot.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      '@id': `${SITE.url}/weeks-not-months#service`,
+      name: 'Rapid MVP & Product Development',
+      serviceType: 'MVP development',
+      description:
+        'From idea to working product in weeks, not months. Senior-led, AI-assisted product development built around speed to learning.',
+      url: `${SITE.url}/weeks-not-months`,
+      provider: { '@id': `${SITE.url}/#organization` },
+      areaServed: 'Worldwide',
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${SITE.url}/weeks-not-months#faq`,
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Is this just a prototype, or something real?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Both, in sequence. The early weeks produce working software built to learn from. The MVP that follows is production software built on architecture that can grow. What we hand you is not a throwaway.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Does moving this fast mean cutting corners?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'No — it means cutting waiting. Most of a traditional timeline is coordination, not craft: handoffs, documentation, approval cycles. We remove that, not the standards. Accessibility, performance, and architecture stay where they were.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'What if we find out the idea is wrong?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Then the engagement paid for itself. Finding out in four weeks that an idea needs to change is a far better outcome than finding out in eighteen months after the budget is spent. That is the entire point.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Who actually does the work?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'The senior people you meet. There is no pyramid here and nothing gets handed down to juniors learning on your budget.',
+          },
+        },
+      ],
+    },
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'Weeks, not months', path: '/weeks-not-months' },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title="From Idea to Product in Weeks, Not Months · Artifact Digital"
+  description="Not speed for speed's sake — speed to learning. Senior-led, AI-assisted product development that puts working software in front of real customers in weeks. Book a build consult."
+  canonical="/weeks-not-months"
+  ogImage="/brand_assets/insights/MVP_Apps.webp"
+  bodyClass="case-page wnm-page"
+  jsonLd={jsonLd}
+>
+  <!-- HERO -->
+  <section class="wnm-hero">
+    <div class="container wnm-hero__grid">
+      <div class="wnm-hero__copy">
+        <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Weeks, not months' }]} />
+        <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Speed to learning</span>
+        <h1 class="wnm-hero__title">
+          <span class="reveal-line"><span>From idea to</span></span>
+          <span class="reveal-line"><span>working product in</span></span>
+          <span class="reveal-line italic"><span>weeks, not months.</span></span>
+        </h1>
+        <p class="wnm-hero__lede reveal">
+          Not speed for speed's sake. Speed to <em>learning</em> — getting something
+          real in front of real customers early enough that being wrong is cheap,
+          and failing forward together is the plan rather than the disaster.
+        </p>
+        <div class="hero-actions reveal">
+          <Button href={CONSULT.href} label={CONSULT.label} variant="primary" />
+          <Button href={ARTICLE.href} label={ARTICLE.label} variant="secondary" />
+        </div>
+      </div>
+      <div class="wnm-hero__media reveal-card">
+        <img src="/brand_assets/insights/MVP_Apps.webp" alt="Building a product prototype at speed" width="1536" height="1024" fetchpriority="high" />
+      </div>
+    </div>
+  </section>
+
+  <!-- THE ARGUMENT -->
+  <section class="section wnm-argument">
+    <div class="container service-section__grid">
+      <div class="service-section__head">
+        <h2 class="service-section__heading reveal-line"><span>Fast is not the point</span></h2>
+      </div>
+      <div class="service-prose service-section__body">
+        <p class="reveal">
+          Plenty of people will sell you speed right now. Speed is easy to sell and
+          easy to misuse — if you're driving toward the wrong destination, getting
+          there twice as fast doesn't help anyone.
+        </p>
+        <p class="reveal">
+          What actually matters is how quickly you find out. Most products don't fail
+          because the engineering was bad. They fail because a team committed to a
+          direction before they had enough information, and by the time reality
+          arrived, changing course had become too expensive to survive the meeting.
+        </p>
+        <p class="reveal">
+          So we optimize for the thing underneath speed: <em>learning</em>. Put
+          something real in front of a person in week three, and being wrong costs you
+          three weeks. Wait until month eighteen, and being wrong costs you the budget,
+          the roadmap, and somebody's job. Same mistake — wildly different price.
+        </p>
+        <p class="reveal">
+          That's what we mean by failing forward together. Not failure as a slogan.
+          Failure made cheap, early, and shared — so it turns into information instead
+          of blame.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT RUNS -->
+  <section class="section wnm-phases">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>How it runs</span>
+        <h2 class="section-heading reveal-line"><span>A typical engagement</span></h2>
+      </header>
+      <ol class="wnm-phase-list">
+        {phases.map((p) => (
+          <li class="wnm-phase reveal-card">
+            <span class="wnm-phase__week">{p.week}</span>
+            <h3 class="wnm-phase__title">{p.title}</h3>
+            <p class="wnm-phase__body">{p.body}</p>
+          </li>
+        ))}
+      </ol>
+      <p class="wnm-note reveal">
+        Every engagement is different — this is the shape, not a contract. What
+        doesn't change is the order: learn before you commit.
+      </p>
+    </div>
+  </section>
+
+  <!-- VISUAL BAND -->
+  <section class="wnm-gallery" aria-label="How we work">
+    <figure class="wnm-gallery__item reveal-card">
+      <img src="/brand_assets/insights/Design_Speed.webp" alt="Design and AI-assisted development working together" loading="lazy" width="1536" height="1024" />
+      <figcaption>Design and engineering in the same loop — so intent survives to production.</figcaption>
+    </figure>
+    <figure class="wnm-gallery__item reveal-card">
+      <img src="/brand_assets/insights/Product_Design.webp" alt="Product design decisions made before the interface" loading="lazy" width="1208" height="604" />
+      <figcaption>The decisions that matter happen before a pixel is designed.</figcaption>
+    </figure>
+    <figure class="wnm-gallery__item reveal-card">
+      <img src="/brand_assets/insights/Agency_Assembly.webp" alt="Replacing the agency assembly line" loading="lazy" width="1536" height="1024" />
+      <figcaption>No assembly line. No handoffs. The people you meet do the work.</figcaption>
+    </figure>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section class="section service-lists">
+    <div class="container service-lists__grid">
+      <div>
+        <h2 class="service-list__title reveal-line"><span>What you get</span></h2>
+        <ul class="ticklist">
+          <li class="reveal">Working software in weeks — not a deck describing software</li>
+          <li class="reveal">Evidence from real users doing real tasks, before the big spend</li>
+          <li class="reveal">An MVP built on architecture that can grow, not a throwaway</li>
+          <li class="reveal">Accessibility, performance, and design system standards held throughout</li>
+          <li class="reveal">An honest recommendation — including when the idea should change</li>
+          <li class="reveal">A senior team doing the actual work, start to finish</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="service-list__title reveal-line"><span>Who it's for</span></h2>
+        <ul class="ticklist">
+          <li class="reveal">Teams with an idea they believe in and no cheap way to test it</li>
+          <li class="reveal">Enterprises whose process makes an eighteen-month timeline feel inevitable</li>
+          <li class="reveal">Founders who need an MVP that won't have to be rebuilt at scale</li>
+          <li class="reveal">Leaders tired of buying certainty in documents instead of evidence</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section service-faq">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Questions</span>
+        <h2 class="section-heading reveal-line"><span>The honest answers</span></h2>
+      </header>
+      <dl class="faq-list">
+        <div class="faq-item reveal">
+          <dt>Is this just a prototype, or something real?</dt>
+          <dd>Both, in sequence. The early weeks produce working software built to learn from. The MVP that follows is production software on architecture that can grow. What we hand you isn't a throwaway.</dd>
+        </div>
+        <div class="faq-item reveal">
+          <dt>Does moving this fast mean cutting corners?</dt>
+          <dd>No — it means cutting <em>waiting</em>. Most of a traditional timeline is coordination, not craft: handoffs, documentation, approval cycles. We remove that, not the standards. Accessibility, performance, and architecture stay exactly where they were.</dd>
+        </div>
+        <div class="faq-item reveal">
+          <dt>What if we find out the idea is wrong?</dt>
+          <dd>Then the engagement paid for itself. Finding out in four weeks that an idea needs to change is a far better outcome than finding out in eighteen months with the budget gone. That's the entire point.</dd>
+        </div>
+        <div class="faq-item reveal">
+          <dt>Who actually does the work?</dt>
+          <dd>The senior people you meet. There's no pyramid here, and nothing gets handed down to juniors learning on your budget.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section wnm-cta" aria-labelledby="wnm-cta-heading">
+    <div class="container wnm-cta__inner">
+      <h2 class="wnm-cta__heading" id="wnm-cta-heading">
+        Got an idea worth finding out about?
+      </h2>
+      <p class="wnm-cta__sub">
+        Tell us what you're trying to build and what you're unsure about. We'll tell
+        you honestly whether this is the right way to find out — and what the first
+        few weeks would look like.
+      </p>
+      <div class="hero-actions">
+        <Button href={CONSULT.href} label={CONSULT.label} variant="primary" />
+        <Button href={ARTICLE.href} label={ARTICLE.label} variant="secondary" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

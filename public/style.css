@@ -2465,3 +2465,242 @@ button:focus-visible {
 @media (max-width: 560px) {
   .capability-grid { grid-template-columns: 1fr; }
 }
+
+/* ==========================================================
+   Speed-to-learning module (homepage) + weeks-not-months page
+   ========================================================== */
+
+/* -------------------- Homepage module -------------------- */
+.speed-module {
+  background: var(--ink);
+  color: #fff;
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  overflow: hidden;
+}
+.speed-module__inner {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+.speed-module__media { position: relative; }
+.speed-module__img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-media);
+  display: block;
+}
+.speed-module__img--main {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.speed-module__img--float {
+  position: absolute;
+  right: -6%;
+  bottom: -14%;
+  width: 46%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 6px solid var(--ink);
+  border-radius: var(--radius-media);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+.speed-module .section-tag { color: rgba(255, 255, 255, 0.7); }
+.speed-module .tag-dot { background: var(--accent); }
+.speed-module__heading {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.9rem, 4vw, 3.1rem);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  margin: 1rem 0 0;
+}
+.speed-module__heading em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--blush);
+}
+.speed-module__lede {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+  line-height: 1.65;
+  margin: 1.25rem 0 0;
+  max-width: 52ch;
+}
+.speed-module__points {
+  list-style: none;
+  padding: 0;
+  margin: 1.75rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+}
+.speed-module__points li {
+  position: relative;
+  padding-left: 1.7rem;
+  color: #fff;
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+.speed-module__points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.speed-module__actions { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2.25rem; }
+.speed-module .btn-secondary { border-color: rgba(255, 255, 255, 0.3); color: #fff; }
+.speed-module .btn-secondary:hover { border-color: #fff; background: rgba(255, 255, 255, 0.08); }
+
+@media (max-width: 900px) {
+  .speed-module__inner { grid-template-columns: 1fr; }
+  .speed-module__media { order: -1; margin-bottom: 2.5rem; }
+  .speed-module__img--float { right: -3%; bottom: -10%; width: 40%; }
+}
+
+/* -------------------- weeks-not-months landing page -------------------- */
+.wnm-hero {
+  background: #0b0b0b;
+  color: #fff;
+  padding: clamp(7rem, 13vw, 10rem) 0 clamp(3.5rem, 7vw, 5.5rem);
+}
+.wnm-hero__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+.wnm-hero .breadcrumbs a,
+.wnm-hero .breadcrumbs [aria-current='page'],
+.wnm-hero .breadcrumbs ol { color: rgba(255, 255, 255, 0.6); }
+.wnm-hero .breadcrumbs a:hover { color: #fff; }
+.wnm-hero__title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.1rem, 5vw, 4.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  margin: 1rem 0 0;
+}
+.wnm-hero__title .reveal-line.italic > span {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--blush);
+}
+.wnm-hero__lede {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: clamp(1.05rem, 1.6vw, 1.28rem);
+  line-height: 1.6;
+  max-width: 54ch;
+  margin: 1.75rem 0 2.25rem;
+}
+.wnm-hero__lede em { color: #fff; font-style: italic; }
+.wnm-hero__media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-media);
+  display: block;
+}
+
+.wnm-argument { border-top: none; }
+
+/* Phase timeline */
+.wnm-phase-list {
+  list-style: none;
+  padding: 0;
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+.wnm-phase {
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+  border-radius: var(--radius-media);
+  background: var(--stone);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.wnm-phase__week {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  font-weight: 500;
+}
+.wnm-phase__title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.wnm-phase__body { color: var(--steel); font-size: 0.98rem; line-height: 1.55; margin: 0; }
+.wnm-note { color: var(--steel); font-size: 0.95rem; margin: 2rem 0 0; max-width: 62ch; }
+
+/* Gallery band */
+.wnm-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  padding: 0 var(--page-padding) clamp(3rem, 6vw, 5rem);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.wnm-gallery__item { margin: 0; }
+.wnm-gallery__item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-media);
+  display: block;
+}
+.wnm-gallery__item figcaption {
+  color: var(--steel);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-top: 0.85rem;
+}
+
+/* Closing CTA */
+.wnm-cta { background: var(--ink); color: #fff; }
+.wnm-cta__inner { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.wnm-cta__heading {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.9rem, 4.2vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0;
+  max-width: 20ch;
+}
+.wnm-cta__sub {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 56ch;
+  margin: 1.25rem 0 2.25rem;
+}
+.wnm-cta .btn-secondary { border-color: rgba(255, 255, 255, 0.3); color: #fff; }
+.wnm-cta .btn-secondary:hover { border-color: #fff; background: rgba(255, 255, 255, 0.08); }
+
+@media (max-width: 900px) {
+  .wnm-hero__grid { grid-template-columns: 1fr; }
+  .wnm-gallery { grid-template-columns: 1fr; }
+}
+
+/* Match the homepage hero's eyebrow treatment on the weeks-not-months hero */
+.wnm-hero .eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.5rem;
+}
