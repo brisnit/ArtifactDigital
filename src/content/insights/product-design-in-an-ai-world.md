@@ -3,7 +3,7 @@ title: "Product Design in an AI World"
 description: "As AI makes building easier, deciding what to build — and why — became exponentially more valuable. Why the future belongs to designers who think bigger than screens."
 pubDate: 2026-07-08
 author: Britt Midgette
-heroImage: "/brand_assets/insights/Product_Design.png"
+heroImage: "/brand_assets/insights/Product_Design.webp"
 cluster: "Product Design"
 tags: ["Product Design", "AI", "Design Systems"]
 keywords: ["product design", "AI product design", "design systems", "vibe coding", "product strategy", "jobs to be done"]

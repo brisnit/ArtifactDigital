@@ -3,7 +3,7 @@ title: "Why UX Research Is the Most Undervalued Competitive Advantage"
 description: "Everyone says they're customer-centric. Few are. Why UX research — replacing assumptions with evidence — is the most undervalued advantage in digital."
 pubDate: 2026-07-07
 author: Britt Midgette
-heroImage: "/brand_assets/insights/Research.png"
+heroImage: "/brand_assets/insights/Research.webp"
 cluster: "Research"
 tags: ["UX Research", "Digital Strategy", "Enterprise CMS"]
 keywords: ["UX research", "customer research", "digital strategy", "experience audits", "enterprise UX", "Optimizely", "Sitecore"]

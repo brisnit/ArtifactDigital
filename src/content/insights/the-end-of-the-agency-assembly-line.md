@@ -3,7 +3,7 @@ title: "The End of the Agency Assembly Line"
 description: "The old agency model wasn't broken for lack of talent — the process was built for a different era. How AI-assisted design lets us build better digital products, faster."
 pubDate: 2026-07-08
 author: Britt Midgette
-heroImage: "/brand_assets/insights/Agency_Assembly.png"
+heroImage: "/brand_assets/insights/Agency_Assembly.webp"
 cluster: "Digital Strategy"
 tags: ["AI", "Product Design", "Digital Strategy"]
 keywords: ["digital agency", "AI-assisted development", "vibe coding", "product design", "rapid prototyping", "design systems"]

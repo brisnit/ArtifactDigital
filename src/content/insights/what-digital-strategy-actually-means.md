@@ -3,7 +3,7 @@ title: "What Digital Strategy Actually Means (And Why Most Companies Get It Wron
 description: "Ten people, ten definitions. Digital strategy isn't a deck, a redesign, or a platform — it's the discipline of making better decisions before you build."
 pubDate: 2026-07-07
 author: Britt Midgette
-heroImage: "/brand_assets/insights/Checkmate.png"
+heroImage: "/brand_assets/insights/Checkmate.webp"
 cluster: "Digital Strategy"
 tags: ["Digital Strategy", "Enterprise CMS", "AI"]
 keywords: ["digital strategy", "digital transformation", "enterprise CMS", "Optimizely", "Sitecore", "information architecture", "content governance"]

@@ -8,12 +8,12 @@
   "card": {
     "eyebrow": "02 / Digital for Retail",
     "blurb": "A social platform for major clothing brand Taylors to share work and services with a global clientele.",
-    "image": "/brand_assets/Lev_Comp.png",
+    "image": "/brand_assets/Lev_Comp.webp",
     "imageAlt": "Major clothing brand tailor's tool",
     "tags": ["Social", "Platform", "Web"],
     "wide": false
   },
-  "ogImage": "/brand_assets/Lev_Comp.png",
+  "ogImage": "/brand_assets/Lev_Comp.webp",
   "heroEyebrow": "Case study · Retail tools",
   "titleLines": [
     { "text": "Tailor's tools" },
@@ -29,7 +29,7 @@
   ],
   "feature": {
     "video": "/brand_assets/LevyVis.mp4",
-    "poster": "/brand_assets/Lev_Comp.png",
+    "poster": "/brand_assets/Lev_Comp.webp",
     "alt": "Major clothing brand tailor's tool",
     "caption": "An in-store tool built around the tailoring team's real workflow — launched in seven flagship stores, starting in Shanghai."
   },
@@ -49,7 +49,7 @@
     "The work started with a single, deep conversation. One hour with a tailor at a leading clothing brand gave us a clear read on the daily practices of his team and the way they interact with customers in-store.",
     "We moved from insight to idea through Sketchin Sessions — rapid-fire wireframe rounds that let us explore concepts in the open and get the team aligned before pixels got precious. As the direction sharpened, we ran a movement study to validate the interactions in physical space, then rolled out the final app across seven flagship stores worldwide — starting in Shanghai."
   ],
-  "storyImage": "/brand_assets/clothing_insights.png",
+  "storyImage": "/brand_assets/clothing_insights.webp",
   "storyImageAlt": "Major clothing brand tailor's tool — research and concept work",
   "storyCaption": "From practitioner research through Sketchin Sessions to global launch.",
   "highlights": [

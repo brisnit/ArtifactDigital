@@ -3,7 +3,7 @@ title: "Design at the Speed of Thought: Why Vibe Coding + Great Design Is Changi
 description: "AI can write code remarkably well. It can't decide what's worth building. Why pairing vibe coding with experienced design is changing product development."
 pubDate: 2026-07-08
 author: Britt Midgette
-heroImage: "/brand_assets/insights/Design_Speed.png"
+heroImage: "/brand_assets/insights/Design_Speed.webp"
 cluster: "AI & Design"
 tags: ["AI", "Product Design", "Design Systems"]
 keywords: ["vibe coding", "AI-assisted development", "product design", "design systems", "digital product development", "AI for designers"]

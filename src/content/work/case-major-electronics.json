@@ -8,12 +8,12 @@
   "card": {
     "eyebrow": "04 / Digital for Retail",
     "blurb": "An in-store AR experience showcasing the company's Connected Home products.",
-    "image": "/brand_assets/Sam_Comp.png",
+    "image": "/brand_assets/Sam_Comp.webp",
     "imageAlt": "Major Electronics Company in-store AR experience",
     "tags": ["AR", "Retail", "Experience"],
     "wide": true
   },
-  "ogImage": "/brand_assets/Sam_Comp.png",
+  "ogImage": "/brand_assets/Sam_Comp.webp",
   "heroEyebrow": "Case study · Digital for retail",
   "titleLines": [
     { "text": "Reimagining retail" },
@@ -29,7 +29,7 @@
   ],
   "feature": {
     "video": "/brand_assets/IMG_6257.mp4",
-    "poster": "/brand_assets/IMG_6257.png",
+    "poster": "/brand_assets/IMG_6257.webp",
     "alt": "In-store AR experience",
     "caption": "QR-launched AR running directly in the customer's browser — no app, no waiting."
   },
@@ -49,7 +49,7 @@
     "A QR-powered attractor loop opened the AR journey straight on the customer's phone — no app, no store account, no waiting. Object detection recognized each appliance on the floor and unlocked interactive overlays: feature highlights, 3D animations, and lifestyle context tuned to the product in front of them.",
     "The roll-out covered select premium appliance stores, fully integrated with the brand's high-end aesthetic. Visually striking codes invited interaction, while intuitive, app-free navigation made access effortless — sparking curiosity and deeper engagement right at the point of decision."
   ],
-  "storyImage": "/brand_assets/IMG_6255.jpg",
+  "storyImage": "/brand_assets/IMG_6255.webp",
   "storyImageAlt": "In-store AR showroom moment",
   "storyCaption": "Mobile-first overlays composed for in-store context.",
   "highlights": [

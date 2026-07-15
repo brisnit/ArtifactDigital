@@ -3,7 +3,7 @@ title: "Waiting for the Spark: AI, Sentience, and the Mystery We Can’t Explain
 description: "I realize a lot of people are obsessed with the idea of AI becoming sentient. It feels like the next great funnel experience for humanity. For years I…"
 pubDate: 2026-01-17
 author: Britt Midgette
-heroImage: "/brand_assets/insights/waiting-for-the-spark-ai-sentience-and-the-mystery-we-can-t-explain.png"
+heroImage: "/brand_assets/insights/waiting-for-the-spark-ai-sentience-and-the-mystery-we-can-t-explain.webp"
 cluster: "AI"
 tags: ["artificial-intelligence"]
 draft: false
