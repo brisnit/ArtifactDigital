@@ -2656,8 +2656,7 @@ button:focus-visible {
 .wnm-gallery__item { margin: 0; }
 .wnm-gallery__item img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: auto; /* required: without it the HTML height attr wins and aspect-ratio is ignored */
   border-radius: var(--radius-media);
   display: block;
 }
