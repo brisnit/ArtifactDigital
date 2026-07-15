@@ -9,6 +9,10 @@ const all = (await getCollection('services')).sort((a, b) => a.data.order - b.da
 const pillars = all.filter((s) => s.data.tier === 'pillar');
 const services = all.filter((s) => s.data.tier !== 'pillar');
 
+// Spell the count so the heading can't go stale when a capability is added.
+const NUMBER_WORDS = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten'];
+const pillarCount = NUMBER_WORDS[pillars.length] ?? String(pillars.length);
+
 const itemList = {
   '@type': 'ItemList',
   '@id': `${SITE.url}/services#list`,
@@ -60,7 +64,7 @@ const jsonLd = {
     <div class="container">
       <header class="section-head">
         <span class="section-tag reveal"><span class="tag-dot"></span>What we build</span>
-        <h2 class="section-heading reveal-line"><span>Four ways we help</span></h2>
+        <h2 class="section-heading reveal-line"><span>{pillarCount} ways we help</span></h2>
       </header>
       <div class="service-link-grid">
         {pillars.map((s) => (
