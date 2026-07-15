@@ -2430,3 +2430,38 @@ button:focus-visible {
   .mobile-nav__cta { margin-top: 2rem; }
   body.menu-open { overflow: hidden; }
 }
+
+/* -------------------- Service capabilities grid -------------------- */
+.service-capabilities { border-top: 1px solid rgba(17, 17, 17, 0.08); }
+.capability-grid {
+  list-style: none;
+  padding: 0;
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0;
+  border-top: 1px solid rgba(17, 17, 17, 0.12);
+}
+.capability {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  padding: 1.1rem 1rem 1.1rem 0;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+.capability::before {
+  content: "";
+  flex: none;
+  width: 0.55rem;
+  height: 0.55rem;
+  background: var(--accent);
+  border-radius: 50%;
+}
+@media (max-width: 560px) {
+  .capability-grid { grid-template-columns: 1fr; }
+}

@@ -95,6 +95,8 @@ const services = defineCollection({
     intro: z.array(z.string()),
     sections: z.array(z.object({ heading: z.string(), body: z.array(z.string()) })),
     process: z.array(z.object({ title: z.string(), body: z.string() })),
+    // Optional "what we build" capability list, rendered as its own grid.
+    capabilities: z.array(z.string()).optional(),
     deliverables: z.array(z.string()),
     whoFor: z.array(z.string()),
     faq: z.array(z.object({ q: z.string(), a: z.string() })),

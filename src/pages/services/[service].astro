@@ -100,6 +100,21 @@ const jsonLd = {
     </section>
   ))}
 
+  <!-- CAPABILITIES (optional) -->
+  {d.capabilities && d.capabilities.length > 0 && (
+    <section class="section service-capabilities">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-tag reveal"><span class="tag-dot"></span>Capabilities</span>
+          <h2 class="section-heading reveal-line"><span>What we build</span></h2>
+        </header>
+        <ul class="capability-grid">
+          {d.capabilities.map((c) => <li class="capability reveal">{c}</li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+
   <!-- PROCESS -->
   <section class="section case-pillars">
     <div class="container">
