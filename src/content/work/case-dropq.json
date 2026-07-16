@@ -106,5 +106,10 @@
   "ogImage": "/brand_assets/cases/dropq-og.webp",
   "storyImage": "/brand_assets/cases/dropq-story.webp",
   "storyImageAlt": "DropQ feature overview — limited drops, storefronts, fulfillment, analytics",
-  "storyCaption": "One platform replacing the link-in-bio, spreadsheet and Venmo stack."
+  "storyCaption": "One platform replacing the link-in-bio, spreadsheet and Venmo stack.",
+  "feature": {
+    "image": "/brand_assets/cases/dropq-feature.webp",
+    "alt": "The DropQ vendor flow — login, dashboard, creating a drop, and a confirmed order with pickup details",
+    "caption": "Vendor to buyer, end to end: create the drop, take the order, hand it over. Customer details blurred."
+  }
 }

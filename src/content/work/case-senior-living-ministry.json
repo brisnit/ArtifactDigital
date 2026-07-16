@@ -102,5 +102,13 @@
     }
   ],
   "ctaHeading": "Building for an audience everyone else designs past?",
-  "ogImage": "/brand_assets/cases/ministry-og.webp"
+  "ogImage": "/brand_assets/cases/ministry-og.webp",
+  "feature": {
+    "image": "/brand_assets/cases/ministry-feature.webp",
+    "alt": "The ministry admin portal dashboard, showing sample engagement data across campuses",
+    "caption": "The admin portal staff actually run. Figures shown are sample data — the product has no users yet."
+  },
+  "storyImage": "/brand_assets/cases/ministry-story.webp",
+  "storyImageAlt": "Managing an event in the admin portal — registrants, details and messaging",
+  "storyCaption": "Events, content and messaging — all editable by ministry staff, no developer required."
 }
