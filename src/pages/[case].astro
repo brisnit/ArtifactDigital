@@ -123,7 +123,7 @@ const jsonLd = {
 
   <!-- STORY -->
   <section class="section case-story">
-    <div class="container case-story__grid">
+    <div class:list={["container", "case-story__grid", !d.storyImage && "case-story__grid--solo"]}>
       <div class="case-story__copy">
         <span class="section-tag reveal"><span class="tag-dot"></span>{d.storyTag}</span>
         <h2 class="case-story__heading">
@@ -133,10 +133,12 @@ const jsonLd = {
         </h2>
         {d.storyParagraphs.map((para) => <p class="reveal">{para}</p>)}
       </div>
-      <figure class="case-story__media reveal-card">
-        <img data-src={d.storyImage} alt={d.storyImageAlt} loading="lazy" />
-        <figcaption>{d.storyCaption}</figcaption>
-      </figure>
+      {d.storyImage && (
+        <figure class="case-story__media reveal-card">
+          <img data-src={d.storyImage} alt={d.storyImageAlt} loading="lazy" />
+          {d.storyCaption && <figcaption>{d.storyCaption}</figcaption>}
+        </figure>
+      )}
     </div>
   </section>
 

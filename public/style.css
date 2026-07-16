@@ -2671,3 +2671,7 @@ button:focus-visible {
   line-height: 1.6;
 }
 .case-attribution strong { color: var(--ink); font-weight: 700; }
+
+/* Story section without media (client branding / identifiable people withheld) */
+.case-story__grid--solo { grid-template-columns: 1fr; }
+.case-story__grid--solo .case-story__copy { max-width: 68ch; }

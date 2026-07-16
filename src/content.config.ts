@@ -49,9 +49,11 @@ const work = defineCollection({
       storyTag: z.string(),
       storyHeadingLines: z.array(z.object({ text: z.string(), italic: z.boolean().default(false) })),
       storyParagraphs: z.array(z.string()),
-      storyImage: z.string(),
-      storyImageAlt: z.string(),
-      storyCaption: z.string(),
+      // Optional: omit where no media can be shown without exposing a client's
+      // branding or an identifiable person.
+      storyImage: z.string().optional(),
+      storyImageAlt: z.string().optional(),
+      storyCaption: z.string().optional(),
       // Highlights
       highlights: z.array(z.object({ title: z.string(), body: z.string() })),
       // CTA
