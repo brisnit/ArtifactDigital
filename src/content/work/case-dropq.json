@@ -45,7 +45,7 @@
     },
     {
       "label": "Scope",
-      "value": "Strategy · Design · Build"
+      "value": "Strategy · Design · Full-stack build"
     },
     {
       "label": "Status",
@@ -100,6 +100,10 @@
     {
       "title": "Timezone-correct scheduling",
       "body": "UTC instants authored in each vendor's IANA zone — because a drop that opens an hour late is a drop that failed."
+    },
+    {
+      "title": "Built end to end, front and back",
+      "body": "Data model, Stripe Connect payments, messaging, scheduling, auth and every screen — one team, whole stack, no handoff."
     }
   ],
   "ctaHeading": "Got something that needs to exist in two weeks?",

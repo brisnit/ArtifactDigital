@@ -7,8 +7,13 @@
   "tier": "pillar",
   "eyebrow": "What we build · Digital Product Engineering",
   "heroTitleLines": [
-    { "text": "If it's digital," },
-    { "text": "we can build it.", "italic": true }
+    {
+      "text": "If it's digital,"
+    },
+    {
+      "text": "we can build it.",
+      "italic": true
+    }
   ],
   "lede": "Websites, web and mobile apps, enterprise CMS, AI-powered products, and physical-world experiences like retail installations, theme parks, and kiosks. One senior team, from the first sketch to production.",
   "summary": "Websites, apps, CMS, AI products, and interactive experiences — built to last.",
@@ -54,10 +59,22 @@
     "API & Systems Integration"
   ],
   "process": [
-    { "title": "Frame", "body": "We get clear on the job, the constraints, and what success actually looks like — before anyone argues about technology." },
-    { "title": "Design the system", "body": "Architecture, content model, and component system together, so the thing holds up as it grows instead of only working on launch day." },
-    { "title": "Build", "body": "We ship clean, accessible, performant code — designing and engineering in the same loop so the intent survives to production." },
-    { "title": "Hand over", "body": "We instrument it, document it, and set your team up to own and evolve it without depending on us." }
+    {
+      "title": "Frame",
+      "body": "We get clear on the job, the constraints, and what success actually looks like — before anyone argues about technology."
+    },
+    {
+      "title": "Design the system",
+      "body": "Architecture, content model, and component system together, so the thing holds up as it grows instead of only working on launch day."
+    },
+    {
+      "title": "Build",
+      "body": "We ship clean, accessible, performant code — designing and engineering in the same loop so the intent survives to production."
+    },
+    {
+      "title": "Hand over",
+      "body": "We instrument it, document it, and set your team up to own and evolve it without depending on us."
+    }
   ],
   "deliverables": [
     "Production software — designed and engineered by the same senior team",
@@ -74,12 +91,35 @@
     "Enterprises with real integration complexity behind a customer-facing experience"
   ],
   "faq": [
-    { "q": "Do you replace our engineering team or work alongside it?", "a": "Either. Sometimes we're the whole team; more often we're the senior layer that works alongside your engineers — designing and building the hard parts, setting the patterns, and handing off cleanly. We'll tell you honestly which arrangement fits your situation." },
-    { "q": "What technologies do you build on?", "a": "We're deliberately not dogmatic. The stack should follow the job, your team's ability to maintain it, and your roadmap — not our preferences. We work across modern web frameworks, native and cross-platform mobile, headless and enterprise CMS platforms like Optimizely and Sitecore, and the APIs and services behind them." },
-    { "q": "Can you take over an existing build?", "a": "Often, yes. A good share of our work is inheriting something half-finished or hard to maintain and making it good. We'll assess it honestly first — including telling you if the right answer is to keep what you have and fix it rather than start over." },
-    { "q": "How does AI factor into how you build?", "a": "It makes us faster, not looser. We use AI-assisted development to compress the distance between an idea and working software, while the standards — design system, accessibility, performance, review — stay exactly where they were. Speed is leverage; it only helps if you're pointed the right way." }
+    {
+      "q": "Do you replace our engineering team or work alongside it?",
+      "a": "Either. Sometimes we're the whole team; more often we're the senior layer that works alongside your engineers — designing and building the hard parts, setting the patterns, and handing off cleanly. We'll tell you honestly which arrangement fits your situation."
+    },
+    {
+      "q": "What technologies do you build on?",
+      "a": "We're deliberately not dogmatic. The stack should follow the job, your team's ability to maintain it, and your roadmap — not our preferences. We work across modern web frameworks, native and cross-platform mobile, headless and enterprise CMS platforms like Optimizely and Sitecore, and the APIs and services behind them."
+    },
+    {
+      "q": "Can you take over an existing build?",
+      "a": "Often, yes. A good share of our work is inheriting something half-finished or hard to maintain and making it good. We'll assess it honestly first — including telling you if the right answer is to keep what you have and fix it rather than start over."
+    },
+    {
+      "q": "How does AI factor into how you build?",
+      "a": "It makes us faster, not looser. We use AI-assisted development to compress the distance between an idea and working software, while the standards — design system, accessibility, performance, review — stay exactly where they were. Speed is leverage; it only helps if you're pointed the right way."
+    }
   ],
-  "relatedTags": ["Web", "UX/UI", "AR", "Experience", "Retail"],
-  "relatedServices": ["front-end-engineering", "enterprise-cms", "accessibility", "product-design"],
+  "relatedTags": [
+    "Web",
+    "UX/UI",
+    "AR",
+    "Experience",
+    "Retail"
+  ],
+  "relatedServices": [
+    "front-end-engineering",
+    "back-end-engineering",
+    "enterprise-cms",
+    "product-design"
+  ],
   "ctaHeading": "Got something to build? Let's talk about it."
 }

@@ -1,0 +1,80 @@
+{
+  "title": "Back-End Engineering",
+  "navLabel": "Back-End Engineering",
+  "metaTitle": "Back-End Engineering Services · Artifact Digital",
+  "description": "Data models, APIs, auth, payments and integrations built to be correct under load — the invisible half of a product that decides whether the visible half can be trusted.",
+  "order": 11,
+  "tier": "service",
+  "eyebrow": "Service · Back-End Engineering",
+  "heroTitleLines": [
+    { "text": "Nobody sees it." },
+    { "text": "Everybody feels it.", "italic": true }
+  ],
+  "lede": "The back end is the half of your product no user will ever look at and every user will judge you by. When it's right, the experience feels solid. When it's wrong, no amount of design will save you.",
+  "summary": "Data models, APIs, auth, payments and integrations, built to be correct.",
+  "intro": [
+    "There's a version of an agency that designs a beautiful thing and then hands it to somebody else to make it actually work. We're not that. We have engineers, and they build the whole stack — the data model, the APIs, the auth, the payments, the integrations, the jobs that run at 3am when nobody's watching.",
+    "That matters more than it sounds, because the hardest problems in most products aren't on the screen. They're in the seams: what happens when two people buy the last one at the same moment, when the payment succeeds but the webhook doesn't arrive, when the timezone is wrong by an hour, when the third-party API is down and your customer still expects an answer.",
+    "You can't design your way out of any of those. They're engineering problems, and getting them right is what makes an interface trustworthy enough to be worth designing well."
+  ],
+  "sections": [
+    {
+      "heading": "The data model is destiny",
+      "body": [
+        "Almost every expensive problem we've inherited traces back to a data model that was decided quickly and lived for years. Get the model right and features get easier over time. Get it wrong and every new requirement is a fight with your own schema.",
+        "So we model deliberately, the same way we approach [content modeling](/services/enterprise-cms) on a CMS engagement: what are the real entities, how do they relate, what's the source of truth, what must never be duplicated. It's unglamorous, it's early, and it's the highest-leverage hour anyone will spend on your product."
+      ]
+    },
+    {
+      "heading": "Correct under concurrency, or it isn't correct",
+      "body": [
+        "Most software works fine until two people do the same thing at the same time. Then you find out whether anyone thought about it.",
+        "On [DropQ](/case-dropq) we made overselling structurally impossible — not with a validation rule that checks inventory and hopes, but with an atomic conditional claim in the database, where losing the race auto-cancels and refunds. There is no interleaving where two buyers get the last item. That's the difference between a rule and a guarantee, and it's the kind of thing that has to be designed in at the data layer, because you cannot bolt it on afterward.",
+        "Same story with time. DropQ schedules drops as UTC instants authored in each vendor's IANA timezone, because a drop that opens an hour late is a drop that failed — and 'it worked on my machine in California' is not a scheduling strategy."
+      ]
+    },
+    {
+      "heading": "Integrations are where the work actually is",
+      "body": [
+        "The demo is easy. The integration is the job. Payments, messaging, identity, mapping, the client's existing systems — each one has its own failure modes, its own retry semantics, its own way of lying to you about whether something succeeded.",
+        "We've built on Stripe Connect with direct charges on connected accounts and webhook-driven reconciliation, wired SMS and email through Twilio and Resend, and connected the ordinary-but-critical things like geocoding and calendar feeds. The engineering that matters isn't the happy path — it's what your system does when the third party doesn't answer."
+      ]
+    },
+    {
+      "heading": "Boring, owned dependencies",
+      "body": [
+        "Given the choice between a clever dependency and a boring one we own, we take boring almost every time. On a ministry app we bundled an entire Bible — 4.3 MB — rather than call an API, and that single decision removed the network, the rate limits, the licensing exposure and the latency. It works in airplane mode.",
+        "Every external dependency is a promise someone else makes to you. Some are worth it. Many aren't. Knowing the difference is most of what senior engineering judgment is."
+      ]
+    }
+  ],
+  "process": [
+    { "title": "Model", "body": "We design the data model and the seams first — entities, relationships, source of truth — because everything downstream inherits those decisions." },
+    { "title": "Build the guarantees", "body": "Correctness under concurrency, auth and permissions, money and time. The things that must not be wrong get built first and deliberately." },
+    { "title": "Integrate", "body": "Payments, messaging, identity, third-party systems — designed around their failure modes, not just their happy paths." },
+    { "title": "Operate", "body": "Migrations, observability, and a handover aimed at whoever inherits it. If only we can run it, we've failed." }
+  ],
+  "deliverables": [
+    "A data model designed to make future features easier, not harder",
+    "APIs and server logic that stay correct under real concurrency",
+    "Auth and permissions enforced on the server, not just hidden in the UI",
+    "Payments and money flows built around reconciliation and failure, not the demo path",
+    "Integrations designed for what happens when the other system is down",
+    "Migrations, documentation and a handover your team can actually own"
+  ],
+  "whoFor": [
+    "Teams who need one partner to design and build the whole product, not just the surface",
+    "Products where money, scheduling or inventory have to be exactly right",
+    "Organizations with real integration complexity behind a simple-looking experience",
+    "Anyone who has inherited a schema that now fights every new feature"
+  ],
+  "faq": [
+    { "q": "Do you really do back-end, or do you subcontract it?", "a": "We really do it. We have engineers on the team and we built DropQ's entire stack — data model, Stripe Connect payments, messaging, scheduling and auth — front and back. Where a project needs specialist depth we'll say so plainly rather than quietly hand it off." },
+    { "q": "What do you build on?", "a": "Typically TypeScript end to end, Postgres with an ORM, and server-side rendering frameworks like Next.js — plus the services that fit the job: Stripe for payments, Twilio and Resend for messaging, and managed Postgres. We're not dogmatic; the stack should follow the problem and your team's ability to maintain it." },
+    { "q": "Can you work with our existing back-end team?", "a": "Yes. We're just as happy building against your APIs, or acting as a senior layer that designs the model and the hard parts while your team owns the rest. What we won't do is build something only we can maintain." },
+    { "q": "Do you do CMS development too?", "a": "Yes — that's a large part of our enterprise work. Content modeling, templates, components, integrations and migrations, across traditional platforms like Optimizely and Sitecore as well as headless and composable stacks. See Enterprise CMS for the detail." }
+  ],
+  "relatedTags": ["Commerce", "Payments", "Web", "Product"],
+  "relatedServices": ["front-end-engineering", "digital-product-engineering", "enterprise-cms"],
+  "ctaHeading": "Need the whole product built, not just the surface?"
+}

@@ -6,14 +6,19 @@
   "order": 4,
   "eyebrow": "Service · UX/UI Design",
   "heroTitleLines": [
-    { "text": "Usable and" },
-    { "text": "unmistakable.", "italic": true }
+    {
+      "text": "Usable and"
+    },
+    {
+      "text": "unmistakable.",
+      "italic": true
+    }
   ],
   "lede": "The best interfaces disappear when you're using them and stay with you after. That's the bar: structure clear enough to be effortless, and a visual signature distinctive enough to be yours.",
   "summary": "Interfaces with clear structure, a strong signature, and craft in the details.",
   "intro": [
     "There's a false choice in our field between design that works and design that's beautiful, as if you have to trade one for the other. We don't accept the tradeoff. A checkout that's a joy to look at but loses people isn't good design. Neither is a flow that converts but feels like filling out a tax form. The work is to get both, and getting both is hard, which is exactly why it's worth paying for.",
-        "UX and UI aren't two departments to us. UX is the structure — the flows, the hierarchy, the logic of how a thing is organized. UI is the surface — the type, the color, the space, the motion. Great products get both right, and they get them right together, because a beautiful surface on a broken structure is lipstick, and a sound structure with a lifeless surface is a wireframe someone forgot to finish.",
+    "UX and UI aren't two departments to us. UX is the structure — the flows, the hierarchy, the logic of how a thing is organized. UI is the surface — the type, the color, the space, the motion. Great products get both right, and they get them right together, because a beautiful surface on a broken structure is lipstick, and a sound structure with a lifeless surface is a wireframe someone forgot to finish.",
     "We care about the details other people skip: the empty state, the error message, the loading moment, the transition between two screens. Those details are where a product either feels considered or feels cheap, and users register the difference instantly even when they can't name it."
   ],
   "sections": [
@@ -33,10 +38,22 @@
     }
   ],
   "process": [
-    { "title": "Structure", "body": "Flows, information architecture, and hierarchy — the logic of the experience, resolved before we style anything." },
-    { "title": "Direction", "body": "We establish the visual signature: type, color, space, and motion that feel unmistakably yours." },
-    { "title": "Design", "body": "We design the real screens — including the empty states, errors, and edge cases most teams leave for later." },
-    { "title": "Systematize", "body": "We turn the design into a coherent, reusable system so the quality holds as the product grows." }
+    {
+      "title": "Structure",
+      "body": "Flows, information architecture, and hierarchy — the logic of the experience, resolved before we style anything."
+    },
+    {
+      "title": "Direction",
+      "body": "We establish the visual signature: type, color, space, and motion that feel unmistakably yours."
+    },
+    {
+      "title": "Design",
+      "body": "We design the real screens — including the empty states, errors, and edge cases most teams leave for later."
+    },
+    {
+      "title": "Systematize",
+      "body": "We turn the design into a coherent, reusable system so the quality holds as the product grows."
+    }
   ],
   "deliverables": [
     "Task flows and information architecture that hold up under real complexity",
@@ -53,11 +70,28 @@
     "Organizations that need design quality to survive scale, not just a launch"
   ],
   "faq": [
-    { "q": "Do you design in Figma?", "a": "Yes. We work in Figma and hand off structured, well-organized files with a real component system — not a pile of disconnected artboards. Your engineers get specs they can build from and a system they can extend." },
-    { "q": "Can you work with our existing brand?", "a": "Absolutely. We frequently translate an established brand into a digital experience — extending it thoughtfully into type, color, motion, and interaction rather than reinventing it. When the brand needs to stretch to work on screen, we'll show you where and why." },
-    { "q": "Do you build what you design?", "a": "Often, yes — front-end engineering is part of what we do, which means our designs are grounded in what's actually buildable. When you have your own engineering team, we design for a clean handoff and stay close through build to protect the details." }
+    {
+      "q": "Do you design in Figma?",
+      "a": "Yes. We work in Figma and hand off structured, well-organized files with a real component system — not a pile of disconnected artboards. Your engineers get specs they can build from and a system they can extend."
+    },
+    {
+      "q": "Can you work with our existing brand?",
+      "a": "Absolutely. We frequently translate an established brand into a digital experience — extending it thoughtfully into type, color, motion, and interaction rather than reinventing it. When the brand needs to stretch to work on screen, we'll show you where and why."
+    },
+    {
+      "q": "Do you build what you design?",
+      "a": "Often, yes — we have engineers on the team and build both front end and back end, which means our designs are grounded in what’s actually buildable. When you have your own engineering team, we design for a clean handoff and stay close through build to protect the details."
+    }
   ],
-  "relatedTags": ["UX/UI", "Design", "Web"],
-  "relatedServices": ["ux-strategy", "product-design", "accessibility"],
+  "relatedTags": [
+    "UX/UI",
+    "Design",
+    "Web"
+  ],
+  "relatedServices": [
+    "ux-strategy",
+    "product-design",
+    "accessibility"
+  ],
   "ctaHeading": "Want a product that's a pleasure to use and impossible to mistake?"
 }

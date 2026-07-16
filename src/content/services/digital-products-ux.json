@@ -2,16 +2,21 @@
   "title": "Digital Products & UX",
   "navLabel": "Digital Products & UX",
   "metaTitle": "Digital Products & UX · Artifact Digital",
-  "description": "Product design and front-end engineering for SaaS, dashboards, and customer-facing apps that need clarity at speed — complex software made to feel simple.",
+  "description": "Product design and full-stack engineering for SaaS, dashboards, and customer-facing apps that need clarity at speed — complex software made to feel simple.",
   "order": 3,
   "tier": "pillar",
   "eyebrow": "What we build · Digital Products & UX",
   "heroTitleLines": [
-    { "text": "Complex software," },
-    { "text": "made to feel simple.", "italic": true }
+    {
+      "text": "Complex software,"
+    },
+    {
+      "text": "made to feel simple.",
+      "italic": true
+    }
   ],
-  "lede": "Product design and front-end engineering for SaaS, dashboards, and customer-facing apps that need clarity at speed. We absorb the complexity so your users don't have to.",
-  "summary": "Product design and front-end for SaaS, dashboards, and apps.",
+  "lede": "Product design and full-stack engineering for SaaS, dashboards, and customer-facing apps that need clarity at speed. We absorb the complexity so your users don't have to.",
+  "summary": "Product design and full-stack engineering for SaaS, dashboards and apps.",
   "intro": [
     "Products are different from marketing sites. A site makes a first impression; a product has to hold up on the ten-thousandth use — through edge cases, permissions, error states, messy data, and users who are tired and in a hurry. Designing for that is a different discipline, and it's one we're built for.",
     "Every product tends toward entropy: more features, more settings, more special cases. Without deliberate design, that complexity leaks straight onto the user. Our job is to absorb it — to make a genuinely complex system feel obvious to the person who just needs to get something done, release after release.",
@@ -28,37 +33,66 @@
     {
       "heading": "Grounded in real users and real code",
       "body": [
-        "We prove product design with real users doing real tasks under realistic complexity — not a demo that only works on the happy path. And because front-end engineering is part of what we do, our designs are grounded in what's actually buildable and shippable.",
+        "We prove product design with real users doing real tasks under realistic complexity — not a demo that only works on the happy path. And because we build the whole stack — front end and back end — our designs are grounded in what’s actually buildable and shippable, right down to the data model.",
         "That combination — research, design, and build close together — is what keeps a growing product clear. It's also how the details survive the trip from mockup to production instead of getting lost in a handoff."
       ]
     }
   ],
   "process": [
-    { "title": "Understand the work", "body": "We learn the real jobs, the real data, and the real conditions your product operates under — not the tidy version in the pitch." },
-    { "title": "Design the system", "body": "We establish the patterns and components that keep the product coherent, then design flows on top of that foundation." },
-    { "title": "Prototype & test", "body": "We put working prototypes in front of real users under realistic complexity, because that's where product design is proven." },
-    { "title": "Build & evolve", "body": "We ship clean front-end and design for the long arc — keeping the experience clear as features and scale accumulate." }
+    {
+      "title": "Understand the work",
+      "body": "We learn the real jobs, the real data, and the real conditions your product operates under — not the tidy version in the pitch."
+    },
+    {
+      "title": "Design the system",
+      "body": "We establish the patterns and components that keep the product coherent, then design flows on top of that foundation."
+    },
+    {
+      "title": "Prototype & test",
+      "body": "We put working prototypes in front of real users under realistic complexity, because that's where product design is proven."
+    },
+    {
+      "title": "Build & evolve",
+      "body": "We ship clean front-end and back-end code, and design for the long arc — keeping the experience clear as features and scale accumulate."
+    }
   ],
   "deliverables": [
     "End-to-end product flows designed for real data, states, and edge cases",
     "A product design system that keeps quality consistent as you ship",
     "Dashboards and complex views that stay legible under density",
     "Prototypes tested with real users doing real tasks",
-    "Front-end engineering, or specs your engineers can build from with confidence",
+    "Front-end and back-end engineering — or specs your engineers can build from with confidence",
     "A design approach built to survive many releases, not just a launch"
   ],
   "whoFor": [
     "SaaS teams whose product has grown complex faster than it's stayed clear",
     "Companies with powerful software that feels harder to use than it should",
     "Teams building dashboards or operational tools people rely on all day",
-    "Founders who need product design and front-end to be a durable capability"
+    "Founders who need product design and engineering to be a durable capability"
   ],
   "faq": [
-    { "q": "Do you do UX, UI, and front-end, or just design?", "a": "All of it. Under this capability sit UX research, UX/UI design, and product design, plus front-end engineering. We can own the whole path from research to shipped interface, or plug into your team at the point where you need senior help." },
-    { "q": "Can you work inside our existing product and team?", "a": "Often, yes. Product work is best close to engineering and product management, so we frequently operate as a senior, embedded part of your team — in your rituals, tools, and roadmap — rather than at arm's length." },
-    { "q": "Can you help us build a design system?", "a": "Yes. Past a certain size, a design system is how you keep quality consistent as more people ship more surface area. We build systems that are practical and adopted, not a pristine library nobody uses." }
+    {
+      "q": "Do you do UX, UI, and front-end, or just design?",
+      "a": "All of it. Under this capability sit UX research, UX/UI design and product design, plus front-end and back-end engineering — we have engineers on the team and we build the whole stack. We can own the whole path from research to shipped interface, or plug into your team at the point where you need senior help."
+    },
+    {
+      "q": "Can you work inside our existing product and team?",
+      "a": "Often, yes. Product work is best close to engineering and product management, so we frequently operate as a senior, embedded part of your team — in your rituals, tools, and roadmap — rather than at arm's length."
+    },
+    {
+      "q": "Can you help us build a design system?",
+      "a": "Yes. Past a certain size, a design system is how you keep quality consistent as more people ship more surface area. We build systems that are practical and adopted, not a pristine library nobody uses."
+    }
   ],
-  "relatedTags": ["UX/UI", "UX", "Experience"],
-  "relatedServices": ["product-design", "ux-ui-design", "ux-research"],
+  "relatedTags": [
+    "UX/UI",
+    "UX",
+    "Experience"
+  ],
+  "relatedServices": [
+    "product-design",
+    "front-end-engineering",
+    "back-end-engineering"
+  ],
   "ctaHeading": "Has your product grown complex faster than it's stayed clear?"
 }
