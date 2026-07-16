@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import WorkCard from '../../components/WorkCard.astro';
 import { SITE, orgNode, breadcrumb, CTA } from '../../data/site';
 import { relatedCases } from '../../lib/related';
 
@@ -161,19 +162,7 @@ const jsonLd = {
           <h2 class="section-heading reveal-line"><span>Proof, not promises</span></h2>
         </header>
         <div class="project-grid">
-          {cases.map((c) => (
-            <a class="project-card-link" href={`/${c.id}`} aria-label={`Read the ${c.data.title} case study`}>
-              <article class="project-card reveal-card">
-                <div class="project-card__media project-card__media--contain" style="--media-bg: #f4f4f4;">
-                  <img data-src={c.data.card.image} alt={c.data.card.imageAlt} loading="lazy" />
-                  <span class="project-card__hover">View case →</span>
-                </div>
-                <div class="project-card__meta"><span>{c.data.category}</span><span>{c.data.year}</span></div>
-                <h3 class="project-card__title">{c.data.title}</h3>
-                <p class="project-card__copy">{c.data.card.blurb}</p>
-              </article>
-            </a>
-          ))}
+          {cases.map((c) => <WorkCard entry={c} />)}
         </div>
       </div>
     </section>

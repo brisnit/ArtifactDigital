@@ -4,12 +4,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import CtaBand from '../components/CtaBand.astro';
 import SpeedModule from '../components/SpeedModule.astro';
+import WorkCard from '../components/WorkCard.astro';
 import { SITE, orgNode, websiteNode, CTA } from '../data/site';
 import { testimonials, sectors } from '../data/testimonials';
 
-const projects = (await getCollection('work')).sort(
-  (a, b) => a.data.order - b.data.order
-);
+const allWork = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+// Two proofs, kept apart: what Artifact built, and what Britt led before Artifact.
+const artifactWork = allWork.filter((p) => !p.data.priorRole);
+const careerWork = allWork.filter((p) => p.data.priorRole);
 const liveTestimonials = testimonials.filter((t) => t.approved);
 
 const serviceNode = {
@@ -198,35 +200,35 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
   <section class="section work" id="work">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>03 — Career work</span>
-        <h2 class="section-heading reveal-line"><span>Where I've done this</span></h2>
+        <span class="section-tag reveal"><span class="tag-dot"></span>03 — Our work</span>
+        <h2 class="section-heading reveal-line"><span>Built by Artifact</span></h2>
       </header>
       <p class="work-attribution reveal">
-        Enterprise work I led in senior roles at previous agencies, before founding
-        Artifact. Clients aren't named here — the problems, decisions and outcomes are
-        exactly as they happened. This is the experience you're hiring.
+        Products we designed and built ourselves — two of them live and in the world
+        right now, one taking real payments today. Small, real, and ours.
       </p>
 
       <div class="project-grid">
-        {projects.map((p) => (
-          <a class="project-card-link" href={`/${p.id}`} aria-label={`Read the ${p.data.title} case study`}>
-            <article class:list={["project-card", "reveal-card", p.data.card.wide && "project-card--wide"]}>
-              <div class="project-card__media project-card__media--contain" style="--media-bg: #f4f4f4;">
-                <img data-src={p.data.card.image} alt={p.data.card.imageAlt} loading="lazy" />
-                <span class="project-card__hover">View case →</span>
-              </div>
-              <div class="project-card__meta">
-                <span>{p.data.card.eyebrow}</span>
-                <span>{p.data.year}</span>
-              </div>
-              <h3 class="project-card__title">{p.data.title}</h3>
-              <p class="project-card__copy">{p.data.card.blurb}</p>
-              <ul class="project-card__tags">
-                {p.data.card.tags.map((t) => <li>{t}</li>)}
-              </ul>
-            </article>
-          </a>
-        ))}
+        {artifactWork.map((p) => <WorkCard entry={p} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- CAREER WORK -->
+  <section class="section work work--career" id="career-work">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>04 — Career work</span>
+        <h2 class="section-heading reveal-line"><span>Where I've done this before</span></h2>
+      </header>
+      <p class="work-attribution reveal">
+        Enterprise work I led in senior roles at previous agencies, before founding
+        Artifact. Clients aren't named — the problems, decisions and outcomes are exactly
+        as they happened. This is the judgment you're hiring.
+      </p>
+
+      <div class="project-grid">
+        {careerWork.map((p) => <WorkCard entry={p} />)}
       </div>
     </div>
   </section>

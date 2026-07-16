@@ -21,7 +21,7 @@ const caseNode = {
   headline: d.metaTitle.split(' · ')[0],
   description: d.description,
   url: `${SITE.url}${path}`,
-  image: `${SITE.url}${d.ogImage}`,
+  image: `${SITE.url}${d.ogImage ?? SITE.ogImage}`,
   datePublished: d.year,
   inLanguage: 'en-US',
   creator: { '@id': `${SITE.url}/#organization` },
@@ -47,7 +47,7 @@ const jsonLd = {
   description={d.description}
   canonical={path}
   ogType="article"
-  ogImage={d.ogImage}
+  ogImage={d.ogImage ?? SITE.ogImage}
   ogImageAlt={d.metaTitle.split(' · ')[0]}
   bodyClass="case-page"
   jsonLd={jsonLd}
@@ -77,6 +77,14 @@ const jsonLd = {
         ))}
       </dl>
 
+      {d.liveUrl && (
+        <p class="case-live reveal">
+          <a href={d.liveUrl} target="_blank" rel="noopener">
+            See it live — {d.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')} ↗
+          </a>
+        </p>
+      )}
+
       {d.priorRole && (
         <p class="case-attribution reveal">
           <strong>About this work:</strong>{' '}
@@ -90,19 +98,21 @@ const jsonLd = {
     </div>
   </section>
 
-  <!-- FEATURED MEDIA -->
-  <section class="case-feature">
-    <div class="container">
-      <div class="case-feature__media reveal-card">
-        {d.feature.video ? (
-          <video class="case-video" data-src={d.feature.video} poster={d.feature.poster} muted loop playsinline preload="none" aria-label={d.feature.alt}></video>
-        ) : (
-          <img data-src={d.feature.image} alt={d.feature.alt} loading="lazy" />
-        )}
+  <!-- FEATURED MEDIA (optional) -->
+  {d.feature && (
+    <section class="case-feature">
+      <div class="container">
+        <div class="case-feature__media reveal-card">
+          {d.feature.video ? (
+            <video class="case-video" data-src={d.feature.video} poster={d.feature.poster} muted loop playsinline preload="none" aria-label={d.feature.alt}></video>
+          ) : (
+            <img data-src={d.feature.image} alt={d.feature.alt} loading="lazy" />
+          )}
+        </div>
+        <p class="case-caption reveal">{d.feature.caption}</p>
       </div>
-      <p class="case-caption reveal">{d.feature.caption}</p>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- PILLARS -->
   <section class="section case-pillars">

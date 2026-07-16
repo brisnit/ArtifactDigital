@@ -1,0 +1,55 @@
+{
+  "title": "DropQ",
+  "metaTitle": "DropQ — A Live Drop-Commerce Marketplace in Two Weeks · Artifact Digital",
+  "description": "An operating system for independent sellers running timed product drops — preorder windows, live QR sales, pickup scheduling, inventory and messaging. Zero to a live Stripe Connect marketplace in two weeks.",
+  "order": 1,
+  "year": "2026",
+  "category": "Drop commerce platform",
+  "priorRole": false,
+  "teamWork": true,
+  "liveUrl": "https://www.drop-q.com",
+  "card": {
+    "eyebrow": "02 / Marketplace platform",
+    "blurb": "An operating system for independent sellers running timed product drops — built zero to a live Stripe Connect marketplace in two weeks.",
+    "tags": ["Commerce", "Payments", "Product"],
+    "wide": false
+  },
+  "heroEyebrow": "Case study · Drop commerce",
+  "titleLines": [
+    { "text": "Zero to a live" },
+    { "text": "marketplace", "italic": true },
+    { "text": "in two weeks." }
+  ],
+  "lede": "DropQ is an operating system for independent sellers running timed product drops — scheduled preorder windows, live on-site QR sales, pickup scheduling, inventory, orders and customer messaging. Built for food makers, collectors, artists and vintage sellers.",
+  "meta": [
+    { "label": "Client", "value": "DropQ" },
+    { "label": "Year", "value": "2026" },
+    { "label": "Scope", "value": "Strategy · Design · Build" },
+    { "label": "Status", "value": "Live · taking real payments" }
+  ],
+  "pillarsTag": "The problem",
+  "pillarsHeading": "Drops were running on DMs, forms and Venmo.",
+  "pillars": [
+    { "title": "No enforced window", "body": "Orders trickled in past cutoff, so makers couldn't plan production against a number they could trust." },
+    { "title": "No inventory truth", "body": "Overselling, or hand-tallying Instagram DMs at midnight. Neither is a system." },
+    { "title": "Pickup chaos", "body": "Customers arrived, couldn't find the vendor, and had no way to reach them. The drop succeeded and the handoff failed." }
+  ],
+  "storyTag": "The turning point",
+  "storyHeadingLines": [
+    { "text": "Shipping fast got us to a real drop." },
+    { "text": "Auditing it told us what to build next.", "italic": true }
+  ],
+  "storyParagraphs": [
+    "The first commit landed on 11 June. Fourteen calendar days and 131 commits later there was a live MVP: storefronts, drops, inventory, Stripe Connect payments. Two weeks, zero to working marketplace — which sounds like the headline, but isn't.",
+    "The headline is what happened on 4 July. The first real drop went live and took real money, and instead of celebrating we ran a full UX audit across the entire experience — drop creation, through purchase, through pickup. The biggest finding wasn't in the checkout everyone worries about. It was the breakdown in communication between customer and vendor at pickup: people standing in a parking lot, holding a paid order, unable to find the person they'd bought it from.",
+    "That became the next build cycle. Pickup windows. \"How to find us\" descriptions. Open-in-Maps. Opt-in vendor contact. Vendor check-in broadcasts. Customer \"I'm here\" arrival. Shipped within a week of the audit.",
+    "That's the whole argument for shipping fast, and the honest admission of what shipping fast costs. Speed got us to a real transaction. Only a real transaction could tell us what was actually broken. And when you compress design and build that hard, QA becomes the thing that saves you — because the gaps don't hide inside any one role, they hide in the seams between admin, vendor and customer."
+  ],
+  "highlights": [
+    { "title": "Overselling is structurally impossible", "body": "An atomic conditional SQL claim; lost races auto-cancel and refund. Not a validation rule — a guarantee." },
+    { "title": "The buyer never sees DropQ", "body": "Vendor-branded link previews, emails and storefronts. The platform stays out of the vendor's relationship with their customer." },
+    { "title": "No customer accounts", "body": "Order links work as capability URLs with localStorage saves. Nobody signs up to buy a cookie." },
+    { "title": "Timezone-correct scheduling", "body": "UTC instants authored in each vendor's IANA zone — because a drop that opens an hour late is a drop that failed." }
+  ],
+  "ctaHeading": "Got something that needs to exist in two weeks?"
+}

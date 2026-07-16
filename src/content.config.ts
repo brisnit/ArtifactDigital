@@ -23,29 +23,33 @@ const work = defineCollection({
       // note says plainly what "we" means. Must be true per case — if it was
       // one person, it stays "I".
       teamWork: z.boolean().default(false),
-      // Home Work grid
+      // Public URL, where the work is live and safe to link.
+      liveUrl: z.string().optional(),
+      // Home Work grid. Image optional — a branded mark renders until art lands.
       card: z.object({
         eyebrow: z.string(),
         blurb: z.string(),
-        image: z.string(),
-        imageAlt: z.string(),
+        image: z.string().optional(),
+        imageAlt: z.string().optional(),
         tags: z.array(z.string()),
         wide: z.boolean().default(false),
       }),
-      ogImage: z.string(),
+      ogImage: z.string().optional(),
       // Hero
       heroEyebrow: z.string(),
       titleLines: z.array(z.object({ text: z.string(), italic: z.boolean().default(false) })),
       lede: z.string(),
       meta: z.array(z.object({ label: z.string(), value: z.string() })),
-      // Featured media
-      feature: z.object({
-        video: z.string().optional(),
-        poster: z.string().optional(),
-        image: z.string().optional(),
-        alt: z.string(),
-        caption: z.string(),
-      }),
+      // Featured media — whole section optional until art exists.
+      feature: z
+        .object({
+          video: z.string().optional(),
+          poster: z.string().optional(),
+          image: z.string().optional(),
+          alt: z.string(),
+          caption: z.string(),
+        })
+        .optional(),
       // Pillars
       pillarsTag: z.string(),
       pillarsHeading: z.string(),

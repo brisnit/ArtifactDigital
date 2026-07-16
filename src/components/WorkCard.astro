@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+  /** Heading level so each page keeps a sane document outline. */
+  headingLevel?: 'h2' | 'h3';
+}
+const { entry, headingLevel = 'h3' } = Astro.props;
+const d = entry.data;
+const Heading = headingLevel;
+
+// Until real art exists, show a branded initial mark rather than a broken frame.
+const mark = d.title
+  .replace(/[^A-Za-z\s]/g, '')
+  .split(/\s+/)
+  .filter(Boolean)
+  .map((w) => w[0])
+  .join('')
+  .slice(0, 2)
+  .toUpperCase();
+---
+<a class="project-card-link" href={`/${entry.id}`} aria-label={`Read the ${d.title} case study`}>
+  <article class:list={['project-card', 'reveal-card', d.card.wide && 'project-card--wide']}>
+    <div
+      class:list={[
+        'project-card__media',
+        d.card.image ? 'project-card__media--contain' : 'project-card__media--blank',
+      ]}
+      style="--media-bg: #f4f4f4;"
+    >
+      {d.card.image ? (
+        <img data-src={d.card.image} alt={d.card.imageAlt ?? ''} loading="lazy" />
+      ) : (
+        <span class="project-card__mark" aria-hidden="true">{mark}</span>
+      )}
+      <span class="project-card__hover">View case →</span>
+    </div>
+    <div class="project-card__meta">
+      <span>{d.card.eyebrow}</span>
+      <span>{d.year}</span>
+    </div>
+    <Heading class="project-card__title">{d.title}</Heading>
+    <p class="project-card__copy">{d.card.blurb}</p>
+    <ul class="project-card__tags">{d.card.tags.map((t) => <li>{t}</li>)}</ul>
+  </article>
+</a>

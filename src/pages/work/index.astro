@@ -3,10 +3,13 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import WorkCard from '../../components/WorkCard.astro';
 import { sectors } from '../../data/testimonials';
 import { SITE, orgNode, breadcrumb } from '../../data/site';
 
 const projects = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+const artifactWork = projects.filter((p) => !p.data.priorRole);
+const careerWork = projects.filter((p) => p.data.priorRole);
 
 const itemList = {
   '@type': 'ItemList',
@@ -41,41 +44,50 @@ const jsonLd = {
   <section class="case-hero">
     <div class="container">
       <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Work' }]} />
-      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Career work</span>
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Work</span>
       <h1 class="case-title">
-        <span class="reveal-line"><span>Where I've</span></span>
-        <span class="reveal-line italic"><span>done this.</span></span>
+        <span class="reveal-line"><span>What we've built,</span></span>
+        <span class="reveal-line italic"><span>and what I've led.</span></span>
       </h1>
       <p class="case-lede reveal">
-        Enterprise work I led in senior roles at previous agencies, before founding
-        Artifact. I'm explicit about that because it matters: these were not Artifact
-        engagements — they're my track record, and they're the judgment you're hiring.
-        Clients aren't named; the problems, decisions and outcomes are exactly as they
-        happened.
+        Two kinds of proof, and I keep them apart on purpose. First, products Artifact
+        designed and built — small, real, and live. Then the enterprise work I led in
+        senior roles at previous agencies, before Artifact existed. Both are honest;
+        they're just not the same claim.
+      </p>
+    </div>
+  </section>
+
+  <!-- Tier 1: Artifact's own work -->
+  <section class="section work">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Built by Artifact</span>
+        <h2 class="section-heading reveal-line"><span>Our work</span></h2>
+      </header>
+      <div class="project-grid">
+        {artifactWork.map((p) => <WorkCard entry={p} headingLevel="h3" />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Tier 2: career work, attributed -->
+  <section class="section work work--career">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Career work</span>
+        <h2 class="section-heading reveal-line"><span>Where I've done this before</span></h2>
+      </header>
+      <p class="work-attribution reveal">
+        Led in senior roles at previous agencies, before Artifact existed. Not Artifact
+        engagements — my track record. Clients aren't named; the problems, decisions and
+        outcomes are exactly as they happened.
       </p>
       <ul class="sector-list reveal" aria-label="Industries worked in">
         {sectors.map((s) => <li>{s}</li>)}
       </ul>
-    </div>
-  </section>
-
-  <section class="section work">
-    <div class="container">
-      <div class="project-grid">
-        {projects.map((p) => (
-          <a class="project-card-link" href={`/${p.id}`} aria-label={`Read the ${p.data.title} case study`}>
-            <article class:list={["project-card", "reveal-card", p.data.card.wide && "project-card--wide"]}>
-              <div class="project-card__media project-card__media--contain" style="--media-bg: #f4f4f4;">
-                <img data-src={p.data.card.image} alt={p.data.card.imageAlt} loading="lazy" />
-                <span class="project-card__hover">View case →</span>
-              </div>
-              <div class="project-card__meta"><span>{p.data.card.eyebrow}</span><span>{p.data.year}</span></div>
-              <h2 class="project-card__title">{p.data.title}</h2>
-              <p class="project-card__copy">{p.data.card.blurb}</p>
-              <ul class="project-card__tags">{p.data.card.tags.map((t) => <li>{t}</li>)}</ul>
-            </article>
-          </a>
-        ))}
+      <div class="project-grid" style="margin-top: clamp(2rem, 4vw, 3rem);">
+        {careerWork.map((p) => <WorkCard entry={p} headingLevel="h3" />)}
       </div>
     </div>
   </section>

@@ -1,0 +1,53 @@
+{
+  "title": "BenchBot",
+  "metaTitle": "BenchBot — AI Website Improvement Platform · Artifact Digital",
+  "description": "Our in-house SaaS: audits your site against real competitors across UX, accessibility, content, conversion and AI visibility — then turns findings into prioritized work you can track over time.",
+  "order": 3,
+  "year": "2026",
+  "category": "In-house SaaS",
+  "priorRole": false,
+  "teamWork": true,
+  "liveUrl": "https://benchbot-production.up.railway.app",
+  "card": {
+    "eyebrow": "01 / Our own product",
+    "blurb": "An AI website improvement platform that audits your site against real competitors and turns the findings into prioritized, trackable work.",
+    "tags": ["AI", "SaaS", "Product"],
+    "wide": true
+  },
+  "heroEyebrow": "Artifact's own product · AI SaaS",
+  "titleLines": [
+    { "text": "The audit isn't" },
+    { "text": "the product.", "italic": true }
+  ],
+  "lede": "BenchBot audits a website against its real competitors — UX, accessibility, content, conversion and AI visibility — and turns what it finds into client-ready reports, prioritized tasks, and progress tracked over time. We built it for ourselves, because we were tired of the alternative.",
+  "meta": [
+    { "label": "Client", "value": "Artifact Digital (our own product)" },
+    { "label": "Year", "value": "2026" },
+    { "label": "Scope", "value": "Strategy · Brand · Product · Build" },
+    { "label": "Status", "value": "Live · pre-launch, no users yet" }
+  ],
+  "pillarsTag": "The problem",
+  "pillarsHeading": "Competitive research is slow, manual, and disposable.",
+  "pillars": [
+    { "title": "Days of manual work", "body": "Screenshotting competitors, hand-building spreadsheets, assembling decks. Every engagement rebuilds the same deliverable from scratch." },
+    { "title": "A snapshot that's stale on arrival", "body": "The output is a PDF that's out of date the week it ships. Nothing tracks whether anything actually improved." },
+    { "title": "Observations, not work", "body": "Findings arrive as a list of problems rather than prioritized tasks with effort and impact attached. So they don't get done." }
+  ],
+  "storyTag": "The reframe",
+  "storyHeadingLines": [
+    { "text": "A report is a transaction." },
+    { "text": "Improvement is a subscription.", "italic": true }
+  ],
+  "storyParagraphs": [
+    "The strategic move wasn't a feature. It was realising the audit isn't the product — it's the entry point. A one-off report is something you buy once and file. Continuous improvement, tracked over time, is something you keep. That single reframe changed the positioning from \"website audit tool\" to \"AI website improvement platform,\" and everything downstream followed from it.",
+    "So the free tier gives you two complete audits — not a crippled trial. The value has to land before the ask. If the thing is good, two real audits will prove it; if it isn't, no amount of paywalling will save it.",
+    "Under the hood it's a full pipeline: crawl the site, capture real screenshots at desktop and mobile with Playwright, run structured AI analysis, and assemble a branded report and deck. Competitive audits seed a real-time collaborative canvas, so findings become something a team works on rather than something they read."
+  ],
+  "highlights": [
+    { "title": "A full audit in under a minute", "body": "Crawl, real screenshots, AI analysis, report and deck — measured, for a small competitor set." },
+    { "title": "Real competitors, not guesses", "body": "Live web-search discovery returns genuine rivals: Stripe → Adyen, Square, PayPal. Notion → Trello, Asana, Todoist." },
+    { "title": "DOM-level accessibility findings", "body": "Run against live sites: stripe.com scored 62/100 with 28 unnamed icon-buttons; github.com scored 87/100." },
+    { "title": "Client-ready output", "body": "A 10-slide branded deck plus PDF, and a Miro-style canvas seeded from the audit." }
+  ],
+  "ctaHeading": "Want this pointed at your site?"
+}
