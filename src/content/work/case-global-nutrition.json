@@ -58,15 +58,15 @@
   "pillars": [
     {
       "title": "Unified ecosystem",
-      "body": "I brought fragmented campaigns, technology and teams across 15+ business units under one smart, scalable system."
+      "body": "We brought fragmented campaigns, technology and teams across 15+ business units under one smart, scalable system."
     },
     {
       "title": "Experience by design",
-      "body": "I mapped customer journeys and built 30+ design components — a kit of parts the global team could trust."
+      "body": "We mapped customer journeys and built 30+ design components — a kit of parts the global team could trust."
     },
     {
       "title": "Localize & scale",
-      "body": "I created tools that let regional teams localize and scale content effortlessly across markets without losing the system."
+      "body": "We created tools that let regional teams localize and scale content effortlessly across markets without losing the system."
     }
   ],
   "storyTag": "The shift",
@@ -80,8 +80,8 @@
     }
   ],
   "storyParagraphs": [
-    "The brand's marketing footprint was vast — and fragmented. Disconnected campaigns, parallel tech stacks, and teams working in silos across 15+ business units. My job was to unify it: one system, one design language, one way to ship work that still flexed to local markets.",
-    "From 100+ campaigns across 1,000+ placements, I helped shift the organization away from heavy paid-media dependence and toward a more connected, full-funnel marketing ecosystem — built to drive engagement and conversion at every stage of the customer journey."
+    "The brand's marketing footprint was vast — and fragmented. Disconnected campaigns, parallel tech stacks, and teams working in silos across 15+ business units. Our job was to unify it: one system, one design language, one way to ship work that still flexed to local markets.",
+    "From 100+ campaigns across 1,000+ placements, we helped shift the organization away from heavy paid-media dependence and toward a more connected, full-funnel marketing ecosystem — built to drive engagement and conversion at every stage of the customer journey."
   ],
   "storyImage": "/brand_assets/Farm.webp",
   "storyImageAlt": "Global food and nutrition brand — at the source",
@@ -105,5 +105,6 @@
     }
   ],
   "ctaHeading": "Need a global system that scales without losing the brand?",
-  "priorRole": true
+  "priorRole": true,
+  "teamWork": true
 }

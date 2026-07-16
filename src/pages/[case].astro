@@ -79,10 +79,12 @@ const jsonLd = {
 
       {d.priorRole && (
         <p class="case-attribution reveal">
-          <strong>About this work:</strong> led by Britt Midgette in a senior role
-          at a previous agency, before founding Artifact Digital. The client is not
-          named here; the problem, the decisions and the outcomes are described as
-          they happened.
+          <strong>About this work:</strong>{' '}
+          {d.teamWork
+            ? 'led by people who now work on Artifact projects, in senior roles at a previous agency, before Artifact Digital existed.'
+            : 'led by Britt Midgette in a senior role at a previous agency, before founding Artifact Digital.'}{' '}
+          The client is not named here; the problem, the decisions and the outcomes
+          are described as they happened.
         </p>
       )}
     </div>

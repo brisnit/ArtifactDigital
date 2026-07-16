@@ -31,7 +31,7 @@
       "text": "brand."
     }
   ],
-  "lede": "I partnered with a leading electronics brand to build an immersive AR showroom — bringing premium appliances to life through interactive in-store technology that drives engagement and informed purchases.",
+  "lede": "We partnered with a leading electronics brand to build an immersive AR showroom — bringing premium appliances to life through interactive in-store technology that drives engagement and informed purchases.",
   "meta": [
     {
       "label": "Client",
@@ -104,5 +104,6 @@
     }
   ],
   "ctaHeading": "Have a retail moment you want to reimagine?",
-  "priorRole": true
+  "priorRole": true,
+  "teamWork": true
 }

@@ -14,10 +14,15 @@ const work = defineCollection({
       order: z.number().default(99),
       year: z.string(),
       category: z.string(),
-      // True when the work was led by our founder in a senior role at a
-      // previous agency, before Artifact existed. Renders an explicit
-      // attribution note — never imply Artifact held the engagement.
+      // True when the work was led in a senior role at a previous agency,
+      // before Artifact existed. Renders an explicit attribution note —
+      // never imply Artifact held the engagement.
       priorRole: z.boolean().default(false),
+      // True only where people who now work on Artifact projects genuinely
+      // worked on this engagement together. Unlocks "we" in the copy, and the
+      // note says plainly what "we" means. Must be true per case — if it was
+      // one person, it stays "I".
+      teamWork: z.boolean().default(false),
       // Home Work grid
       card: z.object({
         eyebrow: z.string(),
