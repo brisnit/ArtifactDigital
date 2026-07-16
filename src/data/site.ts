@@ -29,9 +29,9 @@ export const VERIFY = {
 
 export const ANALYTICS = {
   // Vercel Web Analytics + Speed Insights. Privacy-friendly, no cookie banner,
-  // and native since we already deploy on Vercel. Flip to true AFTER enabling
-  // both in the Vercel dashboard (Project -> Analytics / Speed Insights).
-  vercel: false,
+  // and native since we already deploy on Vercel. Enabled in the dashboard
+  // 2026-07-15.
+  vercel: true,
   // Optional: a GA4 measurement ID (e.g. 'G-XXXXXXXXXX') if you'd rather have
   // Google's depth. Note: GA4 uses cookies — you'd need a consent banner in
   // the EU/UK. Leave empty to skip.
