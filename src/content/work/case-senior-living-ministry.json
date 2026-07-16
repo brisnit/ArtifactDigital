@@ -10,33 +10,72 @@
   "card": {
     "eyebrow": "03 / App & platform",
     "blurb": "A Scripture-first daily formation app for senior-living residents, plus an admin portal that lets ministry staff run it without a developer.",
-    "tags": ["Mobile", "Accessibility", "Platform"],
-    "wide": false
+    "tags": [
+      "Mobile",
+      "Accessibility",
+      "Platform"
+    ],
+    "wide": false,
+    "image": "/brand_assets/cases/ministry-card.webp",
+    "imageAlt": "Five screens from the formation app — Bible, study, audio reading, plans and profile"
   },
   "heroEyebrow": "Case study · Mobile app & admin platform",
   "titleLines": [
-    { "text": "The best feature" },
-    { "text": "I added", "italic": true },
-    { "text": "was subtraction." }
+    {
+      "text": "The best feature"
+    },
+    {
+      "text": "I added",
+      "italic": true
+    },
+    {
+      "text": "was subtraction."
+    }
   ],
   "lede": "Two live products for a senior-living ministry: a Scripture-first daily formation app for residents, staff and the surrounding community — and a web admin portal that lets non-technical ministry staff run the content, events, messaging and people behind it.",
   "meta": [
-    { "label": "Client", "value": "A senior-living ministry" },
-    { "label": "Year", "value": "2026" },
-    { "label": "Scope", "value": "Product direction · Design · Build" },
-    { "label": "Status", "value": "Live prototype · mock-data backend" }
+    {
+      "label": "Client",
+      "value": "A senior-living ministry"
+    },
+    {
+      "label": "Year",
+      "value": "2026"
+    },
+    {
+      "label": "Scope",
+      "value": "Product direction · Design · Build"
+    },
+    {
+      "label": "Status",
+      "value": "Live prototype · mock-data backend"
+    }
   ],
   "pillarsTag": "The opportunity",
   "pillarsHeading": "A digital front door, for an audience the internet forgot.",
   "pillars": [
-    { "title": "No front door", "body": "Scripture, devotionals, study, events, media and photos lived in scattered places — or nowhere — for a community that is largely 70 and over." },
-    { "title": "Accessibility was the constraint", "body": "Small type, low contrast, tiny targets and feature buffets fail this audience specifically. It shaped every decision we made." },
-    { "title": "Staff couldn't change anything", "body": "Content, media, livestreams, events and resources were all code-level. Nothing moved without a developer." }
+    {
+      "title": "No front door",
+      "body": "Scripture, devotionals, study, events, media and photos lived in scattered places — or nowhere — for a community that is largely 70 and over."
+    },
+    {
+      "title": "Accessibility was the constraint",
+      "body": "Small type, low contrast, tiny targets and feature buffets fail this audience specifically. It shaped every decision we made."
+    },
+    {
+      "title": "Staff couldn't change anything",
+      "body": "Content, media, livestreams, events and resources were all code-level. Nothing moved without a developer."
+    }
   ],
   "storyTag": "The pivot",
   "storyHeadingLines": [
-    { "text": "The obvious reference" },
-    { "text": "was the wrong one.", "italic": true }
+    {
+      "text": "The obvious reference"
+    },
+    {
+      "text": "was the wrong one.",
+      "italic": true
+    }
   ],
   "storyParagraphs": [
     "The first brief pointed at YouVersion. It's the category leader, so it's the natural reference — and it was exactly wrong. YouVersion is dense, young, gamified and feature-forward. A pastoral senior-living ministry should feel like the opposite: warm, unhurried, quiet. Everything got better the moment we threw the comparison out and started from the ministry's own identity instead. Competitor-shaped is not the same as user-shaped.",
@@ -45,10 +84,23 @@
     "One more decision worth naming: we bundled the entire KJV — all 66 books, 4.3 MB — instead of calling a Bible API. That removed the network, rate limits, licensing exposure and latency in a single move. It works in airplane mode. The primitive choice was the right one."
   ],
   "highlights": [
-    { "title": "Two live products, ~40 screens", "body": "A full mobile app and an admin portal, both deployable and shareable by URL, with clean production builds and zero TypeScript errors." },
-    { "title": "The Bible works fully offline", "body": "The entire KJV bundled — no network, no rate limits, no licensing exposure. It works on a plane." },
-    { "title": "Real audio Bible via on-device TTS", "body": "Verse-by-verse follow-along highlighting with voice and speed selection, working on iOS, Android and web." },
-    { "title": "An admin portal staff can actually run", "body": "11 sections, five roles with server-enforced access, audit logging, and a Media + Resources CMS with scheduling, bulk actions and import/export." }
+    {
+      "title": "Two live products, ~40 screens",
+      "body": "A full mobile app and an admin portal, both deployable and shareable by URL, with clean production builds and zero TypeScript errors."
+    },
+    {
+      "title": "The Bible works fully offline",
+      "body": "The entire KJV bundled — no network, no rate limits, no licensing exposure. It works on a plane."
+    },
+    {
+      "title": "Real audio Bible via on-device TTS",
+      "body": "Verse-by-verse follow-along highlighting with voice and speed selection, working on iOS, Android and web."
+    },
+    {
+      "title": "An admin portal staff can actually run",
+      "body": "11 sections, five roles with server-enforced access, audit logging, and a Media + Resources CMS with scheduling, bulk actions and import/export."
+    }
   ],
-  "ctaHeading": "Building for an audience everyone else designs past?"
+  "ctaHeading": "Building for an audience everyone else designs past?",
+  "ogImage": "/brand_assets/cases/ministry-og.webp"
 }
