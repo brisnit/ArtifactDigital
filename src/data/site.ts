@@ -16,6 +16,28 @@ export const SITE = {
   logo: '/brand_assets/A_Logo_DT3.png',
 } as const;
 
+// --- Verification + analytics -----------------------------------------------
+// Paste the tokens below and they render automatically. Left empty, nothing is
+// emitted — no broken tags, no noise.
+export const VERIFY = {
+  // Google Search Console -> Add property -> URL prefix -> "HTML tag" method.
+  // Copy ONLY the content="..." value, e.g. 'AbC123_xyz...'
+  google: '',
+  // Bing Webmaster Tools -> Add site -> "Meta tag" method. Content value only.
+  bing: '',
+} as const;
+
+export const ANALYTICS = {
+  // Vercel Web Analytics + Speed Insights. Privacy-friendly, no cookie banner,
+  // and native since we already deploy on Vercel. Flip to true AFTER enabling
+  // both in the Vercel dashboard (Project -> Analytics / Speed Insights).
+  vercel: false,
+  // Optional: a GA4 measurement ID (e.g. 'G-XXXXXXXXXX') if you'd rather have
+  // Google's depth. Note: GA4 uses cookies — you'd need a consent banner in
+  // the EU/UK. Leave empty to skip.
+  ga4: '',
+} as const;
+
 // Primary navigation — page-based IA.
 export const NAV = [
   { label: 'Services', href: '/services' },
