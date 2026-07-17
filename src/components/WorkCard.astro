@@ -1,14 +1,18 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { responsive } from '../lib/responsive';
 
 interface Props {
   entry: CollectionEntry<'work'>;
   /** Heading level so each page keeps a sane document outline. */
   headingLevel?: 'h2' | 'h3';
+  /** First card in a grid is the LCP element — load it eagerly, never lazily. */
+  priority?: boolean;
 }
-const { entry, headingLevel = 'h3' } = Astro.props;
+const { entry, headingLevel = 'h3', priority = false } = Astro.props;
 const d = entry.data;
 const Heading = headingLevel;
+const card = await responsive(d.card.image);
 
 // Until real art exists, show a branded initial mark rather than a broken frame.
 const mark = d.title
@@ -30,7 +34,17 @@ const mark = d.title
       style="--media-bg: #f4f4f4;"
     >
       {d.card.image ? (
-        <img data-src={d.card.image} alt={d.card.imageAlt ?? ''} loading="lazy" />
+        <img
+            src={d.card.image}
+            alt={d.card.imageAlt ?? ''}
+            width={card.width}
+            height={card.height}
+            srcset={card.srcset}
+            sizes="(max-width: 760px) 100vw, (max-width: 1280px) 50vw, 620px"
+            loading={priority ? 'eager' : 'lazy'}
+            fetchpriority={priority ? 'high' : undefined}
+            decoding="async"
+          />
       ) : (
         <span class="project-card__mark" aria-hidden="true">{mark}</span>
       )}

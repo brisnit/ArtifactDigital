@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import { SITE, orgNode, breadcrumb, CTA } from '../data/site';
+import { responsive } from '../lib/responsive';
 
 export const getStaticPaths = (async () => {
   const cases = await getCollection('work');
@@ -13,6 +14,8 @@ export const getStaticPaths = (async () => {
 const { entry } = Astro.props;
 const d = entry.data;
 const path = `/${entry.id}`;
+const feature = await responsive(d.feature?.image);
+const story = await responsive(d.storyImage);
 
 const caseNode = {
   '@type': 'CreativeWork',
@@ -106,7 +109,7 @@ const jsonLd = {
           {d.feature.video ? (
             <video class="case-video" data-src={d.feature.video} poster={d.feature.poster} muted loop playsinline preload="none" aria-label={d.feature.alt}></video>
           ) : (
-            <img data-src={d.feature.image} alt={d.feature.alt} loading="lazy" />
+            <img src={d.feature.image} alt={d.feature.alt} width={feature.width} height={feature.height} srcset={feature.srcset} sizes="(max-width: 1280px) 100vw, 1280px" loading="lazy" decoding="async" />
           )}
         </div>
         <p class="case-caption reveal">{d.feature.caption}</p>
@@ -147,7 +150,7 @@ const jsonLd = {
       </div>
       {d.storyImage && (
         <figure class="case-story__media reveal-card">
-          <img data-src={d.storyImage} alt={d.storyImageAlt} loading="lazy" />
+          <img src={d.storyImage} alt={d.storyImageAlt} width={story.width} height={story.height} srcset={story.srcset} sizes="(max-width: 900px) 100vw, 560px" loading="lazy" decoding="async" />
           {d.storyCaption && <figcaption>{d.storyCaption}</figcaption>}
         </figure>
       )}

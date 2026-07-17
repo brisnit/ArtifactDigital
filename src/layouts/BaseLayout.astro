@@ -1,4 +1,14 @@
 ---
+// Self-hosted variable fonts. Replaces two render-blocking round trips to
+// fonts.googleapis.com + fonts.gstatic.com. Subsets are unicode-range gated,
+// so only the latin file is ever fetched. No `ital` axis is loaded — matching
+// the previous Google Fonts request, where italic was already synthesized.
+import '@fontsource-variable/dm-sans/wght.css';
+import '@fontsource-variable/space-grotesk/wght.css';
+import dmSansWoff2 from '@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url';
+import groteskWoff2 from '@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url';
+import '../styles/global.css';
+
 import { SITE, VERIFY, ANALYTICS } from '../data/site';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -16,6 +26,8 @@ interface Props {
   robots?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   hideStickyCta?: boolean;
+  /** Path of the LCP image for this route. Preloaded at high priority. */
+  preloadImage?: string;
 }
 
 const {
@@ -29,6 +41,7 @@ const {
   robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
   jsonLd,
   hideStickyCta = false,
+  preloadImage,
 } = Astro.props;
 
 const abs = (p: string) => (p.startsWith('http') ? p : `${SITE.url}${p.startsWith('/') ? '' : '/'}${p}`);
@@ -41,6 +54,10 @@ const graphs = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {/* Marks that JS is available BEFORE first paint, so the reveal animations
+        can hide content only when they can also un-hide it. Without JS the page
+        renders fully — no blank screen, and the LCP text isn't gated. */}
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
@@ -70,13 +87,11 @@ const graphs = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
     <link rel="icon" type="image/png" href="/brand_assets/favicon.png" />
     <link rel="apple-touch-icon" href="/brand_assets/apple-touch-icon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/style.css" />
+    {/* Preload the two fonts actually used above the fold, so text swaps in
+        immediately rather than after the CSS is parsed and discovered. */}
+    <link rel="preload" as="font" type="font/woff2" href={dmSansWoff2} crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={groteskWoff2} crossorigin />
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
 
     {graphs.map((g) => (
       <script type="application/ld+json" set:html={JSON.stringify(g).replace(/</g, '\\u003c')} />
@@ -87,14 +102,6 @@ const graphs = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <div class="cursor" aria-hidden="true"></div>
     <div class="cursor-dot" aria-hidden="true"></div>
 
-    <div class="page-loader" aria-hidden="true">
-      <div class="page-loader__inner">
-        <span class="page-loader__mark"></span>
-        <span class="page-loader__text">Artifact Digital</span>
-      </div>
-      <span class="page-loader__bar"><span></span></span>
-    </div>
-
     <Header />
 
     <main id="main">
@@ -104,7 +111,9 @@ const graphs = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
     {!hideStickyCta && <StickyCta />}
 
-    <script is:inline src="/script.js"></script>
+    <script>
+      import '../scripts/main.js';
+    </script>
 
     <!-- Analytics: opt-in via src/data/site.ts, nothing loads until enabled -->
     {ANALYTICS.vercel && (
