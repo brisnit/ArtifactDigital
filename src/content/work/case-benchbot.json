@@ -9,16 +9,16 @@
   "teamWork": true,
   "liveUrl": "https://benchbot-production.up.railway.app",
   "card": {
-    "eyebrow": "01 / Our own product",
+    "eyebrow": "03 / Our own product",
     "blurb": "An AI website improvement platform that audits your site against real competitors and turns the findings into prioritized, trackable work.",
     "tags": [
       "AI",
       "SaaS",
       "Product"
     ],
-    "wide": true,
-    "image": "/brand_assets/cases/benchbot-card.webp",
-    "imageAlt": "The BenchBot audit dashboard, showing a completed competitive benchmark"
+    "wide": false,
+    "image": "/brand_assets/cases/cards/benchbot.webp",
+    "imageAlt": "Two people reviewing a site audit report together on a desktop screen."
   },
   "heroEyebrow": "Artifact's own product · AI SaaS",
   "titleLines": [

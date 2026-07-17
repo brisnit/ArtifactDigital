@@ -2536,7 +2536,9 @@ button:focus-visible {
 /* -------------------- Honest attribution notes -------------------- */
 .work-attribution {
   max-width: 62ch;
-  margin: 1.75rem 0 0;
+  /* Bottom gap matches .section-head, so the note reads as part of the header
+     block rather than crowding the first row of cards. */
+  margin: 1.75rem 0 clamp(2.5rem, 5vw, 4rem);
   color: var(--steel);
   font-size: 1.02rem;
   line-height: 1.6;

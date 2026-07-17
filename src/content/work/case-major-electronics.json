@@ -6,16 +6,16 @@
   "year": "2023",
   "category": "Digital for retail",
   "card": {
-    "eyebrow": "04 / Digital for Retail",
+    "eyebrow": "04 / Digital for retail",
     "blurb": "An in-store AR experience showcasing the company's Connected Home products.",
-    "image": "/brand_assets/Sam_Comp.webp",
-    "imageAlt": "Major Electronics Company in-store AR experience",
+    "image": "/brand_assets/cases/cards/electronics.webp",
+    "imageAlt": "An in-store tablet running an augmented-reality demo of connected home appliances.",
     "tags": [
       "AR",
       "Retail",
       "Experience"
     ],
-    "wide": true
+    "wide": false
   },
   "ogImage": "/brand_assets/Sam_Comp.webp",
   "heroEyebrow": "Case study · Digital for retail",

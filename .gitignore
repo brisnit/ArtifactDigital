@@ -32,3 +32,6 @@ _uploads/
 *.ntvs*
 *.njsproj
 *.sln
+
+# Design source art (originals kept locally; only optimized WebP is shipped)
+design-sources/

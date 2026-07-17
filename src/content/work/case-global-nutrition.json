@@ -3,13 +3,13 @@
   "metaTitle": "Global Nutrition. Unified. · Artifact Digital",
   "description": "Unifying a global food and nutrition brand's marketing ecosystem across 15+ business units — 30+ design components, 100+ campaigns, 1,000+ placements.",
   "order": 4,
-  "year": "2025",
+  "year": "2021",
   "category": "Brand & marketing systems",
   "card": {
-    "eyebrow": "02 / Strategy — Design",
+    "eyebrow": "07 / Strategy — Design",
     "blurb": "Consolidated a sprawling 6,500-page ecosystem into a streamlined sub-1,000-page platform with a complete UX/UI redesign — now live.",
-    "image": "/brand_assets/ADM_Comp.webp",
-    "imageAlt": "American Big Food platform",
+    "image": "/brand_assets/cases/cards/food.webp",
+    "imageAlt": "A grower holding freshly harvested produce in a field.",
     "tags": [
       "Strategy",
       "UX/UI",
@@ -36,7 +36,7 @@
     },
     {
       "label": "Year",
-      "value": "2025"
+      "value": "2021"
     },
     {
       "label": "Scope",

@@ -3,17 +3,18 @@
   "metaTitle": "Digital Careers. Reimagined. · Artifact Digital",
   "description": "A leading online IT training and certification platform — restructured around real learner goals, mapped to career and certification journeys, and built to scale.",
   "order": 2,
-  "year": "2022",
+  "year": "2024",
   "category": "Education platform",
   "card": {
-    "eyebrow": "01 / Strategy — Design",
+    "eyebrow": "05 / Strategy — Design",
     "blurb": "A leading online IT training and certification platform helping people build technology careers through certifications and guided learning pathways.",
-    "image": "/brand_assets/Comp_Comp.webp",
-    "imageAlt": "IT Training & Certification School platform",
+    "image": "/brand_assets/cases/cards/it-training.webp",
+    "imageAlt": "A student working hands-on with computer hardware during a certification course.",
     "tags": [
       "Strategy",
       "UX/UI",
-      "Web"
+      "Web",
+      "Commerce"
     ],
     "wide": false
   },
@@ -36,7 +37,7 @@
     },
     {
       "label": "Year",
-      "value": "2022"
+      "value": "2024"
     },
     {
       "label": "Scope",

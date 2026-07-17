@@ -4,7 +4,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import WorkCard from '../../components/WorkCard.astro';
-import { sectors } from '../../data/testimonials';
 import { SITE, orgNode, breadcrumb } from '../../data/site';
 
 const projects = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
@@ -62,8 +61,8 @@ const jsonLd = {
   <section class="section work">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>Built by Artifact</span>
-        <h2 class="section-heading reveal-line"><span>Our work</span></h2>
+        <span class="section-tag reveal"><span class="tag-dot"></span>03 — Our work</span>
+        <h2 class="section-heading reveal-line"><span>Built by Artifact</span></h2>
       </header>
       <div class="project-grid">
         {artifactWork.map((p) => <WorkCard entry={p} headingLevel="h3" />)}
@@ -75,18 +74,16 @@ const jsonLd = {
   <section class="section work work--career">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>Career work</span>
-        <h2 class="section-heading reveal-line"><span>Where I've done this before</span></h2>
+        <span class="section-tag reveal"><span class="tag-dot"></span>04 — Career work</span>
+        <h2 class="section-heading reveal-line"><span>Our founder’s work</span></h2>
       </header>
       <p class="work-attribution reveal">
-        Led in senior roles at previous agencies, before Artifact existed. Not Artifact
-        engagements — my track record. Clients aren't named; the problems, decisions and
-        outcomes are exactly as they happened.
+        These examples represent experience delivering digital products for leading
+        organizations. To respect client confidentiality, copyright, and contractual
+        obligations, branding and proprietary assets have been removed or anonymized
+        while preserving the strategic thinking and design approach behind the work.
       </p>
-      <ul class="sector-list reveal" aria-label="Industries worked in">
-        {sectors.map((s) => <li>{s}</li>)}
-      </ul>
-      <div class="project-grid" style="margin-top: clamp(2rem, 4vw, 3rem);">
+      <div class="project-grid">
         {careerWork.map((p) => <WorkCard entry={p} headingLevel="h3" />)}
       </div>
     </div>

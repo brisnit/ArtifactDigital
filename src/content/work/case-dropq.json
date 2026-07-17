@@ -2,7 +2,7 @@
   "title": "DropQ",
   "metaTitle": "DropQ — A Live Drop-Commerce Marketplace in Two Weeks · Artifact Digital",
   "description": "An operating system for independent sellers running timed product drops — preorder windows, live QR sales, pickup scheduling, inventory and messaging. Zero to a live Stripe Connect marketplace in two weeks.",
-  "order": 1,
+  "order": 2,
   "year": "2026",
   "category": "Drop commerce platform",
   "priorRole": false,
@@ -17,8 +17,8 @@
       "Product"
     ],
     "wide": false,
-    "image": "/brand_assets/cases/dropq-card.webp",
-    "imageAlt": "The DropQ marketing site on laptop and phone"
+    "image": "/brand_assets/cases/cards/dropq.webp",
+    "imageAlt": "A limited-edition collectible and a graded trading card staged for a timed product drop."
   },
   "heroEyebrow": "Case study · Drop commerce",
   "titleLines": [

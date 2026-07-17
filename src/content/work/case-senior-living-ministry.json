@@ -2,13 +2,13 @@
   "title": "Senior-Living Ministry",
   "metaTitle": "A Scripture-First Formation App & Admin Portal · Artifact Digital",
   "description": "Two live products for a senior-living ministry — a Scripture-first daily formation app for residents aged 70+, and an admin portal that lets non-technical staff run it without a developer.",
-  "order": 2,
+  "order": 1,
   "year": "2026",
   "category": "Mobile app & admin platform",
   "priorRole": false,
   "teamWork": true,
   "card": {
-    "eyebrow": "03 / App & platform",
+    "eyebrow": "01 / App & platform",
     "blurb": "A Scripture-first daily formation app for senior-living residents, plus an admin portal that lets ministry staff run it without a developer.",
     "tags": [
       "Mobile",
@@ -16,8 +16,8 @@
       "Platform"
     ],
     "wide": false,
-    "image": "/brand_assets/cases/ministry-card.webp",
-    "imageAlt": "Five screens from the formation app — Bible, study, audio reading, plans and profile"
+    "image": "/brand_assets/cases/cards/ministry.webp",
+    "imageAlt": "A senior-living resident reading a Scripture passage in the daily formation app on her phone."
   },
   "heroEyebrow": "Case study · Mobile app & admin platform",
   "titleLines": [

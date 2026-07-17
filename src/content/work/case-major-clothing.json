@@ -3,17 +3,18 @@
   "metaTitle": "Major Clothing Brand — Tailor's Tools · Artifact Digital",
   "description": "In-store tailor's tools for a global clothing brand — rooted in practitioner research, Sketchin Sessions, and a movement study. Live in 7 flagship stores.",
   "order": 3,
-  "year": "2020",
+  "year": "2022",
   "category": "Retail tools",
   "card": {
-    "eyebrow": "02 / Digital for Retail",
+    "eyebrow": "06 / Digital for retail",
     "blurb": "A social platform for major clothing brand Taylors to share work and services with a global clientele.",
-    "image": "/brand_assets/Lev_Comp.webp",
-    "imageAlt": "Major clothing brand tailor's tool",
+    "image": "/brand_assets/cases/cards/clothing.webp",
+    "imageAlt": "A maker standing in a workshop hung with spools of thread.",
     "tags": [
       "Social",
       "Platform",
-      "Web"
+      "Web",
+      "Global Rollout"
     ],
     "wide": false
   },
@@ -39,7 +40,7 @@
     },
     {
       "label": "Year",
-      "value": "2020"
+      "value": "2022"
     },
     {
       "label": "Scope",
