@@ -7,6 +7,7 @@ author: Jonathan Smith
 cluster: "AI & Design"
 tags: ["AI", "Product Design", "Design Philosophy"]
 keywords: ["AI design", "invisible design", "product design", "AI UX", "design judgment", "human-centered AI", "prototyping"]
+heroImage: "/brand_assets/insights/robot-flowers.webp"
 draft: false
 ---
 *We confused adding AI with designing AI. They're very different things.*
