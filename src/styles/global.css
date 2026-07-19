@@ -1623,6 +1623,54 @@ a {
   margin: clamp(3rem, 6vw, 5rem) 0 clamp(3rem, 6vw, 5rem);
 }
 
+/* About-the-author block — foot of each post. Rendered only when the author
+   has a bio in the registry, so posts without one are unaffected. */
+.post-author {
+  max-width: 68ch;
+  margin: clamp(2.5rem, 5vw, 3.5rem) 0 0;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: var(--stone);
+  border-radius: var(--radius-media);
+}
+.post-author__eyebrow {
+  margin: 0 0 0.6rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--steel-soft);
+}
+.post-author__name {
+  margin: 0 0 0.75rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--ink);
+}
+.post-author__role {
+  font-weight: 400;
+  color: var(--steel);
+}
+.post-author__bio {
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.post-author__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--accent-strong);
+  text-decoration: none;
+}
+.post-author__link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
 /* ==========================================================
    Phase 0 additions — a11y skip link + Insights card grid
    ========================================================== */

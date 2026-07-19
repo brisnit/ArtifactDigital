@@ -5,6 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArrowIcon from '../../components/ArrowIcon.astro';
 import Newsletter from '../../components/Newsletter.astro';
 import { SITE, orgNode, breadcrumb } from '../../data/site';
+import { authorFor } from '../../data/authors';
 import { responsive } from '../../lib/responsive';
 
 export const getStaticPaths = (async () => {
@@ -23,6 +24,17 @@ const iso = d.pubDate.toISOString();
 const fmtDate = (dt: Date) =>
   dt.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 
+const author = authorFor(d.author);
+const authorNode = {
+  '@type': 'Person',
+  '@id': author.personId,
+  name: author.name,
+  ...(author.jobTitle ? { jobTitle: author.jobTitle } : {}),
+  worksFor: { '@id': `${SITE.url}/#organization` },
+  ...(author.url ? { url: author.url } : {}),
+  ...(author.linkedin ? { sameAs: [author.linkedin] } : {}),
+};
+
 const postNode = {
   '@type': 'BlogPosting',
   '@id': `${url}#post`,
@@ -32,7 +44,7 @@ const postNode = {
   dateModified: (d.updatedDate ?? d.pubDate).toISOString(),
   url,
   mainEntityOfPage: { '@type': 'WebPage', '@id': url },
-  author: { '@type': 'Person', name: d.author, url: `${SITE.url}/about` },
+  author: { '@id': author.personId },
   keywords: d.keywords.length ? d.keywords.join(', ') : d.tags.join(', ') || undefined,
   articleSection: d.cluster,
   isPartOf: { '@id': `${SITE.url}/insights#blog` },
@@ -43,6 +55,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     postNode,
+    authorNode,
     orgNode,
     breadcrumb([
       { name: 'Home', path: '/' },
@@ -100,6 +113,20 @@ const jsonLd = {
       <div class="post-article">
         <Content />
       </div>
+      {author.bio && (
+        <aside class="post-author reveal" aria-label={`About ${author.name}`}>
+          <p class="post-author__eyebrow">About the author</p>
+          <p class="post-author__name">
+            {author.name}{author.jobTitle && <span class="post-author__role">, {author.jobTitle}</span>}
+          </p>
+          <p class="post-author__bio">{author.bio}</p>
+          {author.linkedin && (
+            <a class="post-author__link" href={author.linkedin} target="_blank" rel="noopener">
+              Connect with {author.name.split(' ')[0]} on LinkedIn<ArrowIcon />
+            </a>
+          )}
+        </aside>
+      )}
       <div class="post-cta">
         <a class="btn btn-secondary" href="/insights">More insights<ArrowIcon /></a>
       </div>
