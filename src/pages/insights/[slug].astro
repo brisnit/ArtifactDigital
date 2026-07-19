@@ -32,6 +32,7 @@ const authorNode = {
   ...(author.jobTitle ? { jobTitle: author.jobTitle } : {}),
   worksFor: { '@id': `${SITE.url}/#organization` },
   ...(author.url ? { url: author.url } : {}),
+  ...(author.avatar ? { image: `${SITE.url}${author.avatar}` } : {}),
   ...(author.linkedin ? { sameAs: [author.linkedin] } : {}),
 };
 
@@ -115,16 +116,33 @@ const jsonLd = {
       </div>
       {author.bio && (
         <aside class="post-author reveal" aria-label={`About ${author.name}`}>
-          <p class="post-author__eyebrow">About the author</p>
-          <p class="post-author__name">
-            {author.name}{author.jobTitle && <span class="post-author__role">, {author.jobTitle}</span>}
-          </p>
-          <p class="post-author__bio">{author.bio}</p>
-          {author.linkedin && (
-            <a class="post-author__link" href={author.linkedin} target="_blank" rel="noopener">
-              Connect with {author.name.split(' ')[0]} on LinkedIn<ArrowIcon />
-            </a>
+          {author.avatar && (
+            <img
+              class="post-author__avatar"
+              src={author.avatar}
+              alt={`${author.name}, ${author.jobTitle} at Artifact Digital`}
+              width="120"
+              height="120"
+              loading="lazy"
+              decoding="async"
+            />
           )}
+          <div class="post-author__body">
+            <p class="post-author__eyebrow">About the author</p>
+            <p class="post-author__name">
+              {author.name}{author.jobTitle && <span class="post-author__role">, {author.jobTitle}</span>}
+            </p>
+            <p class="post-author__bio">{author.bio}</p>
+            {author.linkedin ? (
+              <a class="post-author__link" href={author.linkedin} target="_blank" rel="noopener">
+                Connect with {author.name.split(' ')[0]} on LinkedIn<ArrowIcon />
+              </a>
+            ) : author.url && (
+              <a class="post-author__link" href={author.url}>
+                More about {author.name.split(' ')[0]}<ArrowIcon />
+              </a>
+            )}
+          </div>
         </aside>
       )}
       <div class="post-cta">

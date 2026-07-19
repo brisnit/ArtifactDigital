@@ -14,6 +14,8 @@ export interface Author {
   personId: string;
   /** Verified external profile → schema sameAs + the bio's LinkedIn link. */
   linkedin?: string;
+  /** Square author portrait (webp) → the block avatar + schema Person image. */
+  avatar?: string;
 }
 
 const slugify = (s: string) =>
@@ -23,12 +25,11 @@ export const AUTHORS: Record<string, Author> = {
   'Britt Midgette': {
     name: 'Britt Midgette',
     jobTitle: 'Founder & Experience Design Director',
-    // Left empty for now — his posts render as before. Add a bio here to give
-    // every Britt post the same author block, matching his /about identity.
-    bio: '',
+    bio: "Britt Midgette is the founder of Artifact Digital. Over his career he's led digital strategy and experience design in director roles at agencies — for Samsung, Levi's, Under Armour, Philips, L'Oréal, LEGOLAND, CompTIA, ADM and SAG-AFTRA, among others — before starting Artifact to do the work the way he always believed it should be done: senior-led, honest, and close to the craft.",
     url: `${SITE.url}/about`,
     // Matches the Person @id on the About page, unifying the two identities.
     personId: `${SITE.url}/about#britt-midgette`,
+    avatar: '/brand_assets/authors/britt-midgette.webp',
   },
   'Jonathan Smith': {
     name: 'Jonathan Smith',
@@ -36,6 +37,7 @@ export const AUTHORS: Record<string, Author> = {
     bio: "Jonathan Smith is VP of Visual Design at Artifact Digital, where he leads visual design, product thinking, and AI-enabled creative workflows. Over the past decade, he's led product and brand design for organizations including ServiceNow, Intuit, Qualcomm, Disney, and Under Armour, helping teams create experiences that feel simple, human, and genuinely useful.",
     personId: `${SITE.url}/#person-jonathan-smith`,
     linkedin: 'https://www.linkedin.com/in/jonathansmith16/',
+    avatar: '/brand_assets/authors/jonathan-smith.webp',
   },
 };
 

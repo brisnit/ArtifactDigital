@@ -1626,11 +1626,25 @@ a {
 /* About-the-author block — foot of each post. Rendered only when the author
    has a bio in the registry, so posts without one are unaffected. */
 .post-author {
+  display: flex;
+  gap: clamp(1.1rem, 2.5vw, 1.6rem);
+  align-items: flex-start;
   max-width: 68ch;
   margin: clamp(2.5rem, 5vw, 3.5rem) 0 0;
   padding: clamp(1.5rem, 3vw, 2rem);
   background: var(--stone);
   border-radius: var(--radius-media);
+}
+.post-author__avatar {
+  flex: 0 0 auto;
+  width: clamp(72px, 12vw, 120px);
+  height: clamp(72px, 12vw, 120px);
+  border-radius: var(--radius-media);
+  object-fit: cover;
+}
+.post-author__body { min-width: 0; }
+@media (max-width: 480px) {
+  .post-author { flex-direction: column; gap: 1rem; }
 }
 .post-author__eyebrow {
   margin: 0 0 0.6rem;
