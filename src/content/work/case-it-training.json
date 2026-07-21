@@ -49,8 +49,7 @@
     }
   ],
   "feature": {
-    "video": "/brand_assets/CompVid.mp4",
-    "poster": "/brand_assets/Serv2.webp",
+    "image": "/brand_assets/cases/it-training-feature.webp",
     "alt": "IT training and certification platform",
     "caption": "A modern, scalable platform guiding learners from exploration to certification."
   },
@@ -84,8 +83,8 @@
     "I worked side-by-side with the CEO to translate a deep understanding of customer needs, career journeys and learning pathways into a modern, scalable digital experience — one that could carry the brand forward as the product line grew.",
     "I restructured the site architecture around real user goals, mapped learning and certification journeys, and designed a flexible system of components and templates that simplifies navigation while supporting future growth. The result: a more intuitive, customer-centered platform that guides users from exploration to certification with greater clarity, engagement and conversion."
   ],
-  "storyImage": "/brand_assets/Serv2.webp",
-  "storyImageAlt": "IT training and certification platform interface",
+  "storyImage": "/brand_assets/cases/it-training-story.webp",
+  "storyImageAlt": "Learners working at computers in a training lab",
   "storyCaption": "A flexible system designed around real learner journeys.",
   "highlights": [
     {

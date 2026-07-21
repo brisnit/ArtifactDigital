@@ -51,7 +51,7 @@
     }
   ],
   "feature": {
-    "image": "/brand_assets/Sam_Comp.webp",
+    "image": "/brand_assets/cases/electronics-feature.webp",
     "alt": "The in-store AR experience running on a tablet — app-free, launched by QR",
     "caption": "QR-launched AR running directly in the customer’s browser — no app, no waiting."
   },
@@ -105,5 +105,8 @@
   ],
   "ctaHeading": "Have a retail moment you want to reimagine?",
   "priorRole": true,
-  "teamWork": true
+  "teamWork": true,
+  "storyImage": "/brand_assets/cases/electronics-story.webp",
+  "storyImageAlt": "A connected-home smart display in a modern kitchen",
+  "storyCaption": "The connected-home concept, at home in a real kitchen."
 }

@@ -48,8 +48,7 @@
     }
   ],
   "feature": {
-    "video": "/brand_assets/ADM.mp4",
-    "poster": "/brand_assets/ADM.webp",
+    "image": "/brand_assets/cases/food-feature.webp",
     "alt": "Global food and nutrition brand",
     "caption": "From the source through the supply chain — a brand operating across six continents."
   },
@@ -83,8 +82,8 @@
     "The brand's marketing footprint was vast — and fragmented. Disconnected campaigns, parallel tech stacks, and teams working in silos across 15+ business units. Our job was to unify it: one system, one design language, one way to ship work that still flexed to local markets.",
     "From 100+ campaigns across 1,000+ placements, we helped shift the organization away from heavy paid-media dependence and toward a more connected, full-funnel marketing ecosystem — built to drive engagement and conversion at every stage of the customer journey."
   ],
-  "storyImage": "/brand_assets/Farm.webp",
-  "storyImageAlt": "Global food and nutrition brand — at the source",
+  "storyImage": "/brand_assets/cases/food-story.webp",
+  "storyImageAlt": "A shopper browsing a grocery aisle",
   "storyCaption": "A unified system spanning 15+ business units and 1,000+ placements.",
   "highlights": [
     {

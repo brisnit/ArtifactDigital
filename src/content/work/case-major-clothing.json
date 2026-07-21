@@ -52,8 +52,7 @@
     }
   ],
   "feature": {
-    "video": "/brand_assets/LevyVis.mp4",
-    "poster": "/brand_assets/Lev_Comp.webp",
+    "image": "/brand_assets/cases/clothing-feature.webp",
     "alt": "Major clothing brand tailor's tool",
     "caption": "An in-store tool built around the tailoring team's real workflow — launched in seven flagship stores, starting in Shanghai."
   },
@@ -106,5 +105,8 @@
     }
   ],
   "ctaHeading": "Have a retail experience you want grounded in real users?",
-  "priorRole": true
+  "priorRole": true,
+  "storyImage": "/brand_assets/cases/clothing-story.webp",
+  "storyImageAlt": "A maker in a workshop hung with spools of thread",
+  "storyCaption": "Designed around the people who do the work on the shop floor."
 }
