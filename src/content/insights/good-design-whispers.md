@@ -7,6 +7,7 @@ author: Jonathan Smith
 cluster: "Product Design"
 tags: ["Visual Design", "Design Craft", "Design Philosophy"]
 keywords: ["visual design", "minimalism", "design restraint", "white space", "typography", "premium design", "calm technology", "design principles"]
+heroImage: "/brand_assets/insights/good-design-whispers.webp"
 draft: false
 ---
 *Luxury has never been loud. It has always been restraint.*
