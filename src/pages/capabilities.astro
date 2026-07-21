@@ -1,0 +1,447 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE, orgNode, breadcrumb } from '../data/site';
+
+const CONTACT = {
+  poc: 'Britt Midgette',
+  role: 'Founder & Principal',
+  phone: '619-504-5736',
+  phoneHref: 'tel:+16195045736',
+  email: SITE.email,
+  website: 'www.artifactdigital.co',
+  address: '178 N. Cuyamaca St., El Cajon, CA',
+};
+
+// Scanned first by procurement — kept together, near the top.
+const QUICK = [
+  { label: 'UEI', value: 'LXAJUS27XBM4' },
+  { label: 'CAGE', value: 'Pending' },
+  { label: 'Primary NAICS', value: '541511' },
+  { label: 'CA Small Business', value: '#2052896' },
+];
+
+const COMPETENCIES = [
+  {
+    n: '01',
+    title: 'Product & digital strategy',
+    body: 'We translate an existing brand into clear positioning, narrative and visual direction for the digital products and experiences being built next.',
+  },
+  {
+    n: '02',
+    title: 'Digital products, UX & accessibility',
+    body: 'Product design and front-end engineering for SaaS, dashboards and customer-facing apps that need clarity at speed — including WCAG 2.1 AA and Section 508 compliant design and remediation.',
+  },
+  {
+    n: '03',
+    title: 'Website design & build',
+    body: 'Redesigns, net-new, e-commerce, marketing and B2B platforms with a strong visual signature, accessible structure and purposeful motion.',
+  },
+  {
+    n: '04',
+    title: 'AI & interactive experiences',
+    body: 'AI-powered features, generative interfaces and motion-led experiences that make a product feel modern and alive.',
+  },
+];
+
+// Named but framed as the principal's prior-agency track record — not Artifact
+// corporate past performance. Consistent with the anonymized case studies.
+const TRACK_RECORD = [
+  {
+    client: 'ADM',
+    kind: 'Digital products & UX redesign',
+    body: 'Led a large-scale UX/UI redesign consolidating a 6,500-page legacy ecosystem into a streamlined platform of fewer than 1,000 pages — improving navigation and load times across the estate.',
+  },
+  {
+    client: 'Samsung',
+    kind: 'Interactive brand experience',
+    body: 'Designed and deployed an in-store augmented reality (AR) experience that bridged physical and digital interaction to drive engagement.',
+  },
+  {
+    client: 'CompTIA',
+    kind: 'Custom educational portal',
+    body: 'Engineered a guided learning and certification platform with complex user-pathway architecture and an integrated CMS.',
+  },
+];
+
+const DIFFERENTIATORS = [
+  {
+    n: '01',
+    title: '100% senior-led execution',
+    body: 'No junior hand-offs. The same strategists who map the architecture write the final code — rapid deployment, and no communication breakdowns between plan and build.',
+  },
+  {
+    n: '02',
+    title: 'Performance-first build',
+    body: 'We build to Core Web Vitals, keeping platforms fast, responsive and accessible across every device — the baseline modern public and enterprise users expect.',
+  },
+];
+
+const BUSINESS_INFO = [
+  { label: 'Business structure', value: 'LLC' },
+  { label: 'Year established', value: '2021' },
+  { label: 'CA Small Business (SB) Cert', value: '#2052896' },
+  { label: 'San Diego County Supplier ID', value: 'SUP010474' },
+  { label: 'UEI', value: 'LXAJUS27XBM4' },
+  { label: 'CAGE', value: 'Pending' },
+];
+
+const NAICS = [
+  { code: '541511', label: 'Custom Computer Programming Services', primary: true },
+  { code: '541430', label: 'Graphic Design Services' },
+  { code: '541512', label: 'Computer Systems Design Services' },
+  { code: '541613', label: 'Marketing Consulting Services' },
+  { code: '541810', label: 'Advertising Agencies' },
+];
+
+const UNSPSC = [
+  { code: '81110000', label: 'Computer Services' },
+  { code: '81112103', label: 'World Wide Web (WWW) Site Design Services' },
+  { code: '82140000', label: 'Graphic Design' },
+  { code: '43232408', label: 'Web Platform Development Software' },
+  { code: '80141506', label: 'Internet-Based Marketing' },
+];
+
+const path = '/capabilities';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      '@id': `${SITE.url}${path}#service`,
+      name: 'Digital Modernization for Public Sector & Enterprise',
+      serviceType: 'Digital modernization, UX/UI design and build',
+      description:
+        'Senior-led strategic UX/UI design and build for public sector and enterprise digital platforms — WCAG 2.1 AA and Section 508 accessible, performance-first.',
+      url: `${SITE.url}${path}`,
+      provider: { '@id': `${SITE.url}/#organization` },
+      areaServed: 'United States and Canada',
+    },
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'Capabilities', path },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title="Capability Statement · Public Sector & Enterprise · Artifact Digital"
+  description="Artifact Digital capability statement — senior-led strategic UX/UI design and build for public sector and enterprise digital modernization. NAICS, UEI, certifications and past performance."
+  canonical={path}
+  bodyClass="case-page capabilities"
+  jsonLd={jsonLd}
+>
+  <!-- HERO -->
+  <section class="case-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Capabilities' }]} />
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Capability Statement</span>
+      <h1 class="case-title">
+        <span class="reveal-line"><span>Digital modernization for</span></span>
+        <span class="reveal-line italic"><span>public sector &amp; enterprise.</span></span>
+      </h1>
+      <p class="case-lede reveal">
+        Artifact Digital is a senior-led studio delivering strategic UX/UI design and build for the
+        digital products, platforms and services agencies and enterprises depend on. Accessible by
+        mandate, fast by design, and senior-led from strategy through code.
+      </p>
+    </div>
+  </section>
+
+  <!-- SNAPSHOT: contact + key codes -->
+  <section class="section cap-snapshot">
+    <div class="container cap-snapshot__grid">
+      <div class="cap-card cap-contact reveal">
+        <h2 class="cap-card__label">Point of contact</h2>
+        <p class="cap-contact__name">{CONTACT.poc}</p>
+        <p class="cap-contact__role">{CONTACT.role}</p>
+        <dl class="cap-contact__dl">
+          <div><dt>Phone</dt><dd><a href={CONTACT.phoneHref}>{CONTACT.phone}</a></dd></div>
+          <div><dt>Email</dt><dd><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></dd></div>
+          <div><dt>Web</dt><dd><a href={SITE.url}>{CONTACT.website}</a></dd></div>
+          <div><dt>Address</dt><dd>{CONTACT.address}</dd></div>
+        </dl>
+      </div>
+      <div class="cap-card cap-quick reveal">
+        <h2 class="cap-card__label">At a glance</h2>
+        <dl class="cap-quick__dl">
+          {QUICK.map((q) => (
+            <div><dt>{q.label}</dt><dd>{q.value}</dd></div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE COMPETENCIES -->
+  <section class="section cap-section">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Core competencies</span>
+        <h2 class="section-heading reveal-line"><span>What we deliver</span></h2>
+      </header>
+      <div class="cap-grid">
+        {COMPETENCIES.map((c) => (
+          <article class="cap-card cap-cell reveal-card">
+            <span class="cap-cell__num">{c.n}</span>
+            <h3 class="cap-cell__title">{c.title}</h3>
+            <p class="cap-cell__body">{c.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPAL'S TRACK RECORD -->
+  <section class="section cap-section cap-section--alt">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Past performance</span>
+        <h2 class="section-heading reveal-line"><span>Principal's track record</span></h2>
+      </header>
+      <p class="cap-note reveal">
+        Artifact Digital was founded in 2021. The engagements below were led by founder
+        Britt Midgette in a director role at previous agencies — his track record, and the
+        judgment now embedded in the studio. They are the principal's experience, not
+        presented as Artifact corporate past performance.
+      </p>
+      <ol class="cap-track">
+        {TRACK_RECORD.map((t) => (
+          <li class="cap-track__item reveal-row">
+            <div class="cap-track__head">
+              <span class="cap-track__client">{t.client}</span>
+              <span class="cap-track__kind">{t.kind}</span>
+            </div>
+            <p class="cap-track__body">{t.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- DIFFERENTIATORS -->
+  <section class="section cap-section">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Differentiators</span>
+        <h2 class="section-heading reveal-line"><span>Why teams choose us</span></h2>
+      </header>
+      <div class="cap-grid cap-grid--two">
+        {DIFFERENTIATORS.map((d) => (
+          <article class="cap-card cap-cell reveal-card">
+            <span class="cap-cell__num">{d.n}</span>
+            <h3 class="cap-cell__title">{d.title}</h3>
+            <p class="cap-cell__body">{d.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CODES & REGISTRATIONS -->
+  <section class="section cap-section cap-section--alt">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Registrations &amp; codes</span>
+        <h2 class="section-heading reveal-line"><span>Contracting information</span></h2>
+      </header>
+      <div class="cap-codes">
+        <div class="cap-code-group reveal">
+          <h3>Business information</h3>
+          <dl class="cap-code-dl">
+            {BUSINESS_INFO.map((b) => (
+              <div><dt>{b.label}</dt><dd>{b.value}</dd></div>
+            ))}
+          </dl>
+        </div>
+        <div class="cap-code-group reveal">
+          <h3>NAICS codes</h3>
+          <ul class="cap-code-list">
+            {NAICS.map((c) => (
+              <li>
+                <span class="cap-code">{c.code}</span>
+                <span class="cap-code__label">{c.label}{c.primary && <em> · Primary</em>}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="cap-code-group reveal">
+          <h3>UNSPSC codes <span class="cap-code-group__note">(state / local)</span></h3>
+          <ul class="cap-code-list">
+            {UNSPSC.map((c) => (
+              <li>
+                <span class="cap-code">{c.code}</span>
+                <span class="cap-code__label">{c.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Have an RFP or a modernization mandate?"
+    primary={{ label: 'Start an RFP conversation', href: `mailto:${SITE.email}?subject=RFP%20%2F%20Capability%20inquiry` }}
+    secondary={{ label: 'See selected work', href: '/work' }}
+  />
+</BaseLayout>
+
+<style>
+  .cap-snapshot { padding-top: clamp(1.5rem, 3vw, 2.5rem); }
+  .cap-snapshot__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+  }
+  .cap-card {
+    background: var(--stone);
+    border-radius: var(--radius-media);
+    padding: clamp(1.5rem, 3vw, 2rem);
+  }
+  .cap-card__label {
+    margin: 0 0 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--steel-soft);
+  }
+  .cap-contact__name {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: var(--ink);
+  }
+  .cap-contact__role { margin: 0.1rem 0 1.25rem; color: var(--steel); }
+  .cap-contact__dl, .cap-quick__dl { margin: 0; display: grid; gap: 0.65rem; }
+  .cap-contact__dl > div, .cap-quick__dl > div {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 0.75rem;
+    align-items: baseline;
+  }
+  .cap-contact__dl dt, .cap-quick__dl dt {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--steel-soft);
+  }
+  .cap-contact__dl dd, .cap-quick__dl dd { margin: 0; color: var(--ink); }
+  .cap-quick__dl dd { font-family: 'DM Sans', sans-serif; font-weight: 700; }
+  .cap-card a { color: var(--accent-strong); text-decoration: none; }
+  .cap-card a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  .cap-section--alt { background: var(--stone); }
+
+  .cap-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1rem, 2.5vw, 1.5rem);
+  }
+  .cap-cell {
+    background: #fff;
+    border: 1px solid rgba(17, 17, 17, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .cap-section--alt .cap-cell { background: #fff; }
+  .cap-cell__num {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--accent-strong);
+    letter-spacing: 0.08em;
+  }
+  .cap-cell__title {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--ink);
+  }
+  .cap-cell__body { margin: 0; color: var(--steel); line-height: 1.6; }
+
+  .cap-note {
+    max-width: 70ch;
+    margin: -0.5rem 0 clamp(2rem, 4vw, 3rem);
+    padding: 1.1rem 1.25rem;
+    border-left: 3px solid var(--accent);
+    background: #fff;
+    border-radius: 0 var(--radius-media) var(--radius-media) 0;
+    color: var(--steel);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .cap-section--alt .cap-note { background: rgba(255, 255, 255, 0.65); }
+
+  .cap-track { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+  .cap-track__item {
+    background: #fff;
+    border: 1px solid rgba(17, 17, 17, 0.08);
+    border-radius: var(--radius-media);
+    padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  }
+  .cap-track__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1rem; margin-bottom: 0.6rem; }
+  .cap-track__client {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--ink);
+  }
+  .cap-track__kind {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--steel-soft);
+  }
+  .cap-track__body { margin: 0; color: var(--steel); line-height: 1.6; max-width: 78ch; }
+
+  .cap-codes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .cap-code-group h3 {
+    margin: 0 0 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .cap-code-group__note { font-weight: 400; color: var(--steel-soft); font-size: 0.85rem; }
+  .cap-code-dl { margin: 0; display: grid; gap: 0.7rem; }
+  .cap-code-dl > div { display: grid; gap: 0.15rem; }
+  .cap-code-dl dt {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--steel-soft);
+  }
+  .cap-code-dl dd { margin: 0; color: var(--ink); font-weight: 600; }
+  .cap-code-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
+  .cap-code-list li { display: grid; grid-template-columns: 5.5rem 1fr; gap: 0.75rem; align-items: baseline; }
+  .cap-code {
+    font-family: 'Space Grotesk', monospace;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .cap-code__label { color: var(--steel); line-height: 1.45; }
+  .cap-code__label em { font-style: normal; color: var(--accent-strong); font-weight: 600; }
+
+  @media (max-width: 860px) {
+    .cap-snapshot__grid { grid-template-columns: 1fr; }
+    .cap-codes { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 620px) {
+    .cap-grid, .cap-grid--two { grid-template-columns: 1fr; }
+  }
+</style>
