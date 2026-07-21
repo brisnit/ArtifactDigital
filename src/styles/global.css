@@ -2606,9 +2606,11 @@ button:focus-visible {
   line-height: 1.6;
 }
 .case-attribution {
-  max-width: 68ch;
+  position: relative;
   margin: 2rem 0 0;
-  padding: 1.1rem 1.25rem;
+  /* Extra right padding leaves room for the close button, so long text never
+     runs under it. Full container width — matches the meta and title above. */
+  padding: 1.1rem 3.25rem 1.1rem 1.25rem;
   border-left: 3px solid var(--accent);
   background: var(--stone);
   border-radius: 0 var(--radius-media) var(--radius-media) 0;
@@ -2616,7 +2618,28 @@ button:focus-visible {
   font-size: 0.95rem;
   line-height: 1.6;
 }
+.case-attribution[hidden] { display: none; }
+.case-attribution__text { margin: 0; }
 .case-attribution strong { color: var(--ink); font-weight: 700; }
+.case-attribution__close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--steel);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.15s var(--easing), color 0.15s var(--easing);
+}
+.case-attribution__close:hover { background: rgba(17, 17, 17, 0.07); color: var(--ink); }
+.case-attribution__close:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 2px; }
 
 /* Story section without media (client branding / identifiable people withheld) */
 .case-story__grid--solo { grid-template-columns: 1fr; }

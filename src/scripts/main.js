@@ -141,6 +141,30 @@ if (statEls.length) {
   statEls.forEach((el) => statObserver.observe(el));
 }
 
+// ---------- Case attribution dismiss ----------
+// The "About this work" note renders visible by default (it's an honesty
+// disclosure and must never depend on JS). This only lets a reader close it,
+// and remembers the choice so the identical note doesn't nag on every case.
+const attribution = document.getElementById('caseAttribution');
+if (attribution) {
+  const KEY = 'artifact:attribution-dismissed';
+  let dismissed = false;
+  try {
+    dismissed = localStorage.getItem(KEY) === '1';
+  } catch {}
+  if (dismissed) attribution.hidden = true;
+
+  const closeBtn = attribution.querySelector('.case-attribution__close');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      attribution.hidden = true;
+      try {
+        localStorage.setItem(KEY, '1');
+      } catch {}
+    });
+  }
+}
+
 // ---------- Mobile navigation (hamburger) ----------
 const navToggle = document.getElementById('navToggle');
 const mobileNav = document.getElementById('mobileNav');
