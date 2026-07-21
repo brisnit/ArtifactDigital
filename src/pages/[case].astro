@@ -109,7 +109,7 @@ const jsonLd = {
           {d.feature.video ? (
             <video class="case-video" data-src={d.feature.video} poster={d.feature.poster} muted loop playsinline preload="none" aria-label={d.feature.alt}></video>
           ) : (
-            <img src={d.feature.image} alt={d.feature.alt} width={feature.width} height={feature.height} srcset={feature.srcset} sizes="(max-width: 1280px) 100vw, 1280px" loading="lazy" decoding="async" />
+            <img class="case-img" src={d.feature.image} alt={d.feature.alt} width={feature.width} height={feature.height} srcset={feature.srcset} sizes="(max-width: 1280px) 100vw, 1280px" loading="lazy" decoding="async" />
           )}
         </div>
         <p class="case-caption reveal">{d.feature.caption}</p>
