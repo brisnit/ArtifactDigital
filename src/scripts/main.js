@@ -81,13 +81,24 @@ if (reduceMotion) {
   const vids = document.querySelectorAll('video[data-src]');
   if (!vids.length || reduceMotion) return; // reduced motion: poster only
 
-  const load = (vid) => {
-    if (vid.src) return;
-    vid.src = vid.dataset.src;
-    vid.addEventListener('loadeddata', () => vid.classList.add('is-loaded'), { once: true });
-    vid.load();
+  const tryPlay = (vid) => {
     const p = vid.play();
     if (p && typeof p.catch === 'function') p.catch(() => {});
+  };
+
+  const load = (vid) => {
+    if (vid.src) return;
+    // iOS honours the muted PROPERTY, not just the HTML attribute, when
+    // playback is started from script — without this, iPhones never leave
+    // the poster frame.
+    vid.muted = true;
+    vid.src = vid.dataset.src;
+    vid.addEventListener('loadeddata', () => vid.classList.add('is-loaded'), { once: true });
+    // The immediate play() below can be aborted on slow mobile connections
+    // before any data has arrived; retry once the browser can actually play.
+    vid.addEventListener('canplay', () => tryPlay(vid), { once: true });
+    vid.load();
+    tryPlay(vid);
   };
 
   // Below-the-fold videos only start when they scroll near the viewport.
@@ -97,8 +108,7 @@ if (reduceMotion) {
         const vid = entry.target;
         if (entry.isIntersecting) {
           load(vid);
-          const p = vid.play();
-          if (p && typeof p.catch === 'function') p.catch(() => {});
+          tryPlay(vid);
         } else if (!vid.paused) {
           vid.pause();
         }
@@ -109,7 +119,19 @@ if (reduceMotion) {
 
   const start = () => vids.forEach((v) => io.observe(v));
   if ('requestIdleCallback' in window) requestIdleCallback(start, { timeout: 3000 });
+  else if (document.readyState === 'complete') start();
   else window.addEventListener('load', start, { once: true });
+
+  // iOS Low Power Mode blocks every autoplay — only a real user gesture may
+  // start playback. The first touch anywhere quietly restarts stalled videos
+  // (play() must stay synchronous here to count as gesture-activated).
+  const rescue = () => {
+    vids.forEach((v) => {
+      if (!v.src) load(v);
+      else if (v.paused) tryPlay(v);
+    });
+  };
+  window.addEventListener('touchstart', rescue, { once: true, passive: true });
 })();
 
 // ---------- Stat count-up ----------
