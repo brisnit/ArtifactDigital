@@ -92,7 +92,12 @@ if (reduceMotion) {
     // playback is started from script — without this, iPhones never leave
     // the poster frame.
     vid.muted = true;
-    vid.src = vid.dataset.src;
+    // Phones get the 2.1MB 640px rendition instead of the 5.3MB 720p file —
+    // it starts several times sooner on cell connections.
+    vid.src =
+      vid.dataset.srcMobile && window.matchMedia('(max-width: 760px)').matches
+        ? vid.dataset.srcMobile
+        : vid.dataset.src;
     vid.addEventListener('loadeddata', () => vid.classList.add('is-loaded'), { once: true });
     // The immediate play() below can be aborted on slow mobile connections
     // before any data has arrived; retry once the browser can actually play.
