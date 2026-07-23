@@ -7,6 +7,7 @@ author: Jonathan Smith
 cluster: "Product Design"
 tags: ["Visual Design", "Design Craft", "Micro-interactions"]
 keywords: ["micro-interactions", "spacing", "visual rhythm", "hierarchy", "polish", "design details", "feedback", "craft"]
+heroImage: "/brand_assets/insights/details-users-feel.webp"
 draft: false
 ---
 *Micro-interactions, spacing, rhythm, and hierarchy.*
