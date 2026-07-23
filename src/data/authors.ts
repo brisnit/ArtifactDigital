@@ -16,6 +16,9 @@ export interface Author {
   linkedin?: string;
   /** Square author portrait (webp) → the block avatar + schema Person image. */
   avatar?: string;
+  /** Optional series/collection this author curates — linked from the post
+      author block, so every post points back to the hub. */
+  series?: { label: string; href: string };
 }
 
 const slugify = (s: string) =>
@@ -38,6 +41,7 @@ export const AUTHORS: Record<string, Author> = {
     personId: `${SITE.url}/#person-jonathan-smith`,
     linkedin: 'https://www.linkedin.com/in/jonathansmith16/',
     avatar: '/brand_assets/authors/jonathan-smith.webp',
+    series: { label: 'the craft of digital design series', href: '/craft' },
   },
 };
 

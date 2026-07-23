@@ -1,0 +1,186 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Newsletter from '../components/Newsletter.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE, orgNode, breadcrumb } from '../data/site';
+import { authorFor } from '../data/authors';
+import { responsive } from '../lib/responsive';
+
+// Curated reading order — the series builds an arc: the ethos, then the
+// materials (space, type, motion, pixels, details), then the outcomes
+// (premium, less-is-more), closing on the thesis. Add new craft posts here.
+const ORDER = [
+  'good-design-whispers',
+  'why-white-space-is-never-empty',
+  'typography-is-the-voice-of-your-brand',
+  'motion-should-guide-not-distract',
+  'every-pixel-is-a-decision',
+  'details-users-never-notice',
+  'designing-products-that-feel-expensive',
+  'designing-with-less-takes-more-skill',
+  'why-craft-still-wins',
+];
+
+const all = new Map((await getCollection('insights', ({ data }) => !data.draft)).map((p) => [p.id, p]));
+const posts = ORDER.map((id) => all.get(id)).filter((p): p is NonNullable<typeof p> => Boolean(p));
+
+const author = authorFor('Jonathan Smith');
+
+const heroSizes = new Map<string, Awaited<ReturnType<typeof responsive>>>();
+for (const p of posts) if (p.data.heroImage) heroSizes.set(p.data.heroImage, await responsive(p.data.heroImage));
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+
+const path = '/craft';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      '@id': `${SITE.url}${path}#collection`,
+      name: 'The Craft of Digital Design',
+      description:
+        'A field guide by Jonathan Smith on how good design actually works — white space, typography, motion, hierarchy, and restraint.',
+      url: `${SITE.url}${path}`,
+      isPartOf: { '@id': `${SITE.url}/#website` },
+      about: { '@id': author.personId },
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListOrder: 'https://schema.org/ItemListOrderAscending',
+        numberOfItems: posts.length,
+        itemListElement: posts.map((p, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          url: `${SITE.url}/insights/${p.id}`,
+          name: p.data.title,
+        })),
+      },
+    },
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'Craft', path },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title="The Craft of Digital Design · Artifact Digital"
+  description="A field guide by Jonathan Smith, VP of Visual Design — how good design actually works: white space, typography, motion, hierarchy, and the discipline of restraint."
+  canonical={path}
+  bodyClass="case-page"
+  jsonLd={jsonLd}
+>
+  <section class="case-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Craft' }]} />
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>A field guide</span>
+      <h1 class="case-title">
+        <span class="reveal-line"><span>The craft of</span></span>
+        <span class="reveal-line italic"><span>digital design.</span></span>
+      </h1>
+      <p class="case-lede reveal">
+        An ongoing series on how good design actually works — the white space,
+        typography, motion, and restraint most people never notice, and always feel.
+        Read it in order, or start anywhere.
+      </p>
+      {author.avatar && (
+        <div class="craft-author reveal">
+          <img class="craft-author__avatar" src={author.avatar} alt="" width="44" height="44" loading="eager" decoding="async" />
+          <span class="craft-author__by">By <strong>{author.name}</strong>, {author.jobTitle}</span>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: clamp(2rem, 4vw, 3rem);">
+    <div class="container">
+      <ol class="insights-grid craft-grid">
+        {posts.map((p, i) => (
+          <li class="craft-item">
+            <a
+              class:list={["insight-card", "reveal-card", p.data.heroImage && "insight-card--has-media"]}
+              href={`/insights/${p.id}`}
+            >
+              {p.data.heroImage && (
+                <div class="insight-card__media">
+                  <span class="craft-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                  <img
+                    src={p.data.heroImage}
+                    alt=""
+                    width={heroSizes.get(p.data.heroImage)?.width}
+                    height={heroSizes.get(p.data.heroImage)?.height}
+                    srcset={heroSizes.get(p.data.heroImage)?.srcset}
+                    sizes="(max-width: 760px) 100vw, (max-width: 1280px) 50vw, 400px"
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                    fetchpriority={i === 0 ? 'high' : undefined}
+                    decoding="async"
+                  />
+                </div>
+              )}
+              <div class="insight-card__meta">
+                <span>{p.data.cluster}</span>
+                <span>{fmtDate(p.data.pubDate)}</span>
+              </div>
+              <h2 class="insight-card__title">{p.data.title}</h2>
+              <p class="insight-card__excerpt">{p.data.description}</p>
+              <span class="insight-card__more">Read the essay →</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <Newsletter />
+</BaseLayout>
+
+<style>
+  .craft-author {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-top: clamp(1.5rem, 3vw, 2rem);
+  }
+  .craft-author__avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .craft-author__by {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--steel);
+  }
+  .craft-author__by strong { color: var(--ink); font-weight: 700; }
+
+  /* Ordered list reuses the insights grid; strip list affordances. */
+  .craft-grid { list-style: none; margin: 0; padding: 0; }
+  .craft-item { display: flex; }
+  .craft-item > .insight-card { width: 100%; }
+
+  /* Reading-order badge on the media. */
+  .insight-card__media { position: relative; }
+  .craft-num {
+    position: absolute;
+    top: 0.7rem;
+    left: 0.7rem;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.9rem;
+    height: 1.9rem;
+    padding: 0 0.4rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #fff;
+    background: rgba(11, 11, 11, 0.6);
+    backdrop-filter: blur(4px);
+    border-radius: 999px;
+  }
+</style>

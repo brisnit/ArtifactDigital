@@ -133,15 +133,22 @@ const jsonLd = {
               {author.name}{author.jobTitle && <span class="post-author__role">, {author.jobTitle}</span>}
             </p>
             <p class="post-author__bio">{author.bio}</p>
-            {author.linkedin ? (
-              <a class="post-author__link" href={author.linkedin} target="_blank" rel="noopener">
-                Connect with {author.name.split(' ')[0]} on LinkedIn<ArrowIcon />
-              </a>
-            ) : author.url && (
-              <a class="post-author__link" href={author.url}>
-                More about {author.name.split(' ')[0]}<ArrowIcon />
-              </a>
-            )}
+            <div class="post-author__links">
+              {author.linkedin ? (
+                <a class="post-author__link" href={author.linkedin} target="_blank" rel="noopener">
+                  Connect with {author.name.split(' ')[0]} on LinkedIn<ArrowIcon />
+                </a>
+              ) : author.url && (
+                <a class="post-author__link" href={author.url}>
+                  More about {author.name.split(' ')[0]}<ArrowIcon />
+                </a>
+              )}
+              {author.series && (
+                <a class="post-author__link" href={author.series.href}>
+                  Read {author.series.label}<ArrowIcon />
+                </a>
+              )}
+            </div>
           </div>
         </aside>
       )}
