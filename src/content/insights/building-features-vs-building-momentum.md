@@ -7,6 +7,7 @@ author: Britt Midgette
 cluster: "Digital Strategy"
 tags: ["Digital Strategy", "Product Strategy", "Product Development"]
 keywords: ["product momentum", "product launch", "feature creep", "adoption", "iterative design", "compounding improvements", "product strategy", "continuous improvement"]
+heroImage: "/brand_assets/insights/building-momentum.webp"
 draft: false
 ---
 *Creating experiences that keep growing after launch.*
