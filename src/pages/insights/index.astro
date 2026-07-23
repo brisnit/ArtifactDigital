@@ -9,17 +9,25 @@ const posts = (await getCollection('insights', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
 
+const clusters = [...new Set(posts.map((p) => p.data.cluster))].sort((a, b) => a.localeCompare(b));
+
 const heroSizes = new Map<string, Awaited<ReturnType<typeof responsive>>>();
 for (const p of posts) if (p.data.heroImage) heroSizes.set(p.data.heroImage, await responsive(p.data.heroImage));
 
 const fmtDate = (d: Date) =>
   d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 
+// Combined lowercase haystack for client-side search.
+const searchText = (p: (typeof posts)[number]) =>
+  [p.data.title, p.data.description, p.data.cluster, p.data.author, ...(p.data.tags ?? [])]
+    .join(' ')
+    .toLowerCase();
+
 const blogNode = {
   '@type': 'Blog',
   '@id': `${SITE.url}/insights#blog`,
   name: 'Artifact Digital — Insights',
-  description: 'Essays on digital strategy, UX, AI, and building for the web — by Britt Midgette.',
+  description: 'Essays on digital strategy, UX, AI, and building for the web.',
   url: `${SITE.url}/insights`,
   publisher: { '@id': `${SITE.url}/#organization` },
   inLanguage: 'en-US',
@@ -45,7 +53,7 @@ const jsonLd = {
 ---
 <BaseLayout
   title="Insights · Artifact Digital"
-  description="Essays on digital strategy, UX, AI, and building for the web — written by Britt Midgette of Artifact Digital."
+  description="Essays on digital strategy, UX, AI, and building for the web — from Artifact Digital."
   canonical="/insights"
   bodyClass="case-page"
   jsonLd={jsonLd}
@@ -69,37 +77,216 @@ const jsonLd = {
       {posts.length === 0 ? (
         <p class="insights-state">New writing is on the way.</p>
       ) : (
-        <div class="insights-grid">
-          {posts.map((p, i) => (
-            <a class:list={["insight-card", "reveal-card", p.data.heroImage && "insight-card--has-media"]} href={`/insights/${p.id}`}>
-              {p.data.heroImage && (
-                <div class="insight-card__media">
-                  <img
-                    src={p.data.heroImage}
-                    alt=""
-                    width={heroSizes.get(p.data.heroImage)?.width}
-                    height={heroSizes.get(p.data.heroImage)?.height}
-                    srcset={heroSizes.get(p.data.heroImage)?.srcset}
-                    sizes="(max-width: 760px) 100vw, (max-width: 1280px) 50vw, 400px"
-                    loading={i === 0 ? 'eager' : 'lazy'}
-                    fetchpriority={i === 0 ? 'high' : undefined}
-                    decoding="async"
-                  />
-                </div>
-              )}
-              <div class="insight-card__meta">
-                <span>{p.data.cluster}</span>
-                <span>{fmtDate(p.data.pubDate)}</span>
+        <>
+          {/* Controls — shown only when JS is available (see .js gate in CSS). */}
+          <div class="insights-controls" data-insights aria-label="Filter insights">
+            <div class="insights-controls__top">
+              <div class="insights-search">
+                <svg class="insights-search__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                  <circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6" />
+                  <path d="M11 11l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                </svg>
+                <input
+                  type="search"
+                  class="insights-search__input"
+                  placeholder="Search insights…"
+                  aria-label="Search insights"
+                  autocomplete="off"
+                  data-search
+                />
               </div>
-              <h2 class="insight-card__title">{p.data.title}</h2>
-              <p class="insight-card__excerpt">{p.data.description}</p>
-              <span class="insight-card__more">Read the essay →</span>
-            </a>
-          ))}
-        </div>
+              <label class="insights-sort">
+                <span class="insights-sort__label">Sort</span>
+                <select class="insights-sort__select" aria-label="Sort insights" data-sort>
+                  <option value="newest">Newest first</option>
+                  <option value="oldest">Oldest first</option>
+                  <option value="az">Title A–Z</option>
+                </select>
+              </label>
+            </div>
+            <div class="insights-filters" role="group" aria-label="Filter by topic">
+              <button type="button" class="insights-chip is-active" data-filter="" aria-pressed="true">All</button>
+              {clusters.map((c) => (
+                <button type="button" class="insights-chip" data-filter={c} aria-pressed="false">{c}</button>
+              ))}
+            </div>
+            <p class="insights-count" data-count aria-live="polite"></p>
+          </div>
+
+          <div class="insights-grid" data-grid>
+            {posts.map((p, i) => (
+              <a
+                class:list={["insight-card", "reveal-card", p.data.heroImage && "insight-card--has-media"]}
+                href={`/insights/${p.id}`}
+                data-post
+                data-cluster={p.data.cluster}
+                data-date={p.data.pubDate.getTime()}
+                data-title={p.data.title.toLowerCase()}
+                data-search={searchText(p)}
+              >
+                {p.data.heroImage && (
+                  <div class="insight-card__media">
+                    <img
+                      src={p.data.heroImage}
+                      alt=""
+                      width={heroSizes.get(p.data.heroImage)?.width}
+                      height={heroSizes.get(p.data.heroImage)?.height}
+                      srcset={heroSizes.get(p.data.heroImage)?.srcset}
+                      sizes="(max-width: 760px) 100vw, (max-width: 1280px) 50vw, 400px"
+                      loading={i === 0 ? 'eager' : 'lazy'}
+                      fetchpriority={i === 0 ? 'high' : undefined}
+                      decoding="async"
+                    />
+                  </div>
+                )}
+                <div class="insight-card__meta">
+                  <span>{p.data.cluster}</span>
+                  <span>{fmtDate(p.data.pubDate)}</span>
+                </div>
+                <h2 class="insight-card__title">{p.data.title}</h2>
+                <p class="insight-card__excerpt">{p.data.description}</p>
+                <span class="insight-card__more">Read the essay →</span>
+              </a>
+            ))}
+          </div>
+
+          <p class="insights-state" data-empty hidden>No insights match your search.</p>
+          <nav class="insights-pagination" data-pagination aria-label="Insights pages" hidden></nav>
+        </>
       )}
     </div>
   </section>
 
   <Newsletter />
 </BaseLayout>
+
+<style>
+  /* Controls appear only with JS — no-JS users get the full, crawlable list. */
+  .insights-controls { display: none; }
+  :global(.js) .insights-controls { display: block; margin: 0 0 clamp(2rem, 4vw, 3rem); }
+
+  .insights-controls__top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    align-items: center;
+  }
+  .insights-search {
+    position: relative;
+    flex: 1 1 260px;
+    display: flex;
+    align-items: center;
+  }
+  .insights-search__icon {
+    position: absolute;
+    left: 0.9rem;
+    color: var(--steel-soft);
+    pointer-events: none;
+  }
+  .insights-search__input {
+    width: 100%;
+    padding: 0.7rem 0.9rem 0.7rem 2.4rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+    background: var(--stone);
+    border: 1px solid transparent;
+    border-radius: var(--radius-media);
+    transition: border-color 0.15s var(--easing), background-color 0.15s var(--easing);
+  }
+  .insights-search__input:focus-visible {
+    outline: none;
+    border-color: var(--accent-strong);
+    background: #fff;
+  }
+  .insights-search__input::-webkit-search-cancel-button { cursor: pointer; }
+
+  .insights-sort { display: inline-flex; align-items: center; gap: 0.5rem; }
+  .insights-sort__label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--steel-soft);
+  }
+  .insights-sort__select {
+    padding: 0.7rem 2rem 0.7rem 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+    background: var(--stone);
+    border: 1px solid transparent;
+    border-radius: var(--radius-media);
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%23707070' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+  }
+  .insights-sort__select:focus-visible { outline: none; border-color: var(--accent-strong); }
+
+  .insights-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .insights-chip {
+    padding: 0.45rem 0.95rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    color: var(--steel);
+    background: transparent;
+    border: 1px solid rgba(17, 17, 17, 0.14);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.15s var(--easing), background-color 0.15s var(--easing), border-color 0.15s var(--easing);
+  }
+  .insights-chip:hover { border-color: rgba(17, 17, 17, 0.32); color: var(--ink); }
+  .insights-chip.is-active {
+    color: #fff;
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+  }
+  .insights-chip:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 2px; }
+
+  .insights-count {
+    margin: 1rem 0 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    color: var(--steel-soft);
+  }
+
+  .insight-card[hidden] { display: none; }
+
+  .insights-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    margin: clamp(2.5rem, 5vw, 3.5rem) 0 0;
+  }
+  .insights-pagination__btn {
+    min-width: 2.5rem;
+    padding: 0.5rem 0.75rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid rgba(17, 17, 17, 0.14);
+    border-radius: var(--radius-media);
+    cursor: pointer;
+    transition: color 0.15s var(--easing), background-color 0.15s var(--easing), border-color 0.15s var(--easing);
+  }
+  .insights-pagination__btn:hover:not(:disabled) { border-color: rgba(17, 17, 17, 0.32); }
+  .insights-pagination__btn[aria-current="page"] {
+    color: #fff;
+    background: var(--ink);
+    border-color: var(--ink);
+    font-weight: 600;
+  }
+  .insights-pagination__btn:disabled { opacity: 0.4; cursor: default; }
+  .insights-pagination__btn:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 2px; }
+  .insights-pagination__ellipsis { padding: 0 0.25rem; color: var(--steel-soft); }
+</style>

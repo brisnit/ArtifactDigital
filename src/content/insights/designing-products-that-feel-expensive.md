@@ -7,6 +7,7 @@ author: Jonathan Smith
 cluster: "Product Design"
 tags: ["Visual Design", "Design Craft", "Premium Design"]
 keywords: ["premium design", "perceived quality", "luxury UX", "visual design", "consistency", "design systems", "restraint", "brand perception"]
+heroImage: "/brand_assets/insights/feel-expensive.webp"
 draft: false
 ---
 *What creates the perception of premium digital experiences.*

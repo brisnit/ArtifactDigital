@@ -226,3 +226,164 @@ if (navToggle && mobileNav) {
     { passive: true }
   );
 }
+
+// ---------- Insights index: search / filter / sort / paginate ----------
+// All posts are rendered server-side (crawlable). This only reorders and
+// hides cards client-side. Without JS every post stays visible — the
+// controls are hidden via a `.js` gate in the page's CSS.
+(function insightsBrowser() {
+  const root = document.querySelector('[data-insights]');
+  const grid = document.querySelector('[data-grid]');
+  if (!root || !grid) return;
+
+  const PAGE_SIZE = 12;
+  const cards = Array.from(grid.querySelectorAll('[data-post]'));
+  const searchInput = root.querySelector('[data-search]');
+  const sortSelect = root.querySelector('[data-sort]');
+  const chips = Array.from(root.querySelectorAll('[data-filter]'));
+  const countEl = root.querySelector('[data-count]');
+  const emptyEl = document.querySelector('[data-empty]');
+  const pager = document.querySelector('[data-pagination]');
+
+  const state = { q: '', cluster: '', sort: 'newest', page: 1 };
+
+  const sorters = {
+    newest: (a, b) => Number(b.dataset.date) - Number(a.dataset.date),
+    oldest: (a, b) => Number(a.dataset.date) - Number(b.dataset.date),
+    az: (a, b) => a.dataset.title.localeCompare(b.dataset.title),
+  };
+
+  function matches(card) {
+    if (state.cluster && card.dataset.cluster !== state.cluster) return false;
+    if (state.q && !card.dataset.search.includes(state.q)) return false;
+    return true;
+  }
+
+  function makeBtn(label, opts = {}) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'insights-pagination__btn';
+    b.textContent = label;
+    if (opts.label) b.setAttribute('aria-label', opts.label);
+    if (opts.current) b.setAttribute('aria-current', 'page');
+    if (opts.disabled) b.disabled = true;
+    if (opts.onClick) b.addEventListener('click', opts.onClick);
+    return b;
+  }
+
+  function goTo(page) {
+    state.page = page;
+    render();
+    // Keep the top of the list in view when paging.
+    grid.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+  }
+
+  function renderPager(totalPages) {
+    pager.textContent = '';
+    if (totalPages <= 1) {
+      pager.hidden = true;
+      return;
+    }
+    pager.hidden = false;
+
+    pager.appendChild(
+      makeBtn('‹', {
+        label: 'Previous page',
+        disabled: state.page === 1,
+        onClick: () => goTo(state.page - 1),
+      })
+    );
+
+    // Compact window of page numbers with ellipses for long lists.
+    const pages = new Set([1, totalPages, state.page, state.page - 1, state.page + 1]);
+    let prev = 0;
+    for (let n = 1; n <= totalPages; n++) {
+      if (!pages.has(n)) continue;
+      if (n - prev > 1) {
+        const dots = document.createElement('span');
+        dots.className = 'insights-pagination__ellipsis';
+        dots.textContent = '…';
+        pager.appendChild(dots);
+      }
+      pager.appendChild(
+        makeBtn(String(n), {
+          label: `Page ${n}`,
+          current: n === state.page,
+          onClick: () => goTo(n),
+        })
+      );
+      prev = n;
+    }
+
+    pager.appendChild(
+      makeBtn('›', {
+        label: 'Next page',
+        disabled: state.page === totalPages,
+        onClick: () => goTo(state.page + 1),
+      })
+    );
+  }
+
+  function render() {
+    const visible = cards.filter(matches).sort(sorters[state.sort]);
+    const totalPages = Math.max(1, Math.ceil(visible.length / PAGE_SIZE));
+    if (state.page > totalPages) state.page = totalPages;
+
+    const start = (state.page - 1) * PAGE_SIZE;
+    const pageItems = visible.slice(start, start + PAGE_SIZE);
+    const shown = new Set(pageItems);
+
+    // Hide everything, then reveal the current page in sorted order.
+    cards.forEach((card) => {
+      card.hidden = !shown.has(card);
+    });
+    pageItems.forEach((card) => {
+      card.style.transitionDelay = '0ms';
+      card.classList.add('is-in');
+      grid.appendChild(card); // reorder to match the active sort
+    });
+
+    if (countEl) {
+      const n = visible.length;
+      countEl.textContent = n === 0 ? '' : `${n} ${n === 1 ? 'insight' : 'insights'}`;
+    }
+    if (emptyEl) emptyEl.hidden = visible.length !== 0;
+    renderPager(totalPages);
+  }
+
+  // ----- events -----
+  let debounce;
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => {
+        state.q = searchInput.value.trim().toLowerCase();
+        state.page = 1;
+        render();
+      }, 120);
+    });
+  }
+
+  if (sortSelect) {
+    sortSelect.addEventListener('change', () => {
+      state.sort = sortSelect.value;
+      state.page = 1;
+      render();
+    });
+  }
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      state.cluster = chip.dataset.filter;
+      state.page = 1;
+      chips.forEach((c) => {
+        const active = c === chip;
+        c.classList.toggle('is-active', active);
+        c.setAttribute('aria-pressed', String(active));
+      });
+      render();
+    });
+  });
+
+  render();
+})();
