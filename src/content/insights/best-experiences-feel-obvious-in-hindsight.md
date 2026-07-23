@@ -7,6 +7,7 @@ author: Britt Midgette
 cluster: "Product Design"
 tags: ["UX", "Simplicity", "Design Philosophy"]
 keywords: ["simplicity", "progressive disclosure", "cognitive load", "clarity", "UX", "information architecture", "design decisions", "reductive design"]
+heroImage: "/brand_assets/insights/obvious-in-hindsight.webp"
 draft: false
 ---
 *Why simplicity is one of the hardest things to design.*
