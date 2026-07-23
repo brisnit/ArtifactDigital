@@ -7,6 +7,7 @@ author: Jonathan Smith
 cluster: "Product Design"
 tags: ["Visual Design", "Design Craft", "Taste"]
 keywords: ["taste", "design judgment", "AI design", "curation", "restraint", "craft", "discernment", "visual design"]
+heroImage: "/brand_assets/insights/taste-last-advantage.webp"
 draft: false
 ---
 *Why judgment, restraint, and craft still separate great design from everything else.*
