@@ -7,6 +7,7 @@ author: Britt Midgette
 cluster: "Digital Strategy"
 tags: ["Digital Strategy", "Product Strategy", "Discovery"]
 keywords: ["product strategy", "discovery", "product decisions", "sunk cost", "validation", "problem framing", "digital transformation", "prototyping"]
+heroImage: "/brand_assets/insights/wrong-thing-perfectly.webp"
 draft: false
 ---
 *Beautiful interfaces can't save bad product decisions.*
