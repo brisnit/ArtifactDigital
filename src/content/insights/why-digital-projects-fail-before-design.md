@@ -7,6 +7,7 @@ author: Britt Midgette
 cluster: "Digital Strategy"
 tags: ["Digital Strategy", "Alignment", "Product Thinking"]
 keywords: ["digital strategy", "project alignment", "why digital projects fail", "discovery", "stakeholder alignment", "digital transformation", "product strategy"]
+heroImage: "/brand_assets/insights/why-digital-projects-fail.webp"
 draft: false
 ---
 *How poor alignment — not poor execution — kills products.*

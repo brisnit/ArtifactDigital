@@ -7,6 +7,7 @@ author: Jonathan Smith
 cluster: "Product Design"
 tags: ["Visual Design", "White Space", "Design Craft"]
 keywords: ["white space", "negative space", "visual design", "minimalism", "design hierarchy", "cognitive load", "visual confidence", "design restraint"]
+heroImage: "/brand_assets/insights/white-space-never-empty.webp"
 draft: false
 ---
 *How negative space creates confidence.*
