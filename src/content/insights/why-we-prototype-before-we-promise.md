@@ -7,6 +7,7 @@ author: Britt Midgette
 cluster: "Digital Strategy"
 tags: ["Digital Strategy", "Prototyping", "Product Development"]
 keywords: ["prototyping", "validation", "speed to learning", "MVP", "product discovery", "rapid prototyping", "assumptions", "product strategy"]
+heroImage: "/brand_assets/insights/why-we-prototype.webp"
 draft: false
 ---
 *Artifact's philosophy on validating ideas quickly.*
