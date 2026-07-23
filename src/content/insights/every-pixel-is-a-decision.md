@@ -7,6 +7,7 @@ author: Jonathan Smith
 cluster: "Product Design"
 tags: ["Visual Design", "Design Craft", "Design Systems"]
 keywords: ["intentional design", "visual design", "design decisions", "visual hierarchy", "design systems", "restraint", "attention", "craft"]
+heroImage: "/brand_assets/insights/every-pixel-decision.webp"
 draft: false
 ---
 *The mindset behind intentional interfaces.*
