@@ -20,6 +20,7 @@ const ORDER = [
   'designing-products-that-feel-expensive',
   'designing-with-less-takes-more-skill',
   'why-craft-still-wins',
+  'taste-is-the-last-competitive-advantage',
 ];
 
 const all = new Map((await getCollection('insights', ({ data }) => !data.draft)).map((p) => [p.id, p]));
