@@ -7,6 +7,7 @@ author: Jonathan Smith
 cluster: "Product Design"
 tags: ["Motion Design", "Visual Design", "Design Craft"]
 keywords: ["motion design", "interface animation", "microinteractions", "reduced motion", "cognitive load", "UX animation", "easing", "design restraint"]
+heroImage: "/brand_assets/insights/motion-should-guide.webp"
 draft: false
 ---
 *Using animation to improve understanding rather than impress.*
