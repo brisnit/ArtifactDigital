@@ -7,6 +7,7 @@ author: Jonathan Smith
 cluster: "Product Design"
 tags: ["Visual Design", "Minimalism", "Design Craft"]
 keywords: ["minimalism", "restraint", "reductive design", "white space", "visual hierarchy", "calm technology", "design discipline", "informed subtraction"]
+heroImage: "/brand_assets/insights/less-takes-more-skill.webp"
 draft: false
 ---
 *The discipline behind minimalist interfaces.*
