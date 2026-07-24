@@ -7,6 +7,7 @@ author: Britt Midgette
 cluster: "Enterprise CMS"
 tags: ["Enterprise CMS", "Digital Strategy", "Content Strategy"]
 keywords: ["enterprise CMS", "Sitecore", "Optimizely", "headless CMS", "content modeling", "content governance", "digital strategy", "DXP", "composable"]
+heroImage: "/brand_assets/insights/cms-not-strategy.webp"
 draft: false
 ---
 *Why Sitecore, Optimizely, and other platforms only create value once you know what you're trying to accomplish.*
@@ -75,7 +76,7 @@ CMS migrations often follow the same pattern. Content approvals remain slow. Own
 
 Yet leadership expects the new platform to produce dramatically different outcomes.
 
-Technology amplifies operating models. It rarely transforms them.
+Technology amplifies operating models. It rarely transforms them — which is why [a new CMS cannot fix an old operating model](/insights/new-cms-cannot-fix-old-operating-model) without changing the governance, roles, and accountability underneath it.
 
 ## Every CMS Reflects Organizational Decisions
 
