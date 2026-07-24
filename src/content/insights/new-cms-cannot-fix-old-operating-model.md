@@ -148,7 +148,7 @@ Design systems are often described as collections of reusable components. That's
 
 They establish spacing, typography, interaction patterns, accessibility standards, responsive behavior, and brand consistency.
 
-Without design systems, every publishing team slowly reinvents the experience. Eventually users encounter [dozens of subtly different interfaces](/insights/details-users-never-notice) inside the same organization. Consistency disappears. Trust declines.
+Without design systems, every publishing team slowly reinvents the experience. Eventually users encounter [dozens of subtly different interfaces](/insights/details-users-never-notice) inside the same organization. Consistency disappears. Trust declines. (A well-built [component system gives authors freedom without chaos](/insights/cms-freedom-without-chaos) — that's the design half of this problem.)
 
 The CMS didn't create inconsistency. The lack of standards did.
 

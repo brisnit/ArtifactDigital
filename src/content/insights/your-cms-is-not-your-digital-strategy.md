@@ -166,7 +166,7 @@ Enterprise CMS implementations frequently separate visual design from authoring 
 
 The result? Broken layouts. Inconsistent spacing. Improvised components. Visual drift.
 
-The strongest CMS implementations treat the [design system as part of the publishing system](/insights/details-users-never-notice). Flexible components. Thoughtful constraints. Responsive behavior. Accessible defaults. Brand consistency.
+The strongest CMS implementations treat the [design system as part of the publishing system](/insights/cms-freedom-without-chaos). Flexible components. Thoughtful constraints. Responsive behavior. Accessible defaults. Brand consistency.
 
 Content authors should have freedom. Not infinite freedom.
 
