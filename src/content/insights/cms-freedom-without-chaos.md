@@ -7,6 +7,7 @@ author: Jonathan Smith
 cluster: "Enterprise CMS"
 tags: ["Enterprise CMS", "Design Systems", "Visual Design"]
 keywords: ["design systems", "component systems", "Sitecore", "Optimizely", "visual governance", "content authoring", "controlled variation", "guardrails"]
+heroImage: "/brand_assets/insights/cms-freedom-chaos.webp"
 draft: false
 ---
 *Designing flexible component systems for Sitecore, Optimizely, and enterprise publishing teams.*
