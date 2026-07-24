@@ -112,7 +112,7 @@ Content accumulates over years. Sometimes decades. Entire sections become abando
 
 Yet the website quietly preserves history rather than usefulness.
 
-Migration should be an opportunity to subtract. Not simply relocate.
+Migration should be an opportunity to subtract. Not simply relocate — so [stop migrating content no one needs](/insights/stop-migrating-content-no-one-needs).
 
 ## Governance Is Invisible Until It Isn't
 
