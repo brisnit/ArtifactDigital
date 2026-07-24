@@ -36,7 +36,7 @@ They're built through intentionality.
 
 Every decision supports every other decision. Nothing feels accidental.
 
-That's what separates premium products from merely functional ones.
+That's what separates premium products from merely functional ones — and it's why [the feeling can't stop at the marketing site](/insights/brand-lives-in-product). It has to carry all the way into the product people use every day.
 
 ## Premium Is a Feeling Before It's a Feature
 
