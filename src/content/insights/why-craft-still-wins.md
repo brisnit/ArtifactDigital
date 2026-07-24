@@ -288,7 +288,7 @@ Not because craft resists technology. Because it elevates technology.
 
 Anyone can generate a layout. Fewer people can create confidence.
 
-Anyone can build a design system. Fewer people can create visual language that people remember.
+Anyone can build a design system. Fewer people can [make one that protects craft as the organization scales](/insights/design-systems-craft-survives-scale) — that creates visual language people remember.
 
 Anyone can ship features. Fewer people can shape experiences that feel inevitable.
 

@@ -202,7 +202,7 @@ Designers define the language. Developers build the language. Authors use the la
 
 Everyone works from the same visual vocabulary.
 
-That's when organizations stop arguing about templates and start focusing on communication. Because that's the real goal. Not perfect pages. Effective experiences.
+That's when organizations stop arguing about templates and start focusing on communication. Because that's the real goal. Not perfect pages. [Effective experiences.](/insights/the-template-is-not-the-experience)
 
 ## Designing for Trust, Not Control
 

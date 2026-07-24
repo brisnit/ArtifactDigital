@@ -96,7 +96,7 @@ Two companies can use identical design systems while communicating completely di
 
 Brand doesn't emerge from components. It emerges from decisions. Typography. Photography. Motion. Language. Rhythm. Composition. Illustration. Spacing. Hierarchy.
 
-Those choices remain deeply human.
+[Those choices remain deeply human.](/insights/ai-can-generate-a-brand-cannot-protect-one)
 
 ## Sameness Feels Safe
 
