@@ -7,6 +7,7 @@ author: Britt Midgette
 cluster: "Digital Strategy"
 tags: ["Digital Strategy", "Discovery", "Product Strategy"]
 keywords: ["discovery", "product strategy", "problem framing", "research", "assumptions", "speed to learning", "curiosity", "user behavior"]
+heroImage: "/brand_assets/insights/better-question.webp"
 draft: false
 ---
 *The art of discovery before solutions.*
