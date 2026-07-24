@@ -7,6 +7,7 @@ author: Jonathan Smith
 cluster: "AI & Design"
 tags: ["Visual Design", "Brand", "AI"]
 keywords: ["AI product design", "visual identity", "brand differentiation", "design sameness", "typography", "art direction", "restraint", "taste"]
+heroImage: "/brand_assets/insights/ai-products-same.webp"
 draft: false
 ---
 *The visual cost of designing from the same models, component libraries, and references.*
