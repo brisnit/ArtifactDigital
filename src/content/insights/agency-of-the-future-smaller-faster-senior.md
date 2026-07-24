@@ -70,7 +70,7 @@ The future agency removes those layers. Clients work directly with experienced p
 
 Decisions happen in real time. Problems get solved faster because the people making them are also the people building them.
 
-That level of collaboration creates something far more valuable than efficiency. It creates trust.
+That level of collaboration creates something far more valuable than efficiency. It creates trust — the [best agency relationships feel like shared ownership](/insights/best-agency-relationships-shared-ownership), not procurement.
 
 ## AI Compresses the Distance Between Idea and Reality
 

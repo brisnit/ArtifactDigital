@@ -236,7 +236,7 @@ Perhaps the most surprising thing about AI is that it reveals organizations more
 
 Poor processes become more visible. Unclear ownership becomes more obvious. Weak communication becomes harder to hide. Inefficient approvals become impossible to ignore.
 
-AI acts like a mirror held up to the business. If an organization is fragmented, AI amplifies fragmentation. If an organization is collaborative, AI amplifies collaboration.
+AI acts like a mirror held up to the business. If an organization is fragmented, AI amplifies fragmentation. If an organization is collaborative, AI amplifies collaboration. (It's why [readiness for AI is really organizational readiness](/insights/how-to-know-if-ready-for-ai).)
 
 [The technology tends to accelerate whatever already exists.](/insights/new-cms-cannot-fix-old-operating-model)
 
