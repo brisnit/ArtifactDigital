@@ -7,6 +7,7 @@ author: Britt Midgette
 cluster: "Enterprise CMS"
 tags: ["Enterprise CMS", "Content Governance", "Digital Transformation"]
 keywords: ["content governance", "operating model", "content ownership", "publishing workflows", "accountability", "CMS migration", "content operations", "roles and permissions"]
+heroImage: "/brand_assets/insights/old-operating-model.webp"
 draft: false
 ---
 *Why platform modernization must include governance, roles, workflows, and accountability.*
