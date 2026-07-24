@@ -190,7 +190,7 @@ Not informed. Not consulted. Accountable.
 
 Who owns this journey? Who owns this content type? Who owns this audience? Who owns accessibility? Who owns performance? Who owns governance?
 
-Without visible accountability, ownership quietly disappears into committees. Committees rarely produce exceptional digital experiences.
+Without visible accountability, ownership quietly disappears into committees. Committees rarely produce exceptional digital experiences — and [enterprise websites fail when no one owns the whole experience](/insights/enterprise-websites-fail-no-one-owns-experience).
 
 ## Why Migrations Feel Familiar
 
