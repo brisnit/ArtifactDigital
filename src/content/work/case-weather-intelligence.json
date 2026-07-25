@@ -50,8 +50,8 @@
   ],
   "feature": {
     "image": "/brand_assets/cases/weather-feature.webp",
-    "alt": "Electrical transmission towers silhouetted against a deep orange sunset sky.",
-    "caption": "Critical infrastructure at dusk — the operational reality the platform was built to help protect."
+    "alt": "Five phone screens showing the weather intelligence platform — fire potential index, wind and humidity maps, and power indicators — against a wildfire sky.",
+    "caption": "One operational view: fire potential, wind, humidity, and grid indicators — read at a glance against the conditions they describe."
   },
   "pillarsTag": "The opportunity",
   "pillarsHeading": "Read conditions. Surface risk. Decide faster.",
@@ -85,6 +85,9 @@
     "Rather than building another weather application, I designed an operational intelligence platform. A single interface brought environmental indicators together so users could read both current conditions and emerging risk — fire potential, top current wind gusts, relative humidity, temperature, wind speed and direction, weather alerts, and geographic conditions — instead of forcing people to assemble the picture from multiple systems.",
     "Environmental monitoring produces enormous amounts of data; good design determines what deserves attention first. I organized information into clear visual hierarchies, paired live conditions with operational indicators on interactive maps, and let critical information surface immediately while supporting detail stayed available when needed. The design didn't simplify the science. It simplified access to it."
   ],
+  "storyImage": "/brand_assets/cases/weather-story.webp",
+  "storyImageAlt": "Electrical transmission towers silhouetted against a deep orange sunset sky.",
+  "storyCaption": "Critical infrastructure at dusk — the operational reality the platform was built to help protect.",
   "highlights": [
     {
       "title": "Intelligence built around decisions",
