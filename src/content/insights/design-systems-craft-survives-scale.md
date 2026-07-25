@@ -30,7 +30,7 @@ Nothing dramatic breaks. Instead, thousands of tiny inconsistencies begin accumu
 
 A different button radius. Slightly different spacing. Another typography scale. New animation timing. Alternative navigation behavior. Different accessibility decisions.
 
-Each choice seems harmless. [Collectively, they slowly erode the quality that made the product feel exceptional in the first place.](/insights/details-users-never-notice)
+Each choice seems harmless. [Collectively, they slowly erode the quality that made the product feel exceptional in the first place.](/insights/details-users-never-notice) That accumulation has a name and a price — [it's the most expensive design debt an organization can carry](/insights/the-most-expensive-design-debt-is-inconsistency).
 
 That is exactly why design systems exist. Not to make design easier. To make good design survivable.
 
