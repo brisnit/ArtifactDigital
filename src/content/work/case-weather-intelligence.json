@@ -29,7 +29,7 @@
       "italic": true
     }
   ],
-  "lede": "I designed a weather intelligence platform to help a major electric utility make faster, safer decisions in one of the most wildfire-prone regions in the United States — turning thousands of data points into a tool teams could read at a glance.",
+  "lede": "Britt designed a weather intelligence platform to help a major electric utility make faster, safer decisions in one of the most wildfire-prone regions in the United States — turning thousands of data points into a tool teams could read at a glance.",
   "meta": [
     {
       "label": "Client",
@@ -80,10 +80,10 @@
     }
   ],
   "storyParagraphs": [
-    "Before designing a single screen, I spent time learning how weather information was actually being used across the organization. I ran in-depth interviews with the internal meteorology team to understand how they interpreted models, monitored changing conditions, and identified areas of concern — which information truly influenced operational decisions, and which metrics were simply background noise.",
-    "I also interviewed the field workers responsible for maintaining infrastructure across the region. Those conversations were just as valuable. Crews needed information quickly, often while working outdoors under shifting conditions. They weren't looking for complicated dashboards or scientific reports — they needed immediate clarity: where conditions were changing, where risk was increasing, and what required their attention right now.",
-    "Rather than building another weather application, I designed an operational intelligence platform. A single interface brought environmental indicators together so users could read both current conditions and emerging risk — fire potential, top current wind gusts, relative humidity, temperature, wind speed and direction, weather alerts, and geographic conditions — instead of forcing people to assemble the picture from multiple systems.",
-    "Environmental monitoring produces enormous amounts of data; good design determines what deserves attention first. I organized information into clear visual hierarchies, paired live conditions with operational indicators on interactive maps, and let critical information surface immediately while supporting detail stayed available when needed. The design didn't simplify the science. It simplified access to it."
+    "Before designing a single screen, Britt spent time learning how weather information was actually being used across the organization. Britt ran in-depth interviews with the internal meteorology team to understand how they interpreted models, monitored changing conditions, and identified areas of concern — which information truly influenced operational decisions, and which metrics were simply background noise.",
+    "Britt also interviewed the field workers responsible for maintaining infrastructure across the region. Those conversations were just as valuable. Crews needed information quickly, often while working outdoors under shifting conditions. They weren't looking for complicated dashboards or scientific reports — they needed immediate clarity: where conditions were changing, where risk was increasing, and what required their attention right now.",
+    "Rather than building another weather application, Britt designed an operational intelligence platform. A single interface brought environmental indicators together so users could read both current conditions and emerging risk — fire potential, top current wind gusts, relative humidity, temperature, wind speed and direction, weather alerts, and geographic conditions — instead of forcing people to assemble the picture from multiple systems.",
+    "Environmental monitoring produces enormous amounts of data; good design determines what deserves attention first. Britt organized information into clear visual hierarchies, paired live conditions with operational indicators on interactive maps, and let critical information surface immediately while supporting detail stayed available when needed. The design didn't simplify the science. It simplified access to it."
   ],
   "storyImage": "/brand_assets/cases/weather-story.webp",
   "storyImageAlt": "Electrical transmission towers silhouetted against a deep orange sunset sky.",
