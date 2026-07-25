@@ -10,6 +10,8 @@
   "card": {
     "eyebrow": "08 / Strategy — Design",
     "blurb": "A weather intelligence platform helping a major electric utility see wildfire risk sooner and act with confidence.",
+    "image": "/brand_assets/cases/cards/weather.webp",
+    "imageAlt": "Electrical transmission towers silhouetted against a deep orange sunset sky.",
     "tags": [
       "Research",
       "Product Strategy",
@@ -46,6 +48,11 @@
       "value": "Southern California"
     }
   ],
+  "feature": {
+    "image": "/brand_assets/cases/weather-feature.webp",
+    "alt": "Electrical transmission towers silhouetted against a deep orange sunset sky.",
+    "caption": "Critical infrastructure at dusk — the operational reality the platform was built to help protect."
+  },
   "pillarsTag": "The opportunity",
   "pillarsHeading": "Read conditions. Surface risk. Decide faster.",
   "pillars": [
