@@ -1,0 +1,100 @@
+{
+  "title": "Seeing Risk Before It Becomes Reality",
+  "metaTitle": "Weather Intelligence Platform — Utility Wildfire Risk · Artifact Digital",
+  "description": "A weather intelligence platform that turned thousands of data points into fast, confident wildfire-risk decisions for a major electric utility in one of the most wildfire-prone regions in the U.S.",
+  "order": 5,
+  "year": "2019",
+  "category": "Operational intelligence",
+  "priorRole": true,
+  "teamWork": false,
+  "card": {
+    "eyebrow": "08 / Strategy — Design",
+    "blurb": "A weather intelligence platform helping a major electric utility see wildfire risk sooner and act with confidence.",
+    "tags": [
+      "Research",
+      "Product Strategy",
+      "UX Design"
+    ],
+    "wide": false
+  },
+  "heroEyebrow": "Case study · Operational intelligence",
+  "titleLines": [
+    {
+      "text": "Seeing risk"
+    },
+    {
+      "text": "before it becomes reality.",
+      "italic": true
+    }
+  ],
+  "lede": "I designed a weather intelligence platform to help a major electric utility make faster, safer decisions in one of the most wildfire-prone regions in the United States — turning thousands of data points into a tool teams could read at a glance.",
+  "meta": [
+    {
+      "label": "Client",
+      "value": "Major electric utility"
+    },
+    {
+      "label": "Year",
+      "value": "2019"
+    },
+    {
+      "label": "Scope",
+      "value": "Research · Product Strategy · UX Design · Visual Design"
+    },
+    {
+      "label": "Region",
+      "value": "Southern California"
+    }
+  ],
+  "pillarsTag": "The opportunity",
+  "pillarsHeading": "Read conditions. Surface risk. Decide faster.",
+  "pillars": [
+    {
+      "title": "Weather as operational risk",
+      "body": "For a utility responsible for critical infrastructure, changing conditions aren't a forecast. Wind, heat, humidity, and dry vegetation are operational risk — shaping where crews deploy, what equipment gets watched, and when to act."
+    },
+    {
+      "title": "Clarity at a glance",
+      "body": "The challenge wasn't displaying weather data. It was transforming thousands of data points into a decision-making tool field teams, meteorologists, and operations leaders could understand instantly."
+    },
+    {
+      "title": "Lower the risk",
+      "body": "The goal was clear: improve situational awareness and ultimately help reduce wildfire risk across the region."
+    }
+  ],
+  "storyTag": "Designing for action",
+  "storyHeadingLines": [
+    {
+      "text": "Designed for action,"
+    },
+    {
+      "text": "not observation.",
+      "italic": true
+    }
+  ],
+  "storyParagraphs": [
+    "Before designing a single screen, I spent time learning how weather information was actually being used across the organization. I ran in-depth interviews with the internal meteorology team to understand how they interpreted models, monitored changing conditions, and identified areas of concern — which information truly influenced operational decisions, and which metrics were simply background noise.",
+    "I also interviewed the field workers responsible for maintaining infrastructure across the region. Those conversations were just as valuable. Crews needed information quickly, often while working outdoors under shifting conditions. They weren't looking for complicated dashboards or scientific reports — they needed immediate clarity: where conditions were changing, where risk was increasing, and what required their attention right now.",
+    "Rather than building another weather application, I designed an operational intelligence platform. A single interface brought environmental indicators together so users could read both current conditions and emerging risk — fire potential, top current wind gusts, relative humidity, temperature, wind speed and direction, weather alerts, and geographic conditions — instead of forcing people to assemble the picture from multiple systems.",
+    "Environmental monitoring produces enormous amounts of data; good design determines what deserves attention first. I organized information into clear visual hierarchies, paired live conditions with operational indicators on interactive maps, and let critical information surface immediately while supporting detail stayed available when needed. The design didn't simplify the science. It simplified access to it."
+  ],
+  "highlights": [
+    {
+      "title": "Intelligence built around decisions",
+      "body": "A unified experience combining weather data, wildfire indicators, and environmental conditions into a single operational platform."
+    },
+    {
+      "title": "Research-driven strategy",
+      "body": "Interviews with meteorologists and field workers directly informed the product architecture — reflecting real operational workflows instead of assumptions."
+    },
+    {
+      "title": "Faster situational awareness",
+      "body": "Fire potential, wind conditions, humidity, and other critical indicators became immediately visible, so teams could read changing conditions more quickly."
+    },
+    {
+      "title": "Supporting wildfire mitigation",
+      "body": "The platform contributed to the organization's broader wildfire-prevention strategy by improving visibility into the environmental conditions that drive operational risk across the region."
+    }
+  ],
+  "ctaHeading": "Have complex data that needs to become decisions?"
+}
