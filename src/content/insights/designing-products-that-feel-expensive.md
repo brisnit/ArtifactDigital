@@ -148,7 +148,7 @@ Instead, luxury emerges from hundreds of tiny decisions.
 
 Corners align. Hover states respond naturally. Loading states feel calm. Forms anticipate mistakes. Microcopy sounds human. Error messages reassure. Success states celebrate appropriately.
 
-Each detail seems insignificant on its own. Together they become personality.
+Each detail seems insignificant on its own. Together they become personality — which is exactly why [enterprise software doesn't have to feel corporate](/insights/enterprise-design-does-not-have-to-feel-corporate) to feel serious.
 
 This is why experienced designers spend so much time polishing. Not because they're perfectionists. Because details compound.
 
