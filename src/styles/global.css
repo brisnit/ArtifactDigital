@@ -617,7 +617,9 @@ a {
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--ink);
+  background:
+    url('/brand_assets/what-we-build-bg.webp') center / cover no-repeat,
+    linear-gradient(90deg, #501838, #282329 55%, #192a1f);
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform 0.55s var(--easing);
@@ -644,7 +646,7 @@ a {
   color: #fff;
 }
 .service-row:hover .service-row__tags li {
-  border-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
   background: transparent;
 }
 .service-row__num {
