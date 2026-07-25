@@ -86,7 +86,7 @@ Instead of allowing authors to change every spacing value manually, provide thre
 
 Every option has already been designed. Every option has already been tested. Every option already fits the brand.
 
-The author feels empowered because they have meaningful choices. The brand stays consistent because every choice has been intentionally crafted.
+The author feels empowered because they have meaningful choices. The brand stays consistent because every choice has been intentionally crafted — the result of [components designed so authors can't accidentally break them](/insights/designing-components-authors-cannot-break).
 
 [That's good product design.](/insights/designing-with-less-takes-more-skill)
 
