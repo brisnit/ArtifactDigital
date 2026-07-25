@@ -74,7 +74,7 @@ Not identical. But close enough that differentiation becomes more difficult.
 
 This isn't because AI lacks creativity. It's because AI is trained on patterns. Brands succeed by creating recognizable deviations from patterns.
 
-That requires intention. Taste. Judgment. Context. Those remain deeply human strengths.
+That requires intention. Taste. Judgment. Context. Those remain deeply human strengths — which is why, ironically, [AI makes art direction more important, not less](/insights/ai-makes-art-direction-more-important).
 
 ## AI Doesn't Understand Why Design Decisions Exist
 
