@@ -39,6 +39,7 @@ const serviceNode = {
     '@type': 'OfferCatalog',
     name: 'Services',
     itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Bespoke software & AI' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Product & digital strategy' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Website design & build' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Digital products & UX' } },
@@ -129,8 +130,22 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
 
       <ol class="service-list">
         <li class="service-row reveal-row">
-          <a class="service-row__link" href="/services/product-digital-strategy" aria-label="Product & digital strategy"></a>
+          <a class="service-row__link" href="/services/bespoke-saas" aria-label="Bespoke software & AI"></a>
           <span class="service-row__num">01</span>
+          <div class="service-row__body">
+            <h3 class="service-row__title">Bespoke software &amp; AI</h3>
+            <p class="service-row__desc">
+              Software built specifically for your business — with AI agents
+              woven in — so you own the digital property instead of renting a
+              stack of subscriptions that never quite fits.
+            </p>
+          </div>
+          <ul class="service-row__tags"><li>Bespoke SaaS</li><li>AI Agents</li><li>Own It</li></ul>
+        </li>
+
+        <li class="service-row reveal-row">
+          <a class="service-row__link" href="/services/product-digital-strategy" aria-label="Product & digital strategy"></a>
+          <span class="service-row__num">02</span>
           <div class="service-row__body">
             <h3 class="service-row__title">Product &amp; digital strategy</h3>
             <p class="service-row__desc">
@@ -144,7 +159,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
 
         <li class="service-row reveal-row">
           <a class="service-row__link" href="/services/website-design-build" aria-label="Website design & build"></a>
-          <span class="service-row__num">02</span>
+          <span class="service-row__num">03</span>
           <div class="service-row__body">
             <h3 class="service-row__title">Website design &amp; build</h3>
             <p class="service-row__desc">
@@ -157,7 +172,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
 
         <li class="service-row reveal-row">
           <a class="service-row__link" href="/services/digital-products-ux" aria-label="Digital products & UX"></a>
-          <span class="service-row__num">03</span>
+          <span class="service-row__num">04</span>
           <div class="service-row__body">
             <h3 class="service-row__title">Digital products &amp; UX</h3>
             <p class="service-row__desc">
@@ -170,7 +185,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
 
         <li class="service-row reveal-row">
           <a class="service-row__link" href="/services/ai-interactive-experiences" aria-label="AI & interactive experiences"></a>
-          <span class="service-row__num">04</span>
+          <span class="service-row__num">05</span>
           <div class="service-row__body">
             <h3 class="service-row__title">AI &amp; interactive experiences</h3>
             <p class="service-row__desc">
@@ -183,7 +198,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
 
         <li class="service-row reveal-row">
           <a class="service-row__link" href="/services/digital-product-engineering" aria-label="Digital product engineering"></a>
-          <span class="service-row__num">05</span>
+          <span class="service-row__num">06</span>
           <div class="service-row__body">
             <h3 class="service-row__title">Digital product engineering</h3>
             <p class="service-row__desc">

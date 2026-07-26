@@ -1,0 +1,79 @@
+{
+  "title": "Bespoke Software & AI",
+  "navLabel": "Bespoke Software & AI",
+  "metaTitle": "Bespoke Software & AI · Artifact Digital",
+  "description": "Software built specifically for your business — designed around your workflows, your language, and your customers, with AI agents working quietly in the background. You own it, instead of renting a compromise forever.",
+  "order": 0,
+  "tier": "pillar",
+  "eyebrow": "What we build · Bespoke Software & AI",
+  "heroTitleLines": [
+    { "text": "Software built for" },
+    { "text": "your business.", "italic": true }
+  ],
+  "lede": "For decades, businesses bought software built for millions and spent years bending it to fit one organization. AI has changed the economics. Now you can build software designed exclusively around the way you work — and own it, instead of renting a compromise forever.",
+  "summary": "Custom software with AI agents built in — designed around your business, and owned, not rented.",
+  "intro": [
+    "Most companies don't run on one system. They run on a dozen — sales in one platform, finance in three, a spreadsheet that quietly became mission-critical, and a stack of integrations holding it all together. Every one of those tools was built for millions of other companies, and every one asks your business to conform to it. You pay for that compromise every year, per seat, forever.",
+    "Bespoke SaaS is the alternative: software designed exclusively around your business, your people, and your customers, with an intelligent workforce of AI agents operating quietly behind the scenes. Not a chatbot bolted into a corner — intelligence woven through the workflows, decisions, and processes your organization actually runs on.",
+    "This used to be the exclusive privilege of enterprises with unlimited budgets, because building custom software took entire departments and years. AI has changed that. A small senior team can now build what once required a floor of specialists — which means, for the first time, owning your software costs less than renting the compromise."
+  ],
+  "sections": [
+    {
+      "heading": "Own the asset instead of renting the compromise",
+      "body": [
+        "There's a financial story underneath the usual SaaS stack that rarely gets said plainly. When you assemble a business out of off-the-shelf platforms, you don't just accept their limitations — you rent them. The subscriptions renew whether or not the software still fits. The price rises whether or not you use the new features. And the day you stop paying, you lose access to the systems your business runs on, sometimes including your own data.",
+        "Bespoke software changes the ownership model. You invest once in a digital property that's genuinely yours — an asset on your balance sheet, not a recurring bill against it. It still deserves care and evolution, the way any living infrastructure does. But you stop paying rent on a compromise and start investing in something that compounds in value as your business grows around it."
+      ]
+    },
+    {
+      "heading": "An intelligent workforce, not another chatbot",
+      "body": [
+        "The most valuable AI rarely announces itself. It prepares, suggests, connects, and organizes — quietly removing the operational gravity that pulls every team downward. We design agents the way you'd staff a small, specialized unit: one summarizes meetings, one audits compliance, one watches project health, one drafts the response before the ticket is even created.",
+        "Each agent has one clear responsibility. Together they do work that used to require entire departments — while your people stay firmly in the role only people can hold: the decision-makers. The goal isn't fewer humans. It's giving humans more room to behave like humans."
+      ]
+    },
+    {
+      "heading": "It should speak your language",
+      "body": [
+        "Every company has its own vocabulary — terminology, product names, processes, acronyms, a brand personality. Generic AI doesn't know any of it. We train the intelligence in your software around your documentation, your policies, your workflows, and your tone, so when it communicates it sounds like your company, not like the model that generated it.",
+        "That consistency matters even when the audience is internal. It's the difference between a tool your team tolerates and one they trust."
+      ]
+    }
+  ],
+  "process": [
+    { "title": "Understand the business", "body": "We map how work actually flows — the approvals, the handoffs, the language, and the friction — before deciding what software should exist at all." },
+    { "title": "Design the experience", "body": "Strategy, research, and design in the same hands: the workflows people touch and the agent architecture working behind them, designed as one system." },
+    { "title": "Build with a senior team", "body": "A small, senior team builds it — using AI to accelerate design, development, testing, and documentation without diluting the craft." },
+    { "title": "Own and evolve", "body": "You own the result. We help it grow alongside your ambitions, because software is living infrastructure, not a one-time purchase." }
+  ],
+  "capabilities": [
+    "Custom web and mobile applications built around your workflows",
+    "AI agents for research, drafting, monitoring, compliance, and operations",
+    "Intelligent dashboards that interpret and recommend, not just display",
+    "Knowledge and language models trained on your documentation and tone",
+    "Workflow orchestration that turns organizational complexity into software",
+    "Integrations with the systems you keep — and a path off the ones you don't"
+  ],
+  "deliverables": [
+    "Software designed exclusively around how your business operates",
+    "An intelligent workforce of AI agents woven into your workflows",
+    "A digital property you own — an asset, not a subscription",
+    "Intelligence trained in your language, knowledge, and brand voice",
+    "A system built to grow with you, by the same team that designed it"
+  ],
+  "whoFor": [
+    "Organizations tired of bending their business to fit off-the-shelf software",
+    "Leaders weighing years of subscriptions and integrations against owning the asset",
+    "Teams whose real advantage lives in workflows no generic platform supports",
+    "Companies that want AI woven into how they work, not bolted onto the side"
+  ],
+  "faq": [
+    { "q": "Isn't custom software far more expensive than SaaS subscriptions?", "a": "It used to be. Building custom software once required entire departments and years, which is why only large enterprises could justify it. AI has changed the economics — a small senior team can now build what used to take a floor of specialists. Over a few years, owning the asset often costs less than renting a stack of subscriptions and paying to integrate them." },
+    { "q": "Does 'own it' mean there are no ongoing costs?", "a": "No — software is living infrastructure and deserves care, hosting, and evolution. The difference is what you're paying for: investment in an asset you own and control, rather than rent on a compromise you don't. You're not one price increase or one discontinued product away from losing the systems your business runs on." },
+    { "q": "Is this just AI features added to a normal app?", "a": "No. Bespoke SaaS is software designed around your business from the start, with intelligence woven through the workflows rather than a chatbot bolted into a corner. The interface stays familiar; the intelligence underneath changes what the software can do for your people." },
+    { "q": "Will AI replace our team?", "a": "That's not the goal. The agents remove the repetitive work surrounding your people — summarizing, drafting, monitoring, auditing — so your team spends more time on judgment, relationships, and the work only humans do well. Your people remain the decision-makers." }
+  ],
+  "relatedTags": ["Bespoke SaaS", "AI", "Engineering"],
+  "relatedServices": ["digital-product-engineering", "ai-interactive-experiences", "product-digital-strategy", "digital-strategy"],
+  "ctaHeading": "Tired of renting a compromise? Let's build something you own."
+}
