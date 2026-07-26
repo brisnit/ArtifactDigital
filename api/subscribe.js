@@ -4,10 +4,16 @@
 // the sending domain (artifactdigital.co) verified in Resend, or nothing sends.
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// Minimal branded HTML wrapper for transactional emails.
+// Minimal branded HTML wrapper for transactional emails — leads with the logo.
+const LOGO_URL = 'https://www.artifactdigital.co/brand_assets/A_Logo_DT.png';
 function wrapEmail(paragraphs) {
   const body = paragraphs.map((p) => `<p style="margin:0 0 16px">${p}</p>`).join('');
-  return `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#111">${body}</div>`;
+  return (
+    `<div style="background:#ffffff;max-width:560px;padding:8px 4px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#111">` +
+    `<div style="padding:0 0 20px;margin:0 0 20px;border-bottom:1px solid #ececec">` +
+    `<img src="${LOGO_URL}" alt="Artifact Digital" width="150" height="52" style="display:block;width:150px;height:auto;border:0;outline:none;text-decoration:none" />` +
+    `</div>${body}</div>`
+  );
 }
 
 const WELCOME_SUBJECT = 'Welcome to Field Notes';
