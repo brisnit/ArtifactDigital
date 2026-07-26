@@ -46,6 +46,32 @@ async function sendResend(payload) {
   if (!r.ok) throw new Error(`Resend ${r.status}: ${await r.text()}`);
 }
 
+// Subscriber list lives in a Resend Audience. Set RESEND_AUDIENCE_ID to enable
+// duplicate detection; without it, dedup is skipped and every signup is welcomed.
+const AUDIENCE = process.env.RESEND_AUDIENCE_ID;
+
+async function contactExists(email) {
+  if (!AUDIENCE) return false;
+  const r = await fetch(
+    `https://api.resend.com/audiences/${AUDIENCE}/contacts/${encodeURIComponent(email.toLowerCase())}`,
+    { headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}` } },
+  );
+  if (r.status === 404) return false;
+  if (!r.ok) throw new Error(`Resend contacts GET ${r.status}: ${await r.text()}`);
+  const j = await r.json().catch(() => null);
+  return !!(j && j.data && j.data.id);
+}
+
+async function addContact(email) {
+  if (!AUDIENCE) return;
+  const r = await fetch(`https://api.resend.com/audiences/${AUDIENCE}/contacts`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email.toLowerCase(), unsubscribed: false }),
+  });
+  if (!r.ok) throw new Error(`Resend contacts POST ${r.status}: ${await r.text()}`);
+}
+
 async function readBody(req) {
   if (req.body) {
     if (typeof req.body === 'string') { try { return JSON.parse(req.body); } catch { return {}; } }
@@ -77,6 +103,19 @@ export default async function handler(req, res) {
   const team = process.env.CONTACT_TO || 'hello@artifactdigital.co';
   const from = process.env.CONTACT_FROM || 'Artifact Digital <hello@artifactdigital.co>';
 
+  // 0) Already on the list? Fail open — if the check errors, treat as new.
+  try {
+    if (await contactExists(email)) {
+      return res.status(200).json({
+        ok: true,
+        duplicate: true,
+        message: 'Thank you for your enthusiasm — but you’re already signed up.',
+      });
+    }
+  } catch (err) {
+    console.error('[subscribe] duplicate check failed (continuing as new)', err);
+  }
+
   // 1) Notify the team — this is what records the signup; failure fails the call.
   try {
     await sendResend({ from, to: team, subject: 'New Field Notes subscriber', text: `New subscriber: ${email}` });
@@ -85,7 +124,14 @@ export default async function handler(req, res) {
     return res.status(502).json({ ok: false, error: 'Couldn’t subscribe right now. Please try again later.' });
   }
 
-  // 2) Welcome the subscriber — best-effort; a failure here never blocks signup.
+  // 2) Add to the audience so future signups are recognized — best-effort.
+  try {
+    await addContact(email);
+  } catch (err) {
+    console.error('[subscribe] add contact failed', err);
+  }
+
+  // 3) Welcome the subscriber — best-effort; a failure here never blocks signup.
   try {
     await sendResend({ from, to: email, reply_to: team, subject: WELCOME_SUBJECT, text: WELCOME_TEXT, html: WELCOME_HTML });
   } catch (err) {
