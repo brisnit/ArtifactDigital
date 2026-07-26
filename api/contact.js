@@ -15,6 +15,32 @@ const escapeHtml = (s) =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 
+// Minimal branded HTML wrapper for transactional emails.
+function wrapEmail(paragraphs) {
+  const body = paragraphs.map((p) => `<p style="margin:0 0 16px">${p}</p>`).join('');
+  return `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#111">${body}</div>`;
+}
+
+// Confirmation sent to the person who submitted the contact form.
+function confirmationEmail(firstName) {
+  const safe = escapeHtml(firstName);
+  return {
+    subject: 'We received your message',
+    text: [
+      `Hi ${firstName},`, '',
+      'Thanks for reaching out to Artifact. We received your message and will review the details shortly.', '',
+      'Someone from our team will be in touch soon to learn more about what you’re working on and how we may be able to help.', '',
+      'Best,', 'Artifact Digital',
+    ].join('\n'),
+    html: wrapEmail([
+      `Hi ${safe},`,
+      'Thanks for reaching out to Artifact. We received your message and will review the details shortly.',
+      'Someone from our team will be in touch soon to learn more about what you’re working on and how we may be able to help.',
+      'Best,<br>Artifact Digital',
+    ]),
+  };
+}
+
 async function readBody(req) {
   if (req.body) {
     if (typeof req.body === 'string') {
@@ -87,6 +113,20 @@ export default async function handler(req, res) {
       console.error('[contact] Resend error', r.status, detail);
       return res.status(502).json({ ok: false, error: 'We couldn’t send that right now. Please email hello@artifactdigital.co.' });
     }
+
+    // Confirmation to the person who submitted — best-effort; never blocks the enquiry.
+    try {
+      const ack = confirmationEmail(name.split(/\s+/)[0] || 'there');
+      const r2 = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ from, to: email, reply_to: to, subject: ack.subject, text: ack.text, html: ack.html }),
+      });
+      if (!r2.ok) console.error('[contact] confirmation email failed', r2.status, await r2.text());
+    } catch (ackErr) {
+      console.error('[contact] confirmation email failed', ackErr);
+    }
+
     return res.status(200).json({ ok: true, delivered: true });
   } catch (err) {
     console.error('[contact] send failed', err);
