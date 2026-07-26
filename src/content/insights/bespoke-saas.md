@@ -7,6 +7,7 @@ author: Britt Midgette
 cluster: "Digital Strategy"
 tags: ["Bespoke SaaS", "AI", "Custom Software"]
 keywords: ["bespoke software", "custom SaaS", "AI agents", "own your software", "subscription fatigue", "AI transformation", "custom software development", "digital ownership", "intelligent workforce"]
+heroImage: "/brand_assets/insights/bespoke-saas.webp"
 draft: false
 ---
 *Why the future doesn't belong to buying more software. It belongs to building your own.*
