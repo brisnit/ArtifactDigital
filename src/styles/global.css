@@ -2454,8 +2454,12 @@ button:focus-visible {
 .speed-module .btn-secondary { border-color: rgba(255, 255, 255, 0.3); color: #fff; }
 .speed-module .btn-secondary:hover { border-color: #fff; background: rgba(255, 255, 255, 0.08); }
 
+/* Mirrored variant — copy first in source, media in the wider right column */
+.speed-module--reverse .speed-module__inner { grid-template-columns: 1fr 1.05fr; }
+
 @media (max-width: 900px) {
-  .speed-module__inner { grid-template-columns: 1fr; }
+  .speed-module__inner,
+  .speed-module--reverse .speed-module__inner { grid-template-columns: 1fr; }
   .speed-module__media { order: -1; margin-bottom: 2.5rem; }
 }
 
