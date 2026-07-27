@@ -43,6 +43,13 @@ export const AUTHORS: Record<string, Author> = {
     avatar: '/brand_assets/authors/jonathan-smith.webp',
     series: { label: 'the craft of digital design series', href: '/craft' },
   },
+  'Erik Parr': {
+    name: 'Erik Parr',
+    jobTitle: 'Chief Technology Officer',
+    bio: "Erik Parr is the Chief Technology Officer at Artifact Digital, where he leads the architecture and engineering of intelligent digital products across agentic AI, spatial computing, and interactive systems. He specializes in turning ambitious ideas into production-ready systems built for reliability, observability, and trust — guided by a simple belief: great technology is measured not by how it looks in a demo, but by how reliably it performs in the hands of real people.",
+    personId: `${SITE.url}/#person-erik-parr`,
+    avatar: '/brand_assets/authors/erik-parr.webp',
+  },
 };
 
 export function authorFor(name: string): Author {
