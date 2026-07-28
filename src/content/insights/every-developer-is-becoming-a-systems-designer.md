@@ -84,7 +84,7 @@ Large language models only know what they're given. The quality of their reasoni
 
 That means developers increasingly think about retrieval strategies, memory, knowledge organization, tool availability, user history, business rules, conversation state, and security boundaries.
 
-The application becomes less about generating text and more about assembling the right information at the right moment. Context becomes infrastructure.
+The application becomes less about generating text and more about assembling the right information at the right moment. [Context becomes infrastructure](/insights/the-enterprise-ai-stack-explained) — embeddings, vector databases, and retrieval become as fundamental as the database once was.
 
 ## APIs Are Becoming Collaborators
 
