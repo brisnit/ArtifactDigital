@@ -49,6 +49,7 @@ export const AUTHORS: Record<string, Author> = {
     bio: "Erik Parr is the Chief Technology Officer at Artifact Digital, where he leads the architecture and engineering of intelligent digital products across agentic AI, spatial computing, and interactive systems. He specializes in turning ambitious ideas into production-ready systems built for reliability, observability, and trust — guided by a simple belief: great technology is measured not by how it looks in a demo, but by how reliably it performs in the hands of real people.",
     personId: `${SITE.url}/#person-erik-parr`,
     avatar: '/brand_assets/authors/erik-parr.webp',
+    series: { label: 'the AI engineering series', href: '/ai-engineering' },
   },
 };
 
