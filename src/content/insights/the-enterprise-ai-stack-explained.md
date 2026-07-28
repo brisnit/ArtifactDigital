@@ -160,7 +160,7 @@ Trust begins long before a response reaches a user.
 
 One of the biggest surprises organizations encounter is operational cost. Calling the largest model for every request rarely makes business sense.
 
-Modern AI platforms intelligently route work. Simple classification tasks may use lightweight models. Complex reasoning may use larger frontier models. Deterministic workflows might bypass AI altogether.
+Modern AI platforms intelligently route work. Simple classification tasks may use lightweight models. Complex reasoning may use larger frontier models. [Deterministic workflows might bypass AI altogether](/insights/designing-software-that-learns-without-losing-control).
 
 Smart architecture reduces latency while dramatically lowering operating costs. The stack isn't just about capability. It's about efficiency.
 

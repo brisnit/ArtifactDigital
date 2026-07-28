@@ -14,6 +14,7 @@ const ORDER = [
   'building-ai-products-companies-can-trust',
   'every-developer-is-becoming-a-systems-designer',
   'the-enterprise-ai-stack-explained',
+  'designing-software-that-learns-without-losing-control',
 ];
 
 const all = new Map((await getCollection('insights', ({ data }) => !data.draft)).map((p) => [p.id, p]));
