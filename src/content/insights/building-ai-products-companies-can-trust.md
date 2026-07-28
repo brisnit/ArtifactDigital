@@ -190,7 +190,7 @@ Individually they seem small. Collectively they create systems organizations can
 
 ## The Artifact Perspective
 
-At Artifact Digital, we don't see AI as a feature to sprinkle into products. We see it as a new layer of software engineering.
+At Artifact Digital, we don't see AI as a feature to sprinkle into products. We see it as [a new layer of software engineering](/insights/every-developer-is-becoming-a-systems-designer).
 
 That changes how we architect systems. It changes how we design experiences. It changes how we measure quality. Most importantly, it changes how we think about responsibility.
 
