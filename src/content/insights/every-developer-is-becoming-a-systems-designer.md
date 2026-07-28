@@ -32,7 +32,7 @@ That's a very different discipline.
 
 For decades, software development followed a familiar pattern.
 
-A product manager described a feature. A designer defined the experience. An engineer translated that experience into deterministic code. Every input produced an expected output. The application behaved exactly as it was programmed.
+A product manager described a feature. A designer defined the experience. An engineer translated that experience into deterministic code. Every input produced an expected output. [The application behaved exactly as it was programmed.](/insights/from-crud-to-cognitive-applications)
 
 Today's AI-native applications work differently. Instead of implementing every decision directly, developers increasingly compose systems from intelligent components.
 
