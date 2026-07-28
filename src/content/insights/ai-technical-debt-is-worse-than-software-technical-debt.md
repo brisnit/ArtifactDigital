@@ -158,7 +158,7 @@ The organizations that adopt these practices early will build AI platforms that 
 
 ## Engineering for Maintainability
 
-Good architecture always anticipates change. Models will improve. Embedding algorithms will evolve. Protocols like MCP will mature. New providers will emerge. Costs will change. Context windows will expand.
+[Good architecture always anticipates change.](/insights/ai-doesnt-replace-software-architecture-it-exposes-it) Models will improve. Embedding algorithms will evolve. Protocols like MCP will mature. New providers will emerge. Costs will change. Context windows will expand.
 
 The goal isn't freezing today's architecture. It's making tomorrow's changes inexpensive.
 
