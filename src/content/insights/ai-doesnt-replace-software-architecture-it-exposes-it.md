@@ -142,7 +142,7 @@ For years architecture was often viewed as an internal concern. Customers rarely
 
 AI changes that equation. Architecture increasingly determines product quality, deployment speed, operational cost, security posture, governance, reliability, and innovation velocity.
 
-The architecture itself becomes part of the product strategy. That's a significant shift.
+[The architecture itself becomes part of the product strategy.](/insights/the-future-cto-manages-intelligence-not-infrastructure) That's a significant shift.
 
 ## Technical Debt Changes Shape
 
