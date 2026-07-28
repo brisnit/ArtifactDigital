@@ -17,6 +17,7 @@ const ORDER = [
   'designing-software-that-learns-without-losing-control',
   'ai-technical-debt-is-worse-than-software-technical-debt',
   'from-crud-to-cognitive-applications',
+  'retrieval-is-the-new-database-query',
 ];
 
 const all = new Map((await getCollection('insights', ({ data }) => !data.draft)).map((p) => [p.id, p]));

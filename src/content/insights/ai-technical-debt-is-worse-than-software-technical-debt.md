@@ -76,7 +76,7 @@ Retrieval-Augmented Generation has transformed enterprise AI. But retrieval syst
 
 Documents become outdated. Permissions change. Chunking strategies evolve. Metadata disappears. Knowledge duplicates. Indexes drift. Old documents remain searchable long after they should have been archived.
 
-Poor retrieval quietly reduces answer quality while the language model receives the blame. [Many organizations don't have an AI problem. They have a knowledge management problem.](/insights/how-to-know-if-ready-for-ai)
+[Poor retrieval quietly reduces answer quality](/insights/retrieval-is-the-new-database-query) while the language model receives the blame. [Many organizations don't have an AI problem. They have a knowledge management problem.](/insights/how-to-know-if-ready-for-ai)
 
 ## Embedding Debt
 
