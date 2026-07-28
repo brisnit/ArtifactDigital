@@ -128,7 +128,7 @@ Models evolve. Data changes. User behavior shifts. Enterprise systems therefore 
 
 Modern evaluation pipelines score responses for accuracy, relevance, hallucinations, policy compliance, retrieval quality, latency, cost, and user satisfaction.
 
-This feedback becomes one of the most valuable datasets an organization owns. Because it reveals whether the AI is improving — or quietly degrading.
+This feedback becomes one of the most valuable datasets an organization owns. Because it reveals whether the AI is improving — or [quietly degrading](/insights/ai-technical-debt-is-worse-than-software-technical-debt).
 
 ## Observability Makes AI Measurable
 
