@@ -2,6 +2,9 @@
 # Allow all standard search crawlers.
 User-agent: *
 Allow: /
+# Form POST endpoints — not pages. Keep crawlers out so a GET (which returns
+# 405) doesn't get reported as a "4xx / blocked" indexing error.
+Disallow: /api/
 
 # Explicitly welcome AI / generative-engine crawlers so the site can be
 # cited in ChatGPT, Perplexity, Google AI Overviews, Claude, etc.
