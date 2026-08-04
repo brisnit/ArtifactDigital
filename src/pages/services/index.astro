@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { SITE, orgNode, breadcrumb } from '../../data/site';
+import { PLAYBOOKS, playbookPath } from '../../data/playbooks';
 
 const all = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 const pillars = all.filter((s) => s.data.tier === 'pillar');
@@ -99,6 +100,30 @@ const jsonLd = {
           </li>
         ))}
       </ol>
+    </div>
+  </section>
+
+  <!-- Playbooks: the method, published — so a prospect can judge how we think -->
+  <section class="section services-hub__playbooks">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Playbooks</span>
+        <h2 class="section-heading reveal-line"><span>How we actually work</span></h2>
+      </header>
+      <p class="pb-section-lede reveal">
+        Nothing here is a line item you buy. It's the method written down — the
+        questions we ask, the checks we run, and the answers that make us tell you
+        not to build something. Read it before you talk to us.
+      </p>
+      <div class="service-link-grid">
+        {PLAYBOOKS.map((p) => (
+          <a class="service-link-card reveal-card" href={playbookPath(p.slug)}>
+            <h3>{p.navLabel}</h3>
+            <p>{p.summary}</p>
+            <span class="service-link-card__more">Read it →</span>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 

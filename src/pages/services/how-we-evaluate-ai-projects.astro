@@ -1,0 +1,274 @@
+---
+import PlaybookLayout from '../../layouts/PlaybookLayout.astro';
+
+const criteria = [
+  {
+    q: 'What decision or action changes — and what is that worth?',
+    title: 'Value',
+    body: 'Not “it summarizes documents.” What happens differently on Tuesday because of it, who does it, and what does that hour or that error cost today? If the honest answer is that a person still reads everything afterwards, the value is a demo, not a number.',
+    test: 'We test it by pricing the manual version. If paying a person to do this by hand would be worth it, the AI version has a business behind it. If it wouldn\'t, no model fixes that.',
+  },
+  {
+    q: 'Does the evidence exist, and can we actually reach it?',
+    title: 'Data',
+    body: 'Intelligence has to be grounded in something. The question is never whether your company has data — it always does — but whether the specific evidence this answer depends on exists in a retrievable form, and whether legal, security and the team who owns it will let you near it.',
+    test: 'We ask for a real sample in week one. Access granted in week one is a good sign. Access still pending in week three is the answer.',
+  },
+  {
+    q: 'What happens the day it is confidently wrong?',
+    title: 'Error tolerance',
+    body: 'Every one of these systems is wrong sometimes, and the failures do not look like failures — they look fluent and assured. So we work out the blast radius up front. A wrong draft a human edits is an inconvenience. A wrong dosage, price, or eligibility decision is a different category of thing entirely.',
+    test: 'We map the worst plausible output to a real consequence, then design where the human sits relative to it — before the architecture, not after.',
+  },
+  {
+    q: 'Whose job does this change, and have they agreed?',
+    title: 'Workflow fit',
+    body: 'The most common cause of an unused AI feature is not quality. It is that the tool lives beside the work instead of inside it, and the person it was built for was never asked. A perfect answer in the wrong window is a tab nobody opens twice.',
+    test: 'We watch the work happen before we design anything, and we name the specific moment the system intervenes. If nobody can point to that moment, we stop there.',
+  },
+  {
+    q: 'How will we score it, before we build it?',
+    title: 'Evaluation',
+    body: 'Traditional software either works or throws an error. These systems degrade quietly and gradually, which means “it seems better” is the default review process unless you build something better first. That something is a graded set of real cases with known good answers.',
+    test: 'We build the evaluation set before the feature. If we cannot write fifty realistic cases and agree on what a good answer looks like, we do not understand the problem well enough to solve it.',
+  },
+  {
+    q: 'Does this survive success?',
+    title: 'Unit economics',
+    body: 'Costs that look irrelevant in a pilot with twelve users become the whole conversation at twelve thousand. Same with latency: three seconds is charming in a demo and intolerable inside a workflow someone repeats ninety times a day.',
+    test: 'We model cost and latency per interaction at ten times your expected volume. If the margin only works at pilot scale, we redesign it now rather than discover it at the renewal.',
+  },
+  {
+    q: 'Who answers for the output?',
+    title: 'Accountability',
+    body: 'Somebody in your organization owns what this system says to a customer, a regulator, or an employee. When that person is unnamed, the project stalls at the exact moment it starts to matter — usually in a security or compliance review that nobody scheduled.',
+    test: 'We put the name in the document. Along with what gets logged, how long it is kept, what a customer can ask to see, and how a bad output gets reported and fixed.',
+  },
+];
+
+const killers = [
+  {
+    quote: 'The data exists — we just can\'t get to it.',
+    body: 'This is almost never a technical problem, which is why it is so rarely solved by a technical team. It is procurement, an ownership dispute, a vendor contract, or a security posture that predates the project. We would rather spend two weeks finding out whether that door opens than six months building against a system we were never going to be allowed to read.',
+  },
+  {
+    quote: 'We\'ll know it\'s working when people like it.',
+    body: 'Sentiment is not a measure, and it is the first thing to move when the novelty wears off. Without a graded evaluation set, every future change becomes a guess and every regression goes unnoticed until a customer finds it. If nobody will commit to a number now, the honest read is that nobody believes the number will be good.',
+  },
+  {
+    quote: 'It has to be right every single time.',
+    body: 'Then it should not be a probabilistic system, or a person needs to sit between it and the consequence. Both are fine answers — the deterministic path is often the better product anyway. What does not work is demanding certainty from something that trades in likelihood, then acting surprised.',
+  },
+];
+
+const shape = [
+  {
+    label: 'Days one and two',
+    title: 'Price the outcome',
+    body: 'We work out what actually changes and what it is worth, in your numbers rather than a vendor case study. This is also where most ideas get narrowed — usually to a smaller, sharper version of themselves that is worth far more.',
+    points: [
+      'The decision or task the system touches, named precisely',
+      'The cost of doing it manually today, per unit',
+      'The one metric that would prove it worked',
+    ],
+  },
+  {
+    label: 'Days three to five',
+    title: 'Test the data reality',
+    body: 'We ask for a real sample of the real thing, not a scrubbed export. What we learn about quality, coverage and access in these three days is usually the single biggest predictor of whether the project ships.',
+    points: [
+      'A genuine sample, with its gaps and inconsistencies intact',
+      'Retrieval tested against the questions people actually ask',
+      'Legal, security and data ownership brought in now, not at the end',
+    ],
+  },
+  {
+    label: 'Week two',
+    title: 'Build the scorecard, then a thin slice',
+    body: 'We write the evaluation set with your experts — fifty or so real cases with agreed good answers — and then build the narrowest working version we can measure against it. Not a chat window bolted on. The actual moment of work, running.',
+    points: [
+      'An evaluation set your team owns and keeps using',
+      'A thin end-to-end slice, in the real workflow, on real data',
+      'Cost, latency and quality measured rather than estimated',
+    ],
+  },
+  {
+    label: 'The end',
+    title: 'Go, narrow, or stop',
+    body: 'You get a recommendation with the numbers behind it, and we are equally willing to write any of the three. Stopping in week two is a good outcome. It is a fraction of the price of stopping in month nine, and nobody has to defend it in a board meeting.',
+    points: [
+      'A scored answer against all seven criteria, in writing',
+      'The evaluation harness and thin slice, handed over either way',
+      'If go: a sequenced build plan. If not: what would have to change',
+    ],
+  },
+];
+
+const faq = [
+  {
+    q: 'How long does the assessment take, and what does it cost?',
+    a: 'Two weeks is the standard shape. It is a fixed-scope, fixed-price engagement, and the evaluation harness and thin slice are yours regardless of the recommendation — including when the recommendation is not to build it. We would rather be paid once for an honest no than three times for a slow yes.',
+  },
+  {
+    q: 'We already picked a model and a vendor. Is this still useful?',
+    a: 'Usually more useful, not less. Almost none of the seven criteria are about the model. Data access, error tolerance, workflow fit, evaluation, unit economics and accountability all sit outside the vendor decision, and they are where projects actually fail. If your model choice turns out to be wrong we will say so, but that is rarely the finding.',
+  },
+  {
+    q: 'Does this apply to agents, or only to retrieval and chat features?',
+    a: 'Both, and agents raise the stakes on every criterion. An agent taking actions rather than producing text turns error tolerance and accountability from paperwork into the core design problem — what it is allowed to do unsupervised, what requires a human, what gets logged, and how it is stopped. We evaluate agents against the same seven questions with a much harder line on the last two.',
+  },
+  {
+    q: 'What if we fail the assessment?',
+    a: 'There is no pass mark — there is a scored picture of where the risk actually sits. Most projects come out amber somewhere, and the useful output is knowing which two things to fix first. The three answers we listed above are the genuine stoppers, and in every case the honest move is to fix the underlying condition rather than build around it.',
+  },
+  {
+    q: 'Can you just build it? We\'re confident about the case.',
+    a: 'Yes — if you can answer the seven questions, we will happily skip the assessment and start building. We are not attached to selling a discovery phase. We are attached to not spending your budget on something the data was never going to support.',
+  },
+];
+---
+<PlaybookLayout
+  slug="how-we-evaluate-ai-projects"
+  metaTitle="How We Evaluate AI Projects · Seven Questions First · Artifact Digital"
+  description="Most AI projects don't fail on the model — they fail on data access, error tolerance, workflow fit and evaluation. The seven questions we answer in two weeks before writing a line of code."
+  eyebrow="Playbook · AI evaluation"
+  titleLines={[{ text: 'How we evaluate' }, { text: 'AI projects.', italic: true }]}
+  heroImage="/brand_assets/insights/ai-readiness.webp"
+  heroImageAlt="Interlocking mechanical forms being measured"
+  action={{ label: 'Request an AI assessment', href: '/contact?intent=ai-assessment' }}
+  secondary={{ label: 'Read the thinking', href: '/insights/how-to-know-if-ready-for-ai' }}
+  faq={faq}
+  ctaHeading="Sitting on an AI idea you can't quite price?"
+  ctaSub="Tell us what you're hoping it does and where the data lives. Two weeks from now you'll have a scored answer with the numbers behind it — including if the answer is don't."
+>
+  <Fragment slot="lede">
+    <p>
+      Most AI projects don't fail on the model. They fail on data nobody could
+      reach, an error rate nobody priced, a workflow nobody watched, or a
+      definition of <em>working</em> that nobody wrote down. These are the seven
+      questions we answer first.
+    </p>
+  </Fragment>
+
+  <!-- INTRO -->
+  <section class="section pb-intro">
+    <div class="container service-prose">
+      <p class="reveal">
+        The demo is the easy part. It has been the easy part since the models got good,
+        and it is why so many organizations now have a folder of impressive prototypes
+        and nothing in production. The gap between a convincing demo and a system people
+        rely on is not model quality. It is everything around the model.
+      </p>
+      <p class="reveal">
+        So we evaluate AI projects the way you would evaluate any other capital
+        decision: what changes, what it is worth, what it costs at scale, what happens
+        when it is wrong, and who is accountable. Seven questions. Two weeks. A scored
+        answer in writing.
+      </p>
+      <p class="reveal">
+        Three of those questions have ended projects for us before we wrote any code.
+        That is not a failure of the process — it is the entire point of running it
+        early, while stopping is still cheap and nobody has to defend a year of spend.
+      </p>
+    </div>
+  </section>
+
+  <!-- SEVEN CRITERIA -->
+  <section class="section pb-cards-section">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>The scorecard</span>
+        <h2 class="section-heading reveal-line"><span>Seven questions, answered honestly</span></h2>
+      </header>
+      <ol class="pb-cards">
+        {criteria.map((c, i) => (
+          <li class="pb-card reveal-card">
+            <span class="pb-card__num">{String(i + 1).padStart(2, '0')} · {c.title}</span>
+            <h3 class="pb-card__q">{c.q}</h3>
+            <p class="pb-card__body">{c.body}</p>
+            <p class="pb-card__test"><strong>How we test it.</strong> {c.test}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- THE THREE STOPPERS -->
+  <section class="section pb-killers">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Stop conditions</span>
+        <h2 class="section-heading reveal-line"><span>Three answers that end a project</span></h2>
+      </header>
+      <p class="pb-section-lede reveal">
+        We hear all three regularly, usually said cheerfully. Each one means the project
+        as described will not survive contact with production, and each one is far
+        cheaper to hear now than in month nine.
+      </p>
+      <div class="pb-killer-grid">
+        {killers.map((k) => (
+          <article class="pb-killer reveal-card">
+            <blockquote class="pb-killer__quote">“{k.quote}”</blockquote>
+            <p class="pb-killer__body">{k.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- THE ENGAGEMENT -->
+  <section class="section pb-steps-section">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>The engagement</span>
+        <h2 class="section-heading reveal-line"><span>Two weeks, fixed scope</span></h2>
+      </header>
+      <ol class="pb-steps">
+        {shape.map((s) => (
+          <li class="pb-step reveal-card">
+            <span class="pb-step__label">{s.label}</span>
+            <div class="pb-step__body">
+              <h3 class="pb-step__title">{s.title}</h3>
+              <p class="pb-step__lede">{s.body}</p>
+              <ul class="pb-step__points">
+                {s.points.map((p) => <li>{p}</li>)}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <p class="pb-note reveal">
+        Larger programs — several use cases, multiple data domains, regulated
+        environments — run longer. The order holds: value, data, evaluation, then a
+        thin slice that proves it in the real workflow.
+      </p>
+    </div>
+  </section>
+
+  <!-- LISTS -->
+  <section class="section service-lists">
+    <div class="container service-lists__grid">
+      <div>
+        <h2 class="service-list__title reveal-line"><span>What you get</span></h2>
+        <ul class="ticklist">
+          <li class="reveal">A scored answer against all seven criteria, in writing, with the reasoning shown</li>
+          <li class="reveal">An evaluation set of real cases your team owns and keeps using</li>
+          <li class="reveal">A thin working slice in the real workflow, on real data</li>
+          <li class="reveal">Cost and latency modelled at ten times your expected volume</li>
+          <li class="reveal">A named accountability model — logging, retention, escalation, human checkpoints</li>
+          <li class="reveal">A go, narrow, or stop recommendation we're equally willing to write</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="service-list__title reveal-line"><span>Who it's for</span></h2>
+        <ul class="ticklist">
+          <li class="reveal">Leaders holding a mandate to "do something with AI" and no way to rank the options</li>
+          <li class="reveal">Teams with a promising prototype that hasn't survived a security or compliance review</li>
+          <li class="reveal">Organizations weighing build against buy on a feature vendors are pitching hard</li>
+          <li class="reveal">Product teams whose pilot got good feedback and no measurable outcome</li>
+          <li class="reveal">Anyone about to sign a large AI budget on the strength of a demo</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</PlaybookLayout>

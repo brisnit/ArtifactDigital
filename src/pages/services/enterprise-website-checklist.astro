@@ -1,0 +1,378 @@
+---
+import PlaybookLayout from '../../layouts/PlaybookLayout.astro';
+
+const groups = [
+  {
+    title: 'Ownership and governance',
+    lede: 'The category that quietly decides everything else. Sites do not decay because the design was wrong; they decay because nobody was accountable for keeping it right.',
+    items: [
+      {
+        check: 'One named person owns the experience end to end.',
+        why: 'Not a committee, not a steering group. When six departments each own a piece, the seams between them belong to nobody — and the seams are where customers actually get lost.',
+      },
+      {
+        check: 'There is a written decision path for “can we add this?”',
+        why: 'Every enterprise site is one unrefused request away from a new template. Without a documented answer, the loudest stakeholder becomes the information architecture.',
+      },
+      {
+        check: 'Publishing rights are scoped, and someone reviews before release.',
+        why: 'Either everyone can publish anything or nothing ships for six weeks. Both are governance failures. The workable middle is scoped rights with a light, fast review.',
+      },
+      {
+        check: 'Content has named owners with review dates, per section.',
+        why: 'Unowned content is never wrong enough to fix and never right enough to trust. A named owner and a date turn “someone should update this” into a task with an address.',
+      },
+      {
+        check: 'There is a budget line for the site after launch.',
+        why: 'A site funded as a project and maintained as a favour will look exactly two years old, permanently. Ongoing investment is the difference between a platform and a monument.',
+      },
+    ],
+  },
+  {
+    title: 'Audience and content',
+    lede: 'Most enterprise sites are organized around what the company wants to say, then patched with navigation to help people find what they came for.',
+    items: [
+      {
+        check: 'You can name the top five tasks people come to do.',
+        why: 'Not personas — tasks. If the five things that account for most of your traffic are not obvious within one click, the site is arranged for the org chart rather than the visitor.',
+      },
+      {
+        check: 'Every page has a reason to exist that someone can state out loud.',
+        why: 'The average enterprise migration carries thousands of pages nobody has opened in a year. Each one dilutes search, adds review burden, and hides the pages that matter.',
+      },
+      {
+        check: 'Content is written for the reader, not for the approval chain.',
+        why: 'Copy that survives six rounds of internal review tends to say nothing that could be disagreed with, which is the same as saying nothing.',
+      },
+      {
+        check: 'Product, pricing and technical claims have a single source of truth.',
+        why: 'When the same number lives on four pages, three of them will be wrong within a quarter — and the sales team will find out from a customer.',
+      },
+      {
+        check: 'You have a real plan for the content nobody wants to migrate.',
+        why: '“We will sort it during the build” means it gets migrated verbatim at 2am in launch week. Decide what dies before the schedule decides for you.',
+      },
+    ],
+  },
+  {
+    title: 'Structure and navigation',
+    lede: 'Information architecture is the part users experience as “this site is easy” — and the part that is most expensive to change after launch.',
+    items: [
+      {
+        check: 'Navigation reflects how people think, not how you are organized.',
+        why: 'Customers do not know which business unit owns the thing they need, and they should never have to guess. Internal structure leaking into the menu is the most common enterprise IA failure.',
+      },
+      {
+        check: 'The structure has been tested with people outside the company.',
+        why: 'A tree test with twenty strangers costs almost nothing and routinely overturns months of internal debate. Everyone inside already knows where things are, which makes them useless as a test.',
+      },
+      {
+        check: 'Search works, and someone reads what people searched for.',
+        why: 'Site search logs are the cheapest research in the building — an unfiltered list of what people wanted and could not find. Almost nobody reads them.',
+      },
+      {
+        check: 'URLs are stable, and redirects are planned before launch.',
+        why: 'A redesign that drops link equity can cost more traffic than the redesign wins. Map old to new while it is still a spreadsheet, not an emergency.',
+      },
+      {
+        check: 'Every page tells you where you are and what is nearby.',
+        why: 'Most visitors arrive from search, deep in the site, with no context. If a page only makes sense to someone who came via the homepage, most of your audience will never make sense of it.',
+      },
+    ],
+  },
+  {
+    title: 'Design system and brand',
+    lede: 'The site will be edited by dozens of people for years. What holds quality is the system, not the taste of whoever is editing today.',
+    items: [
+      {
+        check: 'Components exist that authors cannot break.',
+        why: 'If a page can be assembled badly, it eventually will be. The constraint is the feature: good components make the correct layout the easiest one to build.',
+      },
+      {
+        check: 'Design tokens are shared between design and code.',
+        why: 'When a colour or spacing value lives in two places, they diverge within a release. One source keeps the brand honest without anyone policing it.',
+      },
+      {
+        check: 'There is a defined set of page types — and adding one is a decision.',
+        why: 'Template sprawl is how sites become unmaintainable. Ten well-made types beat forty bespoke pages every time, including for the people requesting the bespoke pages.',
+      },
+      {
+        check: 'The system covers the ugly states, not just the pretty ones.',
+        why: 'Empty, loading, error, too-long-a-headline, no-image, twelve-items-in-a-three-item-slot. Real content is messy, and the messy states are what visitors actually see.',
+      },
+      {
+        check: 'Brand expression survives the CMS.',
+        why: 'A distinctive design that flattens into a generic grid the moment real authors touch it was never a design system. It was a set of pictures.',
+      },
+    ],
+  },
+  {
+    title: 'Performance',
+    lede: 'Speed is not a technical nicety on an enterprise site. It is the first impression, and on mobile it is the entire impression.',
+    items: [
+      {
+        check: 'Core Web Vitals pass on real user data, not just in the lab.',
+        why: 'Lab scores are run on fast machines with warm caches. Field data tells you what your actual visitors on actual devices experienced, which is the only number that affects behaviour or rankings.',
+      },
+      {
+        check: 'Images are sized, modern-format, and never larger than displayed.',
+        why: 'The single most common performance failure in enterprise CMSes: a 4MB press photo dropped into a 400px slot by someone with no way to know better.',
+      },
+      {
+        check: 'You know every third-party script on the page and why it is there.',
+        why: 'Tag managers accumulate. Most enterprise sites carry scripts nobody can attribute, each one costing main-thread time on every visit forever.',
+      },
+      {
+        check: 'Layout does not shift while loading.',
+        why: 'Content jumping under a thumb is the most viscerally annoying thing a site can do, and it is almost always fixable by reserving space for media and embeds.',
+      },
+      {
+        check: 'There is a performance budget, and builds fail when it is exceeded.',
+        why: 'Performance achieved once is performance lost by the third release. Only automation holds a line that every new feature has an incentive to cross.',
+      },
+    ],
+  },
+  {
+    title: 'Accessibility',
+    lede: 'For most enterprises this is a legal exposure and a procurement requirement, not a value statement. It is also just how you avoid excluding people.',
+    items: [
+      {
+        check: 'You have tested with a keyboard alone, and with a screen reader.',
+        why: 'Automated tools catch perhaps a third of real issues. Ten minutes of tabbing through your top task will find things no scanner reports.',
+      },
+      {
+        check: 'Colour contrast passes at real sizes, including on brand colours.',
+        why: 'This is where brand palettes usually break. Better to solve it once in the design system than to lose the argument on every page for the next five years.',
+      },
+      {
+        check: 'Focus is always visible and never trapped.',
+        why: 'Custom modals, menus and carousels are where keyboard users get stranded. If focus disappears, so does the ability to use the site at all.',
+      },
+      {
+        check: 'Authors cannot publish an image without alt text or a heading out of order.',
+        why: 'Accessibility maintained by goodwill degrades immediately. Put it in the tooling, where it holds without anyone remembering.',
+      },
+      {
+        check: 'There is an accessibility statement, and it is true.',
+        why: 'A published statement with known gaps and a remediation date is credible. A boilerplate claim of full compliance on a site that fails basic checks is a liability.',
+      },
+    ],
+  },
+  {
+    title: 'Platform and engineering',
+    lede: 'The platform choice is usually made early, by the fewest people, with the longest consequences.',
+    items: [
+      {
+        check: 'The CMS was chosen for how your team publishes, not for its feature matrix.',
+        why: 'Every enterprise CMS can do everything on the sheet. The difference is whether a marketer can publish a page on Friday without a developer, and that is not on the sheet.',
+      },
+      {
+        check: 'Content is structured, not stored as pasted rich text.',
+        why: 'Structured content can be reused, syndicated, translated and redesigned. A wall of HTML in a body field has to be redone by hand every time anything changes.',
+      },
+      {
+        check: 'Environments, version control and rollback actually exist.',
+        why: 'Editing production directly is common in enterprise web, right up until the day it is catastrophic. Rollback is worth more than any feature on the roadmap.',
+      },
+      {
+        check: 'Integrations degrade gracefully when the other system is down.',
+        why: 'Your site will outlive at least one of the services it depends on. A search outage should not take the homepage with it.',
+      },
+      {
+        check: 'Security, privacy and consent are handled at the platform level.',
+        why: 'Per-page compliance is not compliance. Headers, cookie handling and data retention need to be defaults nobody can opt out of by accident.',
+      },
+    ],
+  },
+  {
+    title: 'Measurement and life after launch',
+    lede: 'Launch is the start of the useful part. Most organizations staff it as the end.',
+    items: [
+      {
+        check: 'You agreed what success means before the build started.',
+        why: 'Metrics chosen afterwards are chosen to flatter. Written down first, they tell you whether the investment worked and what to fix next.',
+      },
+      {
+        check: 'Analytics track the tasks, not just the pageviews.',
+        why: 'Traffic is not an outcome. Whether someone found the spec sheet, requested the quote, or completed the application is the thing worth measuring.',
+      },
+      {
+        check: 'Someone reviews the numbers on a schedule, with authority to act.',
+        why: 'A dashboard nobody owns is decoration. The value is in the standing thirty minutes where a person can decide to change something.',
+      },
+      {
+        check: 'There is a roadmap for the twelve months after launch.',
+        why: 'The gap between launch and the next funded initiative is where sites rot. A modest, funded backlog beats a heroic replatform every four years.',
+      },
+      {
+        check: 'You are set up to run small experiments, not just big projects.',
+        why: 'The enterprises whose sites keep improving are the ones that can ship a change in a week. Everyone else waits for the next redesign to fix what they learned in month two.',
+      },
+    ],
+  },
+];
+
+const total = groups.reduce((n, g) => n + g.items.length, 0);
+
+const faq = [
+  {
+    q: 'Do we need to pass all forty before we start a redesign?',
+    a: 'No — almost nobody does, and a site that passed all forty would not need a redesign. The list is a diagnostic, not a gate. What matters is which ones you fail: failures in ownership, governance and content are the ones that will sabotage a build no matter how good the design is, so fix those first or design around them deliberately.',
+  },
+  {
+    q: 'Which section causes the most damage in practice?',
+    a: 'Ownership and governance, by a wide margin. Performance, accessibility and design quality are all solvable with money and skill. A site with no single owner regresses on all three within a year of launch, because every individually reasonable request compounds and nobody is empowered to say no.',
+  },
+  {
+    q: 'We are on a modern platform already. Does that cover most of this?',
+    a: 'It covers a slice of the engineering section and none of the rest. A modern platform makes good outcomes possible; it does not make them happen. We have seen genuinely excellent stacks running sites that fail thirty of these checks, because the platform was treated as the strategy.',
+  },
+  {
+    q: 'Can you run this against our current site?',
+    a: 'Yes — that is our experience audit. We score every item with evidence attached, separate what is urgent from what is merely untidy, and give you a sequenced remediation plan. It usually takes two to three weeks depending on the size of the estate, and it frequently establishes that a full rebuild is not the right answer.',
+  },
+  {
+    q: 'How often should we run through it?',
+    a: 'Once a year is plenty for a stable site, plus once before any significant redesign or replatform. The checks that drift fastest are content ownership, third-party scripts and performance budgets, so those are worth a quarterly glance even when nothing else changes.',
+  },
+];
+---
+<PlaybookLayout
+  slug="enterprise-website-checklist"
+  metaTitle="The Enterprise Website Checklist · 40 Checks · Artifact Digital"
+  description="Not a feature list. Forty checks across governance, content, IA, design systems, performance, accessibility, platform and measurement that decide whether an enterprise site still works two years after launch."
+  eyebrow="Playbook · Enterprise web"
+  titleLines={[{ text: 'The enterprise' }, { text: 'website checklist.', italic: true }]}
+  heroImage="/brand_assets/insights/no-one-owns-experience.webp"
+  heroImageAlt="Separate hands each holding one piece of a whole"
+  action={{ label: 'Request an experience audit', href: '/contact?intent=audit' }}
+  secondary={{ label: 'Read the thinking', href: '/insights/enterprise-websites-fail-no-one-owns-experience' }}
+  faq={faq}
+  ctaHeading="Want this run against your actual site?"
+  ctaSub="We'll score all forty with evidence attached, separate the urgent from the untidy, and give you a sequenced plan — including when the honest answer is that you don't need a rebuild."
+>
+  <Fragment slot="lede">
+    <p>
+      Not a feature list. These are the {total} things that decide whether an
+      enterprise site still works <em>two years after launch</em> — when the launch
+      team has moved on and four departments are publishing into it every week.
+    </p>
+  </Fragment>
+
+  <!-- INTRO -->
+  <section class="section pb-intro">
+    <div class="container service-prose">
+      <p class="reveal">
+        Enterprise websites rarely fail loudly. They launch well, get praised for a
+        quarter, and then degrade one entirely reasonable decision at a time — a new
+        template here, an unowned section there, a tracking script somebody needed for
+        a campaign in 2023. Two years later everyone agrees the site is a problem and
+        nobody can point to the moment it became one.
+      </p>
+      <p class="reveal">
+        So this list is deliberately weighted away from the things that get argued about
+        in the pitch. Very little of it is about visual design, and none of it is about
+        which CMS won the evaluation. The checks that predict the outcome are duller
+        than that: who owns what, what gets published, what happens when it is wrong,
+        and whether anyone is funded to care after launch.
+      </p>
+      <p class="reveal">
+        Use it as a diagnostic. Go through it honestly, mark the ones you would fail
+        today, and look at where the failures cluster. That cluster is your real
+        project — and it is often smaller and cheaper than the redesign you were
+        about to commission.
+      </p>
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section class="section pb-checklist-section">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>{total} checks · {groups.length} categories</span>
+        <h2 class="section-heading reveal-line"><span>Go through it honestly</span></h2>
+      </header>
+      <div class="pb-groups">
+        {groups.map((g, gi) => (
+          <section class="pb-group">
+            <header class="pb-group__head reveal">
+              <span class="pb-group__num">{String(gi + 1).padStart(2, '0')}</span>
+              <div>
+                <h3 class="pb-group__title">{g.title}</h3>
+                <p class="pb-group__lede">{g.lede}</p>
+              </div>
+            </header>
+            <ul class="pb-checks pb-checks--plain">
+              {g.items.map((item) => (
+                <li class="pb-check reveal">
+                  <span class="pb-check__box" aria-hidden="true"></span>
+                  <div>
+                    <p class="pb-check__q">{item.check}</p>
+                    <p class="pb-check__why">{item.why}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO READ THE RESULT -->
+  <section class="section service-section">
+    <div class="container service-section__grid">
+      <div class="service-section__head">
+        <h2 class="service-section__heading reveal-line"><span>How to read your score</span></h2>
+      </div>
+      <div class="service-prose service-section__body">
+        <p class="reveal">
+          The count matters less than the distribution. Failing eight checks spread
+          evenly across the categories describes a site that needs maintenance. Failing
+          four checks, all of them in ownership and governance, describes an
+          organization that will produce the same site again — better looking, same
+          trajectory.
+        </p>
+        <p class="reveal">
+          If the failures cluster in performance, accessibility or engineering, you have
+          a technical remediation project, and it is usually shorter and far less
+          disruptive than a rebuild. If they cluster in content and structure, you have
+          a strategy and governance project wearing a redesign costume. Buying the
+          wrong one of those two is the most expensive mistake in enterprise web.
+        </p>
+        <p class="reveal">
+          And if you cannot answer a check at all — nobody knows who owns that section,
+          nobody can say what the top tasks are — that is not a neutral result. An
+          unanswerable question is a failed one, and it is where we would start.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LISTS -->
+  <section class="section service-lists">
+    <div class="container service-lists__grid">
+      <div>
+        <h2 class="service-list__title reveal-line"><span>What an audit adds</span></h2>
+        <ul class="ticklist">
+          <li class="reveal">Every check scored against your live site, with evidence rather than opinion</li>
+          <li class="reveal">Field performance and accessibility results, not lab scores</li>
+          <li class="reveal">A content inventory that names what should be kept, merged, or retired</li>
+          <li class="reveal">The governance gaps written down in language leadership can act on</li>
+          <li class="reveal">A sequenced plan separating urgent, valuable and cosmetic</li>
+          <li class="reveal">An honest verdict on whether you need a rebuild at all</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="service-list__title reveal-line"><span>Who it's for</span></h2>
+        <ul class="ticklist">
+          <li class="reveal">Marketing and digital leaders inheriting a site they did not commission</li>
+          <li class="reveal">Teams about to write a redesign brief and unsure what belongs in it</li>
+          <li class="reveal">Organizations where four departments publish and none owns the outcome</li>
+          <li class="reveal">Anyone holding a replatform proposal that feels larger than the problem</li>
+          <li class="reveal">Enterprises facing an accessibility or procurement requirement with a deadline</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</PlaybookLayout>

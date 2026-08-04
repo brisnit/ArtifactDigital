@@ -227,6 +227,26 @@ if (navToggle && mobileNav) {
   );
 }
 
+// ---------- Desktop nav dropdown ----------
+// The panel opens on hover and :focus-within, in CSS — it works with JS off.
+// This only adds Escape-to-close, which CSS can't express: focus stays on the
+// trigger afterwards, so :focus-within would hold the panel open forever.
+document.querySelectorAll('.nav-item--has-menu').forEach((item) => {
+  const trigger = item.querySelector('.nav-item__link');
+
+  item.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || !item.contains(document.activeElement)) return;
+    item.classList.add('is-dismissed');
+    if (trigger) trigger.focus();
+  });
+
+  // Any fresh intent to open it clears the dismissal.
+  item.addEventListener('pointerenter', () => item.classList.remove('is-dismissed'));
+  item.addEventListener('focusout', (e) => {
+    if (!item.contains(e.relatedTarget)) item.classList.remove('is-dismissed');
+  });
+});
+
 // ---------- Insights index: search / filter / sort / paginate ----------
 // All posts are rendered server-side (crawlable). This only reorders and
 // hides cards client-side. Without JS every post stays visible — the

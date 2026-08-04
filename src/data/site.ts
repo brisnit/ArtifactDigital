@@ -1,6 +1,8 @@
 // Central site configuration + shared structured-data nodes.
 // Single source of truth so every page emits consistent metadata/schema.
 
+import { PLAYBOOKS, playbookPath } from './playbooks';
+
 export const SITE = {
   name: 'Artifact Digital',
   url: 'https://www.artifactdigital.co',
@@ -39,13 +41,29 @@ export const ANALYTICS = {
 } as const;
 
 // Primary navigation — page-based IA.
-export const NAV = [
-  { label: 'Services', href: '/services' },
+// `children` renders as a dropdown on desktop and a nested group on mobile.
+// The Services submenu is generated from the playbooks list, so publishing a
+// new playbook puts it in the nav without a second edit.
+export interface NavItem {
+  label: string;
+  href: string;
+  children?: { label: string; href: string }[];
+}
+
+export const NAV: readonly NavItem[] = [
+  {
+    label: 'Services',
+    href: '/services',
+    children: [
+      { label: 'All services', href: '/services' },
+      ...PLAYBOOKS.map((p) => ({ label: p.navLabel, href: playbookPath(p.slug) })),
+    ],
+  },
   { label: 'Work', href: '/work' },
   { label: 'Insights', href: '/insights' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
-] as const;
+];
 
 // Standardized CTA language. One vocabulary across the whole site so the
 // primary ask is always consistent and intentional.

@@ -1,0 +1,278 @@
+---
+import PlaybookLayout from '../../layouts/PlaybookLayout.astro';
+
+const levels = [
+  {
+    name: 'Ad hoc',
+    tagline: 'It is in the file somewhere',
+    here: [
+      'New screens start by copying an old screen and editing it',
+      'There are four blues, and everyone has a theory about which is correct',
+      'Onboarding a designer or developer means asking someone who has been here a while',
+      'Consistency depends entirely on who happened to build the page',
+    ],
+    cost: 'Every screen is a fresh negotiation. Designers re-solve solved problems, engineers re-implement solved components, and the product feels like it was made by strangers — because in a sense it was.',
+    move: 'Stop trying to build a system. Write down what already exists instead: an honest audit of every colour, type size, button and input actually shipping. It is usually a shocking document, and it is the only sound foundation for the next step.',
+  },
+  {
+    name: 'Style guide',
+    tagline: 'A shared vocabulary, and nothing enforcing it',
+    here: [
+      'There is a documented palette, type scale and spacing rhythm',
+      'Designers reference it; engineers reference it when they remember',
+      'Nothing breaks if you ignore it, and people quietly do',
+      'The guide is a page in a wiki that was last edited some time ago',
+    ],
+    cost: 'The vocabulary exists but carries no weight, so it drifts. Worse, it creates the appearance of a system — leadership believes the problem is solved while the actual product keeps diverging, one reasonable exception at a time.',
+    move: 'Move the decisions into code and design tooling as tokens. When the value lives in one place that both sides consume, adherence stops depending on memory and goodwill.',
+  },
+  {
+    name: 'Component library',
+    tagline: 'Reuse, without guarantees',
+    here: [
+      'There is a real component library, and teams use it for most new work',
+      'Design and code components share names but not always behaviour',
+      'Accessibility is handled per component by whoever built it',
+      'There is no clear process for proposing or retiring a component',
+    ],
+    cost: 'Reuse is real, so this feels like success — and it is where most organizations stall for years. But without shared tokens and governance, the design file and the production component drift apart, and every mismatch becomes a bug ticket nobody wants to own.',
+    move: 'Establish parity and a contribution model. One source for tokens, one definition of each component, and a documented path for how a new pattern gets in — and how the exception that spawned it gets removed.',
+  },
+  {
+    name: 'Design system',
+    tagline: 'Tokens, parity, governance, and accessibility by default',
+    here: [
+      'Tokens flow from one source into both design tooling and production code',
+      'Components ship with states, behaviour and accessibility built in, not bolted on',
+      'There is a named owner, a contribution path, and a versioning and deprecation policy',
+      'A new team can ship a coherent screen without asking anyone permission',
+    ],
+    cost: 'Very little, day to day — which is why teams stop here comfortably. The residual risk is that the system serves the components it has rather than the product it is becoming, and slowly turns into a constraint people route around for anything genuinely new.',
+    move: 'Start measuring. Adoption per team, time from design to shipped screen, accessibility defects, exception requests. A system without numbers is defended by opinion, and opinion loses budget arguments.',
+  },
+  {
+    name: 'Product platform',
+    tagline: 'The system is the fastest path, and it is measured',
+    here: [
+      'Using the system is genuinely quicker than working around it, and everyone knows it',
+      'Adoption, defect rates and delivery speed are tracked and reported',
+      'The system evolves from real product needs rather than from a backlog of tidying',
+      'Brand, accessibility and performance standards are enforced by the tooling itself',
+    ],
+    cost: 'Nothing structural. The failure mode here is complacency and staffing — platforms treated as finished get defunded, and a system that stops absorbing new product reality is a level four system with better documentation.',
+    move: 'Keep it fed and keep it honest. Fund it as a product with users, retire what nobody uses, and periodically prove the value with the numbers you are already collecting.',
+  },
+];
+
+const diagnostics = [
+  {
+    q: 'Can a new engineer build a correct screen in their first week without asking a person?',
+    why: 'This separates level two from level three faster than any inventory. If the answer depends on tribal knowledge, documentation is not doing the work.',
+  },
+  {
+    q: 'If you change the primary brand colour today, how many places do you edit?',
+    why: 'One is level four. A handful is level three. “We would have to go and look” is level one or two, whatever the wiki says.',
+  },
+  {
+    q: 'Who decides whether a new component gets added — and who removes the old one?',
+    why: 'Additions are easy to govern and everyone does it. Deprecation is the honest test of whether governance exists at all.',
+  },
+  {
+    q: 'Does the design file match what is in production right now?',
+    why: 'Not roughly. Exactly. Parity is the single largest difference between a component library and a design system, and it is the one most teams overestimate.',
+  },
+  {
+    q: 'Can you name your adoption rate?',
+    why: 'If nobody is measuring, the system is being defended by belief. That works until the first budget cycle where someone asks what it returned.',
+  },
+];
+
+const traps = [
+  {
+    title: 'Buying tooling instead of governance',
+    body: 'New tooling is a satisfying purchase and a poor substitute for a decision. The organizations stuck at level two are almost never stuck for technical reasons — they are stuck because nobody owns the system, nobody can say no to an exception, and nothing happens when the guide is ignored. No product solves that.',
+  },
+  {
+    title: 'Chasing level five when level three is enough',
+    body: 'Maturity is not a score to maximize. A forty-person product organization with one surface does not need a platform team, and building one will cost more than the inconsistency it prevents. The right level is the one that matches how many teams, surfaces and years you are actually spanning.',
+  },
+  {
+    title: 'Treating the system as a design project',
+    body: 'A system built by designers, for designers, ships beautiful documentation and changes nothing in production. Engineering has to be in it from the first week — the system is a shared contract or it is a picture of one.',
+  },
+  {
+    title: 'Launching it and calling it done',
+    body: 'A system with no funded owner starts decaying the moment the launch team disperses. Within a year the exceptions outnumber the rules, and you get to have the whole conversation again with a bigger backlog.',
+  },
+];
+
+const faq = [
+  {
+    q: 'Which level should we be aiming for?',
+    a: 'Usually one level above where you are, and rarely level five. Match the level to your span: a single product with one team is well served at level three, while several products sharing a brand across web and native genuinely need level four. Level five earns its keep when the system is serving many teams and its cost has to be justified with numbers.',
+  },
+  {
+    q: 'How long does it take to move up a level?',
+    a: 'From ad hoc to a style guide is weeks. From a component library to a real design system — tokens, parity, governance, accessibility built in — is usually two to four months of focused work for a mid-sized product, and most of that time goes into the governance and the migration, not the components. The step nobody budgets for is retiring the old patterns, and that is the step that decides whether it holds.',
+  },
+  {
+    q: 'Do we need a dedicated design system team?',
+    a: 'Not until level four, and not a large one even then. Below that, a named owner with protected time beats a team with none. What is not optional at any level is a single accountable person — systems maintained by consensus drift toward whatever the busiest team needed last sprint.',
+  },
+  {
+    q: 'We have a component library. Are we not already there?',
+    a: 'A component library is level three, and it is a real achievement. The gap to level four is not more components — it is tokens flowing from one source into both design and code, accessibility and states built into each component rather than added per use, and a documented path for how patterns get added and removed. That gap is where most of the remaining cost lives.',
+  },
+  {
+    q: 'How do you assess where we actually sit?',
+    a: 'We audit the shipped product rather than the documentation, because those are frequently different systems. We inventory what is really in production, test parity against the design source, review the governance and contribution process, and interview the people who work around the system to find out why. It takes about two weeks and ends with a level, the evidence for it, and the shortest credible path to the next one.',
+  },
+];
+---
+<PlaybookLayout
+  slug="design-system-maturity-model"
+  metaTitle="Design System Maturity Model · Five Levels · Artifact Digital"
+  description="Five levels of design system maturity, described honestly — ad hoc, style guide, component library, design system, product platform. What each costs you, and what actually moves you up."
+  eyebrow="Playbook · Design systems"
+  titleLines={[{ text: 'Design system' }, { text: 'maturity model.', italic: true }]}
+  heroImage="/brand_assets/insights/craft-survives-scale.webp"
+  heroImageAlt="Repeating forms holding their shape at increasing scale"
+  action={{ label: 'Get a design system review', href: '/contact?intent=design-system' }}
+  secondary={{ label: 'Read the thinking', href: '/insights/design-systems-craft-survives-scale' }}
+  faq={faq}
+  ctaHeading="Want to know which level you're actually on?"
+  ctaSub="We audit the shipped product rather than the documentation, then give you a level, the evidence behind it, and the shortest credible path to the next one."
+>
+  <Fragment slot="lede">
+    <p>
+      Five levels, described honestly. Most teams sit one level lower than they
+      think — and the cost of that gap shows up in <em>every sprint</em>, as
+      rework, as inconsistency, and as arguments that were settled two years ago.
+    </p>
+  </Fragment>
+
+  <!-- INTRO -->
+  <section class="section pb-intro">
+    <div class="container service-prose">
+      <p class="reveal">
+        Design system maturity is easy to overstate because the visible artifacts show
+        up early. A palette, a type scale, a page of components in a shared file — that
+        is enough to say “we have a design system” in a meeting, and it is nowhere near
+        enough to change what ships.
+      </p>
+      <p class="reveal">
+        The levels below are defined by what is true in production, not by what exists
+        in documentation. That distinction is the whole model. A team with immaculate
+        guidelines and a codebase full of one-off components is not further along than a
+        team with modest components that are actually used everywhere. It is further
+        behind, because it also believes the problem is handled.
+      </p>
+      <p class="reveal">
+        None of this is a scoreboard. The right level is the one that matches how many
+        teams, surfaces and years you are spanning — and climbing past it costs more
+        than the inconsistency it prevents.
+      </p>
+    </div>
+  </section>
+
+  <!-- THE LEVELS -->
+  <section class="section pb-levels-section">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>The model</span>
+        <h2 class="section-heading reveal-line"><span>Five levels</span></h2>
+      </header>
+      <ol class="pb-levels">
+        {levels.map((l, i) => (
+          <li class="pb-level reveal-card">
+            <div class="pb-level__rail">
+              <span class="pb-level__num">Level {i + 1}</span>
+              <h3 class="pb-level__name">{l.name}</h3>
+              <p class="pb-level__tagline">{l.tagline}</p>
+            </div>
+            <div class="pb-level__body">
+              <h4 class="pb-level__label">You're here if</h4>
+              <ul class="pb-level__signals">
+                {l.here.map((h) => <li>{h}</li>)}
+              </ul>
+              <h4 class="pb-level__label">What it costs you</h4>
+              <p class="pb-level__text">{l.cost}</p>
+              <h4 class="pb-level__label">What moves you up</h4>
+              <p class="pb-level__text">{l.move}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- DIAGNOSTICS -->
+  <section class="section pb-questions-section">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Self-assessment</span>
+        <h2 class="section-heading reveal-line"><span>Five questions that place you</span></h2>
+      </header>
+      <p class="pb-section-lede reveal">
+        Answer these about the product that is live right now, not about the one in the
+        design file. Where the two disagree, the live one is the truth.
+      </p>
+      <ol class="pb-checks">
+        {diagnostics.map((d, i) => (
+          <li class="pb-check reveal">
+            <span class="pb-check__num">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <p class="pb-check__q">{d.q}</p>
+              <p class="pb-check__why">{d.why}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- TRAPS -->
+  <section class="section pb-cards-section">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Failure modes</span>
+        <h2 class="section-heading reveal-line"><span>Four ways teams stall</span></h2>
+      </header>
+      <div class="pb-trap-grid">
+        {traps.map((t) => (
+          <article class="pb-trap reveal-card">
+            <h3 class="pb-trap__title">{t.title}</h3>
+            <p class="pb-trap__body">{t.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- LISTS -->
+  <section class="section service-lists">
+    <div class="container service-lists__grid">
+      <div>
+        <h2 class="service-list__title reveal-line"><span>What a review gives you</span></h2>
+        <ul class="ticklist">
+          <li class="reveal">A level, with the evidence from production rather than from documentation</li>
+          <li class="reveal">A parity report — where the design source and the shipped code disagree</li>
+          <li class="reveal">An inventory of the exceptions, and what each one was working around</li>
+          <li class="reveal">Accessibility gaps traced to the component that causes them</li>
+          <li class="reveal">A governance and contribution model sized to your organization, not to an ideal one</li>
+          <li class="reveal">The shortest credible path to the next level, sequenced</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="service-list__title reveal-line"><span>Who it's for</span></h2>
+        <ul class="ticklist">
+          <li class="reveal">Design and engineering leaders who suspect the system is not doing what it claims</li>
+          <li class="reveal">Teams whose component library keeps growing while consistency keeps falling</li>
+          <li class="reveal">Organizations adding products or surfaces that will share one brand</li>
+          <li class="reveal">Anyone preparing to ask for design system investment and needing evidence</li>
+          <li class="reveal">Teams facing accessibility requirements they cannot meet page by page</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</PlaybookLayout>

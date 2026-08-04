@@ -1,0 +1,295 @@
+---
+import PlaybookLayout from '../../layouts/PlaybookLayout.astro';
+
+const steps = [
+  {
+    label: 'Before we start',
+    title: 'We ask for what already exists',
+    body: 'Almost every organization already knows more than it thinks. Analytics, support tickets, sales objections, the last research deck, the roadmap nobody has revisited. We read it first so we never spend your week rediscovering something you already paid to learn.',
+    points: [
+      'Analytics and search logs for the last twelve months',
+      'Support and sales themes — the complaints that repeat',
+      'Prior research, however old, and whatever was ignored',
+      'The list of people whose sign-off can stop this',
+    ],
+  },
+  {
+    label: 'Week one',
+    title: 'Frame the decision, not the project',
+    body: 'We start from the choice you are about to make and the risk you are trying to reduce. Not “understand our users” — that is a hobby. Something closer to: do we rebuild the platform or fix the checkout, and what would have to be true to justify either.',
+    points: [
+      'Stakeholder conversations run as interviews, not status meetings',
+      'The decision written in one sentence, agreed in the room',
+      'The assumptions that would sink it if they were wrong, ranked',
+      'A short list of what we would need to see to believe each one',
+    ],
+  },
+  {
+    label: 'Week two',
+    title: 'Go and get evidence',
+    body: 'We chase the ranked assumptions, using the method that fits the question — customer interviews, a usability session on the thing you have now, a walk through the workflow on the floor, a technical spike where the risk is architectural.',
+    points: [
+      'Five to eight well-chosen conversations per audience, not fifty rushed ones',
+      'A look at the real system, not the diagram of the system',
+      'Competitive and adjacent scans where they change the answer',
+      'Findings shared as we get them — no surprise reveals in week four',
+    ],
+  },
+  {
+    label: 'Week three',
+    title: 'Turn it into options, with prices',
+    body: 'Insight that arrives without a recommendation just moves the work to you. We synthesize into two or three real directions, each with an honest account of what it costs, what it forecloses, and what we still do not know.',
+    points: [
+      'Two or three directions, described concretely enough to argue with',
+      'What we observed kept separate from what we recommend',
+      'Effort, risk and sequencing attached to each option',
+      'The open questions we could not close, named out loud',
+    ],
+  },
+  {
+    label: 'Week four',
+    title: 'Make the call, then prove it small',
+    body: 'You decide. We build the smallest real thing that tests the riskiest part of that decision — a working prototype, a flow, an architecture spike. Discovery that ends in a document ends. Discovery that ends in something running keeps paying.',
+    points: [
+      'A decision, made by you, with the evidence attached',
+      'A prototype or spike aimed at the riskiest assumption',
+      'A sequenced plan for the first eight to twelve weeks of build',
+      'A written record of what we would revisit and when',
+    ],
+  },
+];
+
+const questions = [
+  {
+    q: 'What decision are you trying to make?',
+    why: 'If the answer is “we just need to understand the space,” discovery has no finish line and no way to be judged.',
+  },
+  {
+    q: 'What happens if you do nothing for a year?',
+    why: 'The honest answer separates urgent problems from expensive habits. Sometimes nothing happens, and that is worth knowing before you spend.',
+  },
+  {
+    q: 'Who can say no to this after it ships?',
+    why: 'Late vetoes are the most common cause of rework. We would rather find that person in week one and put them in the room.',
+  },
+  {
+    q: 'What do you believe that you have never checked?',
+    why: 'Every organization runs on inherited assumptions. Naming them is most of the work; testing the top two is usually the rest.',
+  },
+  {
+    q: 'Where does the current experience embarrass you?',
+    why: 'People tell you the truth faster about shame than about strategy, and the answer is almost always specific and actionable.',
+  },
+  {
+    q: 'What has been tried already, and why did it stall?',
+    why: 'The graveyard is instructive. A direction that failed for political reasons will fail again for the same reasons if nothing changed.',
+  },
+  {
+    q: 'How will you know in six months whether this worked?',
+    why: 'If nobody can name the measure now, nobody will defend the investment later. We write it down while it is still cheap to argue about.',
+  },
+  {
+    q: 'What are you unwilling to change?',
+    why: 'Constraints are not failures. Knowing that the ERP stays, or the brand cannot move, saves weeks of designing things that were never going to happen.',
+  },
+];
+
+const faq = [
+  {
+    q: 'How long does discovery take?',
+    a: 'Four weeks is the shape we describe here, and it fits most engagements. We have run useful two-week versions when the decision was narrow and the evidence already existed, and eight-week versions where the workflow was genuinely complex or spread across regions. What does not change is the order: frame the decision, get evidence, produce options, decide.',
+  },
+  {
+    q: 'Can we skip discovery? We already know what we want to build.',
+    a: 'Sometimes, yes — and we will tell you so. If the decision is already made, the risk is understood, and the constraints are clear, discovery is a tax. What we will not do is run a four-week process to confirm something you already know, then hand you an invoice for it. If a two-day alignment session is what you actually need, that is what we will propose.',
+  },
+  {
+    q: 'Who from our side needs to be involved?',
+    a: 'Less time than you think, from more people than you expect. Roughly an hour each from the people who can stop the project, an hour each from the people who live in the current system, and a standing thirty minutes a week with whoever owns the decision. Availability of that last person is the single biggest predictor of whether discovery lands.',
+  },
+  {
+    q: 'What if discovery says the project should not happen?',
+    a: 'Then it did its job, and it was the cheapest four weeks you will spend this year. It is rare that the answer is a flat no — far more often the answer is “not this, and not yet, but here is the smaller thing that would actually move the number.” We will say that plainly, in writing, even when it shortens our own engagement.',
+  },
+  {
+    q: 'Do you hand over the raw research?',
+    a: 'Yes. Recordings where participants consented, notes, the synthesis, the boards, all of it. You deserve to check our reasoning rather than inherit our conclusions, and the material stays useful to your team long after we are gone.',
+  },
+];
+---
+<PlaybookLayout
+  slug="how-we-run-discovery"
+  metaTitle="How We Run Discovery · A Four-Week Playbook · Artifact Digital"
+  description="Discovery that ends in a decision, not a deck. The four-week shape we use — framing the decision, gathering evidence, producing costed options, and proving the riskiest assumption small."
+  eyebrow="Playbook · Discovery"
+  titleLines={[{ text: 'How we run' }, { text: 'discovery.', italic: true }]}
+  heroImage="/brand_assets/insights/better-question.webp"
+  heroImageAlt="A question mark forming out of scattered parts"
+  action={{ label: 'Start with discovery', href: '/contact?intent=discovery' }}
+  secondary={{ label: 'Read the thinking', href: '/insights/every-great-product-starts-with-a-better-question' }}
+  faq={faq}
+  ctaHeading="Got a decision worth getting right?"
+  ctaSub="Tell us what you're about to commit to and what you're unsure about. We'll tell you honestly whether discovery is the right way to find out — and how short it could be."
+>
+  <Fragment slot="lede">
+    <p>
+      Discovery is where the expensive decisions get made — usually quietly, often
+      by accident. This is exactly how we run ours: what we ask, what we refuse to
+      do, and what you're holding at the end of it.
+    </p>
+  </Fragment>
+
+  <!-- INTRO -->
+  <section class="section pb-intro">
+    <div class="container service-prose">
+      <p class="reveal">
+        There's a version of discovery that exists to make everyone feel responsible.
+        Weeks of workshops, a wall of sticky notes photographed for the deck, an
+        eighty-page findings document, and a project that proceeds exactly as it
+        would have on day one. That isn't discovery. It's a permission slip with a
+        methodology attached.
+      </p>
+      <p class="reveal">
+        We run discovery for one reason: to reduce the odds that you build the wrong
+        thing. Everything in the four weeks below either changes a decision or it
+        doesn't happen. That single filter removes most of what makes discovery feel
+        slow, and none of what makes it worth doing.
+      </p>
+      <p class="reveal">
+        It's also the cheapest part of the whole engagement. A wrong assumption caught
+        in week two costs a conversation. The same assumption caught after launch costs
+        the roadmap, the budget, and somebody's credibility. Same mistake, wildly
+        different price — and the only variable is when you find out.
+      </p>
+    </div>
+  </section>
+
+  <!-- WHAT IT'S FOR -->
+  <section class="section service-section">
+    <div class="container service-section__grid">
+      <div class="service-section__head">
+        <h2 class="service-section__heading reveal-line"><span>Discovery is not a phase</span></h2>
+      </div>
+      <div class="service-prose service-section__body">
+        <p class="reveal">
+          Treating discovery as the thing you get through before the real work starts
+          is what makes it worthless. The real work is deciding what to build. Design
+          and engineering are how that decision becomes real — they aren't where it
+          gets made.
+        </p>
+        <p class="reveal">
+          So we don't run discovery to produce understanding in the abstract. We run it
+          against a specific choice, on a specific timeline, with the people who can
+          actually make that choice in the room. If we can't name the decision on day
+          one, we say so before you've spent a month finding out.
+        </p>
+        <p class="reveal">
+          The other thing we hold to: findings arrive as they happen. Nothing is saved
+          for a reveal. If we learn in week two that the premise is shaky, you hear it
+          in week two — while there's still time and money to do something about it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE SHAPE -->
+  <section class="section pb-steps-section">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>The shape</span>
+        <h2 class="section-heading reveal-line"><span>Four weeks, in order</span></h2>
+      </header>
+      <ol class="pb-steps">
+        {steps.map((s) => (
+          <li class="pb-step reveal-card">
+            <span class="pb-step__label">{s.label}</span>
+            <div class="pb-step__body">
+              <h3 class="pb-step__title">{s.title}</h3>
+              <p class="pb-step__lede">{s.body}</p>
+              <ul class="pb-step__points">
+                {s.points.map((p) => <li>{p}</li>)}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <p class="pb-note reveal">
+        Every engagement is different — this is the shape, not a contract. Narrow
+        decisions compress to two weeks. Genuinely complex workflows stretch to eight.
+        What never changes is the order.
+      </p>
+    </div>
+  </section>
+
+  <!-- THE QUESTIONS -->
+  <section class="section pb-questions-section">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Week one</span>
+        <h2 class="section-heading reveal-line"><span>The questions we'll ask you</span></h2>
+      </header>
+      <p class="pb-section-lede reveal">
+        These come up in the first conversation, before any contract exists. If you
+        want a head start, answer them for yourself — the arguments they start
+        internally are usually more valuable than the answers.
+      </p>
+      <ol class="pb-checks">
+        {questions.map((item, i) => (
+          <li class="pb-check reveal">
+            <span class="pb-check__num">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <p class="pb-check__q">{item.q}</p>
+              <p class="pb-check__why">{item.why}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- WHAT WE WON'T DO -->
+  <section class="section pb-refuse">
+    <div class="container service-section__grid">
+      <div class="service-section__head">
+        <h2 class="service-section__heading reveal-line"><span>What we won't do</span></h2>
+      </div>
+      <div class="service-section__body">
+        <ul class="crosslist">
+          <li class="reveal">Run a workshop because the process says week two has a workshop</li>
+          <li class="reveal">Interview thirty stakeholders and synthesize none of it</li>
+          <li class="reveal">Build personas that no one will open again after the readout</li>
+          <li class="reveal">Deliver a findings document longer than the attention available to read it</li>
+          <li class="reveal">Save bad news for the final presentation</li>
+          <li class="reveal">Recommend the largest engagement we could plausibly justify</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- LISTS -->
+  <section class="section service-lists">
+    <div class="container service-lists__grid">
+      <div>
+        <h2 class="service-list__title reveal-line"><span>What you get</span></h2>
+        <ul class="ticklist">
+          <li class="reveal">The decision written down, with the evidence behind it attached</li>
+          <li class="reveal">Two or three costed directions, not one recommendation to rubber-stamp</li>
+          <li class="reveal">A working prototype or spike aimed at the riskiest assumption</li>
+          <li class="reveal">A sequenced plan for the first eight to twelve weeks of build</li>
+          <li class="reveal">The raw research — recordings, notes, synthesis — handed over, not summarized away</li>
+          <li class="reveal">An honest list of what we still don't know, and what it would take to find out</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="service-list__title reveal-line"><span>Who it's for</span></h2>
+        <ul class="ticklist">
+          <li class="reveal">Teams about to commit real money to a direction nobody has pressure-tested</li>
+          <li class="reveal">Enterprises where four departments each own a piece and no one owns the outcome</li>
+          <li class="reveal">Leaders who inherited a roadmap and want to know whether to keep it</li>
+          <li class="reveal">Product teams stuck arguing from opinion because there's no shared evidence</li>
+          <li class="reveal">Anyone who has been handed a rebuild proposal and isn't sure it's the real problem</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</PlaybookLayout>

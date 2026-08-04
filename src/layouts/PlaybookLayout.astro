@@ -1,0 +1,180 @@
+---
+// Shared chrome for the four Services playbooks: dark hero, body slot, FAQ,
+// cross-links, CTA. Each playbook owns its middle — the parts that repeat live
+// here so a change to the pattern is one edit, not four.
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Button from '../components/Button.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE, orgNode, breadcrumb, CTA } from '../data/site';
+import { PLAYBOOKS, otherPlaybooks, playbookPath } from '../data/playbooks';
+import { responsive } from '../lib/responsive';
+
+interface Props {
+  slug: string;
+  metaTitle: string;
+  description: string;
+  eyebrow: string;
+  titleLines: { text: string; italic?: boolean }[];
+  heroImage: string;
+  heroImageAlt: string;
+  /** Hero + closing primary action. Falls back to the standard site CTA. */
+  action?: { label: string; href: string };
+  /** Secondary hero action — usually the related Insights essay. */
+  secondary?: { label: string; href: string };
+  faq?: { q: string; a: string }[];
+  faqHeading?: string;
+  ctaHeading: string;
+  ctaSub?: string;
+}
+
+const {
+  slug,
+  metaTitle,
+  description,
+  eyebrow,
+  titleLines,
+  heroImage,
+  heroImageAlt,
+  action = CTA.primary,
+  secondary,
+  faq = [],
+  faqHeading = 'Questions we get',
+  ctaHeading,
+  ctaSub,
+} = Astro.props;
+
+const meta = PLAYBOOKS.find((p) => p.slug === slug);
+if (!meta) throw new Error(`PlaybookLayout: unknown playbook slug "${slug}" — add it to src/data/playbooks.ts`);
+
+const path = playbookPath(slug);
+const url = `${SITE.url}${path}`;
+const hero = await responsive(heroImage);
+const related = otherPlaybooks(slug);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': `${url}#page`,
+      url,
+      name: meta.navLabel,
+      description,
+      isPartOf: { '@id': `${SITE.url}/#website` },
+      publisher: { '@id': `${SITE.url}/#organization` },
+      primaryImageOfPage: { '@type': 'ImageObject', url: `${SITE.url}${heroImage}` },
+      inLanguage: 'en-US',
+    },
+    ...(faq.length
+      ? [
+          {
+            '@type': 'FAQPage',
+            '@id': `${url}#faq`,
+            mainEntity: faq.map((f) => ({
+              '@type': 'Question',
+              name: f.q,
+              acceptedAnswer: { '@type': 'Answer', text: f.a },
+            })),
+          },
+        ]
+      : []),
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'Services', path: '/services' },
+      { name: meta.navLabel, path },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title={metaTitle}
+  description={description}
+  canonical={path}
+  ogImage={heroImage}
+  ogImageAlt={heroImageAlt}
+  bodyClass="case-page pb-page"
+  preloadImage={heroImage}
+  jsonLd={jsonLd}
+>
+  <!-- HERO -->
+  <section class="pb-hero">
+    <div class="container pb-hero__grid">
+      <div class="pb-hero__copy">
+        <Breadcrumbs
+          items={[
+            { name: 'Home', href: '/' },
+            { name: 'Services', href: '/services' },
+            { name: meta.navLabel },
+          ]}
+        />
+        <span class="eyebrow reveal"><span class="eyebrow-dot"></span>{eyebrow}</span>
+        <h1 class="pb-hero__title">
+          {titleLines.map((l) => (
+            <span class:list={['reveal-line', l.italic && 'italic']}><span>{l.text}</span></span>
+          ))}
+        </h1>
+        <div class="pb-hero__lede reveal"><slot name="lede" /></div>
+        <div class="hero-actions reveal">
+          <Button href={action.href} label={action.label} variant="primary" />
+          {secondary && <Button href={secondary.href} label={secondary.label} variant="secondary" />}
+        </div>
+      </div>
+      <div class="pb-hero__media reveal-card">
+        <img
+          src={heroImage}
+          srcset={hero.srcset}
+          sizes="(max-width: 900px) 92vw, 44vw"
+          alt={heroImageAlt}
+          width={hero.width}
+          height={hero.height}
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </section>
+
+  <slot />
+
+  <!-- FAQ -->
+  {faq.length > 0 && (
+    <section class="section service-faq">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-tag reveal"><span class="tag-dot"></span>Questions</span>
+          <h2 class="section-heading reveal-line"><span>{faqHeading}</span></h2>
+        </header>
+        <dl class="faq-list">
+          {faq.map((f) => (
+            <div class="faq-item reveal">
+              <dt>{f.q}</dt>
+              <dd set:html={f.a} />
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  )}
+
+  <!-- OTHER PLAYBOOKS -->
+  <section class="section related-services">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>More of the method</span>
+        <h2 class="section-heading reveal-line"><span>Other playbooks</span></h2>
+      </header>
+      <div class="service-link-grid">
+        {related.map((p) => (
+          <a class="service-link-card reveal-card" href={playbookPath(p.slug)}>
+            <h3>{p.navLabel}</h3>
+            <p>{p.summary}</p>
+            <span class="service-link-card__more">Read it →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand heading={ctaHeading} sub={ctaSub} primary={action} secondary={CTA.work} />
+</BaseLayout>

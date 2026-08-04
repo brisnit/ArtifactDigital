@@ -12,7 +12,24 @@ import ArrowIcon from './ArrowIcon.astro';
       </picture>
     </a>
     <nav class="nav-links" aria-label="Primary">
-      {NAV.map((item) => <a href={item.href}><span>{item.label}</span></a>)}
+      {NAV.map((item) =>
+        item.children ? (
+          <div class="nav-item nav-item--has-menu">
+            <a class="nav-item__link" href={item.href} aria-haspopup="true">
+              <span>{item.label}</span><i class="nav-caret" aria-hidden="true"></i>
+            </a>
+            <div class="nav-menu">
+              <ul>
+                {item.children.map((child) => (
+                  <li><a class="nav-menu__link" href={child.href}>{child.label}</a></li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ) : (
+          <a href={item.href}><span>{item.label}</span></a>
+        )
+      )}
     </nav>
     <a class="nav-cta" href={CTA.primary.href}>
       {CTA.primary.label}
@@ -37,8 +54,20 @@ import ArrowIcon from './ArrowIcon.astro';
 
 <div class="mobile-nav" id="mobileNav" aria-hidden="true">
   <nav class="mobile-nav__inner" aria-label="Mobile">
-    {NAV.map((item) => (
-      <a class="mobile-nav__link" href={item.href}>{item.label}</a>
-    ))}
+    {NAV.map((item) =>
+      item.children ? (
+        <div class="mobile-nav__group">
+          <a class="mobile-nav__link mobile-nav__link--parent" href={item.href}>{item.label}</a>
+          <ul class="mobile-nav__sub">
+            {/* The parent link already covers the hub, so its duplicate is dropped. */}
+            {item.children
+              .filter((child) => child.href !== item.href)
+              .map((child) => <li><a href={child.href}>{child.label}</a></li>)}
+          </ul>
+        </div>
+      ) : (
+        <a class="mobile-nav__link" href={item.href}>{item.label}</a>
+      )
+    )}
   </nav>
 </div>
