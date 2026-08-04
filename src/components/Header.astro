@@ -1,6 +1,14 @@
 ---
+import { getCollection } from 'astro:content';
 import { NAV, CTA } from '../data/site';
+import { PLAYBOOKS, playbookPath } from '../data/playbooks';
 import ArrowIcon from './ArrowIcon.astro';
+
+// The mega panel mirrors the Services hub, so adding a service or a playbook
+// puts it in the nav with no edit here.
+const allServices = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const pillars = allServices.filter((s) => s.data.tier === 'pillar');
+const disciplines = allServices.filter((s) => s.data.tier !== 'pillar');
 ---
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="page-header is-stuck" id="pageHeader">
@@ -13,17 +21,59 @@ import ArrowIcon from './ArrowIcon.astro';
     </a>
     <nav class="nav-links" aria-label="Primary">
       {NAV.map((item) =>
-        item.children ? (
+        item.mega ? (
           <div class="nav-item nav-item--has-menu">
             <a class="nav-item__link" href={item.href} aria-haspopup="true">
               <span>{item.label}</span><i class="nav-caret" aria-hidden="true"></i>
             </a>
-            <div class="nav-menu">
-              <ul>
-                {item.children.map((child) => (
-                  <li><a class="nav-menu__link" href={child.href}>{child.label}</a></li>
-                ))}
-              </ul>
+
+            <div class="nav-mega">
+              <div class="container nav-mega__inner">
+                <div class="nav-mega__col">
+                  <h2 class="nav-mega__title">What we build</h2>
+                  <ul class="nav-mega__list">
+                    {pillars.map((s) => (
+                      <li><a href={`/services/${s.id}`}>{s.data.navLabel}</a></li>
+                    ))}
+                  </ul>
+                  {/* Kept on one line: a newline here becomes a text node that
+                      Chrome counts as a flex item, offsetting the label. */}
+                  <a class="nav-mega__all" href="/services"><span>All services</span><span class="nav-mega__arrow" aria-hidden="true">→</span></a>
+
+                  <a class="nav-mega__promo" href={CTA.primary.href}>
+                    <span class="nav-mega__promo-title">Not sure which you need?</span>
+                    <span class="nav-mega__promo-sub">
+                      Tell us the problem and we'll say honestly where to start — even
+                      when that's smaller than a full engagement.
+                    </span>
+                    <span class="nav-mega__promo-cta"><span>{CTA.primary.label}</span><span class="nav-mega__arrow" aria-hidden="true">→</span></span>
+                  </a>
+                </div>
+
+                <div class="nav-mega__col">
+                  <h2 class="nav-mega__title">Disciplines</h2>
+                  <ul class="nav-mega__list nav-mega__list--two">
+                    {disciplines.map((s) => (
+                      <li><a href={`/services/${s.id}`}>{s.data.navLabel}</a></li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div class="nav-mega__col nav-mega__col--feature">
+                  <h2 class="nav-mega__title">Playbooks</h2>
+                  <p class="nav-mega__note">How we actually work — the method, written down.</p>
+                  <ul class="nav-mega__cards">
+                    {PLAYBOOKS.map((p) => (
+                      <li>
+                        <a href={playbookPath(p.slug)}>
+                          <span class="nav-mega__card-title">{p.navLabel}</span>
+                          <span class="nav-mega__card-sub">{p.summary}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         ) : (
@@ -59,10 +109,7 @@ import ArrowIcon from './ArrowIcon.astro';
         <div class="mobile-nav__group">
           <a class="mobile-nav__link mobile-nav__link--parent" href={item.href}>{item.label}</a>
           <ul class="mobile-nav__sub">
-            {/* The parent link already covers the hub, so its duplicate is dropped. */}
-            {item.children
-              .filter((child) => child.href !== item.href)
-              .map((child) => <li><a href={child.href}>{child.label}</a></li>)}
+            {item.children.map((child) => <li><a href={child.href}>{child.label}</a></li>)}
           </ul>
         </div>
       ) : (

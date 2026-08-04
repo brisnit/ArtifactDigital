@@ -41,12 +41,13 @@ export const ANALYTICS = {
 } as const;
 
 // Primary navigation — page-based IA.
-// `children` renders as a dropdown on desktop and a nested group on mobile.
-// The Services submenu is generated from the playbooks list, so publishing a
-// new playbook puts it in the nav without a second edit.
 export interface NavItem {
   label: string;
   href: string;
+  /** Desktop: opens the full-width Services mega panel, built in Header.astro
+   *  from the services collection + the playbooks list. */
+  mega?: boolean;
+  /** Mobile: nested links under the parent, where a mega panel won't fit. */
   children?: { label: string; href: string }[];
 }
 
@@ -54,10 +55,8 @@ export const NAV: readonly NavItem[] = [
   {
     label: 'Services',
     href: '/services',
-    children: [
-      { label: 'All services', href: '/services' },
-      ...PLAYBOOKS.map((p) => ({ label: p.navLabel, href: playbookPath(p.slug) })),
-    ],
+    mega: true,
+    children: PLAYBOOKS.map((p) => ({ label: p.navLabel, href: playbookPath(p.slug) })),
   },
   { label: 'Work', href: '/work' },
   { label: 'Insights', href: '/insights' },
