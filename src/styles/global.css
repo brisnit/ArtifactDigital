@@ -2705,9 +2705,10 @@ section[id],
   padding: clamp(7rem, 13vw, 10rem) 0 clamp(3.5rem, 7vw, 5.5rem);
 }
 .pb-hero__grid {
+  --pb-hero-gap: clamp(2rem, 5vw, 4rem);
   display: grid;
   grid-template-columns: 1.05fr 1fr;
-  gap: clamp(2rem, 5vw, 4rem);
+  gap: var(--pb-hero-gap);
   align-items: center;
 }
 .pb-hero .breadcrumbs a,
@@ -2750,7 +2751,14 @@ section[id],
    by height and right-aligned rather than stretched across the column — full
    width would both dominate the hero and upscale past the source resolution.
    No forced aspect-ratio: the width/height attributes reserve the real box. */
-.pb-hero__media { display: flex; justify-content: flex-end; }
+/* Reclaiming the grid gap centres the art between where the copy ends and the
+   container edge — centring inside the column alone leaves it sitting too far
+   right, since the gap is dead space the eye still reads as part of the field. */
+.pb-hero__media {
+  display: flex;
+  justify-content: center;
+  margin-left: calc(-1 * var(--pb-hero-gap));
+}
 .pb-hero__media img {
   width: auto;
   max-width: 100%;
@@ -3081,7 +3089,7 @@ section[id],
 
 @media (max-width: 900px) {
   .pb-hero__grid { grid-template-columns: 1fr; }
-  .pb-hero__media { order: -1; justify-content: flex-start; }
+  .pb-hero__media { order: -1; justify-content: flex-start; margin-left: 0; }
   .pb-hero__media img { max-height: 320px; }
   .pb-step { grid-template-columns: 1fr; gap: 0.85rem; }
   .pb-step__label { padding-top: 0; }
