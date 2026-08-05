@@ -3107,8 +3107,9 @@ section[id],
   opacity: 0.6;
   transition: transform 0.3s var(--easing), opacity 0.3s var(--easing);
 }
-.nav-item--has-menu:hover .nav-caret,
-.nav-item--has-menu:focus-within .nav-caret { opacity: 1; transform: rotate(180deg); }
+.nav-item--has-menu.is-open .nav-caret { opacity: 1; transform: rotate(180deg); }
+html:not(.js) .nav-item--has-menu:hover .nav-caret,
+html:not(.js) .nav-item--has-menu:focus-within .nav-caret { opacity: 1; transform: rotate(180deg); }
 
 .nav-mega {
   position: absolute;
@@ -3130,20 +3131,24 @@ section[id],
   max-height: calc(100vh - 5.5rem);
   overflow-y: auto;
 }
-.nav-item--has-menu:hover .nav-mega,
-.nav-item--has-menu:focus-within .nav-mega {
+/* Opened by JS, which holds it briefly on the way out (see main.js). The
+   header's padding leaves a ~27px band below the nav item belonging to neither
+   it nor the panel, so a pure :hover rule drops the moment the pointer sets off
+   toward the menu — and the menu closes before you can reach it. */
+.nav-item--has-menu.is-open .nav-mega {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
   transform: none;
 }
-/* Escape closes the panel while the trigger keeps focus — :focus-within alone
-   can't express that, so JS sets this flag and clears it on the next hover/focus. */
-.nav-item--has-menu.is-dismissed .nav-mega {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translateY(-8px);
+/* No JS: hover and focus only. Crossing the gap can still close it early, but
+   the panel is additive — the Services link itself goes to the hub. */
+html:not(.js) .nav-item--has-menu:hover .nav-mega,
+html:not(.js) .nav-item--has-menu:focus-within .nav-mega {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
 }
 
 .nav-mega__inner {

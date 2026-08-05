@@ -227,24 +227,53 @@ if (navToggle && mobileNav) {
   );
 }
 
-// ---------- Desktop nav dropdown ----------
-// The panel opens on hover and :focus-within, in CSS — it works with JS off.
-// This only adds Escape-to-close, which CSS can't express: focus stays on the
-// trigger afterwards, so :focus-within would hold the panel open forever.
+// ---------- Desktop mega nav ----------
+// Hover alone can't drive this. The header's padding leaves a ~27px band below
+// the nav item that belongs to neither it nor the panel, so :hover goes false
+// the moment the pointer starts travelling toward the menu and it shuts before
+// you can reach it. So we own the state here and hold it briefly on the way
+// out, which is long enough to cross the gap. Without JS the CSS falls back to
+// :hover/:focus-within — imperfect, but the Services link still works.
 document.querySelectorAll('.nav-item--has-menu').forEach((item) => {
+  const mega = item.querySelector('.nav-mega');
   const trigger = item.querySelector('.nav-item__link');
+  if (!mega) return;
 
+  let closeTimer;
+  const open = () => {
+    clearTimeout(closeTimer);
+    item.classList.add('is-open');
+  };
+  const close = () => {
+    clearTimeout(closeTimer);
+    item.classList.remove('is-open');
+  };
+  // Long enough to cross the gap at a normal pointer speed, short enough that
+  // it never feels stuck open after you've moved on.
+  const closeSoon = () => {
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(close, 220);
+  };
+
+  // The panel is a DOM descendant of the item even though it's painted outside
+  // it, so re-entering via the panel fires pointerenter on the item again.
+  item.addEventListener('pointerenter', open);
+  mega.addEventListener('pointerenter', open);
+  item.addEventListener('pointerleave', closeSoon);
+
+  // Keyboard: focus owns the same state, so Escape can close it while the
+  // trigger keeps focus (which :focus-within could never express).
+  item.addEventListener('focusin', open);
+  item.addEventListener('focusout', (e) => {
+    if (!item.contains(e.relatedTarget)) close();
+  });
   item.addEventListener('keydown', (e) => {
-    if (e.key !== 'Escape' || !item.contains(document.activeElement)) return;
-    item.classList.add('is-dismissed');
+    if (e.key !== 'Escape') return;
+    close();
     if (trigger) trigger.focus();
   });
 
-  // Any fresh intent to open it clears the dismissal.
-  item.addEventListener('pointerenter', () => item.classList.remove('is-dismissed'));
-  item.addEventListener('focusout', (e) => {
-    if (!item.contains(e.relatedTarget)) item.classList.remove('is-dismissed');
-  });
+  mega.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
 });
 
 // ---------- Insights index: search / filter / sort / paginate ----------

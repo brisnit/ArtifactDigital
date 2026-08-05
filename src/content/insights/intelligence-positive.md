@@ -7,7 +7,7 @@ author: Britt Midgette
 cluster: "Digital Strategy"
 tags: ["AI", "Digital Strategy", "Leadership"]
 keywords: ["intelligence positive", "AI adoption", "AI optimism", "human creativity", "taste", "organizational change", "curiosity", "AI leadership", "human-centered AI"]
-# heroImage: "/brand_assets/insights/intelligence-positive.webp"
+heroImage: "/brand_assets/insights/intelligence-positive.webp"
 draft: false
 ---
 *Why the future belongs to those who choose curiosity over fear.*
