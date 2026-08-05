@@ -2746,11 +2746,15 @@ section[id],
   line-height: 1.6;
 }
 .pb-hero__lede em { color: #fff; font-style: italic; }
-/* No forced aspect-ratio: the playbook art is 2:1 and cropping it to a squarer
-   box lost a third of the image. The width/height attributes reserve the real
-   box, so CLS stays at zero without one. */
+/* The playbook art is portrait (477x591) and only ~477px wide, so it is capped
+   by height and right-aligned rather than stretched across the column — full
+   width would both dominate the hero and upscale past the source resolution.
+   No forced aspect-ratio: the width/height attributes reserve the real box. */
+.pb-hero__media { display: flex; justify-content: flex-end; }
 .pb-hero__media img {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
+  max-height: 460px;
   height: auto;
   border-radius: var(--radius-media);
   display: block;
@@ -3077,7 +3081,8 @@ section[id],
 
 @media (max-width: 900px) {
   .pb-hero__grid { grid-template-columns: 1fr; }
-  .pb-hero__media { order: -1; }
+  .pb-hero__media { order: -1; justify-content: flex-start; }
+  .pb-hero__media img { max-height: 320px; }
   .pb-step { grid-template-columns: 1fr; gap: 0.85rem; }
   .pb-step__label { padding-top: 0; }
   .pb-level { grid-template-columns: 1fr; gap: 1.5rem; }

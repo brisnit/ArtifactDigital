@@ -18,6 +18,9 @@ interface Props {
   titleLines: { text: string; italic?: boolean }[];
   heroImage: string;
   heroImageAlt: string;
+  /** Social card. Separate from the hero, which is portrait and crops badly
+   *  into the 1.91:1 box every platform uses. */
+  ogImage?: string;
   /** Hero + closing primary action. Falls back to the standard site CTA. */
   action?: { label: string; href: string };
   /** Secondary hero action — usually the related Insights essay. */
@@ -36,6 +39,7 @@ const {
   titleLines,
   heroImage,
   heroImageAlt,
+  ogImage,
   action = CTA.primary,
   secondary,
   faq = [],
@@ -92,7 +96,7 @@ const jsonLd = {
   title={metaTitle}
   description={description}
   canonical={path}
-  ogImage={heroImage}
+  ogImage={ogImage ?? heroImage}
   ogImageAlt={heroImageAlt}
   bodyClass="case-page pb-page"
   preloadImage={heroImage}
@@ -125,7 +129,7 @@ const jsonLd = {
         <img
           src={heroImage}
           srcset={hero.srcset}
-          sizes="(max-width: 900px) 92vw, 44vw"
+          sizes="(max-width: 900px) 260px, 372px"
           alt={heroImageAlt}
           width={hero.width}
           height={hero.height}
