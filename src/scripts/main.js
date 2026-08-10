@@ -92,8 +92,8 @@ if (reduceMotion) {
     // playback is started from script — without this, iPhones never leave
     // the poster frame.
     vid.muted = true;
-    // Phones get the 2.1MB 640px rendition instead of the 5.3MB 720p file —
-    // it starts several times sooner on cell connections.
+    // Phones get the smaller rendition when a video ships one — it starts
+    // several times sooner on cell connections.
     vid.src =
       vid.dataset.srcMobile && window.matchMedia('(max-width: 760px)').matches
         ? vid.dataset.srcMobile
