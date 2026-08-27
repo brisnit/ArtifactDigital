@@ -51,6 +51,13 @@ export const AUTHORS: Record<string, Author> = {
     avatar: '/brand_assets/authors/erik-parr.webp',
     series: { label: 'the AI engineering series', href: '/ai-engineering' },
   },
+  'Andrew Statezny': {
+    name: 'Andrew Statezny',
+    jobTitle: 'VP of Business Development',
+    bio: "Andrew Statezny is VP of Business Development at Artifact Digital. Over more than 35 years he's worked alongside leaders and organizations across all 50 states and 73 countries — including a decade at Life.Church as Pastor of Partnerships, and more than 70 church mergers and strategic transitions. His work has always come down to the same thing: bringing the right people around the right idea at the right time.",
+    personId: `${SITE.url}/#person-andrew-statezny`,
+    avatar: '/brand_assets/authors/andrew-statezny.webp',
+  },
 };
 
 export function authorFor(name: string): Author {
