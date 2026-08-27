@@ -7,6 +7,7 @@ author: Jonathan Smith
 cluster: "Higher Education"
 tags: ["Higher Education", "Design", "AI"]
 keywords: ["predictive learning platform", "information design", "data visualization", "higher education technology", "dashboard design", "student success", "interface design", "AI in education"]
+heroImage: "/brand_assets/insights/if-we-cant-see-whats-happening.webp"
 draft: false
 ---
 *The next generation of higher education technology won't be defined by how much data it collects. It will be defined by how clearly it helps people understand what matters.*

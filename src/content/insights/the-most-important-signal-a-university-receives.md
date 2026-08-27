@@ -7,6 +7,7 @@ author: Andrew Statezny
 cluster: "Higher Education"
 tags: ["Higher Education", "Leadership", "Strategy"]
 keywords: ["predictive learning platform", "higher education leadership", "student success", "early intervention", "institutional transformation", "student retention", "alumni engagement", "AI in education"]
+heroImage: "/brand_assets/insights/the-most-important-signal-a-university-receives.webp"
 draft: false
 ---
 *After decades of working with leaders and organizations, I've learned that transformation rarely begins with technology. It begins when the right people can finally see what is actually happening.*

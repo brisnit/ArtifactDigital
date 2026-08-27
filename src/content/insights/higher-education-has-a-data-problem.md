@@ -7,6 +7,7 @@ author: Britt Midgette
 cluster: "Higher Education"
 tags: ["AI", "Higher Education", "Strategy"]
 keywords: ["predictive learning platform", "higher education technology", "student retention", "learning analytics", "institutional intelligence", "early intervention", "student success", "AI in education"]
+heroImage: "/brand_assets/insights/higher-education-has-a-data-problem.webp"
 draft: false
 ---
 *The next generation of learning technology won't simply tell institutions what happened. It will help them understand what is happening — and what is likely to happen next.*

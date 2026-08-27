@@ -7,6 +7,7 @@ author: Erik Parr
 cluster: "Higher Education"
 tags: ["Higher Education", "Strategy", "AI"]
 keywords: ["predictive learning platform", "higher education finance", "student retention economics", "leading indicators", "institutional sustainability", "resource allocation", "enrollment", "alumni lifetime value"]
+heroImage: "/brand_assets/insights/the-economics-of-knowing-earlier.webp"
 draft: false
 ---
 *Universities have spent decades measuring what happened. In an increasingly difficult economic environment, the institutions that thrive may be the ones that can see what is happening early enough to change the outcome.*
