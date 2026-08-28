@@ -7,6 +7,7 @@ author: Andrew Statezny
 cluster: "Higher Education"
 tags: ["Higher Education", "Leadership", "Strategy"]
 keywords: ["Christian higher education", "college closures", "enrollment cliff", "student retention", "predictive learning platform", "faculty knowledge preservation", "learning outcomes", "institutional sustainability"]
+heroImage: "/brand_assets/insights/christian-higher-education-prove-its-value.webp"
 draft: false
 ---
 *The institutions that thrive in the next era of education will be those that can preserve what makes them distinctive while becoming dramatically better at understanding students, demonstrating outcomes, and responding to change.*
