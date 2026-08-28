@@ -36,8 +36,8 @@ export const AUTHORS: Record<string, Author> = {
   },
   'Jonathan Smith': {
     name: 'Jonathan Smith',
-    jobTitle: 'VP of Visual Design',
-    bio: "Jonathan Smith is VP of Visual Design at Artifact Digital, where he leads visual design, product thinking, and AI-enabled creative workflows. Over the past decade, he's led product and brand design for organizations including ServiceNow, Intuit, Qualcomm, Disney, and Under Armour, helping teams create experiences that feel simple, human, and genuinely useful.",
+    jobTitle: 'Executive Creative Director',
+    bio: "Jonathan Smith is Executive Creative Director at Artifact Digital, where he leads visual design, product thinking, and AI-enabled creative workflows. Over the past decade, he's led product and brand design for organizations including ServiceNow, Intuit, Qualcomm, Disney, and Under Armour, helping teams create experiences that feel simple, human, and genuinely useful.",
     personId: `${SITE.url}/#person-jonathan-smith`,
     linkedin: 'https://www.linkedin.com/in/jonathansmith16/',
     avatar: '/brand_assets/authors/jonathan-smith.webp',
