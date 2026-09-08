@@ -59,6 +59,7 @@ export const NAV: readonly NavItem[] = [
     children: PLAYBOOKS.map((p) => ({ label: p.navLabel, href: playbookPath(p.slug) })),
   },
   { label: 'Work', href: '/work' },
+  { label: 'Capabilities', href: '/capabilities' },
   { label: 'Insights', href: '/insights' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },

@@ -1,9 +1,15 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Button from '../components/Button.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { SITE, orgNode, breadcrumb } from '../data/site';
+import WorkCard from '../components/WorkCard.astro';
+import { SITE, orgNode, breadcrumb, CTA } from '../data/site';
 
+// --- Procurement facts -------------------------------------------------------
+// Verified identifiers. Never edit these to fit a layout — they are the reason
+// a contracting officer opens this page.
 const CONTACT = {
   poc: 'Britt Midgette',
   role: 'Founder & Principal',
@@ -14,7 +20,6 @@ const CONTACT = {
   address: '178 N. Cuyamaca St., El Cajon, CA',
 };
 
-// Scanned first by procurement — kept together, near the top.
 const QUICK = [
   { label: 'UEI', value: 'LXAJUS27XBM4' },
   { label: 'CAGE', value: 'Pending' },
@@ -22,63 +27,8 @@ const QUICK = [
   { label: 'CA Small Business', value: '#2052896' },
 ];
 
-const COMPETENCIES = [
-  {
-    n: '01',
-    title: 'Product & digital strategy',
-    body: 'We translate an existing brand into clear positioning, narrative and visual direction for the digital products and experiences being built next.',
-  },
-  {
-    n: '02',
-    title: 'Digital products, UX & accessibility',
-    body: 'Product design and front-end engineering for SaaS, dashboards and customer-facing apps that need clarity at speed — including WCAG 2.1 AA and Section 508 compliant design and remediation.',
-  },
-  {
-    n: '03',
-    title: 'Website design & build',
-    body: 'Redesigns, net-new, e-commerce, marketing and B2B platforms with a strong visual signature, accessible structure and purposeful motion.',
-  },
-  {
-    n: '04',
-    title: 'AI & interactive experiences',
-    body: 'AI-powered features, generative interfaces and motion-led experiences that make a product feel modern and alive.',
-  },
-];
-
-// Named but framed as the principal's prior-agency track record — not Artifact
-// corporate past performance. Consistent with the anonymized case studies.
-const TRACK_RECORD = [
-  {
-    client: 'ADM',
-    kind: 'Digital products & UX redesign',
-    body: 'Led a large-scale UX/UI redesign consolidating a 6,500-page legacy ecosystem into a streamlined platform of fewer than 1,000 pages — improving navigation and load times across the estate.',
-  },
-  {
-    client: 'Samsung',
-    kind: 'Interactive brand experience',
-    body: 'Designed and deployed an in-store augmented reality (AR) experience that bridged physical and digital interaction to drive engagement.',
-  },
-  {
-    client: 'CompTIA',
-    kind: 'Custom educational portal',
-    body: 'Engineered a guided learning and certification platform with complex user-pathway architecture and an integrated CMS.',
-  },
-];
-
-const DIFFERENTIATORS = [
-  {
-    n: '01',
-    title: '100% senior-led execution',
-    body: 'No junior hand-offs. The same strategists who map the architecture write the final code — rapid deployment, and no communication breakdowns between plan and build.',
-  },
-  {
-    n: '02',
-    title: 'Performance-first build',
-    body: 'We build to Core Web Vitals, keeping platforms fast, responsive and accessible across every device — the baseline modern public and enterprise users expect.',
-  },
-];
-
 const BUSINESS_INFO = [
+  { label: 'Business name', value: 'Artifact Digital' },
   { label: 'Business structure', value: 'LLC' },
   { label: 'Year established', value: '2021' },
   { label: 'CA Small Business (SB) Cert', value: '#2052896' },
@@ -103,6 +53,282 @@ const UNSPSC = [
   { code: '80141506', label: 'Internet-Based Marketing' },
 ];
 
+const PUBLIC_SECTOR_DELIVERY = [
+  'Digital modernization',
+  'Section 508 / accessibility',
+  'User-centered design',
+  'Custom software',
+  'Web application development',
+  'Enterprise websites',
+  'AI solutions',
+  'CMS modernization',
+  'Systems integration',
+  'Research and discovery',
+  'Training and enablement',
+  'Ongoing operations and support',
+];
+
+// --- Capability architecture -------------------------------------------------
+// `wide` promotes a capability to a full-width row so the grid has rhythm
+// rather than twelve identical tiles. `callout` is the one line a skim-reader
+// should take away.
+interface Capability {
+  n: string;
+  title: string;
+  body: string;
+  items: string[];
+  href?: string;
+  linkLabel?: string;
+  callout?: string;
+  /** Full-width, dark — reserved for the two capabilities carrying a thesis. */
+  wide?: boolean;
+  /** Full-width, light — keeps the 2-col flow from stranding a lone card. */
+  span?: boolean;
+  /** Attributed provenance. Must state plainly whose experience it is. */
+  note?: string;
+}
+
+const CAPABILITIES: Capability[] = [
+  {
+    n: '01',
+    title: 'Digital strategy & transformation',
+    body: 'We help organizations understand where digital can create meaningful business value, then turn that opportunity into a practical roadmap for execution.',
+    href: '/services/digital-strategy',
+    linkLabel: 'Digital strategy',
+    items: [
+      'Digital transformation strategy', 'Product strategy', 'Experience strategy',
+      'Digital ecosystem strategy', 'Customer journey mapping', 'Service design',
+      'Opportunity identification', 'Competitive research', 'Business requirements',
+      'Technology planning', 'Digital roadmaps', 'MVP definition',
+      'Innovation workshops', 'Discovery programs', 'Stakeholder alignment',
+    ],
+  },
+  {
+    n: '02',
+    title: 'UX, product & experience design',
+    body: 'We design complex digital experiences around real human needs while balancing usability, business objectives and technical realities.',
+    href: '/services/digital-products-ux',
+    linkLabel: 'Digital products & UX',
+    items: [
+      'UX strategy', 'UX research', 'User interviews', 'Persona development',
+      'Journey mapping', 'Information architecture', 'Interaction design', 'UX/UI design',
+      'Product design', 'Responsive design', 'Mobile application design', 'SaaS product design',
+      'Dashboard design', 'Enterprise application design', 'Prototyping', 'Usability testing',
+      'Design systems', 'Component libraries', 'Experience audits',
+    ],
+  },
+  {
+    n: '03',
+    title: 'Website design & digital platforms',
+    body: 'We design and build high-performing websites and digital platforms that function as meaningful business infrastructure — not simply marketing collateral.',
+    span: true,
+    href: '/services/website-design-build',
+    linkLabel: 'Website design & build',
+    items: [
+      'Enterprise websites', 'Corporate websites', 'Government websites', 'Nonprofit websites',
+      'Higher education websites', 'Marketing websites', 'Editorial platforms', 'Membership platforms',
+      'Customer portals', 'Ecommerce', 'Multi-site ecosystems', 'Global websites',
+      'Website modernization', 'Website migration', 'Content architecture', 'CMS implementation',
+      'Headless CMS', 'WordPress', 'Shopify', 'Content migration', 'Search', 'Analytics',
+      'SEO foundations',
+    ],
+  },
+  {
+    n: '04',
+    title: 'Bespoke software & application development',
+    body: 'When off-the-shelf software forces an organization to change how it works, we build software around the organization instead.',
+    callout: 'Own the software instead of renting the compromise.',
+    wide: true,
+    href: '/services/bespoke-saas',
+    linkLabel: 'Bespoke software & AI',
+    items: [
+      'Custom SaaS platforms', 'Internal business applications', 'Workflow systems', 'CRM platforms',
+      'Customer portals', 'Administrative dashboards', 'Operations tools', 'Workflow automation',
+      'Data-driven applications', 'Web applications', 'Mobile applications', 'API development',
+      'Systems integration', 'Authentication and permissions', 'Multi-tenant applications',
+      'Cloud applications', 'Database architecture', 'Application modernization',
+      'Prototype-to-production development',
+    ],
+  },
+  {
+    n: '05',
+    title: 'Artificial intelligence',
+    body: 'We integrate AI where it produces measurable utility — not simply because AI is fashionable.',
+    callout: 'AI should reduce friction, increase intelligence or create an entirely new capability. Otherwise, it probably doesn’t belong there.',
+    wide: true,
+    href: '/services/ai-experience-design',
+    linkLabel: 'AI experience design',
+    items: [
+      'AI product strategy', 'AI readiness assessments', 'Generative AI experiences', 'AI agents',
+      'Agentic workflows', 'AI assistants', 'AI-powered search', 'Retrieval augmented generation / RAG',
+      'Enterprise knowledge assistants', 'AI customer service', 'AI workflow automation',
+      'AI content systems', 'Intelligent recommendations', 'Predictive experiences',
+      'Predictive learning systems', 'AI-enabled training platforms', 'Natural-language interfaces',
+      'AI prototyping', 'LLM integration', 'Private / proprietary AI systems',
+    ],
+  },
+  {
+    n: '06',
+    title: 'Digital product engineering',
+    body: 'Artifact closes the gap between design and implementation by carrying product thinking directly into working software.',
+    href: '/services/digital-product-engineering',
+    linkLabel: 'Digital product engineering',
+    items: [
+      'Front-end engineering', 'Back-end engineering', 'Full-stack development', 'APIs',
+      'Database architecture', 'Cloud deployment', 'Application integrations',
+      'Performance optimization', 'Responsive implementation', 'Design-system implementation',
+      'Continuous delivery', 'QA', 'Production hardening', 'Maintenance and enhancement',
+    ],
+  },
+  {
+    n: '07',
+    title: 'Enterprise CMS & content ecosystems',
+    body: 'We simplify large, fragmented content estates into manageable systems teams can actually govern.',
+    note: 'Principal experience: founder Britt Midgette led the consolidation of a 6,500-page enterprise ecosystem into a platform of fewer than 1,000 pages, in a director role at a previous agency. That engagement predates Artifact Digital and is not Artifact corporate past performance.',
+    href: '/services/enterprise-cms',
+    linkLabel: 'Enterprise CMS',
+    items: [
+      'CMS strategy', 'CMS architecture', 'Enterprise CMS', 'WordPress', 'Headless architecture',
+      'Content modeling', 'Content governance', 'Taxonomy', 'Metadata strategy', 'Content migration',
+      'Multi-site architecture', 'Editorial workflows', 'Role-based publishing', 'Search architecture',
+      'Global content systems', 'Platform consolidation',
+    ],
+  },
+  {
+    n: '08',
+    title: 'Accessibility & inclusive design',
+    body: 'Accessibility is part of the architecture, not a checklist applied at the end.',
+    href: '/services/accessibility',
+    linkLabel: 'Accessibility',
+    items: [
+      'WCAG 2.1 AA', 'WCAG 2.2', 'Section 508', 'Accessible UX design', 'Accessibility audits',
+      'Design-system accessibility', 'Keyboard navigation', 'Semantic structure', 'Color contrast',
+      'Form accessibility', 'Screen-reader considerations', 'Remediation planning',
+      'Accessible front-end development', 'Government accessibility requirements',
+    ],
+  },
+  {
+    n: '09',
+    title: 'Commerce & transactional experiences',
+    body: 'We design digital commerce around the entire customer journey — discovery, decision, transaction and retention.',
+    items: [
+      'Ecommerce strategy', 'Shopify', 'Product discovery', 'Conversion optimization',
+      'Checkout experience', 'Marketplace platforms', 'Subscription experiences',
+      'Payments integration', 'Stripe integration', 'Customer accounts',
+      'Product information architecture', 'Merchandising UX', 'Commerce analytics',
+      'Digital-to-physical experiences',
+    ],
+  },
+  {
+    n: '10',
+    title: 'Immersive & interactive experiences',
+    body: 'For moments when a conventional interface is not enough, we create digital experiences that invite participation.',
+    href: '/services/ai-interactive-experiences',
+    linkLabel: 'AI & interactive experiences',
+    items: [
+      'Interactive storytelling', 'Generative interfaces', 'Augmented reality', 'Spatial experiences',
+      '3D interfaces', 'Experiential digital', 'Interactive retail', 'Motion systems',
+      'Product visualization', 'Data visualization', 'Interactive installations',
+      'Prototypes and emerging technology',
+    ],
+  },
+  {
+    n: '11',
+    title: 'Research, testing & optimization',
+    body: 'Launch is the beginning of the learning cycle, not the end of the engagement.',
+    href: '/services/experience-audits',
+    linkLabel: 'Experience audits',
+    items: [
+      'User research', 'Competitive analysis', 'Usability testing', 'Experience audits',
+      'Analytics strategy', 'KPI definition', 'Conversion optimization', 'Funnel analysis',
+      'A/B testing strategy', 'Performance monitoring', 'Customer feedback systems',
+      'Iterative product improvement', 'Post-launch optimization', 'Roadmap refinement',
+    ],
+  },
+  {
+    n: '12',
+    title: 'Training, enablement & change',
+    body: 'Technology succeeds when the people using it understand it, trust it and know how to make it part of their work.',
+    span: true,
+    items: [
+      'User training', 'Administrator training', 'Product onboarding', 'Documentation',
+      'Knowledge bases', 'Digital adoption', 'Learning experience design', 'AI-assisted training',
+      'Predictive learning', 'Role-based learning', 'Train-the-trainer', 'Change enablement',
+      'Launch support',
+    ],
+  },
+];
+
+const LIFECYCLE = [
+  { n: '01', phase: 'Discover', items: ['Research', 'Stakeholders', 'Requirements', 'Business goals', 'Customer needs'] },
+  { n: '02', phase: 'Define', items: ['Strategy', 'Architecture', 'Roadmap', 'MVP', 'Success measures'] },
+  { n: '03', phase: 'Design', items: ['UX', 'UI', 'Design systems', 'Prototypes', 'Testing'] },
+  { n: '04', phase: 'Build', items: ['Engineering', 'AI', 'CMS', 'Integrations', 'Data'] },
+  { n: '05', phase: 'Launch', items: ['QA', 'Accessibility', 'Training', 'Migration', 'Deployment'] },
+  { n: '06', phase: 'Optimize', items: ['Analytics', 'Research', 'Enhancements', 'Support', 'Roadmap'] },
+];
+
+const ENGAGEMENT_TYPES = [
+  { title: 'Digital modernization', body: 'Replace fragmented legacy experiences with a unified modern platform.' },
+  { title: 'New digital products', body: 'Take an idea from opportunity through working production software.' },
+  { title: 'Enterprise website transformation', body: 'Reimagine large content ecosystems around user journeys instead of organizational charts.' },
+  { title: 'AI transformation', body: 'Identify where AI actually creates value and integrate it safely into workflows and products.' },
+  { title: 'Bespoke business software', body: 'Replace disconnected subscriptions and manual processes with software designed around the organization.' },
+  { title: 'Customer experience transformation', body: 'Connect strategy, service design, UX and technology around the customer journey.' },
+  { title: 'Platform consolidation', body: 'Reduce redundant systems, content and workflows into a manageable digital ecosystem.' },
+  { title: 'Innovation prototypes', body: 'Turn uncertain ideas into working software quickly enough to learn before committing to a major investment.' },
+];
+
+const INDUSTRIES = [
+  'Government & public sector', 'Healthcare', 'Financial services', 'Higher education',
+  'Training & certification', 'Retail & commerce', 'Automotive', 'Consumer electronics',
+  'Food & agriculture', 'Nonprofit & community organizations', 'Professional services', 'Technology',
+];
+
+const OPERATING_POINTS = [
+  'Senior-led from discovery through delivery',
+  'Strategy and execution under one team',
+  'Rapid working prototypes',
+  'Design-to-code continuity',
+  'Flexible specialist network when programs require additional scale',
+  'Built for focused teams and complex initiatives',
+];
+
+const PRIME = [
+  'Digital products', 'UX transformation', 'Websites', 'Custom applications',
+  'AI initiatives', 'Experience modernization', 'Prototypes / MVPs', 'Research and strategy',
+];
+
+const TEAMING = [
+  'UX strategy', 'User research', 'Service design', 'UX/UI design', 'Design systems',
+  'Accessibility', 'Front-end engineering', 'AI experience design', 'Prototyping',
+  'Product strategy', 'Training experience', 'Customer experience',
+];
+
+const ENGAGEMENT_MODELS = [
+  { n: '01', title: 'Discovery & strategy', body: 'Focused research and definition before a larger investment.' },
+  { n: '02', title: 'Prototype / MVP', body: 'Move quickly from concept to working software.' },
+  { n: '03', title: 'Full product delivery', body: 'Strategy through design, engineering and launch.' },
+  { n: '04', title: 'Embedded specialist team', body: 'Add senior Artifact expertise to an existing internal or prime-contractor team.' },
+  { n: '05', title: 'Ongoing optimization', body: 'Support, analytics and iterative product evolution after launch.' },
+];
+
+// Grouped by what it does for the client, not by vendor. Everything named here
+// is either used to build this site or appears in a published case study.
+const TECH = [
+  { group: 'Experience', items: ['Modern web frameworks', 'React', 'Astro', 'TypeScript', 'Responsive systems', 'Design systems', 'Interactive applications'] },
+  { group: 'Platform', items: ['CMS', 'Headless CMS', 'WordPress', 'Shopify', 'SaaS', 'Cloud applications', 'APIs', 'Data'] },
+  { group: 'AI', items: ['LLMs', 'RAG', 'Agents', 'Automation', 'Generative interfaces', 'Predictive systems'] },
+  { group: 'Operations', items: ['Cloud deployment', 'Vercel', 'Authentication', 'Analytics', 'Monitoring', 'CI/CD', 'Performance'] },
+];
+
+// --- Proof -------------------------------------------------------------------
+// Split on priorRole so the two kinds of credibility can never blur together.
+// That distinction is the whole point for a procurement reader.
+const allWork = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+const artifactWork = allWork.filter((w) => !w.data.priorRole).slice(0, 3);
+const careerWork = allWork.filter((w) => w.data.priorRole).slice(0, 3);
+
 const path = '/capabilities';
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -110,13 +336,21 @@ const jsonLd = {
     {
       '@type': 'Service',
       '@id': `${SITE.url}${path}#service`,
-      name: 'Digital Modernization for Public Sector & Enterprise',
-      serviceType: 'Digital modernization, UX/UI design and build',
+      name: 'Digital strategy, UX, AI and software engineering',
+      serviceType: 'Digital strategy, experience design, artificial intelligence and software engineering',
       description:
-        'Senior-led strategic UX/UI design and build for public sector and enterprise digital platforms — WCAG 2.1 AA and Section 508 accessible, performance-first.',
+        'Artifact Digital delivers digital strategy, UX and product design, custom software, AI, enterprise websites, accessibility and CMS modernization under one senior team.',
       url: `${SITE.url}${path}`,
       provider: { '@id': `${SITE.url}/#organization` },
       areaServed: 'United States and Canada',
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Artifact Digital capabilities',
+        itemListElement: CAPABILITIES.map((c) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: c.title, description: c.body },
+        })),
+      },
     },
     orgNode,
     breadcrumb([
@@ -127,126 +361,242 @@ const jsonLd = {
 };
 ---
 <BaseLayout
-  title="Capability Statement · Public Sector & Enterprise · Artifact Digital"
-  description="Artifact Digital capability statement — senior-led strategic UX/UI design and build for public sector and enterprise digital modernization. NAICS, UEI, certifications and past performance."
+  title="Artifact Digital Capabilities | Strategy, UX, AI & Software Engineering"
+  description="Explore Artifact Digital's capabilities across digital strategy, UX/UI design, custom software, AI, enterprise websites, accessibility, CMS, product engineering and digital modernization."
   canonical={path}
   bodyClass="case-page capabilities"
   jsonLd={jsonLd}
 >
   <!-- HERO -->
-  <section class="case-hero">
+  <section class="case-hero cap-hero">
     <div class="container">
       <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Capabilities' }]} />
-      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Capability Statement</span>
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Capabilities</span>
       <h1 class="case-title">
-        <span class="reveal-line"><span>Digital modernization for</span></span>
-        <span class="reveal-line italic"><span>public sector &amp; enterprise.</span></span>
+        <span class="reveal-line"><span>Strategy through</span></span>
+        <span class="reveal-line italic"><span>shipped software.</span></span>
       </h1>
       <p class="case-lede reveal">
-        Artifact Digital is a senior-led studio delivering strategic UX/UI design and build for the
-        digital products, platforms and services agencies and enterprises depend on. Accessible by
-        mandate, fast by design, and senior-led from strategy through code.
+        Artifact Digital brings strategy, experience design, artificial intelligence and
+        engineering together under one senior team. We help organizations modernize digital
+        ecosystems, launch new products, improve customer experiences and build software
+        around the way their business actually works.
+      </p>
+      <div class="cap-hero__actions reveal">
+        <Button href={CTA.talk.href} label="Talk to Artifact" variant="primary" />
+        <Button href="/work" label="View our work" variant="secondary" />
+      </div>
+      <p class="cap-hero__arc reveal" aria-label="Our engagement arc: discover, design, build, launch, optimize">
+        <span>Discover</span><span>Design</span><span>Build</span><span>Launch</span><span>Optimize</span>
       </p>
     </div>
   </section>
 
-  <!-- SNAPSHOT: contact + key codes -->
-  <section class="section cap-snapshot">
-    <div class="container cap-snapshot__grid">
-      <div class="cap-card cap-contact reveal">
-        <h2 class="cap-card__label">Point of contact</h2>
-        <p class="cap-contact__name">{CONTACT.poc}</p>
-        <p class="cap-contact__role">{CONTACT.role}</p>
-        <dl class="cap-contact__dl">
-          <div><dt>Phone</dt><dd><a href={CONTACT.phoneHref}>{CONTACT.phone}</a></dd></div>
-          <div><dt>Email</dt><dd><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></dd></div>
-          <div><dt>Web</dt><dd><a href={SITE.url}>{CONTACT.website}</a></dd></div>
-          <div><dt>Address</dt><dd>{CONTACT.address}</dd></div>
-        </dl>
-      </div>
-      <div class="cap-card cap-quick reveal">
-        <h2 class="cap-card__label">At a glance</h2>
-        <dl class="cap-quick__dl">
-          {QUICK.map((q) => (
-            <div><dt>{q.label}</dt><dd>{q.value}</dd></div>
-          ))}
-        </dl>
-      </div>
-    </div>
-  </section>
-
-  <!-- CORE COMPETENCIES -->
-  <section class="section cap-section">
+  <!-- 01 — CAPABILITIES -->
+  <section class="section cap-section" id="what-we-do" aria-labelledby="cap-do-heading">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>Core competencies</span>
-        <h2 class="section-heading reveal-line"><span>What we deliver</span></h2>
+        <span class="section-tag reveal"><span class="tag-dot"></span>01 — Capabilities</span>
+        <h2 class="section-heading reveal-line" id="cap-do-heading"><span>What we can do</span></h2>
       </header>
-      <div class="cap-grid">
-        {COMPETENCIES.map((c) => (
-          <article class="cap-card cap-cell reveal-card">
-            <span class="cap-cell__num">{c.n}</span>
-            <h3 class="cap-cell__title">{c.title}</h3>
-            <p class="cap-cell__body">{c.body}</p>
+      <p class="cap-intro reveal">
+        Twelve capability areas, delivered individually or as one continuous programme.
+        Open any area to see the specific disciplines inside it.
+      </p>
+
+      <div class="cap-matrix">
+        {CAPABILITIES.map((c) => (
+          <article class:list={['cap-block', 'reveal-card', c.wide && 'cap-block--wide', c.span && 'cap-block--span']}>
+            <div class="cap-block__head">
+              <span class="cap-block__num" aria-hidden="true">{c.n}</span>
+              <h3 class="cap-block__title">{c.title}</h3>
+            </div>
+            <p class="cap-block__body">{c.body}</p>
+            {c.callout && <p class="cap-block__callout">{c.callout}</p>}
+            {c.note && <p class="cap-block__note">{c.note}</p>}
+            <details class="cap-disclose">
+              <summary>
+                <span class="cap-disclose__label">
+                  <span class="cap-disclose__more">{c.items.length} capabilities</span>
+                  <span class="cap-disclose__less">Hide capabilities</span>
+                </span>
+                <span class="cap-disclose__icon" aria-hidden="true"></span>
+              </summary>
+              <ul class="cap-tags">
+                {c.items.map((i) => <li>{i}</li>)}
+              </ul>
+            </details>
+            {c.href && (
+              <a class="cap-block__link" href={c.href}>
+                {c.linkLabel}<span aria-hidden="true"> →</span>
+              </a>
+            )}
           </article>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- PRINCIPAL'S TRACK RECORD -->
-  <section class="section cap-section cap-section--alt">
+  <!-- 02 — LIFECYCLE -->
+  <section class="section cap-section cap-section--alt" aria-labelledby="cap-lifecycle-heading">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>Past performance</span>
-        <h2 class="section-heading reveal-line"><span>Principal's track record</span></h2>
+        <span class="section-tag reveal"><span class="tag-dot"></span>02 — Lifecycle</span>
+        <h2 class="section-heading reveal-line" id="cap-lifecycle-heading"><span>From opportunity to operation.</span></h2>
       </header>
-      <p class="cap-note reveal">
-        Artifact Digital was founded in 2021. The engagements below were led by founder
-        Britt Midgette in a director role at previous agencies — his track record, and the
-        judgment now embedded in the studio. They are the principal's experience, not
-        presented as Artifact corporate past performance.
-      </p>
-      <ol class="cap-track">
-        {TRACK_RECORD.map((t) => (
-          <li class="cap-track__item reveal-row">
-            <div class="cap-track__head">
-              <span class="cap-track__client">{t.client}</span>
-              <span class="cap-track__kind">{t.kind}</span>
-            </div>
-            <p class="cap-track__body">{t.body}</p>
+      <ol class="cap-flow">
+        {LIFECYCLE.map((p) => (
+          <li class="cap-flow__step reveal-card">
+            <span class="cap-flow__num" aria-hidden="true">{p.n}</span>
+            <h3 class="cap-flow__phase">{p.phase}</h3>
+            <ul class="cap-flow__items">
+              {p.items.map((i) => <li>{i}</li>)}
+            </ul>
           </li>
         ))}
       </ol>
     </div>
   </section>
 
-  <!-- DIFFERENTIATORS -->
-  <section class="section cap-section">
+  <!-- 03 — ENGAGEMENT TYPES -->
+  <section class="section cap-section" aria-labelledby="cap-problems-heading">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>Differentiators</span>
-        <h2 class="section-heading reveal-line"><span>Why teams choose us</span></h2>
+        <span class="section-tag reveal"><span class="tag-dot"></span>03 — Where we help</span>
+        <h2 class="section-heading reveal-line" id="cap-problems-heading"><span>Complex problems are where we are most useful.</span></h2>
       </header>
-      <div class="cap-grid cap-grid--two">
-        {DIFFERENTIATORS.map((d) => (
-          <article class="cap-card cap-cell reveal-card">
-            <span class="cap-cell__num">{d.n}</span>
-            <h3 class="cap-cell__title">{d.title}</h3>
-            <p class="cap-cell__body">{d.body}</p>
+      <div class="cap-problems">
+        {ENGAGEMENT_TYPES.map((e) => (
+          <article class="cap-problem reveal-card">
+            <h3>{e.title}</h3>
+            <p>{e.body}</p>
           </article>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- CODES & REGISTRATIONS -->
-  <section class="section cap-section cap-section--alt">
+  <!-- 04 — INDUSTRIES -->
+  <section class="section cap-section cap-section--alt" aria-labelledby="cap-industries-heading">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>Registrations &amp; codes</span>
-        <h2 class="section-heading reveal-line"><span>Contracting information</span></h2>
+        <span class="section-tag reveal"><span class="tag-dot"></span>04 — Industries</span>
+        <h2 class="section-heading reveal-line" id="cap-industries-heading"><span>Industries</span></h2>
       </header>
+      <p class="cap-intro reveal">
+        Our team brings experience across complex, regulated and customer-facing environments.
+      </p>
+      <ul class="cap-industries">
+        {INDUSTRIES.map((i) => <li class="reveal-card">{i}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 05 — OPERATING MODEL -->
+  <section class="section cap-section" aria-labelledby="cap-model-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>05 — Operating model</span>
+        <h2 class="section-heading reveal-line" id="cap-model-heading"><span>Senior expertise. One integrated team.</span></h2>
+      </header>
+      <div class="cap-model">
+        <div class="cap-model__copy">
+          <p class="reveal">
+            Traditional engagements often separate strategy, design and technology across layers
+            of teams. Artifact works differently.
+          </p>
+          <p class="cap-model__lead reveal">
+            The senior people defining the problem remain involved through the solution.
+          </p>
+          <ul class="cap-model__points">
+            {OPERATING_POINTS.map((p) => <li class="reveal">{p}</li>)}
+          </ul>
+        </div>
+        <div class="cap-model__equation reveal" role="img" aria-label="Strategy plus design plus AI plus engineering equals Artifact">
+          <ul class="cap-eq__terms" aria-hidden="true">
+            <li>Strategy</li>
+            <li>Design</li>
+            <li>AI</li>
+            <li>Engineering</li>
+          </ul>
+          <span class="cap-eq__rule" aria-hidden="true"></span>
+          <span class="cap-eq__sum" aria-hidden="true">Artifact</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 — PROOF -->
+  <section class="section cap-section cap-section--alt" aria-labelledby="cap-proof-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>06 — Selected proof</span>
+        <h2 class="section-heading reveal-line" id="cap-proof-heading"><span>Selected proof</span></h2>
+      </header>
+
+      <div class="cap-proof__group">
+        <h3 class="cap-proof__label reveal">Artifact corporate work</h3>
+        <p class="cap-proof__note reveal">
+          Products Artifact Digital designed and built as a studio. This is the company's own
+          past performance.
+        </p>
+        <div class="project-grid">
+          {artifactWork.map((entry) => <WorkCard entry={entry} headingLevel="h4" />)}
+        </div>
+      </div>
+
+      <div class="cap-proof__group">
+        <h3 class="cap-proof__label reveal">Principal &amp; team experience</h3>
+        <p class="cap-proof__note reveal">
+          Engagements led by founder Britt Midgette in a director role at previous agencies,
+          before Artifact Digital existed. This is the principal's track record and the judgment
+          now embedded in the studio — <strong>it is not presented as Artifact corporate past
+          performance.</strong>
+        </p>
+        <div class="project-grid">
+          {careerWork.map((entry) => <WorkCard entry={entry} headingLevel="h4" />)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 — PUBLIC SECTOR -->
+  <section class="section cap-section" id="public-sector" aria-labelledby="cap-gov-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>07 — Public sector</span>
+        <h2 class="section-heading reveal-line" id="cap-gov-heading"><span>Built to work with public-sector procurement.</span></h2>
+      </header>
+
+      <div class="cap-snapshot__grid">
+        <div class="cap-card cap-contact reveal">
+          <h3 class="cap-card__label">Point of contact</h3>
+          <p class="cap-contact__name">{CONTACT.poc}</p>
+          <p class="cap-contact__role">{CONTACT.role}</p>
+          <dl class="cap-contact__dl">
+            <div><dt>Phone</dt><dd><a href={CONTACT.phoneHref}>{CONTACT.phone}</a></dd></div>
+            <div><dt>Email</dt><dd><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></dd></div>
+            <div><dt>Web</dt><dd><a href={SITE.url}>{CONTACT.website}</a></dd></div>
+            <div><dt>Address</dt><dd>{CONTACT.address}</dd></div>
+          </dl>
+        </div>
+        <div class="cap-card cap-quick reveal">
+          <h3 class="cap-card__label">At a glance</h3>
+          <dl class="cap-quick__dl">
+            {QUICK.map((q) => (
+              <div><dt>{q.label}</dt><dd>{q.value}</dd></div>
+            ))}
+          </dl>
+        </div>
+      </div>
+
+      <div class="cap-gov-delivery">
+        <h3 class="cap-subhead reveal">Public-sector delivery capabilities</h3>
+        <ul class="cap-industries cap-industries--tight">
+          {PUBLIC_SECTOR_DELIVERY.map((i) => <li class="reveal-card">{i}</li>)}
+        </ul>
+      </div>
+
       <div class="cap-codes">
         <div class="cap-code-group reveal">
           <h3>Business information</h3>
@@ -282,25 +632,529 @@ const jsonLd = {
     </div>
   </section>
 
+  <!-- 08 — PRIME OR PARTNER -->
+  <section class="section cap-section cap-section--alt" id="teaming" aria-labelledby="cap-teaming-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>08 — Prime or partner</span>
+        <h2 class="section-heading reveal-line" id="cap-teaming-heading"><span>We can lead the work — or strengthen the team.</span></h2>
+      </header>
+      <p class="cap-intro reveal">
+        Artifact works directly with organizations and can also serve as a specialist partner
+        within larger transformation programs.
+      </p>
+      <div class="cap-two-col">
+        <div class="cap-col reveal">
+          <h3 class="cap-col__title">Prime engagements</h3>
+          <p class="cap-col__note">Best suited for:</p>
+          <ul class="cap-col__list">
+            {PRIME.map((i) => <li>{i}</li>)}
+          </ul>
+        </div>
+        <div class="cap-col reveal">
+          <h3 class="cap-col__title">Teaming / subcontracting</h3>
+          <p class="cap-col__note">Artifact can augment larger delivery teams with:</p>
+          <ul class="cap-col__list">
+            {TEAMING.map((i) => <li>{i}</li>)}
+          </ul>
+        </div>
+      </div>
+      <div class="cap-teaming__cta reveal">
+        <Button
+          href="/contact?intent=teaming"
+          label="Discuss a teaming opportunity"
+          variant="primary"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 — ENGAGEMENT MODELS -->
+  <section class="section cap-section" aria-labelledby="cap-models-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>09 — Engagement models</span>
+        <h2 class="section-heading reveal-line" id="cap-models-heading"><span>Engagement models</span></h2>
+      </header>
+      <div class="cap-models">
+        {ENGAGEMENT_MODELS.map((m) => (
+          <article class="cap-model-card reveal-card">
+            <span class="cap-model-card__num" aria-hidden="true">{m.n}</span>
+            <h3>{m.title}</h3>
+            <p>{m.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 — TECHNOLOGY -->
+  <section class="section cap-section cap-section--alt" aria-labelledby="cap-tech-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>10 — Technology</span>
+        <h2 class="section-heading reveal-line" id="cap-tech-heading"><span>Technology</span></h2>
+      </header>
+      <p class="cap-intro reveal">
+        We choose tools to fit the problem, not the other way around. The outcome matters more
+        than the stack.
+      </p>
+      <div class="cap-tech">
+        {TECH.map((t) => (
+          <div class="cap-tech__group reveal">
+            <h3 class="cap-tech__label">{t.group}</h3>
+            <ul class="cap-tech__list">
+              {t.items.map((i) => <li>{i}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <CtaBand
-    heading={"Have an RFP or a\u00A0modernization mandate?"}
-    primary={{ label: 'Start an RFP conversation', href: `mailto:${SITE.email}?subject=RFP%20%2F%20Capability%20inquiry` }}
-    secondary={{ label: 'See selected work', href: '/work' }}
+    heading="Bring us the complicated part."
+    sub={"Whether you’re modernizing a public service, replacing legacy software, launching a new digital product or figuring out where AI belongs, Artifact brings the strategy, design and engineering needed to move from uncertainty to something real."}
+    primary={{ label: 'Start a conversation', href: '/contact' }}
+    secondary={{ label: 'View our work', href: '/work' }}
   />
 </BaseLayout>
 
 <style>
-  .cap-snapshot { padding-top: clamp(1.5rem, 3vw, 2.5rem); }
+  /* ============================================================
+     Capabilities — extends the site system, adds nothing new to it.
+     Everything here is page-scoped; shared patterns (section-head,
+     reveal, btn, work-grid, project-card) come from global.css.
+     ============================================================ */
+
+  /* The arc adds its own rule + margin below the hero, so trim the hero's
+     bottom padding to keep the section rhythm identical to the rest of the site. */
+  .cap-hero { padding-bottom: clamp(1.5rem, 3vw, 2.5rem); }
+
+  .cap-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 2.25rem;
+  }
+  /* .btn-secondary ships white-on-transparent for dark heroes. This hero is
+     white, so it needs the same light-surface treatment .case-cta uses. */
+  .cap-hero__actions :global(.btn-secondary) {
+    color: var(--ink);
+    border-color: rgba(17, 17, 17, 0.4);
+  }
+  .cap-hero__actions :global(.btn-secondary:hover) {
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+  }
+
+  /* The engagement arc — a quiet spine under the hero, not a badge row. */
+  .cap-hero__arc {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.9rem;
+    margin: 2.75rem 0 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(17, 17, 17, 0.12);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--steel);
+  }
+  .cap-hero__arc span + span::before {
+    content: '·';
+    margin-right: 0.9rem;
+    color: var(--accent);
+  }
+
+  .cap-section--alt { background: var(--stone); }
+
+  .cap-intro {
+    max-width: 62ch;
+    margin: -0.75rem 0 clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1rem, 1.2vw, 1.12rem);
+    line-height: 1.65;
+    color: var(--steel);
+  }
+
+  .cap-subhead {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0 0 1.25rem;
+  }
+
+  /* -------------------- 01 Capability matrix -------------------- */
+  .cap-matrix {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+  .cap-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: clamp(1.5rem, 2.6vw, 2.25rem);
+    background: #fff;
+    border: 1px solid rgba(17, 17, 17, 0.1);
+    border-radius: var(--radius-media);
+    transition: border-color 0.3s var(--easing), box-shadow 0.3s var(--easing);
+  }
+  .cap-section--alt .cap-block { background: #fff; }
+  .cap-block:hover { border-color: rgba(17, 17, 17, 0.2); box-shadow: var(--shadow-card); }
+  /* Full width, still light. Varies the rhythm, and keeps an odd run of cards
+     from stranding one beside an empty cell. */
+  .cap-block--span { grid-column: 1 / -1; }
+  .cap-block--span .cap-block__title { font-size: clamp(1.3rem, 2.4vw, 1.75rem); }
+
+  /* The two capabilities that carry a thesis get the full measure, dark. */
+  .cap-block--wide {
+    grid-column: 1 / -1;
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .cap-block--wide:hover { border-color: var(--ink); }
+  .cap-block__head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.85rem;
+  }
+  .cap-block__num {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    color: var(--accent-strong);
+    flex: none;
+  }
+  .cap-block--wide .cap-block__num { color: var(--blush); }
+  .cap-block__title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--ink);
+  }
+  .cap-block--wide .cap-block__title { color: #fff; font-size: clamp(1.5rem, 3vw, 2.2rem); }
+  .cap-block__body {
+    margin: 0;
+    color: var(--steel);
+    line-height: 1.65;
+    max-width: 62ch;
+  }
+  .cap-block--wide .cap-block__body { color: rgba(255, 255, 255, 0.76); font-size: 1.05rem; }
+  .cap-block__callout {
+    margin: 0.35rem 0 0;
+    padding-left: 1.1rem;
+    border-left: 3px solid var(--accent);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+    line-height: 1.4;
+    letter-spacing: -0.015em;
+    color: #fff;
+    max-width: 54ch;
+  }
+  .cap-block__note {
+    margin: 0;
+    padding: 0.7rem 0.9rem;
+    background: var(--stone);
+    border-left: 2px solid var(--steel-soft);
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: var(--steel);
+  }
+
+  .cap-block__link {
+    margin-top: auto;
+    padding-top: 0.35rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.92rem;
+    color: var(--accent-strong);
+    text-decoration: none;
+    align-self: flex-start;
+  }
+  .cap-block__link:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .cap-block--wide .cap-block__link { color: var(--blush); }
+
+  /* Progressive disclosure: native details keeps it keyboard- and SR-friendly. */
+  .cap-disclose { border-top: 1px solid rgba(17, 17, 17, 0.1); padding-top: 0.85rem; }
+  .cap-block--wide .cap-disclose { border-top-color: rgba(255, 255, 255, 0.18); }
+  .cap-disclose > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    cursor: pointer;
+    list-style: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--steel);
+    transition: color 0.25s var(--easing);
+  }
+  .cap-disclose > summary::-webkit-details-marker { display: none; }
+  .cap-disclose > summary:hover { color: var(--ink); }
+  .cap-block--wide .cap-disclose > summary { color: rgba(255, 255, 255, 0.7); }
+  .cap-block--wide .cap-disclose > summary:hover { color: #fff; }
+  .cap-disclose > summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+  .cap-disclose__less { display: none; }
+  .cap-disclose[open] .cap-disclose__more { display: none; }
+  .cap-disclose[open] .cap-disclose__less { display: inline; }
+  .cap-disclose__icon {
+    position: relative;
+    width: 12px;
+    height: 12px;
+    flex: none;
+  }
+  .cap-disclose__icon::before,
+  .cap-disclose__icon::after {
+    content: '';
+    position: absolute;
+    background: currentColor;
+    transition: transform 0.3s var(--easing), opacity 0.3s var(--easing);
+  }
+  .cap-disclose__icon::before { inset: 5px 0 5px 0; height: 2px; }
+  .cap-disclose__icon::after { inset: 0 5px 0 5px; width: 2px; }
+  .cap-disclose[open] .cap-disclose__icon::after { transform: scaleY(0); opacity: 0; }
+
+  .cap-tags {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+  .cap-tags li {
+    padding: 0.36rem 0.7rem;
+    border: 1px solid rgba(17, 17, 17, 0.14);
+    border-radius: 2px;
+    font-size: 0.855rem;
+    line-height: 1.3;
+    color: var(--steel);
+    background: var(--stone);
+  }
+  .cap-block--wide .cap-tags li {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  /* -------------------- 02 Lifecycle -------------------- */
+  .cap-flow {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  }
+  .cap-flow__step {
+    position: relative;
+    padding: clamp(1.25rem, 2vw, 1.6rem);
+    background: #fff;
+    border: 1px solid rgba(17, 17, 17, 0.1);
+    border-radius: var(--radius-media);
+  }
+  /* Connector chevrons sit in the gap, and never in the accessibility tree. */
+  .cap-flow__step + .cap-flow__step::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * clamp(0.75rem, 1.5vw, 1.25rem) / 2 - 3px);
+    top: clamp(1.6rem, 2.4vw, 2rem);
+    width: 6px;
+    height: 6px;
+    border-top: 2px solid var(--accent);
+    border-right: 2px solid var(--accent);
+    transform: rotate(45deg);
+  }
+  .cap-flow__num {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    color: var(--accent-strong);
+  }
+  .cap-flow__phase {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    letter-spacing: -0.02em;
+    margin: 0.4rem 0 0.9rem;
+    color: var(--ink);
+  }
+  .cap-flow__items { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; }
+  .cap-flow__items li { color: var(--steel); font-size: 0.92rem; line-height: 1.4; }
+
+  /* -------------------- 03 Engagement types -------------------- */
+  .cap-problems {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+  .cap-problem {
+    padding: clamp(1.35rem, 2.4vw, 1.9rem);
+    border: 1px solid rgba(17, 17, 17, 0.1);
+    border-radius: var(--radius-media);
+    background: #fff;
+    transition: transform 0.3s var(--easing), box-shadow 0.3s var(--easing), border-color 0.3s var(--easing);
+  }
+  .cap-problem:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+    border-color: rgba(17, 17, 17, 0.2);
+  }
+  .cap-problem h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.12rem;
+    letter-spacing: -0.015em;
+    margin: 0 0 0.55rem;
+    color: var(--ink);
+  }
+  .cap-problem p { margin: 0; color: var(--steel); line-height: 1.6; font-size: 0.97rem; }
+
+  /* -------------------- 04 Industries -------------------- */
+  .cap-industries {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 0;
+    border-top: 1px solid rgba(17, 17, 17, 0.12);
+  }
+  .cap-industries li {
+    padding: 1.05rem 0.25rem;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.12);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.02rem;
+    color: var(--ink);
+  }
+  .cap-industries--tight li { font-size: 0.97rem; padding: 0.85rem 0.25rem; }
+
+  /* -------------------- 05 Operating model -------------------- */
+  .cap-model {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+  .cap-model__copy p { margin: 0 0 1.1rem; color: var(--steel); line-height: 1.7; max-width: 56ch; }
+  .cap-model__lead {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: clamp(1.2rem, 2.2vw, 1.65rem) !important;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    color: var(--ink) !important;
+  }
+  .cap-model__points { list-style: none; margin: 1.75rem 0 0; padding: 0; display: grid; gap: 0.75rem; }
+  .cap-model__points li {
+    position: relative;
+    padding-left: 1.4rem;
+    color: var(--steel);
+    line-height: 1.55;
+  }
+  .cap-model__points li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+  }
+  .cap-model__equation {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+    background: var(--ink);
+    border-radius: var(--radius-media);
+  }
+  .cap-eq__terms { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; width: 100%; }
+  .cap-eq__terms li {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+    letter-spacing: -0.02em;
+    color: rgba(255, 255, 255, 0.82);
+  }
+  .cap-eq__terms li + li::before {
+    content: '+';
+    color: var(--accent);
+    margin-right: 0.5rem;
+    font-weight: 400;
+  }
+  .cap-eq__terms li:first-child { padding-left: 1.35rem; }
+  .cap-eq__rule {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--accent);
+    margin: 0.9rem 0 0.5rem;
+  }
+  .cap-eq__sum {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 4vw, 2.9rem);
+    letter-spacing: -0.035em;
+    color: #fff;
+  }
+
+  /* -------------------- 06 Proof -------------------- */
+  .cap-proof__group + .cap-proof__group { margin-top: clamp(3rem, 6vw, 5rem); }
+  .cap-proof__label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 0.75rem;
+  }
+  .cap-proof__note {
+    max-width: 70ch;
+    margin: 0 0 clamp(1.75rem, 3vw, 2.5rem);
+    padding: 1rem 1.25rem;
+    border-left: 3px solid var(--accent);
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--steel);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+  .cap-proof__note strong { color: var(--ink); font-weight: 600; }
+
+  /* -------------------- 07 Public sector -------------------- */
   .cap-snapshot__grid {
     display: grid;
     grid-template-columns: 1.4fr 1fr;
     gap: clamp(1rem, 2.5vw, 1.75rem);
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
   }
   .cap-card {
     background: var(--stone);
     border-radius: var(--radius-media);
     padding: clamp(1.5rem, 3vw, 2rem);
   }
+  .cap-section--alt .cap-card { background: #fff; }
   .cap-card__label {
     margin: 0 0 1rem;
     font-family: 'DM Sans', sans-serif;
@@ -336,77 +1190,14 @@ const jsonLd = {
   .cap-card a { color: var(--accent-strong); text-decoration: none; }
   .cap-card a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-  .cap-section--alt { background: var(--stone); }
-
-  .cap-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: clamp(1rem, 2.5vw, 1.5rem);
-  }
-  .cap-cell {
-    background: #fff;
-    border: 1px solid rgba(17, 17, 17, 0.08);
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-  .cap-section--alt .cap-cell { background: #fff; }
-  .cap-cell__num {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 0.85rem;
-    color: var(--accent-strong);
-    letter-spacing: 0.08em;
-  }
-  .cap-cell__title {
-    margin: 0;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: var(--ink);
-  }
-  .cap-cell__body { margin: 0; color: var(--steel); line-height: 1.6; }
-
-  .cap-note {
-    max-width: 70ch;
-    margin: -0.5rem 0 clamp(2rem, 4vw, 3rem);
-    padding: 1.1rem 1.25rem;
-    border-left: 3px solid var(--accent);
-    background: #fff;
-    border-radius: 0 var(--radius-media) var(--radius-media) 0;
-    color: var(--steel);
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-  .cap-section--alt .cap-note { background: rgba(255, 255, 255, 0.65); }
-
-  .cap-track { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
-  .cap-track__item {
-    background: #fff;
-    border: 1px solid rgba(17, 17, 17, 0.08);
-    border-radius: var(--radius-media);
-    padding: clamp(1.25rem, 2.5vw, 1.75rem);
-  }
-  .cap-track__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1rem; margin-bottom: 0.6rem; }
-  .cap-track__client {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 1.15rem;
-    color: var(--ink);
-  }
-  .cap-track__kind {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--steel-soft);
-  }
-  .cap-track__body { margin: 0; color: var(--steel); line-height: 1.6; max-width: 78ch; }
+  .cap-gov-delivery { margin-bottom: clamp(2.5rem, 5vw, 4rem); }
 
   .cap-codes {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: clamp(1.5rem, 3vw, 2.5rem);
+    padding-top: clamp(2rem, 4vw, 3rem);
+    border-top: 1px solid rgba(17, 17, 17, 0.12);
   }
   .cap-code-group h3 {
     margin: 0 0 1rem;
@@ -437,11 +1228,129 @@ const jsonLd = {
   .cap-code__label { color: var(--steel); line-height: 1.45; }
   .cap-code__label em { font-style: normal; color: var(--accent-strong); font-weight: 600; }
 
-  @media (max-width: 860px) {
-    .cap-snapshot__grid { grid-template-columns: 1fr; }
-    .cap-codes { grid-template-columns: 1fr; }
+  /* -------------------- 08 Prime or partner -------------------- */
+  .cap-two-col {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1rem, 2.5vw, 1.75rem);
   }
-  @media (max-width: 620px) {
-    .cap-grid, .cap-grid--two { grid-template-columns: 1fr; }
+  .cap-col {
+    padding: clamp(1.6rem, 3vw, 2.25rem);
+    background: #fff;
+    border: 1px solid rgba(17, 17, 17, 0.1);
+    border-radius: var(--radius-media);
+  }
+  .cap-col__title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    letter-spacing: -0.02em;
+    margin: 0 0 0.4rem;
+    color: var(--ink);
+  }
+  .cap-col__note { margin: 0 0 1.25rem; color: var(--steel-soft); font-size: 0.9rem; }
+  .cap-col__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.6rem 1rem;
+  }
+  .cap-col__list li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: var(--steel);
+    font-size: 0.97rem;
+    line-height: 1.45;
+  }
+  .cap-col__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+  }
+  .cap-teaming__cta { margin-top: clamp(1.75rem, 3vw, 2.5rem); }
+
+  /* -------------------- 09 Engagement models -------------------- */
+  .cap-models {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+  .cap-model-card {
+    padding: clamp(1.4rem, 2.4vw, 1.9rem);
+    border: 1px solid rgba(17, 17, 17, 0.1);
+    border-radius: var(--radius-media);
+    background: #fff;
+    transition: transform 0.3s var(--easing), box-shadow 0.3s var(--easing), border-color 0.3s var(--easing);
+  }
+  .cap-model-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+    border-color: rgba(17, 17, 17, 0.2);
+  }
+  .cap-model-card__num {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    color: var(--accent-strong);
+  }
+  .cap-model-card h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.015em;
+    margin: 0.4rem 0 0.5rem;
+    color: var(--ink);
+  }
+  .cap-model-card p { margin: 0; color: var(--steel); line-height: 1.6; font-size: 0.96rem; }
+
+  /* -------------------- 10 Technology -------------------- */
+  .cap-tech {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .cap-tech__group { border-top: 2px solid var(--ink); padding-top: 1.1rem; }
+  .cap-tech__label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 0.9rem;
+  }
+  .cap-tech__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; }
+  .cap-tech__list li { color: var(--steel); font-size: 0.97rem; line-height: 1.45; }
+
+  /* -------------------- Responsive -------------------- */
+  @media (max-width: 1080px) {
+    .cap-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    /* Chevrons only make sense between cards on the same row. */
+    .cap-flow__step:nth-child(3n + 1)::before { display: none; }
+  }
+  @media (max-width: 900px) {
+    .cap-model { grid-template-columns: 1fr; }
+    .cap-codes { grid-template-columns: 1fr; }
+    .cap-snapshot__grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 760px) {
+    .cap-matrix { grid-template-columns: 1fr; }
+    .cap-two-col { grid-template-columns: 1fr; }
+    .cap-flow { grid-template-columns: 1fr; }
+    .cap-flow__step::before { display: none !important; }
+    .cap-hero__actions :global(.btn) { flex: 1 1 100%; justify-content: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cap-problem, .cap-model-card, .cap-block { transition: none; }
+    .cap-problem:hover, .cap-model-card:hover { transform: none; }
+    .cap-disclose__icon::before, .cap-disclose__icon::after { transition: none; }
   }
 </style>
