@@ -92,7 +92,7 @@ const CAPABILITIES: Capability[] = [
   {
     n: '01',
     title: 'Digital strategy & transformation',
-    body: 'We help organizations understand where digital can create meaningful business value, then turn that opportunity into a practical roadmap for execution.',
+    body: 'We find where digital creates real value for the business, then turn that into a roadmap someone can actually execute.',
     href: '/services/digital-strategy',
     linkLabel: 'Digital strategy',
     items: [
@@ -106,7 +106,7 @@ const CAPABILITIES: Capability[] = [
   {
     n: '02',
     title: 'UX, product & experience design',
-    body: 'We design complex digital experiences around real human needs while balancing usability, business objectives and technical realities.',
+    body: 'We design complex experiences around how people actually behave, balanced against what the business needs and what the technology allows.',
     href: '/services/digital-products-ux',
     linkLabel: 'Digital products & UX',
     items: [
@@ -120,7 +120,7 @@ const CAPABILITIES: Capability[] = [
   {
     n: '03',
     title: 'Website design & digital platforms',
-    body: 'We design and build high-performing websites and digital platforms that function as meaningful business infrastructure — not simply marketing collateral.',
+    body: 'Websites and platforms built as business infrastructure, not marketing collateral.',
     span: true,
     href: '/services/website-design-build',
     linkLabel: 'Website design & build',
@@ -295,14 +295,26 @@ const OPERATING_POINTS = [
 ];
 
 const PRIME = [
-  'Digital products', 'UX transformation', 'Websites', 'Custom applications',
-  'AI initiatives', 'Experience modernization', 'Prototypes / MVPs', 'Research and strategy',
+  { label: 'Digital products', items: 'Concept through production software' },
+  { label: 'Custom applications', items: 'Internal tools · Portals · Workflow systems' },
+  { label: 'Websites & platforms', items: 'Enterprise · Government · Editorial · Commerce' },
+  { label: 'UX transformation', items: 'Research · Architecture · Design systems' },
+  { label: 'AI initiatives', items: 'Readiness · Agentic workflows · Production integration' },
+  { label: 'Experience modernization', items: 'Legacy replacement · Platform consolidation' },
+  { label: 'Prototypes / MVPs', items: 'Working software fast enough to learn from' },
+  { label: 'Research & strategy', items: 'Discovery · Roadmaps · Requirements' },
 ];
 
+// Headline specialisms a prime scans for, each with what it actually covers.
 const TEAMING = [
-  'UX strategy', 'User research', 'Service design', 'UX/UI design', 'Design systems',
-  'Accessibility', 'Front-end engineering', 'AI experience design', 'Prototyping',
-  'Product strategy', 'Training experience', 'Customer experience',
+  { label: 'UX & product', items: 'UX strategy · UX/UI design · Product strategy · Service design' },
+  { label: 'AI', items: 'AI experience design · Agentic workflows · LLM integration' },
+  { label: 'Accessibility', items: 'WCAG 2.1 AA · WCAG 2.2 · Section 508 · Audits & remediation' },
+  { label: 'Design systems', items: 'Component libraries · Tokens · Governance · Implementation' },
+  { label: 'Prototyping', items: 'Working prototypes · Concept validation · MVP definition' },
+  { label: 'Front-end', items: 'React · TypeScript · Design-system implementation · Performance' },
+  { label: 'Research', items: 'User research · Usability testing · Experience audits' },
+  { label: 'Digital strategy', items: 'Discovery · Roadmaps · Requirements · Customer journey' },
 ];
 
 const ENGAGEMENT_MODELS = [
@@ -386,8 +398,9 @@ const jsonLd = {
         <Button href={CTA.talk.href} label="Talk to Artifact" variant="primary" />
         <Button href="/work" label="View our work" variant="secondary" />
       </div>
-      <p class="cap-hero__arc reveal" aria-label="Our engagement arc: discover, design, build, launch, optimize">
-        <span>Discover</span><span>Design</span><span>Build</span><span>Launch</span><span>Optimize</span>
+      <p class="cap-hero__arc reveal">
+        <span>Strategy</span><span>Design</span><span>AI</span><span>Engineering</span>
+        <span class="cap-hero__arc-tail">under one senior team</span>
       </p>
     </div>
   </section>
@@ -400,8 +413,7 @@ const jsonLd = {
         <h2 class="section-heading reveal-line" id="cap-do-heading"><span>What we can do</span></h2>
       </header>
       <p class="cap-intro reveal">
-        Twelve capability areas, delivered individually or as one continuous programme.
-        Open any area to see the specific disciplines inside it.
+        Twelve areas, taken on individually or as one continuous engagement.
       </p>
 
       <div class="cap-matrix">
@@ -438,7 +450,7 @@ const jsonLd = {
   </section>
 
   <!-- 02 — LIFECYCLE -->
-  <section class="section cap-section cap-section--alt" aria-labelledby="cap-lifecycle-heading">
+  <section class="section cap-section cap-section--ink" aria-labelledby="cap-lifecycle-heading">
     <div class="container">
       <header class="section-head">
         <span class="section-tag reveal"><span class="tag-dot"></span>02 — Lifecycle</span>
@@ -502,8 +514,8 @@ const jsonLd = {
       <div class="cap-model">
         <div class="cap-model__copy">
           <p class="reveal">
-            Traditional engagements often separate strategy, design and technology across layers
-            of teams. Artifact works differently.
+            Most engagements split strategy, design and technology across layers of teams, then
+            spend the budget translating between them.
           </p>
           <p class="cap-model__lead reveal">
             The senior people defining the problem remain involved through the solution.
@@ -557,6 +569,10 @@ const jsonLd = {
           {careerWork.map((entry) => <WorkCard entry={entry} headingLevel="h4" />)}
         </div>
       </div>
+
+      <p class="cap-proof__more reveal">
+        <a href="/work">See all case studies<span aria-hidden="true"> →</span></a>
+      </p>
     </div>
   </section>
 
@@ -640,22 +656,33 @@ const jsonLd = {
         <h2 class="section-heading reveal-line" id="cap-teaming-heading"><span>We can lead the work — or strengthen the team.</span></h2>
       </header>
       <p class="cap-intro reveal">
-        Artifact works directly with organizations and can also serve as a specialist partner
-        within larger transformation programs.
+        Artifact leads focused digital initiatives directly, and joins larger transformation
+        programs as a specialist partner. We are a senior team built for the difficult parts of
+        a program — not a body shop scaled to staff an entire one.
       </p>
       <div class="cap-two-col">
-        <div class="cap-col reveal">
+        <div class="cap-col cap-col--teaming reveal">
           <h3 class="cap-col__title">Prime engagements</h3>
-          <p class="cap-col__note">Best suited for:</p>
-          <ul class="cap-col__list">
-            {PRIME.map((i) => <li>{i}</li>)}
+          <p class="cap-col__note">Initiatives Artifact leads end to end:</p>
+          <ul class="cap-specialisms">
+            {PRIME.map((t) => (
+              <li>
+                <span class="cap-specialisms__label">{t.label}</span>
+                <span class="cap-specialisms__items">{t.items}</span>
+              </li>
+            ))}
           </ul>
         </div>
-        <div class="cap-col reveal">
+        <div class="cap-col cap-col--teaming reveal">
           <h3 class="cap-col__title">Teaming / subcontracting</h3>
-          <p class="cap-col__note">Artifact can augment larger delivery teams with:</p>
-          <ul class="cap-col__list">
-            {TEAMING.map((i) => <li>{i}</li>)}
+          <p class="cap-col__note">Specialist scopes we take inside a larger delivery team:</p>
+          <ul class="cap-specialisms">
+            {TEAMING.map((t) => (
+              <li>
+                <span class="cap-specialisms__label">{t.label}</span>
+                <span class="cap-specialisms__items">{t.items}</span>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
@@ -676,15 +703,15 @@ const jsonLd = {
         <span class="section-tag reveal"><span class="tag-dot"></span>09 — Engagement models</span>
         <h2 class="section-heading reveal-line" id="cap-models-heading"><span>Engagement models</span></h2>
       </header>
-      <div class="cap-models">
+      <ol class="cap-ladder">
         {ENGAGEMENT_MODELS.map((m) => (
-          <article class="cap-model-card reveal-card">
-            <span class="cap-model-card__num" aria-hidden="true">{m.n}</span>
-            <h3>{m.title}</h3>
-            <p>{m.body}</p>
-          </article>
+          <li class="cap-ladder__row reveal-row">
+            <span class="cap-ladder__num" aria-hidden="true">{m.n}</span>
+            <h3 class="cap-ladder__title">{m.title}</h3>
+            <p class="cap-ladder__body">{m.body}</p>
+          </li>
         ))}
-      </div>
+      </ol>
     </div>
   </section>
 
@@ -696,8 +723,7 @@ const jsonLd = {
         <h2 class="section-heading reveal-line" id="cap-tech-heading"><span>Technology</span></h2>
       </header>
       <p class="cap-intro reveal">
-        We choose tools to fit the problem, not the other way around. The outcome matters more
-        than the stack.
+        We choose tools to fit the problem, not the other way around.
       </p>
       <div class="cap-tech">
         {TECH.map((t) => (
@@ -750,27 +776,55 @@ const jsonLd = {
   }
 
   /* The engagement arc — a quiet spine under the hero, not a badge row. */
+  /* The four disciplines, stated plainly in the first viewport. This is the
+     one thing a prime or an RFP evaluator must take away above the fold. */
   .cap-hero__arc {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem 0.9rem;
+    align-items: baseline;
+    gap: 0.4rem 1rem;
     margin: 2.75rem 0 0;
     padding-top: 1.5rem;
-    border-top: 1px solid rgba(17, 17, 17, 0.12);
+    border-top: 1px solid rgba(17, 17, 17, 0.14);
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.2em;
+    font-weight: 700;
+    font-size: clamp(0.92rem, 1.5vw, 1.12rem);
+    letter-spacing: 0.13em;
     text-transform: uppercase;
-    color: var(--steel);
+    color: var(--ink);
   }
-  .cap-hero__arc span + span::before {
-    content: '·';
-    margin-right: 0.9rem;
+  .cap-hero__arc span + span:not(.cap-hero__arc-tail)::before {
+    content: '+';
+    margin-right: 1rem;
     color: var(--accent);
+    font-weight: 400;
+  }
+  .cap-hero__arc .cap-hero__arc-tail {
+    font-weight: 400;
+    font-size: 0.82rem;
+    letter-spacing: 0.16em;
+    color: var(--steel-soft);
+  }
+  .cap-hero__arc .cap-hero__arc-tail::before {
+    content: '·';
+    margin-right: 1rem;
+    color: var(--steel-soft);
   }
 
   .cap-section--alt { background: var(--stone); }
+
+  /* One dark beat in the middle of a long light page. The lifecycle earns it:
+     it is the section that states the whole promise of the page in six words. */
+  .cap-section--ink { background: var(--ink); }
+  .cap-section--ink .section-heading { color: #fff; }
+  .cap-section--ink .section-tag { color: rgba(255, 255, 255, 0.66); }
+  .cap-section--ink .cap-flow__step {
+    background: rgba(255, 255, 255, 0.045);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+  .cap-section--ink .cap-flow__num { color: var(--blush); }
+  .cap-section--ink .cap-flow__phase { color: #fff; }
+  .cap-section--ink .cap-flow__items li { color: rgba(255, 255, 255, 0.72); }
 
   .cap-intro {
     max-width: 62ch;
@@ -1273,42 +1327,67 @@ const jsonLd = {
     height: 5px;
     background: var(--accent);
   }
-  .cap-teaming__cta { margin-top: clamp(1.75rem, 3vw, 2.5rem); }
-
-  /* -------------------- 09 Engagement models -------------------- */
-  .cap-models {
+  /* Big label first, detail second — a prime scans the labels, then reads
+     only the row that matches the gap in their team. */
+  .cap-specialisms { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+  .cap-specialisms li {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: clamp(1rem, 2vw, 1.5rem);
+    gap: 0.15rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.1);
   }
-  .cap-model-card {
-    padding: clamp(1.4rem, 2.4vw, 1.9rem);
-    border: 1px solid rgba(17, 17, 17, 0.1);
-    border-radius: var(--radius-media);
-    background: #fff;
-    transition: transform 0.3s var(--easing), box-shadow 0.3s var(--easing), border-color 0.3s var(--easing);
-  }
-  .cap-model-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-card);
-    border-color: rgba(17, 17, 17, 0.2);
-  }
-  .cap-model-card__num {
+  .cap-specialisms li:first-child { padding-top: 0; }
+  .cap-specialisms li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .cap-specialisms__label {
     font-family: 'DM Sans', sans-serif;
     font-weight: 700;
-    font-size: 0.78rem;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .cap-specialisms__items { font-size: 0.88rem; line-height: 1.5; color: var(--steel); }
+  .cap-col--teaming { border-color: rgba(17, 17, 17, 0.2); }
+
+  .cap-teaming__cta { margin-top: clamp(1.75rem, 3vw, 2.5rem); }
+
+  .cap-proof__more { margin: clamp(2rem, 4vw, 3rem) 0 0; }
+  .cap-proof__more a {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--accent-strong);
+    text-decoration: none;
+  }
+  .cap-proof__more a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* -------------------- 09 Engagement models -------------------- */
+  /* A ladder, not a fourth card grid — these are ordered by commitment, and
+     the page already spends its card budget in sections 01 and 03. */
+  .cap-ladder { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(17, 17, 17, 0.12); }
+  .cap-ladder__row {
+    display: grid;
+    grid-template-columns: 3.5rem minmax(0, 15rem) minmax(0, 1fr);
+    gap: clamp(1rem, 3vw, 2.5rem);
+    align-items: baseline;
+    padding: clamp(1.25rem, 2.4vw, 1.9rem) 0;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.12);
+  }
+  .cap-ladder__num {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
     letter-spacing: 0.1em;
     color: var(--accent-strong);
   }
-  .cap-model-card h3 {
+  .cap-ladder__title {
     font-family: 'DM Sans', sans-serif;
     font-weight: 700;
-    font-size: 1.1rem;
-    letter-spacing: -0.015em;
-    margin: 0.4rem 0 0.5rem;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    letter-spacing: -0.02em;
+    margin: 0;
     color: var(--ink);
   }
-  .cap-model-card p { margin: 0; color: var(--steel); line-height: 1.6; font-size: 0.96rem; }
+  .cap-ladder__body { margin: 0; color: var(--steel); line-height: 1.6; max-width: 58ch; }
 
   /* -------------------- 10 Technology -------------------- */
   .cap-tech {
@@ -1346,6 +1425,37 @@ const jsonLd = {
     .cap-flow { grid-template-columns: 1fr; }
     .cap-flow__step::before { display: none !important; }
     .cap-hero__actions :global(.btn) { flex: 1 1 100%; justify-content: center; }
+
+    /* Ladder stacks: number and title on one line, body beneath. */
+    .cap-ladder__row { grid-template-columns: 2.25rem 1fr; gap: 0.5rem 0.75rem; }
+    .cap-ladder__body { grid-column: 2; }
+
+    /* On a phone the disciplines sat at ~730px, where the global sticky CTA
+       covers them — and below the fold entirely on a 360x740 handset. They are
+       the one thing the first screen has to deliver, so they move above the
+       buttons here. Reordering a non-interactive <p> leaves tab order intact. */
+    .cap-hero .container { display: flex; flex-direction: column; }
+    /* Breadcrumbs, eyebrow and h1 keep the default order of 0, so the
+       disciplines land directly under the headline and the lede follows. */
+    .cap-hero__arc { order: 4; margin-top: 1.5rem; padding-top: 1.25rem; }
+    .cap-hero .case-lede { order: 5; margin-top: 1.75rem; }
+    .cap-hero__actions { order: 6; margin-top: 1.75rem; }
+
+    /* Keep the four disciplines on one line; a wrap leaves a leading "+"
+       stranded at the start of the second line. The tail drops beneath. */
+    .cap-hero__arc { font-size: 0.78rem; letter-spacing: 0.06em; gap: 0.35rem 0.6rem; }
+    .cap-hero__arc span + span:not(.cap-hero__arc-tail)::before { margin-right: 0.6rem; }
+    .cap-hero__arc .cap-hero__arc-tail { flex: 1 1 100%; margin-top: 0.35rem; }
+    .cap-hero__arc .cap-hero__arc-tail::before { content: none; margin-right: 0; }
+
+    /* Tap targets. The summary and the service link were 21px and 28px —
+       both under the 44px minimum, on the two controls this page most
+       depends on. Padding is added rather than font-size, so the visual
+       weight of the row is unchanged. */
+    .cap-disclose > summary { padding: 0.75rem 0; min-height: 44px; }
+    .cap-disclose { padding-top: 0.15rem; }
+    .cap-block__link { padding: 0.6rem 0; min-height: 44px; display: inline-flex; align-items: center; }
+    .cap-proof__more a { padding: 0.6rem 0; min-height: 44px; display: inline-flex; align-items: center; }
   }
 
   @media (prefers-reduced-motion: reduce) {
