@@ -7,6 +7,7 @@ author: Britt Midgette
 cluster: "AI & Design"
 tags: ["AI", "Product Design", "Visual Design"]
 keywords: ["AI product design", "AI slop", "visual hierarchy", "design craft", "prompting for design", "design systems", "interaction design", "AI-assisted development", "UX fundamentals", "vibe coding"]
+heroImage: "/brand_assets/insights/design-and-build-with-ai-dont-ship-slop.webp"
 draft: false
 ---
 *AI democratized execution. It did not repeal best practices — and when everybody can build, what you build matters more.*
