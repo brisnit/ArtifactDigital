@@ -21,14 +21,12 @@ const live = testimonials.filter((t) => t.approved);
 const softwareQuotes = live.filter((t) => t.kind === 'software');
 const otherQuotes = live.filter((t) => t.kind !== 'software');
 
-// Every product in the hero reel, with its real ownership and status. The
-// caption under the video follows this timeline, so the reel never implies
-// more than is true. Times match the scene cuts in the rendered video.
+// The hero footage is illustrative: generated concept interfaces, not screens
+// from real products. The caption says so for the whole clip, so the hero never
+// implies a product, client or status that doesn't exist. The caption script
+// still follows this timeline, so real product scenes can be named again later.
 const REEL = [
-  { from: 0, name: 'DropQ', status: 'Built by Artifact · Live · demo storefront shown' },
-  { from: 5.4, name: 'Predictive Learning Platform', status: 'Artifact concept · In development' },
-  { from: 10.4, name: 'Senior-Living Ministry', status: 'Built by Artifact · Prototype' },
-  { from: 15.4, name: 'BenchBot', status: "Artifact's own product · Pre-launch" },
+  { from: 0, name: 'Illustrative footage', status: 'Concept interfaces · not client or live products' },
 ];
 
 const MODEL_ROWS = MODEL_COMPARISON;
@@ -85,7 +83,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
   title="Artifact Digital — Bespoke SaaS & Custom Software Development"
   description="Artifact Digital designs and builds bespoke SaaS for companies with problems off-the-shelf software can't solve: senior product thinking, design, engineering and AI in one team."
   canonical="/"
-  preloadImage="/brand_assets/hero-product-reel.webp"
+  preloadImage="/brand_assets/hero-cinematic.webp"
   jsonLd={jsonLd}
 >
   <!-- 1. BESPOKE SAAS -->
@@ -121,12 +119,12 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
       <div class="hero-visual">
         <video
           class="hero-video"
-          data-src="/brand_assets/hero-product-reel.mp4"
-          data-src-mobile="/brand_assets/hero-product-reel-mobile.mp4"
+          data-src="/brand_assets/hero-cinematic.mp4"
+          data-src-mobile="/brand_assets/hero-cinematic-mobile.mp4"
           data-reel={JSON.stringify(REEL)}
-          poster="/brand_assets/hero-product-reel.webp"
+          poster="/brand_assets/hero-cinematic.webp"
           muted loop playsinline autoplay preload="metadata"
-          aria-label="Reel of software Artifact builds"
+          aria-label="Illustrative footage of software interfaces"
           aria-describedby="heroReelList"
         ></video>
         <p class="hero-reel-caption" aria-hidden="true">
