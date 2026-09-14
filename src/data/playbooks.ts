@@ -29,16 +29,16 @@ export const PLAYBOOKS: readonly Playbook[] = [
       'Seven questions we answer before a line of code. Three of them have killed projects, on purpose.',
   },
   {
-    slug: 'enterprise-website-checklist',
-    navLabel: 'Enterprise website checklist',
-    summary:
-      'Forty checks that decide whether an enterprise site still works two years after launch.',
-  },
-  {
     slug: 'design-system-maturity-model',
     navLabel: 'Design system maturity model',
     summary:
       'Five levels, described honestly. Most teams sit a level lower than they think.',
+  },
+  {
+    slug: 'enterprise-website-checklist',
+    navLabel: 'Enterprise website checklist',
+    summary:
+      'Forty checks that decide whether an enterprise site still works two years after launch.',
   },
 ];
 

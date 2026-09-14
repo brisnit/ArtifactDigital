@@ -1,16 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
 import { SITE, CTA } from '../data/site';
+import { BUILD_CLUSTERS, buildPath } from '../data/build';
 
-const services = (await getCollection('services'))
-  .filter((s) => s.data.tier === 'pillar')
-  .sort((a, b) => a.data.order - b.data.order);
 const year = new Date().getFullYear();
 ---
 <footer class="page-footer">
   <div class="container">
     <div class="footer-cta">
-      <h2 class="footer-cta__heading">Let's build something better.</h2>
+      <h2 class="footer-cta__heading">Build something that fits.</h2>
       <a class="btn btn-primary" href={CTA.primary.href}>
         {CTA.primary.label}
         <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
@@ -21,21 +18,23 @@ const year = new Date().getFullYear();
 
     <nav class="footer-nav" aria-label="Footer">
       <div class="footer-col">
-        <h3>Services</h3>
+        <h3>What we build</h3>
         <ul>
-          {services.map((s) => <li><a href={`/services/${s.id}`}>{s.data.navLabel}</a></li>)}
-          <li><a href="/services">All services →</a></li>
+          <li><a href="/services/bespoke-saas">Bespoke SaaS</a></li>
+          {BUILD_CLUSTERS.map((c) => <li><a href={buildPath(c.id)}>{c.label}</a></li>)}
+          <li><a href="/services">The practice →</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h3>Studio</h3>
         <ul>
           <li><a href="/work">Case studies</a></li>
+          <li><a href="/weeks-not-months">How we work</a></li>
+          <li><a href="/capabilities">Capabilities</a></li>
+          <li><a href="/about">About</a></li>
           <li><a href="/insights">Insights</a></li>
           <li><a href="/craft">The craft of design</a></li>
           <li><a href="/ai-engineering">AI engineering</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/capabilities">Capabilities</a></li>
           <li><a href="/contact">Contact</a></li>
         </ul>
       </div>

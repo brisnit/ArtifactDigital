@@ -11,7 +11,7 @@ const jsonLd = {
       url: `${SITE.url}/contact`,
       name: 'Contact Artifact Digital',
       description:
-        'Book a strategy session or request an experience audit. Artifact Digital is a senior-led digital innovation agency.',
+        'Tell Artifact Digital what your business needs software to do. Artifact Digital designs and builds bespoke SaaS for businesses.',
       isPartOf: { '@id': `${SITE.url}/#website` },
       about: { '@id': `${SITE.url}/#organization` },
     },
@@ -24,8 +24,8 @@ const jsonLd = {
 };
 ---
 <BaseLayout
-  title="Contact · Book a Strategy Session · Artifact Digital"
-  description="Start a conversation with Artifact Digital. Book a strategy session, request an experience audit, or tell us about your project — senior-led, no handoffs."
+  title="Contact · Build Something · Artifact Digital"
+  description="Tell Artifact Digital what your business needs software to do. A principal reads every message and replies within two business days."
   canonical="/contact"
   bodyClass="case-page contact-page"
   jsonLd={jsonLd}
@@ -35,12 +35,12 @@ const jsonLd = {
     <div class="container">
       <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Contact</span>
       <h1 class="case-title">
-        <span class="reveal-line"><span>Let's build something</span></span>
-        <span class="reveal-line italic"><span>better together.</span></span>
+        <span class="reveal-line"><span>Tell us what your software</span></span>
+        <span class="reveal-line italic"><span>needs to do.</span></span>
       </h1>
       <p class="case-lede reveal">
-        Tell us where you want to go. A principal — not a pipeline — reads every
-        message, and you'll hear back within two business days.
+        A principal — not a pipeline — reads every message. You\'ll hear back
+        within two business days.
       </p>
     </div>
   </section>
@@ -92,13 +92,13 @@ const jsonLd = {
           <div class="field">
             <label for="intent">How can we help?</label>
             <select id="intent" name="intent">
-              <option value="strategy">Book a strategy session</option>
-              <option value="discovery">Run a discovery engagement</option>
-              <option value="mvp">Build an MVP — weeks, not months</option>
+              <option value="build">Build bespoke software</option>
+              <option value="replace">Replace software we've outgrown</option>
+              <option value="mvp">Build an MVP</option>
               <option value="ai-assessment">Assess an AI project</option>
-              <option value="audit">Request an experience audit</option>
+              <option value="discovery">Run a discovery engagement</option>
+              <option value="audit">Request a software &amp; experience audit</option>
               <option value="design-system">Review our design system</option>
-              <option value="project">Start a project</option>
               <option value="teaming">Teaming or subcontracting</option>
               <option value="general">Something else</option>
             </select>

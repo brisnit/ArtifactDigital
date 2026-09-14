@@ -1,16 +1,16 @@
 // Central site configuration + shared structured-data nodes.
 // Single source of truth so every page emits consistent metadata/schema.
 
-import { PLAYBOOKS, playbookPath } from './playbooks';
+import { BUILD_CLUSTERS, buildPath } from './build';
 
 export const SITE = {
   name: 'Artifact Digital',
   url: 'https://www.artifactdigital.co',
   domain: 'artifactdigital.co',
   email: 'hello@artifactdigital.co',
-  tagline: 'Digital Innovation Agency',
+  tagline: 'The Bespoke SaaS Agency',
   description:
-    'Artifact Digital is a senior-led digital innovation agency designing bold, premium experiences for ambitious brands — strategy, UX/UI design, AI, and engineering.',
+    'Artifact Digital designs and builds bespoke SaaS for businesses — software built around how a company works, by a senior team using AI as a force multiplier.',
   foundingDate: '2021',
   location: 'San Diego, CA',
   linkedin: 'https://www.linkedin.com/company/artifact-digital-co/',
@@ -53,26 +53,31 @@ export interface NavItem {
 
 export const NAV: readonly NavItem[] = [
   {
-    label: 'Services',
+    label: 'What We Build',
     href: '/services',
     mega: true,
-    children: PLAYBOOKS.map((p) => ({ label: p.navLabel, href: playbookPath(p.slug) })),
+    children: [
+      { label: 'Bespoke SaaS', href: '/services/bespoke-saas' },
+      ...BUILD_CLUSTERS.map((c) => ({ label: c.label, href: buildPath(c.id) })),
+    ],
   },
+  // Interim target: /how-we-work replaces /weeks-not-months (with a 301) when
+  // that page is rebuilt. Until then the label points at the page it becomes.
+  { label: 'How We Work', href: '/weeks-not-months' },
   { label: 'Work', href: '/work' },
   { label: 'Capabilities', href: '/capabilities' },
   { label: 'Insights', href: '/insights' },
   { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
 ];
 
 // Standardized CTA language. One vocabulary across the whole site so the
 // primary ask is always consistent and intentional.
 export const CTA = {
-  primary: { label: 'Book a Strategy Session', href: '/contact' },
-  audit: { label: 'Request an Experience Audit', href: '/contact?intent=audit' },
+  primary: { label: 'Build Something', href: '/contact' },
+  audit: { label: 'Request a Software & Experience Audit', href: '/contact?intent=audit' },
   talk: { label: 'Talk With Artifact', href: '/contact' },
-  build: { label: "Let's Build Something Better", href: '/contact' },
-  work: { label: 'See our work', href: '/#work' },
+  build: { label: 'Build Something', href: '/contact' },
+  work: { label: "See What We've Built", href: '/work' },
 } as const;
 
 const abs = (path: string) => (path.startsWith('http') ? path : `${SITE.url}${path}`);
