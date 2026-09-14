@@ -2710,10 +2710,11 @@ button:focus-visible {
 /* Career work tier sits on a subtle tint so the two proofs read as separate */
 .work--career { background: var(--stone); }
 
-/* Anchor targets clear the fixed header without needing a JS scroll offset. */
+/* Anchor targets clear the fixed header without needing a JS scroll offset.
+   The header is 90px tall; 6.25rem (100px) clears it with a little air. */
 section[id],
 [id]:target {
-  scroll-margin-top: 5.5rem;
+  scroll-margin-top: 6.25rem;
 }
 
 /* ============================================================
@@ -3511,3 +3512,164 @@ html:not(.js) .nav-item--has-menu:focus-within .nav-mega {
   }
   .model-table td:last-child::before { color: var(--accent-strong); }
 }
+
+/* ============================================================
+   What We Build hub (/services)
+   ============================================================ */
+.wwb-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; margin-top: 2rem; }
+.wwb-xref { margin: 1.5rem 0 0; max-width: 70ch; color: var(--steel); font-size: 0.95rem; line-height: 1.6; }
+.wwb-xref a,
+.home-lede a { color: var(--accent-strong); text-underline-offset: 3px; }
+
+.ticklist--two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem 2.5rem;
+  margin: 1.5rem 0;
+}
+@media (max-width: 640px) { .ticklist--two { grid-template-columns: 1fr; } }
+
+.wwb-cluster-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(17, 17, 17, 0.12); }
+.wwb-cluster {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 5vw, 4.5rem);
+  padding: clamp(2rem, 4vw, 3.25rem) 0;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.12);
+}
+.wwb-cluster__num { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.95rem; color: var(--steel-soft); }
+.wwb-cluster__title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0.5rem 0 0.75rem;
+  color: var(--ink);
+}
+.wwb-cluster__summary { margin: 0 0 1.25rem; max-width: 48ch; color: var(--steel); font-size: clamp(1rem, 1.2vw, 1.1rem); line-height: 1.6; }
+.wwb-tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.wwb-tags li {
+  font-size: 0.82rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(17, 17, 17, 0.16);
+  color: var(--steel);
+}
+.wwb-proof__title {
+  margin: 0.35rem 0 0.9rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--steel-soft);
+}
+.wwb-proof { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.1rem; }
+.wwb-proof__item + .wwb-proof__item { border-top: 1px solid rgba(17, 17, 17, 0.08); padding-top: 1.1rem; }
+.wwb-proof__name {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 1.08rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+.wwb-proof__name:hover { text-decoration: underline; text-underline-offset: 3px; }
+.wwb-proof__detail { margin: 0.25rem 0 0; color: var(--steel); font-size: 0.95rem; line-height: 1.5; }
+.wwb-legend { margin: 1.75rem 0 0; max-width: 72ch; color: var(--steel); font-size: 0.9rem; line-height: 1.6; }
+.wwb-legend strong { color: var(--ink); font-weight: 500; }
+@media (max-width: 860px) { .wwb-cluster { grid-template-columns: 1fr; } }
+
+/* Proof tier — encoded in the chip's form, not only its words. */
+.tier-chip {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid;
+  border-radius: 999px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.tier-chip--artifact { color: var(--accent-strong); border-color: currentColor; }
+.tier-chip--founder,
+.tier-chip--team { color: var(--steel); border-color: rgba(17, 17, 17, 0.22); }
+.tier-chip--concept { color: var(--steel); border-color: rgba(17, 17, 17, 0.4); border-style: dashed; }
+
+/* Balanced columns read top-to-bottom and never strand a lone last link. */
+.wwb-practice__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  columns: 3;
+  column-gap: 2rem;
+}
+.wwb-practice__list li { break-inside: avoid; }
+.wwb-practice__list a {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.95rem 0;
+  border-top: 1px solid rgba(17, 17, 17, 0.12);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+}
+.wwb-practice__list a span { color: var(--accent-strong); }
+.wwb-practice__list a:hover { color: var(--accent-strong); }
+@media (max-width: 900px) { .wwb-practice__list { columns: 2; } }
+@media (max-width: 560px) { .wwb-practice__list { columns: 1; } }
+
+/* ============================================================
+   How We Work — the method, with what AI changes at each stage
+   ============================================================ */
+.hww-stages { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(17, 17, 17, 0.12); }
+.hww-stage {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem clamp(1.5rem, 4vw, 3.5rem);
+  padding: clamp(1.5rem, 3vw, 2.25rem) 0;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.12);
+  align-items: start;
+}
+.hww-stage__num { padding-top: 0.4rem; font-family: 'DM Sans', sans-serif; font-weight: 500; color: var(--accent-strong); }
+.hww-stage__title {
+  margin: 0 0 0.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+.hww-stage__body { margin: 0; max-width: 46ch; color: var(--steel); line-height: 1.6; }
+.hww-stage__leverage { padding: 1.1rem 1.25rem; background: var(--stone); border-radius: var(--radius-media); }
+.hww-stage__label {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--steel-soft);
+}
+.hww-stage__leverage p { margin: 0; color: var(--ink); font-size: 0.98rem; line-height: 1.55; }
+@media (max-width: 860px) {
+  .hww-stage { grid-template-columns: 44px minmax(0, 1fr); }
+  .hww-stage__leverage { grid-column: 2; }
+}
+@media (max-width: 480px) {
+  .hww-stage { grid-template-columns: 1fr; }
+  .hww-stage__leverage { grid-column: auto; }
+}
+
+/* The shared five-stage method on a service page: one row of five where it
+   fits, single file otherwise — never a 3 + 2 grid with an empty slot. */
+.case-pillars .pillar-grid--five { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1rem; }
+.case-pillars .pillar-grid--five .pillar { padding: 1.5rem; }
+@media (max-width: 1100px) { .case-pillars .pillar-grid--five { grid-template-columns: 1fr; } }
+

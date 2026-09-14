@@ -7,6 +7,8 @@ import CtaBand from '../../components/CtaBand.astro';
 import WorkCard from '../../components/WorkCard.astro';
 import { SITE, orgNode, breadcrumb, CTA } from '../../data/site';
 import { relatedCases } from '../../lib/related';
+import { METHOD } from '../../data/method';
+import { BUILD_CLUSTERS, buildPath } from '../../data/build';
 
 export const getStaticPaths = (async () => {
   const services = await getCollection('services');
@@ -20,6 +22,9 @@ const url = `${SITE.url}${path}`;
 
 const allServices = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 const cases = await relatedCases(d.relatedTags);
+// Flagship pages use the one Artifact method rather than a page-specific process.
+const process = d.flagship ? METHOD : d.process;
+const processHeading = d.flagship ? 'How it gets built' : 'The engagement';
 const related = d.relatedServices.length
   ? allServices.filter((s) => d.relatedServices.includes(s.id))
   : allServices.filter((s) => s.id !== entry.id).slice(0, 3);
@@ -54,7 +59,7 @@ const jsonLd = {
     orgNode,
     breadcrumb([
       { name: 'Home', path: '/' },
-      { name: 'Services', path: '/services' },
+      { name: 'What We Build', path: '/services' },
       { name: d.title, path },
     ]),
   ],
@@ -69,7 +74,7 @@ const jsonLd = {
 >
   <section class="case-hero">
     <div class="container">
-      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Services', href: '/services' }, { name: d.navLabel }]} />
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'What We Build', href: '/services' }, { name: d.navLabel }]} />
       <span class="eyebrow reveal"><span class="eyebrow-dot"></span>{d.eyebrow}</span>
       <h1 class="case-title">
         {d.heroTitleLines.map((l) => (
@@ -101,13 +106,34 @@ const jsonLd = {
     </section>
   ))}
 
+  <!-- FIVE KINDS OF SOFTWARE (flagship only) -->
+  {d.flagship && (
+    <section class="section service-clusters">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-tag reveal"><span class="tag-dot"></span>What we build</span>
+          <h2 class="section-heading reveal-line"><span>Five kinds of bespoke software</span></h2>
+        </header>
+        <div class="service-link-grid">
+          {BUILD_CLUSTERS.map((c) => (
+            <a class="service-link-card reveal-card" href={buildPath(c.id)}>
+              <h3>{c.label}</h3>
+              <p>{c.summary}</p>
+              <span class="service-link-card__more">See examples →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- CAPABILITIES (optional) -->
   {d.capabilities && d.capabilities.length > 0 && (
     <section class="section service-capabilities">
       <div class="container">
         <header class="section-head">
-          <span class="section-tag reveal"><span class="tag-dot"></span>Capabilities</span>
-          <h2 class="section-heading reveal-line"><span>What we build</span></h2>
+          <span class="section-tag reveal"><span class="tag-dot"></span>In practice</span>
+          <h2 class="section-heading reveal-line"><span>What this covers</span></h2>
         </header>
         <ul class="capability-grid">
           {d.capabilities.map((c) => <li class="capability reveal">{c}</li>)}
@@ -121,10 +147,10 @@ const jsonLd = {
     <div class="container">
       <header class="section-head">
         <span class="section-tag reveal"><span class="tag-dot"></span>How we work</span>
-        <h2 class="section-heading reveal-line"><span>The engagement</span></h2>
+        <h2 class="section-heading reveal-line"><span>{processHeading}</span></h2>
       </header>
-      <div class="pillar-grid">
-        {d.process.map((p, i) => (
+      <div class:list={["pillar-grid", d.flagship && "pillar-grid--five"]}>
+        {process.map((p, i) => (
           <article class="pillar reveal-card">
             <span class="pillar__num">{String(i + 1).padStart(2, '0')}</span>
             <h3>{p.title}</h3>
@@ -132,6 +158,9 @@ const jsonLd = {
           </article>
         ))}
       </div>
+      {d.flagship && (
+        <p class="home-more reveal"><a class="home-more__link" href="/how-we-work">How we work, in full<span aria-hidden="true"> →</span></a></p>
+      )}
     </div>
   </section>
 

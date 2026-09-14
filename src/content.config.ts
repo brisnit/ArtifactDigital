@@ -102,6 +102,9 @@ const services = defineCollection({
     // "pillar" = broad capability area (the homepage "What we build" touts);
     // "service" = a specific discipline. Lets the hub present two tiers.
     tier: z.enum(['pillar', 'service']).default('service'),
+    // The flagship offer renders the shared Artifact method and the five kinds
+    // of software in place of a page-specific process.
+    flagship: z.boolean().default(false),
     eyebrow: z.string(),
     heroTitleLines: z.array(z.object({ text: z.string(), italic: z.boolean().default(false) })),
     lede: z.string(),

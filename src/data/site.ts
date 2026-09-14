@@ -61,9 +61,7 @@ export const NAV: readonly NavItem[] = [
       ...BUILD_CLUSTERS.map((c) => ({ label: c.label, href: buildPath(c.id) })),
     ],
   },
-  // Interim target: /how-we-work replaces /weeks-not-months (with a 301) when
-  // that page is rebuilt. Until then the label points at the page it becomes.
-  { label: 'How We Work', href: '/weeks-not-months' },
+  { label: 'How We Work', href: '/how-we-work' },
   { label: 'Work', href: '/work' },
   { label: 'Capabilities', href: '/capabilities' },
   { label: 'Insights', href: '/insights' },

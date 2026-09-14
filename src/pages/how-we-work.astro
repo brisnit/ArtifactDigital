@@ -1,0 +1,393 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Button from '../components/Button.astro';
+import { SITE, orgNode, breadcrumb, CTA } from '../data/site';
+import { METHOD, MODEL_COMPARISON } from '../data/method';
+
+// The definitive explanation of the Artifact model. /weeks-not-months
+// 301-redirects here (vercel.json), so its article links still land.
+const path = '/how-we-work';
+const url = `${SITE.url}${path}`;
+
+// Resolved from the collection so a renamed article fails the build instead
+// of shipping a dead link.
+const READING = [
+  'agency-of-the-future-smaller-faster-senior',
+  'why-we-prototype-before-we-promise',
+  'design-and-build-with-ai-dont-ship-slop',
+];
+const insights = await getCollection('insights');
+const reading = READING.map((id) => {
+  const article = insights.find((a) => a.id === id);
+  if (!article) throw new Error(`how-we-work: missing article "${id}"`);
+  return article;
+});
+
+// One array feeds both the visible answers and the FAQ schema.
+const FAQ = [
+  {
+    q: 'Where does AI do the work, and where doesn’t it?',
+    a: 'AI takes on a large share of the exploration and execution: synthesizing research, generating and comparing prototype directions, and producing code, tests and documentation. People decide what to build, how it should work and whether it’s good enough. Every decision that matters stays with experienced people who are accountable for it.',
+  },
+  {
+    q: 'Doesn’t AI make experience less important?',
+    a: 'The opposite. The more capability a team has, the more it matters where that capability is pointed. Experienced people know which possibilities are worth exploring, which risks are real and when to stop. AI multiplies that judgment; it doesn’t supply it.',
+  },
+  {
+    q: 'Does “weeks, not months” mean every product ships in weeks?',
+    a: 'No. Sophisticated software takes the time it needs. What arrives in weeks is working software and real learning: early prototypes in front of real users, while a traditional project may still be defining the solution. The timeline for the full product depends on its scope, and we’ll tell you honestly what yours looks like.',
+  },
+  {
+    q: 'Is this just a prototype, or something real?',
+    a: 'Both, in sequence. Early prototypes are working software built to learn from. The product that follows is production software on architecture that can grow. What we hand you isn’t a throwaway.',
+  },
+  {
+    q: 'Does working this way mean cutting corners?',
+    a: 'No. It means less effort spent coordinating production and more spent on the work itself. Accessibility, performance, security and architecture standards stay exactly where they were.',
+  },
+  {
+    q: 'What if we find out the idea is wrong?',
+    a: 'Then the engagement did its job. Finding out early that an idea needs to change is a far better outcome than finding out after the budget is spent. That’s the point of learning before you commit.',
+  },
+  {
+    q: 'Are you saying traditional agencies are doing it wrong?',
+    a: 'No. The traditional model has produced great work, and it’s where our team learned the craft. It was built for a time when capability had to come from headcount. The economics and capabilities of software creation have changed, and Artifact is designed around that new reality.',
+  },
+  {
+    q: 'Who actually does the work?',
+    a: 'The senior people you meet, from the first conversation to production. The team that understands your problem is the team building your software.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': `${url}#webpage`,
+      name: 'How We Work · The Artifact Model',
+      url,
+      description:
+        'How a small, experienced team working with AI applies more thinking, design, engineering, testing and iteration to a business problem, and builds bespoke software around it.',
+      about: { '@id': `${SITE.url}/#organization` },
+      isPartOf: { '@id': `${SITE.url}/#website` },
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${url}#faq`,
+      mainEntity: FAQ.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'How We Work', path },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title="How We Work · The Artifact Model · Artifact Digital"
+  description="More thinking. More building. Less overhead. How a senior team working with AI explores more, prototypes more and tests more to build software around your business."
+  canonical={path}
+  ogImage="/brand_assets/insights/Landing.webp"
+  bodyClass="case-page wnm-page"
+  jsonLd={jsonLd}
+>
+  <!-- HERO -->
+  <section class="wnm-hero">
+    <div class="container wnm-hero__grid">
+      <div class="wnm-hero__copy">
+        <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'How We Work' }]} />
+        <span class="eyebrow reveal"><span class="eyebrow-dot"></span>How we work · The Artifact model</span>
+        <h1 class="wnm-hero__title">
+          <span class="reveal-line"><span>More thinking.</span></span>
+          <span class="reveal-line"><span>More building.</span></span>
+          <span class="reveal-line italic"><span>Less overhead.</span></span>
+        </h1>
+        <p class="wnm-hero__lede reveal">
+          Agencies have always grown what they can do by adding people. Artifact is
+          built on a different equation: a small team of experienced people working
+          with AI, applying far more thinking, design, engineering, testing and
+          iteration to a business problem than team size alone would allow. The result
+          is <em>better software, built faster, around the business itself.</em>
+        </p>
+        <div class="hero-actions reveal">
+          <Button href={CTA.primary.href} label={CTA.primary.label} variant="primary" />
+          <Button href={CTA.work.href} label={CTA.work.label} variant="secondary" />
+        </div>
+      </div>
+      <div class="wnm-hero__media reveal-card">
+        <img src="/brand_assets/insights/Landing.webp" alt="Interlocking paths finding their way forward" width="634" height="473" fetchpriority="high" />
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT CHANGED -->
+  <section class="section service-section wnm-argument">
+    <div class="container service-section__grid">
+      <div class="service-section__head">
+        <h2 class="service-section__heading reveal-line"><span>What changed</span></h2>
+      </div>
+      <div class="service-prose service-section__body">
+        <p class="reveal">
+          For most of the history of software, capability grew with headcount. A more
+          ambitious project meant more people: more specialists, more coordination,
+          and more handoffs between the people who understood the problem and the
+          people building the answer.
+        </p>
+        <p class="reveal">
+          That model has produced a great deal of excellent work. Our team spent
+          decades inside it, and much of how we work comes from what it taught us.
+          We aren't arguing that it's broken. We're saying the ground underneath it
+          has moved.
+        </p>
+        <p class="reveal">
+          AI massively multiplies the intellectual and computational force a person
+          can bring to a problem. Research that once had to be sampled can now be read
+          in full. A budget that used to justify one prototype can now justify
+          several. A large share of the code, tests and documentation that
+          consumed a project's hours can be produced in a fraction of them.
+        </p>
+        <p class="reveal">
+          So the most useful question about a project is no longer only how many
+          people it needs. It's how much thinking, building and testing the problem
+          deserves — and a small, senior team can now bring far more of all three.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE THE EFFORT GOES -->
+  <section class="section model" aria-labelledby="effort-heading">
+    <div class="container model-grid">
+      <div class="model-copy">
+        <span class="section-tag reveal"><span class="tag-dot"></span>The Artifact model</span>
+        <h2 class="model-heading reveal" id="effort-heading">Where the effort <em>goes.</em></h2>
+        <p class="model-lede reveal">
+          AI lowers the cost of exploring and executing. It doesn't remove the need
+          for expertise — it changes where expertise is spent. Less of a project's
+          energy goes into coordinating production, and more goes into the problem
+          itself.
+        </p>
+      </div>
+      <div class="model-table-wrap reveal">
+        <table class="model-table">
+          <caption class="sr-only">How the traditional agency model and the Artifact model add capability</caption>
+          <thead>
+            <tr><th scope="col"><span class="sr-only">Aspect</span></th><th scope="col">Traditional agency model</th><th scope="col">The Artifact model</th></tr>
+          </thead>
+          <tbody>
+            {MODEL_COMPARISON.map(([label, before, after]) => (
+              <tr><th scope="row">{label}</th><td data-label="Traditional">{before}</td><td data-label="Artifact">{after}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section service-section">
+    <div class="container service-section__grid">
+      <div class="service-section__head">
+        <h2 class="service-section__heading reveal-line"><span>AI makes experience more valuable</span></h2>
+      </div>
+      <div class="service-prose service-section__body">
+        <p class="reveal">
+          More capability only helps if it's pointed in the right direction. AI can
+          produce a hundred options in the time it once took to sketch one. It can't
+          tell you which one your operations team will actually adopt, which workflow
+          carries regulatory risk, or which shortcut becomes next year's technical debt.
+        </p>
+        <p class="reveal">
+          That judgment comes from people who have designed and built software for
+          real organizations, many times over. Experienced people know where to direct
+          the additional capability: which possibilities are worth exploring, which
+          prototype will teach the most, and when a promising idea should be stopped.
+        </p>
+        <p class="reveal">
+          AI multiplies that judgment. It doesn't replace it. Every decision that
+          matters — what to build, how it should work, whether it's ready — stays with
+          the people accountable for it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE METHOD -->
+  <section class="section wnm-phases" id="method">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>The method</span>
+        <h2 class="section-heading reveal-line"><span>Learn before you commit</span></h2>
+      </header>
+      <p class="home-lede reveal">
+        The same five stages on every engagement. What makes them work isn't the order
+        alone. It's how much more each stage can explore, test and learn when
+        experienced people work with AI.
+      </p>
+      <ol class="hww-stages">
+        {METHOD.map((m, i) => (
+          <li class="hww-stage reveal">
+            <span class="hww-stage__num">{String(i + 1).padStart(2, '0')}</span>
+            <div class="hww-stage__main">
+              <h3 class="hww-stage__title">{m.title}</h3>
+              <p class="hww-stage__body">{m.body}</p>
+            </div>
+            <div class="hww-stage__leverage">
+              <span class="hww-stage__label">What AI changes</span>
+              <p>{m.leverage}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <p class="wnm-note reveal">
+        Every engagement is different. This is the shape, not a contract. What
+        doesn't change is the order: learn before you commit.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAST IS NOT THE POINT -->
+  <section class="section service-section">
+    <div class="container service-section__grid">
+      <div class="service-section__head">
+        <h2 class="service-section__heading reveal-line"><span>Fast is not the point</span></h2>
+      </div>
+      <div class="service-prose service-section__body">
+        <p class="reveal">
+          Plenty of people will sell you speed right now. Speed is easy to sell and
+          easy to misuse — if you're driving toward the wrong destination, getting
+          there twice as fast doesn't help anyone.
+        </p>
+        <p class="reveal">
+          What actually matters is how quickly you find out. Most products don't fail
+          because the engineering was bad. They fail because a team committed to a
+          direction before they had enough information, and by the time reality
+          arrived, changing course had become too expensive to survive the meeting.
+        </p>
+        <p class="reveal">
+          So we optimize for the thing underneath speed: <em>learning</em>. Put
+          something real in front of people in the first weeks of an engagement, and
+          being wrong costs you a few weeks. Find out after a year and a half of
+          building, and being wrong costs you the budget, the roadmap, and somebody's
+          job. Same mistake — wildly different price.
+        </p>
+        <p class="reveal">
+          That's what we mean by <em>weeks, not months</em>. Not a promise that every
+          product ships in a few weeks — sophisticated software takes the time it
+          takes. It means working software and real learning arrive early, while a
+          traditional project might still be defining the eventual solution.
+        </p>
+        <p class="reveal">
+          That's also what we mean by failing forward together. Not failure as a
+          slogan. Failure made cheap, early, and shared — so it turns into information
+          instead of blame.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISUAL BAND -->
+  <section class="wnm-gallery" aria-label="How we work">
+    <figure class="wnm-gallery__item reveal-card">
+      <img src="/brand_assets/insights/Engineering.webp" alt="Two overlapping forms — design and engineering working as one loop" loading="lazy" width="1180" height="2053" />
+      <figcaption>Design and engineering in the same loop — so intent survives to production.</figcaption>
+    </figure>
+    <figure class="wnm-gallery__item reveal-card">
+      <img src="/brand_assets/insights/Pixels.webp" alt="A field of pixels, undecided" loading="lazy" width="1180" height="1027" />
+      <figcaption>The decisions that matter happen before a pixel is designed.</figcaption>
+    </figure>
+    <figure class="wnm-gallery__item reveal-card">
+      <img src="/brand_assets/insights/No_Assembly.webp" alt="No assembly line — the people you meet do the work" loading="lazy" width="1180" height="2053" />
+      <figcaption>One senior team from strategy to code. The people you meet do the work.</figcaption>
+    </figure>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section class="section service-lists">
+    <div class="container service-lists__grid">
+      <div>
+        <h2 class="service-list__title reveal-line"><span>What you get</span></h2>
+        <ul class="ticklist">
+          <li class="reveal">A senior team that understands the business problem before proposing software</li>
+          <li class="reveal">Several directions explored and tested before the big commitment</li>
+          <li class="reveal">Working software early, with evidence from real users behind each decision</li>
+          <li class="reveal">Production software on architecture that can grow, not a throwaway</li>
+          <li class="reveal">Accessibility, performance and security standards held throughout</li>
+          <li class="reveal">An honest recommendation, including when off-the-shelf software is the better answer</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="service-list__title reveal-line"><span>Who it's for</span></h2>
+        <ul class="ticklist">
+          <li class="reveal">Companies whose core workflows don't fit the software available to them</li>
+          <li class="reveal">Leaders with institutional knowledge or data that no tool puts to work</li>
+          <li class="reveal">Teams with a product or revenue idea and no inexpensive way to test it</li>
+          <li class="reveal">Organizations that want evidence before they commit a major budget</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section service-faq">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Questions</span>
+        <h2 class="section-heading reveal-line"><span>The honest answers</span></h2>
+      </header>
+      <dl class="faq-list">
+        {FAQ.map((f) => (
+          <div class="faq-item reveal">
+            <dt>{f.q}</dt>
+            <dd>{f.a}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- FURTHER READING -->
+  <section class="section related-services">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Further reading</span>
+        <h2 class="section-heading reveal-line"><span>The thinking behind it</span></h2>
+      </header>
+      <div class="service-link-grid">
+        {reading.map((a) => (
+          <a class="service-link-card reveal-card" href={`/insights/${a.id}`}>
+            <h3>{a.data.title}</h3>
+            <p>{a.data.description}</p>
+            <span class="service-link-card__more">Read it →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section wnm-cta" aria-labelledby="wnm-cta-heading">
+    <div class="container wnm-cta__inner">
+      <h2 class="wnm-cta__heading" id="wnm-cta-heading">
+        Have a problem generic software can't solve?
+      </h2>
+      <p class="wnm-cta__sub">
+        Tell us about the workflow, the opportunity or the idea. We'll tell you
+        honestly whether bespoke software is the right answer, and what learning
+        early would look like for you.
+      </p>
+      <div class="hero-actions">
+        <Button href={CTA.primary.href} label={CTA.primary.label} variant="primary" />
+        <Button href="/services" label="What We Build" variant="secondary" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

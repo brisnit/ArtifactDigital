@@ -402,6 +402,10 @@ const jsonLd = {
         <span>Strategy</span><span>Design</span><span>AI</span><span>Engineering</span>
         <span class="cap-hero__arc-tail">under one senior team</span>
       </p>
+      <p class="cap-hero__xref reveal">
+        This page covers the expertise we bring. For the software and business systems
+        it produces, see <a href="/services">What We Build</a>.
+      </p>
     </div>
   </section>
 
@@ -756,6 +760,8 @@ const jsonLd = {
   /* The arc adds its own rule + margin below the hero, so trim the hero's
      bottom padding to keep the section rhythm identical to the rest of the site. */
   .cap-hero { padding-bottom: clamp(1.5rem, 3vw, 2.5rem); }
+  .cap-hero__xref { margin: 1.25rem 0 0; max-width: 70ch; color: var(--steel); font-size: 0.95rem; line-height: 1.6; }
+  .cap-hero__xref a { color: var(--accent-strong); text-underline-offset: 3px; }
 
   .cap-hero__actions {
     display: flex;

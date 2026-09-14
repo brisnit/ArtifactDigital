@@ -6,7 +6,7 @@ import WorkCard from '../components/WorkCard.astro';
 import { SITE, orgNode, websiteNode, CTA } from '../data/site';
 import { testimonials } from '../data/testimonials';
 import { BUILD_CLUSTERS, buildPath } from '../data/build';
-import { METHOD } from '../data/method';
+import { METHOD, MODEL_COMPARISON } from '../data/method';
 
 const allWork = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
 // Two proofs, kept apart: software Artifact built, and platforms Britt led
@@ -34,15 +34,7 @@ const REEL = [
   { from: 15.4, name: 'BenchBot', status: "Artifact's own product · Pre-launch" },
 ];
 
-// How each model adds capability. Written as a difference in structure, not
-// a verdict on agencies — the team comes from that model.
-const MODEL_ROWS = [
-  ['Capability grows by', 'Adding people and specialist roles', 'Experienced people, multiplied by AI'],
-  ['Before committing', 'A few directions, chosen early', 'Many directions, explored and tested'],
-  ['Ideas are proven with', 'Documents and static designs', 'Working prototypes'],
-  ['The work moves through', 'Specialist teams and handoffs', 'One senior team, strategy to code'],
-  ['Effort goes to', 'The work, and coordinating it', 'Thinking, building and iteration'],
-];
+const MODEL_ROWS = MODEL_COMPARISON;
 
 // What bespoke software is for — not results Artifact has measured. No
 // outcome figures appear until there are real ones to cite.
@@ -196,7 +188,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
           <li>Software that keeps improving as the business changes</li>
         </ul>
         <div class="speed-module__actions">
-          <Button href="/weeks-not-months" label="How we work" variant="primary" />
+          <Button href="/how-we-work" label="How we work" variant="primary" />
           <Button href="/insights/bespoke-saas" label="Read the thinking" variant="secondary" />
         </div>
       </div>
@@ -292,7 +284,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
           </li>
         ))}
       </ol>
-      <p class="approach-more reveal"><a href="/weeks-not-months">How we work, in full<span aria-hidden="true"> →</span></a></p>
+      <p class="approach-more reveal"><a href="/how-we-work">How we work, in full<span aria-hidden="true"> →</span></a></p>
     </div>
   </section>
 

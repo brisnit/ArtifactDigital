@@ -4,5 +4,12 @@
   "outputDirectory": "dist",
   "framework": "astro",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/weeks-not-months",
+      "destination": "/how-we-work",
+      "statusCode": 301
+    }
+  ]
 }

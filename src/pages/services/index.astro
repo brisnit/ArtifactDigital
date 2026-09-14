@@ -2,116 +2,231 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Button from '../../components/Button.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import { SITE, orgNode, breadcrumb } from '../../data/site';
+import { SITE, orgNode, breadcrumb, CTA } from '../../data/site';
 import { PLAYBOOKS, playbookPath } from '../../data/playbooks';
+import { BUILD_CLUSTERS, BUILD_PROOF, type BuildProof } from '../../data/build';
 
-const all = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
-const pillars = all.filter((s) => s.data.tier === 'pillar');
-const services = all.filter((s) => s.data.tier !== 'pillar');
+// What We Build: the software clients hire Artifact to create. The expertise
+// behind it (the practice pages, and /capabilities) sits below, clearly second.
 
-// Spell the count so the heading can't go stale when a capability is added.
-const NUMBER_WORDS = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten'];
-const pillarCount = NUMBER_WORDS[pillars.length] ?? String(pillars.length);
+const work = await getCollection('work');
+const practice = (await getCollection('services'))
+  .filter((s) => s.id !== 'bespoke-saas')
+  .sort((a, b) => a.data.order - b.data.order);
 
-const itemList = {
-  '@type': 'ItemList',
-  '@id': `${SITE.url}/services#list`,
-  name: 'Artifact Digital services',
-  itemListElement: all.map((s, i) => ({
-    '@type': 'ListItem',
-    position: i + 1,
-    name: s.data.title,
-    url: `${SITE.url}/services/${s.id}`,
-  })),
+// Proof tiers are read from the case itself — never from this page's copy — so
+// prior-agency work can't be relabeled as Artifact's by a marketing edit.
+type Tier = 'artifact' | 'founder' | 'team' | 'concept';
+const TIER_LABEL: Record<Tier, string> = {
+  artifact: 'Built by Artifact',
+  founder: 'Our founder’s work',
+  team: 'Our team’s prior work',
+  concept: 'Artifact concept',
 };
+function resolve(p: BuildProof) {
+  if (!p.caseId) {
+    return { ...p, tier: 'concept' as Tier, label: p.label ?? TIER_LABEL.concept, href: p.href };
+  }
+  const entry = work.find((w) => w.id === p.caseId);
+  if (!entry) throw new Error(`What We Build: unknown case "${p.caseId}"`);
+  const tier: Tier = !entry.data.priorRole ? 'artifact' : entry.data.teamWork ? 'team' : 'founder';
+  if (p.label && tier !== 'artifact') {
+    throw new Error(`What We Build: "${p.caseId}" is prior work and can't carry a custom label`);
+  }
+  return {
+    ...p,
+    tier,
+    label: p.label ?? TIER_LABEL[tier],
+    href: `/${entry.id}`,
+    detail: p.detail ?? entry.data.description,
+  };
+}
+const clusters = BUILD_CLUSTERS.map((c) => ({ ...c, proof: (BUILD_PROOF[c.id] ?? []).map(resolve) }));
+
+const PROBLEMS = [
+  'A workflow that doesn’t fit the software you can buy',
+  'An operation carrying more manual effort than it should',
+  'Institutional knowledge that isn’t being put to work',
+  'A customer experience that could be transformed',
+  'An opportunity to own a capability competitors can’t buy',
+  'A new product or revenue line waiting to be built',
+  'Something strategically important that generic SaaS can’t adequately solve',
+];
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
-    itemList,
+    {
+      '@type': 'ItemList',
+      '@id': `${SITE.url}/services#list`,
+      name: 'Software Artifact Digital designs and builds',
+      itemListElement: clusters.map((c, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: c.label,
+        description: c.summary,
+        url: `${SITE.url}/services#${c.id}`,
+      })),
+    },
     orgNode,
     breadcrumb([
       { name: 'Home', path: '/' },
-      { name: 'Services', path: '/services' },
+      { name: 'What We Build', path: '/services' },
     ]),
   ],
 };
 ---
 <BaseLayout
-  title="Services · Digital Strategy, UX & AI · Artifact Digital"
-  description="Digital strategy, UX strategy and research, UX/UI and product design, enterprise CMS, AI experience design, experience audits, and accessibility — senior-led, no handoffs."
+  title="What We Build · Bespoke SaaS & Custom Software · Artifact Digital"
+  description="Internal platforms, customer portals, learning platforms, predictive systems and new SaaS products — custom software designed and built around how your business works."
   canonical="/services"
   bodyClass="case-page services-hub"
   jsonLd={jsonLd}
 >
   <section class="case-hero">
     <div class="container">
-      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Services' }]} />
-      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Services</span>
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'What We Build' }]} />
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>What we build</span>
       <h1 class="case-title">
-        <span class="reveal-line"><span>Strategy, design & AI —</span></span>
-        <span class="reveal-line italic"><span>held by senior people.</span></span>
+        <span class="reveal-line"><span>Software designed around</span></span>
+        <span class="reveal-line italic"><span>the business it runs.</span></span>
       </h1>
       <p class="case-lede reveal">
-        We don't hand your work down a chain of increasingly junior people. The
-        same senior team that sets the strategy designs and ships it. Here's what
-        we do, and how each piece connects to the rest.
+        Every company has workflows, customers, data and know-how no generic platform
+        was built for. These are the kinds of software we design and build around
+        them, from internal platforms to products you can sell.
+      </p>
+      <div class="wwb-hero-actions reveal">
+        <Button href={CTA.primary.href} label={CTA.primary.label} variant="primary" />
+        <a class="home-more__link" href="/services/bespoke-saas">Bespoke SaaS, explained<span aria-hidden="true"> →</span></a>
+      </div>
+      <p class="wwb-xref reveal">
+        This page is about the software. For the expertise we bring to building it —
+        strategy, research, design, engineering and AI — see <a href="/capabilities">Capabilities</a>.
       </p>
     </div>
   </section>
 
-  <!-- Tier 1: broad capabilities (the homepage "What we build") -->
-  <section class="section services-hub__pillars">
-    <div class="container">
-      <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>What we build</span>
-        <h2 class="section-heading reveal-line"><span>{pillarCount} ways we help</span></h2>
-      </header>
-      <div class="service-link-grid">
-        {pillars.map((s) => (
-          <a class="service-link-card reveal-card" href={`/services/${s.id}`}>
-            <h3>{s.data.navLabel}</h3>
-            <p>{s.data.summary}</p>
-            <span class="service-link-card__more">Explore →</span>
-          </a>
-        ))}
+  <!-- THE PROBLEM COMES FIRST -->
+  <section class="section service-section wwb-problems">
+    <div class="container service-section__grid">
+      <div class="service-section__head">
+        <h2 class="service-section__heading reveal-line"><span>The problem comes first</span></h2>
+      </div>
+      <div class="service-prose service-section__body">
+        <p class="reveal">
+          We don't build software because the technology is interesting. We build it
+          because a company has something worth solving:
+        </p>
+        <ul class="ticklist ticklist--two">
+          {PROBLEMS.map((p) => <li class="reveal">{p}</li>)}
+        </ul>
+        <p class="reveal">
+          AI changes what a small, experienced team can do about those problems. It
+          doesn't change where we start.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- Tier 2: specific disciplines -->
-  <section class="section services-hub__list">
+  <!-- FIVE KINDS OF SOFTWARE -->
+  <section class="section wwb-clusters" aria-labelledby="wwb-clusters-heading">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>Disciplines</span>
-        <h2 class="section-heading reveal-line"><span>Explore each discipline</span></h2>
+        <span class="section-tag reveal"><span class="tag-dot"></span>Five kinds of software</span>
+        <h2 class="section-heading reveal-line" id="wwb-clusters-heading"><span>What we build</span></h2>
       </header>
-      <ol class="hub-list">
-        {services.map((s) => (
-          <li class="hub-row">
-            <a class="hub-row__link" href={`/services/${s.id}`}>
-              <span class="hub-row__num">{String(s.data.order).padStart(2, '0')}</span>
-              <div class="hub-row__body">
-                <h2 class="hub-row__title">{s.data.title}</h2>
-                <p class="hub-row__summary">{s.data.summary}</p>
-              </div>
-              <span class="hub-row__cta" aria-hidden="true">Explore →</span>
-            </a>
+      <p class="home-lede reveal">
+        Grouped by what the software does for a business. Every one is bespoke SaaS:
+        designed around one company, and owned by it.
+      </p>
+
+      <ol class="wwb-cluster-list">
+        {clusters.map((c, i) => (
+          <li class="wwb-cluster" id={c.id}>
+            <div class="wwb-cluster__main reveal">
+              <span class="wwb-cluster__num">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="wwb-cluster__title">{c.label}</h3>
+              <p class="wwb-cluster__summary">{c.summary}</p>
+              <ul class="wwb-tags" aria-label={`Examples of ${c.label.toLowerCase()} software`}>
+                {c.examples.map((e) => <li>{e}</li>)}
+              </ul>
+            </div>
+            <div class="wwb-cluster__proof reveal">
+              <h4 class="wwb-proof__title">Evidence</h4>
+              <ul class="wwb-proof">
+                {c.proof.map((p) => (
+                  <li class="wwb-proof__item">
+                    <span class={`tier-chip tier-chip--${p.tier}`}>{p.label}{p.status ? ` · ${p.status}` : ''}</span>
+                    <a class="wwb-proof__name" href={p.href}>{p.name}</a>
+                    <p class="wwb-proof__detail">{p.detail}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </li>
         ))}
       </ol>
+
+      <p class="wwb-legend reveal">
+        <strong>Built by Artifact</strong> is software this company designed and built.
+        <strong> Our founder’s work</strong> and <strong>our team’s prior work</strong> were
+        led at a previous agency, before Artifact existed, and their clients aren’t named.
+        An <strong>Artifact concept</strong> is a platform we’re developing, not a client product.
+      </p>
     </div>
   </section>
 
-  <!-- Playbooks: the method, published — so a prospect can judge how we think -->
+  <!-- HOW IT GETS BUILT -->
+  <section class="section service-section wwb-model">
+    <div class="container service-section__grid">
+      <div class="service-section__head">
+        <h2 class="service-section__heading reveal-line"><span>More thinking. More building. Less overhead.</span></h2>
+      </div>
+      <div class="service-prose service-section__body">
+        <p class="reveal">
+          Software this specific used to take the kind of team few businesses could
+          justify. Our model is different: experienced people working with AI,
+          exploring more possibilities, prototyping more ideas and testing more
+          approaches than team size alone allows — then building the answer on
+          architecture that can grow.
+        </p>
+        <p class="reveal"><a class="home-more__link" href="/how-we-work">How we work<span aria-hidden="true"> →</span></a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PRACTICE -->
+  <section class="section wwb-practice" aria-labelledby="wwb-practice-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>The practice</span>
+        <h2 class="section-heading reveal-line" id="wwb-practice-heading"><span>The expertise behind it</span></h2>
+      </header>
+      <p class="home-lede reveal">
+        What we build is software. What we bring to it is a senior practice: strategy,
+        research, design, engineering and AI in one team. Each discipline has its own
+        page, and <a href="/capabilities">Capabilities</a> brings them together in one place.
+      </p>
+      <ul class="wwb-practice__list">
+        {practice.map((s) => (
+          <li><a href={`/services/${s.id}`}>{s.data.navLabel}<span aria-hidden="true">→</span></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- PLAYBOOKS -->
   <section class="section services-hub__playbooks">
     <div class="container">
       <header class="section-head">
         <span class="section-tag reveal"><span class="tag-dot"></span>Playbooks</span>
-        <h2 class="section-heading reveal-line"><span>How we actually work</span></h2>
+        <h2 class="section-heading reveal-line"><span>The method, written down</span></h2>
       </header>
       <p class="pb-section-lede reveal">
-        Nothing here is a line item you buy. It's the method written down — the
+        Nothing here is a line item you buy. It's how we think, written down — the
         questions we ask, the checks we run, and the answers that make us tell you
         not to build something. Read it before you talk to us.
       </p>
@@ -128,7 +243,7 @@ const jsonLd = {
   </section>
 
   <CtaBand
-    heading="Not sure which of these you need?"
-    sub="That's a good reason to talk. Tell us the problem and we'll tell you honestly where to start — even if the answer is smaller than a full engagement."
+    heading="Not sure what you need built?"
+    sub="That's a good reason to talk. Tell us the problem and we'll tell you honestly where to start — including when off-the-shelf software is the better answer."
   />
 </BaseLayout>
