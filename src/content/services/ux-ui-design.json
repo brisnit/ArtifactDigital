@@ -2,24 +2,19 @@
   "title": "UX/UI Design",
   "navLabel": "UX/UI Design",
   "metaTitle": "UX/UI Design Services · Artifact Digital",
-  "description": "UX/UI design that's both usable and unmistakable — interfaces with a clear structure, a strong visual signature, and craft in every detail.",
-  "order": 4,
-  "eyebrow": "Service · UX/UI Design",
+  "description": "UX/UI design that's both usable and unmistakable — software with clear structure, considered interaction, a strong visual signature, and craft in every detail.",
+  "order": 5,
+  "eyebrow": "Capability · UX/UI Design",
   "heroTitleLines": [
-    {
-      "text": "Usable and"
-    },
-    {
-      "text": "unmistakable.",
-      "italic": true
-    }
+    { "text": "Usable and" },
+    { "text": "unmistakable.", "italic": true }
   ],
-  "lede": "The best interfaces disappear when you're using them and stay with you after. That's the bar: structure clear enough to be effortless, and a visual signature distinctive enough to be yours.",
-  "summary": "Interfaces with clear structure, a strong signature, and craft in the details.",
+  "lede": "UX/UI design is the difference between software that works and software people actually want to use: structure clear enough to be effortless, interaction that feels considered, and a visual signature distinctive enough to be yours.",
+  "summary": "Clear structure, considered interaction, and a visual signature that's yours.",
   "intro": [
-    "There's a false choice in our field between design that works and design that's beautiful, as if you have to trade one for the other. We don't accept the tradeoff. A checkout that's a joy to look at but loses people isn't good design. Neither is a flow that converts but feels like filling out a tax form. The work is to get both, and getting both is hard, which is exactly why it's worth paying for.",
-    "UX and UI aren't two departments to us. UX is the structure — the flows, the hierarchy, the logic of how a thing is organized. UI is the surface — the type, the color, the space, the motion. Great products get both right, and they get them right together, because a beautiful surface on a broken structure is lipstick, and a sound structure with a lifeless surface is a wireframe someone forgot to finish.",
-    "We care about the details other people skip: the empty state, the error message, the loading moment, the transition between two screens. Those details are where a product either feels considered or feels cheap, and users register the difference instantly even when they can't name it."
+    "There's a false choice in our field between design that works and design that's beautiful, as if you have to trade one for the other. We don't accept the tradeoff. A checkout that's a joy to look at but loses people isn't good design. Neither is a workflow that functions but feels like filling out a tax form. The work is to get both, and getting both is hard, which is exactly why it matters.",
+    "UX and UI aren't two departments to us. UX is the structure — the flows, the hierarchy, the logic of how a thing is organized. UI is the surface — the type, the color, the space, the motion. Great software gets both right, and gets them right together, because a beautiful surface on a broken structure is lipstick, and a sound structure with a lifeless surface is a wireframe someone forgot to finish.",
+    "We care about the details other people skip: the empty state, the error message, the loading moment, the transition between two screens. Those details are where software either feels considered or feels cheap, and people register the difference instantly even when they can't name it."
   ],
   "sections": [
     {
@@ -30,68 +25,47 @@
       ]
     },
     {
+      "heading": "Craft matters more when execution is easy",
+      "body": [
+        "AI can now produce a competent interface in minutes. That's genuinely useful, and it changes where the value is. When almost anyone can generate something that works, the difference between products comes down to judgment: what to leave out, what deserves emphasis, how a change of state should feel, whether the software sounds and looks like your company.",
+        "That judgment is what our team has spent decades developing — hierarchy, interaction, typography, accessibility, restraint, and an understanding of how people actually behave. We use AI to explore more directions than a design team once could. The decisions that make software worth using stay with experienced designers."
+      ]
+    },
+    {
       "heading": "A signature, not a template",
       "body": [
         "A lot of modern software looks the same — the same components, the same gradients, the same rounded rectangles. That sameness is a missed opportunity. Your product is a chance to feel like you and no one else, and a distinctive visual voice is a real competitive asset, not a vanity.",
-        "We build that signature deliberately: a type system with a point of view, a considered use of color and space, motion that has personality without getting in the way. Distinctive and usable aren't in tension — the signature is what makes the usability feel like a brand instead of a default."
+        "We build that signature deliberately: a type system with a point of view, a considered use of color and space, and a brand carried into the product rather than left on the marketing site. Motion follows the same rule. Used well, a transition guides attention and explains change; used carelessly, it's friction dressed up as delight. We design it to clarify."
       ]
     }
   ],
-  "process": [
-    {
-      "title": "Structure",
-      "body": "Flows, information architecture, and hierarchy — the logic of the experience, resolved before we style anything."
-    },
-    {
-      "title": "Direction",
-      "body": "We establish the visual signature: type, color, space, and motion that feel unmistakably yours."
-    },
-    {
-      "title": "Design",
-      "body": "We design the real screens — including the empty states, errors, and edge cases most teams leave for later."
-    },
-    {
-      "title": "Systematize",
-      "body": "We turn the design into a coherent, reusable system so the quality holds as the product grows."
-    }
+  "inMethod": [
+    { "stage": "Understand", "body": "Structure comes first: flows, information architecture and hierarchy resolved around what people are actually trying to do." },
+    { "stage": "Prototype", "body": "The visual and interaction language gets established in prototypes you can use, not static comps you can only review." },
+    { "stage": "Build", "body": "Real screens — empty states, errors and edge cases included — designed alongside engineering and turned into a reusable component system." }
   ],
   "deliverables": [
     "Task flows and information architecture that hold up under real complexity",
     "A distinctive visual direction, not a themed template",
     "High-fidelity designs for the full experience, edge cases included",
+    "Interaction patterns and motion that clarify rather than distract",
     "A component system that keeps quality consistent as you scale",
-    "Prototypes that let you feel the experience before it's built",
     "Design specs and assets your engineers can build from without guesswork"
   ],
   "whoFor": [
-    "Teams launching or relaunching a product that needs to feel premium",
-    "Companies whose interface looks like everyone else's and shouldn't",
-    "Products that convert adequately but feel unremarkable to use",
+    "Teams launching or relaunching software that needs to feel premium",
+    "Companies whose product looks like everyone else's and shouldn't",
+    "Software that works adequately but feels unremarkable to use",
     "Organizations that need design quality to survive scale, not just a launch"
   ],
   "faq": [
-    {
-      "q": "Do you design in Figma?",
-      "a": "Yes. We work in Figma and hand off structured, well-organized files with a real component system — not a pile of disconnected artboards. Your engineers get specs they can build from and a system they can extend."
-    },
-    {
-      "q": "Can you work with our existing brand?",
-      "a": "Absolutely. We frequently translate an established brand into a digital experience — extending it thoughtfully into type, color, motion, and interaction rather than reinventing it. When the brand needs to stretch to work on screen, we'll show you where and why."
-    },
-    {
-      "q": "Do you build what you design?",
-      "a": "Often, yes — we have engineers on the team and build both front end and back end, which means our designs are grounded in what’s actually buildable. When you have your own engineering team, we design for a clean handoff and stay close through build to protect the details."
-    }
+    { "q": "Do you design in Figma?", "a": "Yes. We work in Figma and hand off structured, well-organized files with a real component system — not a pile of disconnected artboards. Your engineers get specs they can build from and a system they can extend." },
+    { "q": "Can you work with our existing brand?", "a": "Absolutely. We frequently carry an established brand into software — extending it thoughtfully into type, color, motion, and interaction rather than reinventing it. When the brand needs to stretch to work on screen, we'll show you where and why." },
+    { "q": "Do you build what you design?", "a": "Often, yes — our team includes engineers who build both front end and back end, which means our designs are grounded in what's actually buildable. When you have your own engineering team, we design for a clean handoff and stay close through build to protect the details." }
   ],
-  "relatedTags": [
-    "UX/UI",
-    "Design",
-    "Web"
-  ],
-  "relatedServices": [
-    "ux-strategy",
-    "product-design",
-    "accessibility"
-  ],
-  "ctaHeading": "Want a product that's a pleasure to use and impossible to mistake?"
+  "relatedTags": ["UX/UI", "Design", "Web"],
+  "relatedServices": ["product-design", "ux-strategy", "accessibility"],
+  "buildsWith": ["serve-your-customers", "build-a-product-to-sell"],
+  "cta": { "primary": "build", "secondary": "work" },
+  "ctaHeading": "Want software that's a pleasure to use and impossible to mistake?"
 }

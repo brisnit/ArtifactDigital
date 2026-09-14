@@ -4,12 +4,16 @@
   "metaTitle": "Bespoke SaaS & Custom Software Development · Artifact Digital",
   "description": "Bespoke SaaS: software designed around how your business works, built by a senior team using AI to apply far more thinking and building to the problem — and owned by you, not rented.",
   "order": 0,
-  "tier": "pillar",
   "flagship": true,
   "eyebrow": "What we build · Bespoke SaaS",
   "heroTitleLines": [
-    { "text": "Stop renting software" },
-    { "text": "that doesn't fit.", "italic": true }
+    {
+      "text": "Stop renting software"
+    },
+    {
+      "text": "that doesn't fit.",
+      "italic": true
+    }
   ],
   "lede": "For decades, businesses bought software built for millions of companies and spent years bending it to fit one. AI changed the economics. Now software can be designed around the way you work — and you can own it.",
   "summary": "Custom software designed around your business, with AI working inside it where it helps — owned, not rented.",
@@ -41,7 +45,6 @@
       ]
     }
   ],
-  "process": [],
   "deliverables": [
     "Software designed around how your business actually operates",
     "Several directions explored and tested before the big commitment",
@@ -57,14 +60,45 @@
     "Teams with a product or revenue opportunity generic software can't deliver"
   ],
   "faq": [
-    { "q": "Isn't custom software far more expensive than SaaS subscriptions?", "a": "It used to be, because building custom software meant large teams and long timelines. AI has changed the economics: experienced people working with AI can take on far more of the design, engineering and testing than headcount alone allows. Depending on scope, owning the asset can cost less over a few years than renting a stack of subscriptions and paying to integrate them. We'll show you honestly how the numbers compare for your situation." },
-    { "q": "When is off-the-shelf software the right answer?", "a": "More often than you might expect. If a well-supported product fits how you work, and the work isn't what sets you apart — payroll, accounting, email — buy it. Bespoke software earns its place where your workflows, knowledge or customer experience are genuinely different, and generic tools force you to give that up. We'll tell you which is which." },
-    { "q": "How is this different from a development partner or a no-code tool?", "a": "Many development partners build to a specification you provide, and no-code tools give you pre-made building blocks. Both can be the right choice. We start earlier, with the business problem — how work actually flows, where the friction is, what would make a difference — and the same senior team carries that understanding through design and engineering." },
-    { "q": "Does 'own it' mean there are no ongoing costs?", "a": "No — software is living infrastructure and deserves care, hosting, and evolution. The difference is what you're paying for: investment in an asset you own and control, rather than rent on a compromise you don't. You're not one price increase or one discontinued product away from losing the systems your business runs on." },
-    { "q": "Is this just AI features added to a normal app?", "a": "No. Bespoke SaaS is software designed around your business from the start, with intelligence built into the workflows rather than a chatbot bolted into a corner. The interface stays familiar; the intelligence underneath changes what the software can do for your people." },
-    { "q": "Will AI replace our team?", "a": "That's not the goal. AI removes the repetitive work surrounding your people — summarizing, drafting, monitoring, auditing — so your team spends more time on judgment, relationships, and the work only humans do well. Your people remain the decision-makers." }
+    {
+      "q": "Isn't custom software far more expensive than SaaS subscriptions?",
+      "a": "It used to be, because building custom software meant large teams and long timelines. AI has changed the economics: experienced people working with AI can take on far more of the design, engineering and testing than headcount alone allows. Depending on scope, owning the asset can cost less over a few years than renting a stack of subscriptions and paying to integrate them. We'll show you honestly how the numbers compare for your situation."
+    },
+    {
+      "q": "When is off-the-shelf software the right answer?",
+      "a": "More often than you might expect. If a well-supported product fits how you work, and the work isn't what sets you apart — payroll, accounting, email — buy it. Bespoke software earns its place where your workflows, knowledge or customer experience are genuinely different, and generic tools force you to give that up. We'll tell you which is which."
+    },
+    {
+      "q": "How is this different from a development partner or a no-code tool?",
+      "a": "Many development partners build to a specification you provide, and no-code tools give you pre-made building blocks. Both can be the right choice. We start earlier, with the business problem — how work actually flows, where the friction is, what would make a difference — and the same senior team carries that understanding through design and engineering."
+    },
+    {
+      "q": "Does 'own it' mean there are no ongoing costs?",
+      "a": "No — software is living infrastructure and deserves care, hosting, and evolution. The difference is what you're paying for: investment in an asset you own and control, rather than rent on a compromise you don't. You're not one price increase or one discontinued product away from losing the systems your business runs on."
+    },
+    {
+      "q": "Is this just AI features added to a normal app?",
+      "a": "No. Bespoke SaaS is software designed around your business from the start, with intelligence built into the workflows rather than a chatbot bolted into a corner. The interface stays familiar; the intelligence underneath changes what the software can do for your people."
+    },
+    {
+      "q": "Will AI replace our team?",
+      "a": "That's not the goal. AI removes the repetitive work surrounding your people — summarizing, drafting, monitoring, auditing — so your team spends more time on judgment, relationships, and the work only humans do well. Your people remain the decision-makers."
+    }
   ],
-  "relatedTags": ["Bespoke SaaS", "AI", "Engineering"],
-  "relatedServices": ["digital-strategy", "product-design", "ai-experience-design", "digital-product-engineering"],
-  "ctaHeading": "Tired of renting a compromise? Let's build something you own."
+  "relatedTags": [
+    "Bespoke SaaS",
+    "AI",
+    "Engineering"
+  ],
+  "relatedServices": [
+    "digital-strategy",
+    "product-design",
+    "ai-experience-design",
+    "digital-product-engineering"
+  ],
+  "ctaHeading": "Tired of renting a compromise? Let's build something you own.",
+  "cta": {
+    "primary": "build",
+    "secondary": "work"
+  }
 }

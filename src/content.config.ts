@@ -1,4 +1,6 @@
 import { defineCollection, z } from 'astro:content';
+import { METHOD } from './data/method';
+import { BUILD_CLUSTERS } from './data/build';
 import { glob } from 'astro/loaders';
 
 // --- Case studies -----------------------------------------------------------
@@ -89,8 +91,9 @@ const insights = defineCollection({
 });
 
 // --- Services ---------------------------------------------------------------
-// Full-depth, teaching-oriented service pages in Britt's voice. Data-driven so
-// the Services hub, nav, and schema all stay in sync from one source.
+// The Bespoke SaaS flagship plus the capability pages: full-depth, teaching-
+// oriented, in Britt's voice. Data-driven so the What We Build hub, nav and
+// schema all stay in sync from one source.
 const services = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/content/services' }),
   schema: z.object({
@@ -99,9 +102,6 @@ const services = defineCollection({
     metaTitle: z.string(),
     description: z.string(),
     order: z.number().default(99),
-    // "pillar" = broad capability area (the homepage "What we build" touts);
-    // "service" = a specific discipline. Lets the hub present two tiers.
-    tier: z.enum(['pillar', 'service']).default('service'),
     // The flagship offer renders the shared Artifact method and the five kinds
     // of software in place of a page-specific process.
     flagship: z.boolean().default(false),
@@ -112,8 +112,26 @@ const services = defineCollection({
     // Teaching body
     intro: z.array(z.string()),
     sections: z.array(z.object({ heading: z.string(), body: z.array(z.string()) })),
-    process: z.array(z.object({ title: z.string(), body: z.string() })),
-    // Optional "what we build" capability list, rendered as its own grid.
+    // There is one Artifact method (src/data/method.ts). A capability page may say
+    // what its discipline contributes at a stage; it can't invent a process.
+    inMethod: z
+      .array(
+        z.object({
+          stage: z.string().refine((s) => METHOD.some((m) => m.title === s), {
+            message: 'stage must be one of the shared method stages',
+          }),
+          body: z.string(),
+        })
+      )
+      .default([])
+      .refine((a) => new Set(a.map((x) => x.stage)).size === a.length, {
+        message: 'each method stage may appear once',
+      }),
+    // The kinds of software (src/data/build.ts) this capability helps build.
+    buildsWith: z
+      .array(z.string().refine((id) => BUILD_CLUSTERS.some((c) => c.id === id), { message: 'unknown build cluster' }))
+      .default([]),
+    // Optional list of what the discipline covers, rendered as its own grid.
     capabilities: z.array(z.string()).optional(),
     deliverables: z.array(z.string()),
     whoFor: z.array(z.string()),
@@ -122,6 +140,13 @@ const services = defineCollection({
     relatedTags: z.array(z.string()).default([]),
     relatedServices: z.array(z.string()).default([]),
     ctaHeading: z.string(),
+    ctaSub: z.string().optional(),
+    cta: z
+      .object({
+        primary: z.enum(['build', 'problem', 'audit', 'ai']).default('build'),
+        secondary: z.enum(['what-we-build', 'how-we-work', 'work', 'audit']).default('what-we-build'),
+      })
+      .default({}),
   }),
 });
 

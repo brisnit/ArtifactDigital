@@ -7,6 +7,7 @@ import CtaBand from '../../components/CtaBand.astro';
 import { SITE, orgNode, breadcrumb, CTA } from '../../data/site';
 import { PLAYBOOKS, playbookPath } from '../../data/playbooks';
 import { BUILD_CLUSTERS, BUILD_PROOF, type BuildProof } from '../../data/build';
+import { caseTier, TIER_LABEL, type Tier } from '../../lib/proof';
 
 // What We Build: the software clients hire Artifact to create. The expertise
 // behind it (the practice pages, and /capabilities) sits below, clearly second.
@@ -16,32 +17,14 @@ const practice = (await getCollection('services'))
   .filter((s) => s.id !== 'bespoke-saas')
   .sort((a, b) => a.data.order - b.data.order);
 
-// Proof tiers are read from the case itself — never from this page's copy — so
-// prior-agency work can't be relabeled as Artifact's by a marketing edit.
-type Tier = 'artifact' | 'founder' | 'team' | 'concept';
-const TIER_LABEL: Record<Tier, string> = {
-  artifact: 'Built by Artifact',
-  founder: 'Our founder’s work',
-  team: 'Our team’s prior work',
-  concept: 'Artifact concept',
-};
+// Proof tiers come from the case itself (src/lib/proof.ts), never from this
+// page's copy, so prior-agency work can't be relabeled as Artifact's.
 function resolve(p: BuildProof) {
-  if (!p.caseId) {
-    return { ...p, tier: 'concept' as Tier, label: p.label ?? TIER_LABEL.concept, href: p.href };
-  }
+  if (!p.caseId) return { ...p, tier: 'concept' as Tier, label: TIER_LABEL.concept, href: p.href };
   const entry = work.find((w) => w.id === p.caseId);
   if (!entry) throw new Error(`What We Build: unknown case "${p.caseId}"`);
-  const tier: Tier = !entry.data.priorRole ? 'artifact' : entry.data.teamWork ? 'team' : 'founder';
-  if (p.label && tier !== 'artifact') {
-    throw new Error(`What We Build: "${p.caseId}" is prior work and can't carry a custom label`);
-  }
-  return {
-    ...p,
-    tier,
-    label: p.label ?? TIER_LABEL[tier],
-    href: `/${entry.id}`,
-    detail: p.detail ?? entry.data.description,
-  };
+  const tier = caseTier(entry);
+  return { ...p, tier, label: TIER_LABEL[tier], href: `/${entry.id}`, detail: p.detail ?? entry.data.description };
 }
 const clusters = BUILD_CLUSTERS.map((c) => ({ ...c, proof: (BUILD_PROOF[c.id] ?? []).map(resolve) }));
 
@@ -202,7 +185,7 @@ const jsonLd = {
   <section class="section wwb-practice" aria-labelledby="wwb-practice-heading">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>The practice</span>
+        <span class="section-tag reveal"><span class="tag-dot"></span>Capabilities</span>
         <h2 class="section-heading reveal-line" id="wwb-practice-heading"><span>The expertise behind it</span></h2>
       </header>
       <p class="home-lede reveal">

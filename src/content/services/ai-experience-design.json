@@ -1,22 +1,29 @@
 {
   "title": "AI Experience Design",
   "navLabel": "AI Experience Design",
-  "metaTitle": "AI Experience Design · Artifact Digital",
-  "description": "AI experience design that puts human judgment first — AI-powered features and generative interfaces that earn trust, not gimmicks bolted onto a product.",
+  "metaTitle": "AI Experience Design · AI-Powered Software · Artifact Digital",
+  "description": "AI is a capability, not a default product. We decide where AI belongs inside your software, where it belongs in how the software gets built, and design AI features people can trust.",
   "order": 6,
-  "eyebrow": "Service · AI Experience Design",
+  "eyebrow": "Capability · AI Experience Design",
   "heroTitleLines": [
-    { "text": "AI that supports" },
-    { "text": "human judgment.", "italic": true }
+    { "text": "AI is a capability," },
+    { "text": "not the product by default.", "italic": true }
   ],
-  "lede": "The interesting question isn't whether to add AI to your product. It's where AI genuinely makes the experience better — and where it just adds a confident-sounding layer of risk. We help you tell the difference.",
-  "summary": "AI-powered features and generative interfaces that earn trust, not gimmicks.",
+  "lede": "Start with the business problem. Sometimes AI belongs inside the software. Sometimes it's mostly part of how we research, design, build and test it. Sometimes the right product barely shows AI to the people using it at all. We help you tell which is which.",
+  "summary": "Where AI belongs — inside the software, in how it's built, or out of sight.",
   "intro": [
-    "I've been living inside these tools since late 2020, back when the outputs were rough and the hype was already deafening. Here's what I've learned: AI is otherworldly at generating options, drafting artifacts, and speeding up thinking — and it's genuinely bad at owning an outcome, reading a room, or being accountable when something goes wrong. The design opportunity lives exactly on that line.",
-    "Most 'AI features' being shipped right now are a text box bolted onto an existing product with a sparkle icon next to it. Sometimes that's the right call. Usually it isn't. The better move is to ask what job the user is really trying to do, then decide where AI removes friction from that job and where it introduces new friction — hallucinated answers, unpredictable behavior, a loss of the user's sense of control.",
-    "Good AI experience design is mostly about trust and control. Can the user tell what the system did and why? Can they steer it, correct it, and fall back to a reliable path when it's wrong? Get those right and AI feels like leverage. Get them wrong and you've built something impressive in a demo that quietly erodes confidence in production."
+    "Our founder has been working with these tools since late 2020, back when the outputs were rough and the hype was already deafening. What we've learned since: AI is remarkable at generating options, drafting artifacts and extending how much thinking a team can do — and genuinely bad at owning an outcome, reading a room, or being accountable when something goes wrong. The design opportunity lives exactly on that line.",
+    "That's why we don't assume a client needs agents, chatbots or an \"AI transformation.\" Most don't. What most businesses need is software that solves a real problem well, and AI changes what's possible in two different places. It can live inside the product, doing work for the people who use it. Or it can live in how the product gets made, multiplying the research, design, engineering and testing an experienced team can apply. Many of the best outcomes lean on the second far more than the first.",
+    "Most 'AI features' shipping right now are a text box bolted onto an existing product with a sparkle icon next to it. Sometimes that's the right call. Usually it isn't. The better move is to ask what job the user is really trying to do, then decide where AI removes friction from that job and where it introduces new friction — hallucinated answers, unpredictable behavior, a lost sense of control."
   ],
   "sections": [
+    {
+      "heading": "When AI belongs inside the software",
+      "body": [
+        "Good AI experience design is mostly about trust and control. Can the user tell what the system did and why? Can they steer it, correct it, and fall back to a reliable path when it's wrong? Get those right and AI feels like leverage. Get them wrong and you've built something impressive in a demo that quietly erodes confidence in production.",
+        "Often the most valuable AI barely announces itself. It prepares, sorts, flags and drafts in the background, and the person using the software simply finds their work easier. A product with no chat box at all can still be the most intelligent software in the room."
+      ]
+    },
     {
       "heading": "Design for the wrong answer",
       "body": [
@@ -32,32 +39,35 @@
       ]
     }
   ],
-  "process": [
-    { "title": "Find the real job", "body": "We identify where AI genuinely reduces friction in a job users care about — and rule out the places it would only add risk." },
-    { "title": "Prototype fast", "body": "We build rough, working prototypes early, because AI experiences have to be felt to be judged. Static mockups lie about how they behave." },
-    { "title": "Design the failure", "body": "We design the wrong-answer path first — error, correction, trust cues, and safe fallbacks — so the feature holds up in production." },
-    { "title": "Ship and learn", "body": "We instrument the experience, watch how people actually use it, and refine where trust and usefulness diverge." }
+  "inMethod": [
+    { "stage": "Understand", "body": "We start with the business problem and the job people are doing, then decide whether AI belongs in the product at all — and rule out the places it would only add risk." },
+    { "stage": "Prototype", "body": "AI behavior has to be felt to be judged, so we test working prototypes with real inputs instead of trusting static mockups." },
+    { "stage": "Build", "body": "Error handling, correction, trust cues and safe fallbacks get built as first-class parts of the software, not edge cases." },
+    { "stage": "Learn", "body": "We watch how people rely on the AI in practice and refine wherever trust and usefulness drift apart." }
   ],
   "deliverables": [
-    "A clear-eyed assessment of where AI helps your experience and where it doesn't",
+    "An honest assessment of where AI belongs in your software — and where it doesn't",
     "Working prototypes of AI features you can actually feel, not just review",
     "Interaction patterns for trust, control, correction, and graceful failure",
-    "Generative and assistive interfaces designed around real user jobs",
-    "Guardrails and fallbacks that keep the experience reliable when the model isn't",
-    "A point of view on the human-in-the-loop division of labor"
+    "Assistive and generative features designed around real user jobs",
+    "Guardrails and fallbacks that keep the software reliable when the model isn't",
+    "A clear division of labor between the software and the people accountable for decisions"
   ],
   "whoFor": [
-    "Product teams under pressure to 'add AI' who want to do it well, not just fast",
-    "Companies exploring generative features and unsure where they truly help",
+    "Teams under pressure to 'add AI' who would rather start from the problem",
+    "Companies unsure whether a problem needs AI, better software, or both",
     "Leaders wary of shipping AI that looks impressive but erodes user trust",
     "Organizations that want AI to amplify their people, not sideline them"
   ],
   "faq": [
-    { "q": "Do you build the models, or design the experience around them?", "a": "We focus on the experience — the interface, the interaction patterns, the trust and control mechanics — and we work alongside your data science or ML team, or capable model providers, for the underlying models. Our value is making the technology usable, trustworthy, and genuinely helpful in context." },
-    { "q": "Is it too early to invest in AI features?", "a": "It's rarely too early to prototype and learn; it's often too early to bet the roadmap. We're big believers in cheap, fast experiments that tell you where AI earns its place before you commit serious engineering to it. That's the responsible way to move fast." },
+    { "q": "Does every product need AI?", "a": "No. Plenty of the software we'd recommend building has little or no visible AI in it. Where AI helps is often in how the software gets researched, designed, built and tested, and in quiet background work the user never has to think about. We'll tell you plainly when a problem doesn't need it." },
+    { "q": "Do you build the models, or the software around them?", "a": "The software around them — the interface, the interaction patterns, the trust and control mechanics, and the integration — using capable model providers or your own data science team for the underlying models. Our value is making the technology useful, trustworthy, and genuinely helpful in context." },
+    { "q": "Is it too early to invest in AI features?", "a": "It's rarely too early to prototype and learn; it's often too early to bet the roadmap. We favor small, inexpensive experiments that show where AI earns its place before you commit serious engineering to it." },
     { "q": "How do you handle the risk of AI getting things wrong?", "a": "By designing for it from the start rather than treating it as an edge case. We design the error and correction paths, the trust cues, and the safe fallbacks as first-class parts of the experience — because in a probabilistic system, the wrong answer isn't an exception, it's a certainty you plan for." }
   ],
   "relatedTags": ["AI", "Experience", "UX/UI"],
-  "relatedServices": ["product-design", "ux-ui-design", "digital-strategy"],
-  "ctaHeading": "Want AI in your product that people actually trust?"
+  "relatedServices": ["product-design", "digital-strategy", "digital-product-engineering"],
+  "buildsWith": ["see-whats-coming", "run-the-business", "grow-your-people"],
+  "cta": { "primary": "ai", "secondary": "how-we-work" },
+  "ctaHeading": "Wondering whether AI belongs in your software at all?"
 }

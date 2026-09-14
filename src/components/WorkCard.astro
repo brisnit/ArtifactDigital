@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { responsive } from '../lib/responsive';
+import { caseTier, TIER_LABEL } from '../lib/proof';
 
 interface Props {
   entry: CollectionEntry<'work'>;
@@ -9,8 +10,11 @@ interface Props {
   headingLevel?: 'h2' | 'h3' | 'h4';
   /** First card in a grid is the LCP element — load it eagerly, never lazily. */
   priority?: boolean;
+  /** Label the card with its proof tier (Built by Artifact, prior work…). */
+  showTier?: boolean;
 }
-const { entry, headingLevel = 'h3', priority = false } = Astro.props;
+const { entry, headingLevel = 'h3', priority = false, showTier = false } = Astro.props;
+const tier = showTier ? caseTier(entry) : null;
 const d = entry.data;
 const Heading = headingLevel;
 const card = await responsive(d.card.image);
@@ -55,6 +59,7 @@ const mark = d.title
       <span>{d.card.eyebrow}</span>
       <span>{d.year}</span>
     </div>
+    {tier && <span class={`tier-chip tier-chip--${tier} project-card__tier`}>{TIER_LABEL[tier]}</span>}
     <Heading class="project-card__title">{d.title}</Heading>
     <p class="project-card__copy">{d.card.blurb}</p>
     <ul class="project-card__tags">{d.card.tags.map((t) => <li>{t}</li>)}</ul>

@@ -10,6 +10,21 @@
       "source": "/weeks-not-months",
       "destination": "/how-we-work",
       "statusCode": 301
+    },
+    {
+      "source": "/services/product-digital-strategy",
+      "destination": "/services/digital-strategy",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/ai-interactive-experiences",
+      "destination": "/services/ai-experience-design",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/digital-products-ux",
+      "destination": "/services/product-design",
+      "statusCode": 301
     }
   ]
 }

@@ -1,125 +1,133 @@
 {
   "title": "Digital Product Engineering",
   "navLabel": "Digital Product Engineering",
-  "metaTitle": "Digital Product Engineering · Artifact Digital",
-  "description": "Enterprise websites, web and mobile apps, enterprise CMS, AI-powered applications, interactive retail and theme park experiences, kiosks, and systems integration — designed and built by the same senior team.",
-  "order": 5,
-  "tier": "pillar",
-  "eyebrow": "What we build · Digital Product Engineering",
+  "metaTitle": "Software & Digital Product Engineering · Artifact Digital",
+  "description": "Production software engineering — architecture, data, integrations, testing and deployment — for SaaS platforms, web and mobile applications and AI-powered products, by the team that designed them.",
+  "order": 7,
+  "eyebrow": "Capability · Digital Product Engineering",
   "heroTitleLines": [
     {
-      "text": "If it's digital,"
+      "text": "From working prototype"
     },
     {
-      "text": "we can build it.",
+      "text": "to production software.",
       "italic": true
     }
   ],
-  "lede": "Websites, web and mobile apps, enterprise CMS, AI-powered products, and physical-world experiences like retail installations, theme parks, and kiosks. One senior team, from the first sketch to production.",
-  "summary": "Websites, apps, CMS, AI products, and interactive experiences — built to last.",
+  "lede": "Engineering is how working prototypes become real production software — architected, integrated, tested and built to be maintained long after launch. Designed and built by the same senior team.",
+  "summary": "Prototypes turned into production software your team can run and extend.",
   "intro": [
-    "Most agencies design the thing and hand it to somebody else to build. Most dev shops build the thing somebody else designed. Both halves of that arrangement spend a lot of energy explaining themselves to the other half, and the product is what survives the translation.",
-    "We do both. Engineering isn't a service we bolt on at the end here — it's in the room from the first conversation. That's why our designs are grounded in what's actually buildable, and why the details that usually die in handoff tend to survive all the way to production.",
-    "It also means we're comfortable across an unusually wide surface: a marketing site, a SaaS platform, a native mobile app, an AR experience running on a phone in the middle of a retail floor, a kiosk in a theme park, a CMS serving thousands of pages across a dozen business units. Different constraints, same discipline — understand the job, design the system, build it well, and make sure the people who inherit it can run it."
+    "Most agencies design the thing and hand it to somebody else to build. Most development shops build the thing somebody else designed. Both halves of that arrangement spend a lot of energy explaining themselves to the other half, and the product is whatever survives the translation.",
+    "We do both. Engineering isn't bolted on at the end here — it's in the room from the first conversation. That's why our prototypes are built on real technology choices, why our designs are grounded in what's actually buildable, and why the details that usually die in handoff survive all the way to production.",
+    "The range is wide: SaaS platforms, internal tools, web and mobile applications, AI-powered products, content platforms, and experiences that leave the browser entirely. Different constraints, same discipline — understand the job, design the system, build it well, and make sure the people who inherit it can run it."
   ],
   "sections": [
     {
       "heading": "The build should protect the idea",
       "body": [
         "There's a particular kind of disappointment that happens when a great concept ships as a mediocre product. Nobody did anything wrong exactly — the design was good, the engineering was competent — but a hundred small decisions got made in the gap between them, and none of those decisions had the original intent in mind.",
-        "Keeping design and engineering in the same hands closes that gap. When the person who understands why a transition matters is also close to the code that implements it, the intent doesn't have to be defended in a document. It just survives. That's the single biggest reason our work tends to ship looking like the thing we set out to make."
+        "Keeping design and engineering in the same hands closes that gap. When the person who understands why a transition matters is also close to the code that implements it, the intent doesn't have to be defended in a document. It just survives."
       ]
     },
     {
       "heading": "Built for the long arc, not just launch day",
       "body": [
-        "Launch is the easy part. The real test is whether the thing is still good in two years, after a dozen people who weren't there have added features to it.",
-        "So we build for that: sensible architecture, a real component system, accessibility as a baseline rather than an audit, performance budgets that hold under real data, and documentation aimed at whoever inherits it. We'd rather hand you something your team can confidently own than something that only we can maintain. If we've done the job well, you don't need us to keep it running."
+        "Launch is the easy part. The real test is whether the software is still good in two years, after people who weren't there have added features to it.",
+        "So we build for that: sensible architecture, a data model that makes the next feature easier, integrations designed around their failure modes, automated tests around the parts that must not break, repeatable deployments, accessibility as a baseline rather than an audit, performance budgets that hold under real data, and documentation aimed at whoever inherits it. We'd rather hand you something your team can confidently own than something only we can maintain."
       ]
     },
     {
       "heading": "The physical world counts too",
       "body": [
-        "A surprising amount of our work lives outside a browser tab — AR that launches from a QR code on a retail floor, a tool a tailor uses between fittings, a kiosk that has to survive a theme park queue, signage that runs unattended for months.",
-        "Those environments are unforgiving in ways software people underestimate. The lighting is bad, the network is worse, the user is standing up, distracted, and gives you about four seconds. You can't A/B test your way out of a bad idea when the hardware is bolted to the floor. It forces a clarity that, honestly, makes us better at the screen work too."
+        "A good share of our team's experience lives outside a browser tab, much of it led at previous agencies before Artifact existed: AR that launches from a QR code on a retail floor, a tool a tailor uses between fittings, a kiosk that has to survive a theme park queue, signage that runs unattended for months.",
+        "Those environments are unforgiving in ways software people underestimate. The lighting is bad, the network is worse, the user is standing up, distracted, and gives you about four seconds. It forces a clarity that makes us better at the screen work too."
       ]
     }
   ],
   "capabilities": [
-    "Enterprise Websites",
-    "Web Applications",
-    "Native iOS & Android Apps",
-    "Cross-Platform Mobile Apps",
-    "Enterprise CMS Development",
-    "Interactive Digital Experiences",
-    "Retail Experiences",
-    "Theme Park Experiences",
-    "Kiosks & Digital Signage",
-    "AI-Powered Applications",
-    "API & Systems Integration"
+    "SaaS platforms",
+    "Web applications",
+    "Internal business tools",
+    "Native iOS & Android apps",
+    "Cross-platform mobile apps",
+    "AI-powered applications",
+    "APIs & systems integration",
+    "Data modeling & back-end services",
+    "Authentication & permissions",
+    "Automated testing & deployment",
+    "Enterprise CMS development",
+    "Interactive & physical-world experiences"
   ],
-  "process": [
+  "inMethod": [
     {
-      "title": "Frame",
-      "body": "We get clear on the job, the constraints, and what success actually looks like — before anyone argues about technology."
+      "stage": "Prototype",
+      "body": "Prototypes are built on real technology choices, so what we learn carries into production instead of being thrown away."
     },
     {
-      "title": "Design the system",
-      "body": "Architecture, content model, and component system together, so the thing holds up as it grows instead of only working on launch day."
+      "stage": "Build",
+      "body": "Architecture, data model, integrations and a component system, designed and engineered together and tested as we go."
     },
     {
-      "title": "Build",
-      "body": "We ship clean, accessible, performant code — designing and engineering in the same loop so the intent survives to production."
+      "stage": "Learn",
+      "body": "We instrument the software so real usage and real performance inform what changes next."
     },
     {
-      "title": "Hand over",
-      "body": "We instrument it, document it, and set your team up to own and evolve it without depending on us."
+      "stage": "Evolve",
+      "body": "Maintainable code, documentation and a clean handover mean your team can own and extend what we built."
     }
   ],
   "deliverables": [
-    "Production software — designed and engineered by the same senior team",
-    "Architecture and a content model that hold up as the product grows",
-    "A real component system, not a pile of one-off screens",
+    "Production software, designed and engineered by the same senior team",
+    "Architecture and a data model that hold up as the product grows",
+    "Integrations with the systems the software has to work alongside",
+    "Automated tests and repeatable deployments around the parts that matter",
     "Accessibility and performance built in from the start, not audited in later",
-    "Integrations that connect the experience to the systems behind it",
-    "Documentation and handover so your team can confidently own what we built"
+    "Documentation and a handover your team can confidently own"
   ],
   "whoFor": [
-    "Teams tired of the gap between the design they approved and the product that shipped",
-    "Organizations that need one partner to both design and build, without a handoff",
-    "Companies taking an experience into the physical world — retail, parks, kiosks, signage",
-    "Enterprises with real integration complexity behind a customer-facing experience"
+    "Teams with a prototype or proof of concept that needs to become real software",
+    "Organizations that need one partner to design and build, without a handoff",
+    "Companies with real integration complexity behind a simple-looking experience",
+    "Teams tired of the gap between the design they approved and the product that shipped"
   ],
   "faq": [
     {
       "q": "Do you replace our engineering team or work alongside it?",
-      "a": "Either. Sometimes we're the whole team; more often we're the senior layer that works alongside your engineers — designing and building the hard parts, setting the patterns, and handing off cleanly. We'll tell you honestly which arrangement fits your situation."
+      "a": "Either. Sometimes we're the whole team; often we're the senior layer that works alongside your engineers — designing and building the hard parts, setting the patterns, and handing off cleanly. We'll tell you honestly which arrangement fits your situation."
     },
     {
       "q": "What technologies do you build on?",
-      "a": "We're deliberately not dogmatic. The stack should follow the job, your team's ability to maintain it, and your roadmap — not our preferences. We work across modern web frameworks, native and cross-platform mobile, headless and enterprise CMS platforms like Optimizely and Sitecore, and the APIs and services behind them."
+      "a": "We're deliberately not dogmatic. The stack should follow the job, your team's ability to maintain it, and your roadmap — not our preferences. We work across modern web frameworks, native and cross-platform mobile, headless and enterprise CMS platforms, and the APIs and services behind them."
     },
     {
       "q": "Can you take over an existing build?",
-      "a": "Often, yes. A good share of our work is inheriting something half-finished or hard to maintain and making it good. We'll assess it honestly first — including telling you if the right answer is to keep what you have and fix it rather than start over."
+      "a": "Often, yes. A good share of engineering work is inheriting something half-finished or hard to maintain and making it good. We'll assess it honestly first — including telling you if the right answer is to keep what you have and fix it rather than start over."
     },
     {
       "q": "How does AI factor into how you build?",
-      "a": "It makes us faster, not looser. We use AI-assisted development to compress the distance between an idea and working software, while the standards — design system, accessibility, performance, review — stay exactly where they were. Speed is leverage; it only helps if you're pointed the right way."
+      "a": "It extends what a senior team can take on — more approaches explored, more tests written, more of the repetitive work handled — while the standards stay exactly where they were: architecture, review, accessibility and performance. AI is leverage, and leverage only helps when experienced people are pointing it."
     }
   ],
   "relatedTags": [
+    "Product",
+    "Payments",
+    "AI",
     "Web",
-    "UX/UI",
-    "AR",
-    "Experience",
-    "Retail"
+    "Experience"
   ],
   "relatedServices": [
-    "front-end-engineering",
     "back-end-engineering",
-    "enterprise-cms",
+    "front-end-engineering",
     "product-design"
   ],
-  "ctaHeading": "Got something to build? Let's talk about it."
+  "buildsWith": [
+    "run-the-business",
+    "serve-your-customers",
+    "build-a-product-to-sell"
+  ],
+  "cta": {
+    "primary": "build",
+    "secondary": "work"
+  },
+  "ctaHeading": "Have a prototype that needs to become real software?"
 }

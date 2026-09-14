@@ -3673,3 +3673,73 @@ html:not(.js) .nav-item--has-menu:focus-within .nav-mega {
 .case-pillars .pillar-grid--five .pillar { padding: 1.5rem; }
 @media (max-width: 1100px) { .case-pillars .pillar-grid--five { grid-template-columns: 1fr; } }
 
+/* ============================================================
+   Capability pages — where a discipline fits the one Artifact method
+   ============================================================ */
+.method-fit__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(17, 17, 17, 0.12); }
+.method-fit__row {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: 0.6rem clamp(1.5rem, 4vw, 3.5rem);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) 0;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.12);
+  align-items: baseline;
+}
+.method-fit__stage {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.method-fit__num { font-weight: 500; font-size: 0.95rem; letter-spacing: 0; color: var(--accent-strong); }
+.method-fit__body { margin: 0; max-width: 62ch; color: var(--steel); line-height: 1.6; }
+@media (max-width: 700px) { .method-fit__row { grid-template-columns: 1fr; } }
+
+.service-connect__title {
+  margin: clamp(2.5rem, 5vw, 3.5rem) 0 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--steel-soft);
+}
+.service-prose a { color: var(--accent-strong); text-underline-offset: 3px; }
+.project-card__tier { margin: 0.4rem 0 0.1rem; align-self: flex-start; }
+.tier-chip--own { color: var(--accent-strong); border-color: currentColor; }
+
+
+/* Headings wrap in balanced lines, so no word is left alone at the end. */
+.case-title .reveal-line,
+.case-title .reveal-line > span,
+.section-heading,
+.section-heading > span,
+.service-section__heading,
+.service-section__heading > span,
+.cta-band__heading {
+  text-wrap: balance;
+}
+
+/* "What this helps us build" holds two or three cards: three fit across at
+   tablet width instead of breaking 2 + 1. */
+.service-connect .service-link-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+/* The flagship's five kinds of software: five across on desktop, 3 + 2 on
+   tablet (the second row's cards widen to fill it), single file on phones. */
+.service-clusters .service-link-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.service-clusters .service-link-card { grid-column: span 2; }
+.service-clusters .service-link-card:nth-child(n + 4) { grid-column: span 3; }
+@media (min-width: 1200px) {
+  .service-clusters .service-link-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .service-clusters .service-link-card,
+  .service-clusters .service-link-card:nth-child(n + 4) { grid-column: auto; }
+}
+@media (max-width: 699px) {
+  .service-clusters .service-link-grid { grid-template-columns: 1fr; }
+  .service-clusters .service-link-card,
+  .service-clusters .service-link-card:nth-child(n + 4) { grid-column: auto; }
+}

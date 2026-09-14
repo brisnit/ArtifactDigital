@@ -22,12 +22,50 @@ const url = `${SITE.url}${path}`;
 
 const allServices = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 const cases = await relatedCases(d.relatedTags);
-// Flagship pages use the one Artifact method rather than a page-specific process.
-const process = d.flagship ? METHOD : d.process;
-const processHeading = d.flagship ? 'How it gets built' : 'The engagement';
 const related = d.relatedServices.length
   ? allServices.filter((s) => d.relatedServices.includes(s.id))
-  : allServices.filter((s) => s.id !== entry.id).slice(0, 3);
+  : allServices.filter((s) => s.id !== entry.id && !s.data.flagship).slice(0, 3);
+
+// The flagship offer lives under What We Build and presents the whole method.
+// Every other page is a capability: it lives under Capabilities and says what
+// its discipline contributes to that one method — never a process of its own.
+const parent = d.flagship
+  ? { name: 'What We Build', href: '/services' }
+  : { name: 'Capabilities', href: '/capabilities' };
+const methodFit = d.inMethod
+  .map((m) => ({ ...m, n: METHOD.findIndex((s) => s.title === m.stage) + 1 }))
+  .sort((a, b) => a.n - b.n);
+const builds = d.buildsWith
+  .map((id) => BUILD_CLUSTERS.find((c) => c.id === id))
+  .filter((c): c is NonNullable<typeof c> => Boolean(c));
+const pad = (n: number) => String(n).padStart(2, '0');
+
+// Body copy may carry inline [text](/path) links; render them as real anchors.
+const linkify = (text: string) =>
+  text
+    .split(/(\[[^\]]+\]\([^)\s]+\))/g)
+    .filter(Boolean)
+    .map((part) => {
+      const m = part.match(/^\[([^\]]+)\]\(([^)\s]+)\)$/);
+      return m ? { text: m[1], href: m[2] } : { text: part, href: null };
+    });
+
+// Varied, positioning-aligned calls to action, chosen per page in its JSON.
+const PRIMARY = {
+  build: CTA.primary,
+  problem: { label: 'Tell Us the Problem', href: '/contact?intent=build' },
+  audit: { label: 'Request an Audit', href: '/contact?intent=audit' },
+  ai: { label: 'Talk Through an AI Idea', href: '/contact?intent=ai-assessment' },
+};
+const SECONDARY = {
+  'what-we-build': { label: 'Explore What We Build', href: '/services' },
+  'how-we-work': { label: 'See How We Work', href: '/how-we-work' },
+  work: CTA.work,
+  audit: CTA.audit,
+};
+const ctaSub =
+  d.ctaSub ??
+  "Tell us the problem. We'll tell you honestly whether software is the answer — and bring the strategy, design, engineering and AI to build it.";
 
 const serviceNode = {
   '@type': 'Service',
@@ -59,7 +97,7 @@ const jsonLd = {
     orgNode,
     breadcrumb([
       { name: 'Home', path: '/' },
-      { name: 'What We Build', path: '/services' },
+      { name: parent.name, path: parent.href },
       { name: d.title, path },
     ]),
   ],
@@ -74,7 +112,7 @@ const jsonLd = {
 >
   <section class="case-hero">
     <div class="container">
-      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'What We Build', href: '/services' }, { name: d.navLabel }]} />
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, parent, { name: d.navLabel }]} />
       <span class="eyebrow reveal"><span class="eyebrow-dot"></span>{d.eyebrow}</span>
       <h1 class="case-title">
         {d.heroTitleLines.map((l) => (
@@ -85,10 +123,12 @@ const jsonLd = {
     </div>
   </section>
 
-  <!-- INTRO / what it actually is -->
+  <!-- INTRO -->
   <section class="section service-intro">
     <div class="container service-prose">
-      {d.intro.map((p) => <p class="reveal">{p}</p>)}
+      {d.intro.map((p) => (
+        <p class="reveal">{linkify(p).map((s) => (s.href ? <a href={s.href}>{s.text}</a> : s.text))}</p>
+      ))}
     </div>
   </section>
 
@@ -100,7 +140,9 @@ const jsonLd = {
           <h2 class="service-section__heading reveal-line"><span>{s.heading}</span></h2>
         </div>
         <div class="service-prose service-section__body">
-          {s.body.map((p) => <p class="reveal">{p}</p>)}
+          {s.body.map((p) => (
+            <p class="reveal">{linkify(p).map((x) => (x.href ? <a href={x.href}>{x.text}</a> : x.text))}</p>
+          ))}
         </div>
       </div>
     </section>
@@ -127,7 +169,7 @@ const jsonLd = {
     </section>
   )}
 
-  <!-- CAPABILITIES (optional) -->
+  <!-- WHAT THIS COVERS (optional) -->
   {d.capabilities && d.capabilities.length > 0 && (
     <section class="section service-capabilities">
       <div class="container">
@@ -142,27 +184,48 @@ const jsonLd = {
     </section>
   )}
 
-  <!-- PROCESS -->
-  <section class="section case-pillars">
-    <div class="container">
-      <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>How we work</span>
-        <h2 class="section-heading reveal-line"><span>{processHeading}</span></h2>
-      </header>
-      <div class:list={["pillar-grid", d.flagship && "pillar-grid--five"]}>
-        {process.map((p, i) => (
-          <article class="pillar reveal-card">
-            <span class="pillar__num">{String(i + 1).padStart(2, '0')}</span>
-            <h3>{p.title}</h3>
-            <p>{p.body}</p>
-          </article>
-        ))}
-      </div>
-      {d.flagship && (
+  <!-- THE METHOD: whole method on the flagship, this discipline's part of it elsewhere -->
+  {d.flagship ? (
+    <section class="section case-pillars">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-tag reveal"><span class="tag-dot"></span>How we work</span>
+          <h2 class="section-heading reveal-line"><span>How it gets built</span></h2>
+        </header>
+        <div class="pillar-grid pillar-grid--five">
+          {METHOD.map((m, i) => (
+            <article class="pillar reveal-card">
+              <span class="pillar__num">{pad(i + 1)}</span>
+              <h3>{m.title}</h3>
+              <p>{m.body}</p>
+            </article>
+          ))}
+        </div>
         <p class="home-more reveal"><a class="home-more__link" href="/how-we-work">How we work, in full<span aria-hidden="true"> →</span></a></p>
-      )}
-    </div>
-  </section>
+      </div>
+    </section>
+  ) : methodFit.length > 0 && (
+    <section class="section method-fit" aria-labelledby="method-fit-heading">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-tag reveal"><span class="tag-dot"></span>How we work</span>
+          <h2 class="section-heading reveal-line" id="method-fit-heading"><span>Where it fits in the method</span></h2>
+        </header>
+        <p class="home-lede reveal">
+          Every Artifact engagement runs on one method: {METHOD.map((m) => m.title).join(' → ')}.
+          These are the stages where {d.title} does the most work. <a href="/how-we-work">See how we work</a>.
+        </p>
+        <ol class="method-fit__list">
+          {methodFit.map((m) => (
+            <li class="method-fit__row reveal">
+              <span class="method-fit__stage"><span class="method-fit__num">{pad(m.n)}</span>{m.stage}</span>
+              <p class="method-fit__body">{m.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  )}
 
   <!-- DELIVERABLES + WHO IT'S FOR -->
   <section class="section service-lists">
@@ -182,7 +245,7 @@ const jsonLd = {
     </div>
   </section>
 
-  <!-- RELATED WORK -->
+  <!-- RELATED WORK, labeled by proof tier -->
   {cases.length > 0 && (
     <section class="section related-work">
       <div class="container">
@@ -191,7 +254,7 @@ const jsonLd = {
           <h2 class="section-heading reveal-line"><span>Proof, not promises</span></h2>
         </header>
         <div class="project-grid">
-          {cases.map((c) => <WorkCard entry={c} />)}
+          {cases.map((c) => <WorkCard entry={c} showTier />)}
         </div>
       </div>
     </section>
@@ -217,13 +280,13 @@ const jsonLd = {
     </section>
   )}
 
-  <!-- RELATED SERVICES -->
-  {related.length > 0 && (
+  <!-- CONNECTIONS: the software this helps build, and the capabilities beside it -->
+  {d.flagship ? related.length > 0 && (
     <section class="section related-services">
       <div class="container">
         <header class="section-head">
-          <span class="section-tag reveal"><span class="tag-dot"></span>Explore more</span>
-          <h2 class="section-heading reveal-line"><span>Related services</span></h2>
+          <span class="section-tag reveal"><span class="tag-dot"></span>Capabilities</span>
+          <h2 class="section-heading reveal-line"><span>The expertise behind it</span></h2>
         </header>
         <div class="service-link-grid">
           {related.map((s) => (
@@ -236,7 +299,37 @@ const jsonLd = {
         </div>
       </div>
     </section>
+  ) : (builds.length > 0 || related.length > 0) && (
+    <section class="section related-services service-connect">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-tag reveal"><span class="tag-dot"></span>What we build</span>
+          <h2 class="section-heading reveal-line"><span>What this helps us build</span></h2>
+        </header>
+        {builds.length > 0 && (
+          <div class="service-link-grid">
+            {builds.map((c) => (
+              <a class="service-link-card reveal-card" href={buildPath(c.id)}>
+                <h3>{c.label}</h3>
+                <p>{c.summary}</p>
+                <span class="service-link-card__more">See examples →</span>
+              </a>
+            ))}
+          </div>
+        )}
+        {related.length > 0 && (
+          <>
+            <h3 class="service-connect__title reveal">Works alongside</h3>
+            <ul class="wwb-practice__list">
+              {related.map((s) => (
+                <li><a href={`/services/${s.id}`}>{s.data.navLabel}<span aria-hidden="true">→</span></a></li>
+              ))}
+            </ul>
+          </>
+        )}
+      </div>
+    </section>
   )}
 
-  <CtaBand heading={d.ctaHeading} primary={CTA.primary} secondary={CTA.audit} />
+  <CtaBand heading={d.ctaHeading} sub={ctaSub} primary={PRIMARY[d.cta.primary]} secondary={SECONDARY[d.cta.secondary]} />
 </BaseLayout>

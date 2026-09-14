@@ -52,15 +52,13 @@ export const buildPath = (id: string) => `/services#${id}`;
 /** Evidence for each kind of software. Entries with a `caseId` take their tier
  *  (Built by Artifact, or founder/team prior work) from the case itself, so an
  *  edit here can never relabel prior-agency work as Artifact's. Entries without
- *  a case are concepts and render as such. `label` may only rename Artifact's
- *  own work (e.g. BenchBot, which Artifact owns). */
+ *  a case are concepts and render as such. */
 export interface BuildProof {
   caseId?: string;
   href?: string;
   name: string;
   detail?: string;
   status?: string;
-  label?: string;
 }
 
 export const BUILD_PROOF: Record<string, BuildProof[]> = {
@@ -78,12 +76,12 @@ export const BUILD_PROOF: Record<string, BuildProof[]> = {
     { href: '/insights/if-we-cant-see-whats-happening', name: 'Predictive Learning Platform', detail: 'A platform for seeing learner risk earlier, explored in our writing. Not a client product.', status: 'In development' },
   ],
   'see-whats-coming': [
-    { caseId: 'case-benchbot', name: 'BenchBot', label: 'Artifact’s own product', detail: 'Audits a website against real competitors and turns the findings into prioritized, trackable work.', status: 'Pre-launch' },
+    { caseId: 'case-benchbot', name: 'BenchBot', detail: 'Audits a website against real competitors and turns the findings into prioritized, trackable work.', status: 'Pre-launch' },
     { caseId: 'case-weather-intelligence', name: 'Weather intelligence platform', detail: 'Helping a major electric utility see wildfire risk sooner and act with confidence.' },
   ],
   'build-a-product-to-sell': [
     { caseId: 'case-dropq', name: 'DropQ', detail: 'Vertical SaaS for independent sellers, built from zero to a live Stripe Connect marketplace.', status: 'Live' },
-    { caseId: 'case-benchbot', name: 'BenchBot', label: 'Artifact’s own product', detail: 'An AI website-improvement platform, built and owned by Artifact as a SaaS product.', status: 'Pre-launch' },
+    { caseId: 'case-benchbot', name: 'BenchBot', detail: 'An AI website-improvement platform, built and owned by Artifact as a SaaS product.', status: 'Pre-launch' },
   ],
 };
 
