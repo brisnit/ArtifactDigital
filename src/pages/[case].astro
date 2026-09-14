@@ -5,6 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import { SITE, orgNode, breadcrumb, CTA } from '../data/site';
 import { responsive } from '../lib/responsive';
+import { caseTier, tierText } from '../lib/proof';
 
 export const getStaticPaths = (async () => {
   const cases = await getCollection('work');
@@ -16,6 +17,14 @@ const d = entry.data;
 const path = `/${entry.id}`;
 const feature = await responsive(d.feature?.image);
 const story = await responsive(d.storyImage);
+const tier = caseTier(entry);
+
+// Artifact publishes every case, but only made the ones it built. Prior-agency
+// work credits the founder as a contributor, never the company as its creator.
+const org = { '@id': `${SITE.url}/#organization` };
+const credit = d.priorRole
+  ? { contributor: { '@id': `${SITE.url}/about#britt-midgette` } }
+  : { creator: org, author: org };
 
 const caseNode = {
   '@type': 'CreativeWork',
@@ -27,9 +36,8 @@ const caseNode = {
   image: `${SITE.url}${d.ogImage ?? SITE.ogImage}`,
   datePublished: d.year,
   inLanguage: 'en-US',
-  creator: { '@id': `${SITE.url}/#organization` },
-  author: { '@id': `${SITE.url}/#organization` },
-  publisher: { '@id': `${SITE.url}/#organization` },
+  ...credit,
+  publisher: org,
   isPartOf: { '@id': `${SITE.url}/#website` },
 };
 const jsonLd = {
@@ -39,7 +47,7 @@ const jsonLd = {
     orgNode,
     breadcrumb([
       { name: 'Home', path: '/' },
-      { name: 'Work', path: '/#work' },
+      { name: 'Work', path: '/work' },
       { name: d.title, path },
     ]),
   ],
@@ -64,6 +72,7 @@ const jsonLd = {
         </svg>
         Back to work
       </a>
+      <p class="case-tier reveal"><span class={`tier-chip tier-chip--${tier}`}>{tierText(entry)}</span></p>
       <span class="eyebrow reveal"><span class="eyebrow-dot"></span>{d.heroEyebrow}</span>
       <h1 class="case-title">
         {d.titleLines.map((l) => (
@@ -93,7 +102,7 @@ const jsonLd = {
           <p class="case-attribution__text">
             <strong>About this work:</strong>{' '}
             {d.teamWork
-              ? 'led by people who now work on Artifact projects, in senior roles at a previous agency, before Artifact Digital existed.'
+              ? 'led by Britt Midgette and people who now work on Artifact projects, in director and senior roles at a previous agency, before Artifact Digital existed.'
               : 'led by Britt Midgette in a director role at a previous agency, before founding Artifact Digital.'}{' '}
             The client is not named here; the problem, the decisions and the outcomes
             are described as they happened.

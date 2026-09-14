@@ -7,9 +7,10 @@
   "category": "Drop commerce platform",
   "priorRole": false,
   "teamWork": true,
+  "status": "Live",
   "liveUrl": "https://www.drop-q.com",
   "card": {
-    "eyebrow": "02 / Marketplace platform",
+    "eyebrow": "Marketplace platform",
     "blurb": "An operating system for independent sellers running timed product drops — built zero to a live Stripe Connect marketplace in two weeks.",
     "tags": [
       "Commerce",
@@ -109,7 +110,7 @@
   "ctaHeading": "Got something that needs to exist in two weeks?",
   "ogImage": "/brand_assets/cases/dropq-og.webp",
   "storyImage": "/brand_assets/cases/dropq-story.webp",
-  "storyImageAlt": "DropQ feature overview — limited drops, storefronts, fulfillment, analytics",
+  "storyImageAlt": "A graded trading card and a collectible figure staged for a DropQ limited drop",
   "storyCaption": "One platform replacing the link-in-bio, spreadsheet and Venmo stack.",
   "feature": {
     "image": "/brand_assets/cases/dropq-feature.webp",

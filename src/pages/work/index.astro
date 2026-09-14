@@ -5,10 +5,29 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import WorkCard from '../../components/WorkCard.astro';
 import { SITE, orgNode, breadcrumb } from '../../data/site';
+import { caseTier, sortWork, CONCEPTS, TIER_LABEL } from '../../lib/proof';
+import { responsive } from '../../lib/responsive';
 
-const projects = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
-const artifactWork = projects.filter((p) => !p.data.priorRole);
-const careerWork = projects.filter((p) => p.data.priorRole);
+// The rest of the site makes the argument; this page proves it. Order and tiers
+// both come from src/lib/proof.ts, so the page can't quietly promote prior-agency
+// work or a concept above what it is.
+const projects = sortWork(await getCollection('work'));
+const built = projects.filter((p) => !p.data.priorRole);
+const [lead, ...moreBuilt] = built;
+const teamWork = projects.filter((p) => caseTier(p) === 'team');
+const founderWork = projects.filter((p) => caseTier(p) === 'founder');
+const concepts = await Promise.all(CONCEPTS.map(async (c) => ({ ...c, img: await responsive(c.image) })));
+
+// What the work draws on. Kept short: the cards carry the argument.
+const INGREDIENTS = [
+  { title: 'Product thinking', body: 'Deciding what should exist, and what shouldn’t.' },
+  { title: 'Business understanding', body: 'How the work actually flows: approvals, handoffs, data, money.' },
+  { title: 'UX', body: 'Software people can use without being trained on it.' },
+  { title: 'Visual craft', body: 'Interfaces that feel considered, not generated.' },
+  { title: 'Engineering', body: 'Data models, payments, permissions and production code.' },
+  { title: 'Complex-system experience', body: 'Years inside large organizations and the ecosystems they run.' },
+  { title: 'AI-assisted execution', body: 'More research, prototyping and testing than team size alone allows.' },
+];
 
 const itemList = {
   '@type': 'ItemList',
@@ -34,8 +53,8 @@ const jsonLd = {
 };
 ---
 <BaseLayout
-  title="Case Studies · Selected Work · Artifact Digital"
-  description="Selected work from Artifact Digital — anonymized case studies in retail, education, apparel, and global food & nutrition, told through problem, approach, and outcome."
+  title="Case Studies · Software We've Built · Artifact Digital"
+  description="Software Artifact Digital has designed and built, labelled by where each product stands, and the enterprise experience our founder and team led before Artifact existed."
   canonical="/work"
   bodyClass="case-page work-index"
   jsonLd={jsonLd}
@@ -45,49 +64,127 @@ const jsonLd = {
       <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Work' }]} />
       <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Work</span>
       <h1 class="case-title">
-        <span class="reveal-line"><span>What we've built,</span></span>
-        <span class="reveal-line italic"><span>and what I've led.</span></span>
+        <span class="reveal-line"><span>We build software.</span></span>
+        <span class="reveal-line italic"><span>Here’s the proof.</span></span>
       </h1>
       <p class="case-lede reveal">
-        Two kinds of proof, and I keep them apart on purpose. First, products Artifact
-        designed and built — small, real, and live. Then the enterprise work I led in
-        director roles at previous agencies, before Artifact existed. Both are honest;
-        they're just not the same claim.
+        Artifact is a newer company, built by people who spent years designing and
+        delivering sophisticated digital systems for major organizations. This page
+        shows both: the software we’ve built since, labelled by where each product
+        actually stands, and the experience behind it, labelled by who did the work.
       </p>
     </div>
   </section>
 
-  <!-- Tier 1: Artifact's own work -->
-  <section class="section work">
+  <!-- Built at Artifact -->
+  <section class="section work" aria-labelledby="work-built-heading">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>03 — Our work</span>
-        <h2 class="section-heading reveal-line"><span>Built by Artifact</span></h2>
-      </header>
-      <div class="project-grid">
-        {artifactWork.map((p) => <WorkCard entry={p} headingLevel="h3" />)}
-      </div>
-    </div>
-  </section>
-
-  <!-- Tier 2: career work, attributed -->
-  <section class="section work work--career">
-    <div class="container">
-      <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>04 — Career work</span>
-        <h2 class="section-heading reveal-line"><span>Our founder’s work</span></h2>
+        <span class="section-tag reveal"><span class="tag-dot"></span>Built at Artifact</span>
+        <h2 class="section-heading reveal-line" id="work-built-heading"><span>Software we’ve built</span></h2>
       </header>
       <p class="work-attribution reveal">
-        These examples represent experience delivering digital products for leading
-        organizations. To respect client confidentiality, copyright, and contractual
-        obligations, branding and proprietary assets have been removed or anonymized
-        while preserving the strategic thinking and design approach behind the work.
+        Products, platforms and prototypes this company designed and built. One is live
+        and taking real payments. One is a working prototype waiting on its database.
+        Each says so on the card.
       </p>
       <div class="project-grid">
-        {careerWork.map((p) => <WorkCard entry={p} headingLevel="h3" />)}
+        {lead && <WorkCard entry={lead} headingLevel="h3" showTier wide priority />}
+        {moreBuilt.map((p) => <WorkCard entry={p} headingLevel="h3" showTier wide={false} />)}
+        {concepts.map((c) => (
+          <a class="project-card-link" href={c.href} aria-label={`Read about the ${c.name}`}>
+            <article class="project-card reveal-card">
+              <div class="project-card__media project-card__media--contain" style="--media-bg: #f4f4f4;">
+                <img
+                  src={c.image}
+                  alt={c.imageAlt}
+                  width={c.img.width}
+                  height={c.img.height}
+                  srcset={c.img.srcset}
+                  sizes="(max-width: 560px) 100vw, (max-width: 960px) 50vw, 400px"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="project-card__hover">Read the thinking →</span>
+              </div>
+              <div class="project-card__meta">
+                <span>{c.eyebrow}</span>
+                <span>{c.year}</span>
+              </div>
+              <span class="tier-chip tier-chip--concept project-card__tier">{TIER_LABEL.concept} · {c.status}</span>
+              <h3 class="project-card__title">{c.name}</h3>
+              <p class="project-card__copy">{c.blurb}</p>
+              <ul class="project-card__tags">{c.tags.map((t) => <li>{t}</li>)}</ul>
+            </article>
+          </a>
+        ))}
       </div>
     </div>
   </section>
 
-  <CtaBand heading="Want to be the next case study?" />
+  <!-- What the work draws on -->
+  <section class="section service-section work-draws">
+    <div class="container service-section__grid">
+      <div class="service-section__head">
+        <h2 class="service-section__heading reveal-line"><span>Why we can build it</span></h2>
+      </div>
+      <div class="service-prose service-section__body">
+        <p class="reveal">
+          Bespoke software is only as good as the understanding behind it. None of this
+          work came from engineering alone. It came from the same combination, every time:
+        </p>
+        <ul class="work-draws__list">
+          {INGREDIENTS.map((i) => (
+            <li class="reveal"><strong>{i.title}.</strong> {i.body}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- The experience behind Artifact, attributed -->
+  <section class="section work work--career" aria-labelledby="work-before-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Before Artifact</span>
+        <h2 class="section-heading reveal-line" id="work-before-heading"><span>The experience behind it</span></h2>
+      </header>
+      <p class="work-attribution reveal">
+        Before Artifact, our founder and team designed and delivered digital products,
+        platforms and ecosystems for major organizations, in director and senior roles at
+        other agencies. Those engagements belonged to those agencies and their clients,
+        not to Artifact. We show them because that experience is what we build on, and we
+        label them so nobody mistakes one for the other. Client names, branding and
+        proprietary assets have been removed.
+      </p>
+
+      <div class="work-group">
+        <h3 class="work-group__label reveal">{TIER_LABEL.team}</h3>
+        <p class="work-group__note reveal">
+          Work Britt Midgette and people who now work on Artifact projects delivered
+          together at a previous agency.
+        </p>
+        <div class="project-grid project-grid--pairs">
+          {teamWork.map((p) => <WorkCard entry={p} headingLevel="h4" showTier />)}
+        </div>
+      </div>
+
+      <div class="work-group">
+        <h3 class="work-group__label reveal">{TIER_LABEL.founder}</h3>
+        <p class="work-group__note reveal">
+          Led by founder Britt Midgette in director roles, before he started Artifact.
+        </p>
+        <div class="project-grid project-grid--trio">
+          {founderWork.map((p) => <WorkCard entry={p} headingLevel="h4" showTier />)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Have a problem worth building software for?"
+    sub="Tell us what you’re trying to solve. We’ll help you work out whether software is the answer, and what a first working version could look like."
+    primary={{ label: 'Tell Us the Problem', href: '/contact?intent=build' }}
+    secondary={{ label: 'See How We Work', href: '/how-we-work' }}
+  />
 </BaseLayout>

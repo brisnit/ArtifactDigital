@@ -1,12 +1,12 @@
 {
   "title": "Major Electronics Company",
   "metaTitle": "Major Electronics Company — AR Showroom · Artifact Digital",
-  "description": "An immersive in-store AR showroom for a global electronics brand — QR-launched, app-free, and rich with real-time product context.",
+  "description": "An immersive in-store AR showroom for a global electronics brand — QR-launched, app-free, and rich with real-time product context. Team work led before Artifact Digital existed.",
   "order": 1,
   "year": "2023",
   "category": "Digital for retail",
   "card": {
-    "eyebrow": "04 / Digital for retail",
+    "eyebrow": "Digital for retail",
     "blurb": "An in-store AR experience showcasing the company's Connected Home products.",
     "image": "/brand_assets/cases/cards/electronics.webp",
     "imageAlt": "An in-store tablet running an augmented-reality demo of connected home appliances.",

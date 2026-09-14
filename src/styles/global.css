@@ -2710,6 +2710,63 @@ button:focus-visible {
 /* Career work tier sits on a subtle tint so the two proofs read as separate */
 .work--career { background: var(--stone); }
 
+/* /work: prior work, split by who did it */
+.work-group + .work-group { margin-top: clamp(4rem, 7vw, 6rem); }
+.work-group__label {
+  margin: 0 0 0.6rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.work-group__note {
+  max-width: 62ch;
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
+  color: var(--steel);
+  line-height: 1.6;
+}
+/* Two cards share a row on desktop instead of leaving a third cell empty. */
+.project-grid--pairs .project-card { grid-column: span 3; }
+@media (max-width: 960px) {
+  .project-grid--pairs .project-card { grid-column: span 1; }
+}
+
+/* /work: what the work draws on */
+.work-draws__list { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: 0.9rem; }
+.work-draws__list li { position: relative; padding-left: 1.4rem; color: var(--steel); line-height: 1.55; }
+.work-draws__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+}
+.work-draws__list strong { color: var(--ink); font-weight: 600; }
+
+/* Three cards: one row of three at tablet width, instead of breaking 2 + 1. */
+@media (min-width: 561px) and (max-width: 960px) {
+  .project-grid--trio { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 1.25rem; }
+  .project-grid--trio .project-card__title { font-size: 1.15rem; }
+  .project-grid--trio .project-card__copy { font-size: 0.9rem; }
+}
+
+/* A card image can sit in a <picture>; it has to fill the frame like a bare img. */
+.project-card__media picture { display: block; width: 100%; height: 100%; }
+
+/* Lead card on /work: the product's own screens, full width, on desktop. */
+@media (min-width: 961px) {
+  .project-card--lead .project-card__media { aspect-ratio: 21 / 9; }
+  .project-card--lead .project-card__media img { object-fit: cover; }
+}
+
+/* Proof tier on a case-study hero */
+.case-tier { margin: 0 0 0.75rem; }
+.case-tier .tier-chip { margin-bottom: 0; }
+
 /* Anchor targets clear the fixed header without needing a JS scroll offset.
    The header is 90px tall; 6.25rem (100px) clears it with a little air. */
 section[id],

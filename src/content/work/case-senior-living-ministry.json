@@ -1,14 +1,15 @@
 {
   "title": "Senior-Living Ministry",
   "metaTitle": "A Scripture-First Formation App & Admin Portal · Artifact Digital",
-  "description": "Two live products for a senior-living ministry — a Scripture-first daily formation app for residents aged 70+, and an admin portal that lets non-technical staff run it without a developer.",
+  "description": "A Scripture-first daily formation app for senior-living residents aged 70+, and an admin portal that lets non-technical staff run it without a developer — both deployed as working prototypes.",
   "order": 1,
   "year": "2026",
   "category": "Mobile app & admin platform",
   "priorRole": false,
   "teamWork": true,
+  "status": "Prototype",
   "card": {
-    "eyebrow": "01 / App & platform",
+    "eyebrow": "App & platform",
     "blurb": "A Scripture-first daily formation app for senior-living residents, plus an admin portal that lets ministry staff run it without a developer.",
     "tags": [
       "Mobile",
@@ -32,7 +33,7 @@
       "text": "was subtraction."
     }
   ],
-  "lede": "Two live products for a senior-living ministry: a Scripture-first daily formation app for residents, staff and the surrounding community — and a web admin portal that lets non-technical ministry staff run the content, events, messaging and people behind it.",
+  "lede": "Two working products for a senior-living ministry, deployed as a prototype: a Scripture-first daily formation app for residents, staff and the surrounding community — and a web admin portal that lets non-technical ministry staff run the content, events, messaging and people behind it.",
   "meta": [
     {
       "label": "Client",
@@ -85,7 +86,7 @@
   ],
   "highlights": [
     {
-      "title": "Two live products, ~40 screens",
+      "title": "Two deployed products, ~40 screens",
       "body": "A full mobile app and an admin portal, both deployable and shareable by URL, with clean production builds and zero TypeScript errors."
     },
     {

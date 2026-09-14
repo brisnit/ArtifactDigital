@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { responsive } from '../lib/responsive';
-import { caseTier, TIER_LABEL } from '../lib/proof';
+import { caseTier, tierText } from '../lib/proof';
 
 interface Props {
   entry: CollectionEntry<'work'>;
@@ -10,14 +10,21 @@ interface Props {
   headingLevel?: 'h2' | 'h3' | 'h4';
   /** First card in a grid is the LCP element — load it eagerly, never lazily. */
   priority?: boolean;
-  /** Label the card with its proof tier (Built by Artifact, prior work…). */
+  /** Label the card with its proof tier and status (Built by Artifact · Live…). */
   showTier?: boolean;
+  /** Full-width card. Overrides the case's own setting, so one page can lead
+   *  with a case without changing how every other page lays it out. */
+  wide?: boolean;
 }
-const { entry, headingLevel = 'h3', priority = false, showTier = false } = Astro.props;
+const { entry, headingLevel = 'h3', priority = false, showTier = false, wide } = Astro.props;
 const tier = showTier ? caseTier(entry) : null;
 const d = entry.data;
 const Heading = headingLevel;
 const card = await responsive(d.card.image);
+// A wide lead card shows the product itself on desktop (the case's 21:9 feature
+// shot), and falls back to the card art where it shares a row with other cards.
+const isLead = wide === true && Boolean(d.feature?.image);
+const lead = isLead ? await responsive(d.feature!.image) : null;
 
 // Until real art exists, show a branded initial mark rather than a broken frame.
 const mark = d.title
@@ -30,7 +37,7 @@ const mark = d.title
   .toUpperCase();
 ---
 <a class="project-card-link" href={`/${entry.id}`} aria-label={`Read the ${d.title} case study`}>
-  <article class:list={['project-card', 'reveal-card', d.card.wide && 'project-card--wide']}>
+  <article class:list={['project-card', 'reveal-card', (wide ?? d.card.wide) && 'project-card--wide', isLead && 'project-card--lead']}>
     <div
       class:list={[
         'project-card__media',
@@ -39,9 +46,19 @@ const mark = d.title
       style="--media-bg: #f4f4f4;"
     >
       {d.card.image ? (
-        <img
+        <picture>
+          {lead && (
+            <source
+              media="(min-width: 961px)"
+              srcset={lead.srcset ?? d.feature!.image}
+              sizes="(max-width: 1440px) 100vw, 1280px"
+              width={lead.width}
+              height={lead.height}
+            />
+          )}
+          <img
             src={d.card.image}
-            alt={d.card.imageAlt ?? ''}
+            alt={isLead ? d.feature!.alt : d.card.imageAlt ?? ''}
             width={card.width}
             height={card.height}
             srcset={card.srcset}
@@ -50,6 +67,7 @@ const mark = d.title
             fetchpriority={priority ? 'high' : undefined}
             decoding="async"
           />
+        </picture>
       ) : (
         <span class="project-card__mark" aria-hidden="true">{mark}</span>
       )}
@@ -59,7 +77,7 @@ const mark = d.title
       <span>{d.card.eyebrow}</span>
       <span>{d.year}</span>
     </div>
-    {tier && <span class={`tier-chip tier-chip--${tier} project-card__tier`}>{TIER_LABEL[tier]}</span>}
+    {tier && <span class={`tier-chip tier-chip--${tier} project-card__tier`}>{tierText(entry)}</span>}
     <Heading class="project-card__title">{d.title}</Heading>
     <p class="project-card__copy">{d.card.blurb}</p>
     <ul class="project-card__tags">{d.card.tags.map((t) => <li>{t}</li>)}</ul>

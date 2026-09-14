@@ -7,17 +7,14 @@ import { SITE, orgNode, websiteNode, CTA } from '../data/site';
 import { testimonials } from '../data/testimonials';
 import { BUILD_CLUSTERS, buildPath } from '../data/build';
 import { METHOD, MODEL_COMPARISON } from '../data/method';
+import { caseTier, sortWork } from '../lib/proof';
 
-const allWork = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
-// Two proofs, kept apart: software Artifact built, and platforms Britt led
-// before Artifact existed. The homepage career tier shows the three that are
-// software platforms; every case stays on /work.
+// Two proofs, kept apart: software Artifact built, and the software platforms
+// our founder led before Artifact existed. Order comes from src/lib/proof.ts;
+// every case, including the team's prior work, is on /work.
+const allWork = sortWork(await getCollection('work'));
 const artifactWork = allWork.filter((p) => !p.data.priorRole);
-// Listed in the order of the numbers printed on their cards.
-const CAREER_PLATFORMS = ['case-it-training', 'case-major-clothing', 'case-weather-intelligence'];
-const careerWork = CAREER_PLATFORMS.map((id) => allWork.find((p) => p.id === id)).filter(
-  (p): p is NonNullable<typeof p> => Boolean(p)
-);
+const careerWork = allWork.filter((p) => caseTier(p) === 'founder');
 
 // Quotes about software lead the proof; other client quotes sit beneath it.
 const live = testimonials.filter((t) => t.approved);
@@ -296,8 +293,8 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
         <h2 class="section-heading reveal-line"><span>Software we've built</span></h2>
       </header>
 
-      <div class="project-grid">
-        {artifactWork.map((p) => <WorkCard entry={p} />)}
+      <div class="project-grid project-grid--trio">
+        {artifactWork.map((p) => <WorkCard entry={p} showTier />)}
       </div>
 
       {softwareQuotes.length > 0 && (
@@ -320,17 +317,17 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
   <section class="section work work--career" id="career-work">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>Career work</span>
+        <span class="section-tag reveal"><span class="tag-dot"></span>Before Artifact</span>
         <h2 class="section-heading reveal-line"><span>Our founder’s work</span></h2>
       </header>
       <p class="work-attribution reveal">
-        These examples represent experience delivering digital products for leading
-        organizations. To respect client confidentiality, copyright, and contractual
-        obligations, branding and proprietary assets have been removed or anonymized
-        while preserving the strategic thinking and design approach behind the work.
+        Software platforms our founder, Britt Midgette, led in director roles at
+        previous agencies, before Artifact existed. They were not Artifact engagements.
+        Client names, branding and proprietary assets have been removed, while the
+        thinking and design approach behind the work are described as they happened.
       </p>
 
-      <div class="project-grid">
+      <div class="project-grid project-grid--trio">
         {careerWork.map((p) => <WorkCard entry={p} />)}
       </div>
       <p class="home-more reveal"><a class="home-more__link" href="/work">See all work<span aria-hidden="true"> →</span></a></p>

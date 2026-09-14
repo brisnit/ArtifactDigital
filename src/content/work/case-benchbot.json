@@ -7,9 +7,10 @@
   "category": "In-house SaaS",
   "priorRole": false,
   "teamWork": true,
+  "status": "Pre-launch",
   "liveUrl": "https://benchbot-production.up.railway.app",
   "card": {
-    "eyebrow": "03 / Our own product",
+    "eyebrow": "AI SaaS",
     "blurb": "An AI website improvement platform that audits your site against real competitors and turns the findings into prioritized, trackable work.",
     "tags": [
       "AI",
@@ -20,7 +21,7 @@
     "image": "/brand_assets/cases/cards/benchbot.webp",
     "imageAlt": "Two people reviewing a site audit report together on a desktop screen."
   },
-  "heroEyebrow": "Artifact's own product · AI SaaS",
+  "heroEyebrow": "Case study · AI SaaS",
   "titleLines": [
     {
       "text": "The audit isn't"
@@ -102,10 +103,10 @@
   "ogImage": "/brand_assets/cases/benchbot-og.webp",
   "feature": {
     "image": "/brand_assets/cases/benchbot-feature.webp",
-    "alt": "BenchBot auditing artifactdigital.co — overall score 68, with top findings and opportunities",
-    "caption": "BenchBot auditing our own site. It scored us 68 and told us our CTAs were weak, our navigation needed search, and we should add trust signals. This case study exists partly because it was right."
+    "alt": "Three BenchBot phone screens: the landing page, a demo account's audit dashboard, and the first step of a new competitive audit",
+    "caption": "BenchBot on mobile: the landing page, a demo account’s dashboard, and the first step of a new competitive audit."
   },
   "storyImage": "/brand_assets/cases/benchbot-story.webp",
-  "storyImageAlt": "The BenchBot workspace canvas, seeded from a competitive audit",
-  "storyCaption": "Findings land on a collaborative canvas — so they become work a team does, not a PDF they file."
+  "storyImageAlt": "BenchBot's landing page on a laptop and a phone",
+  "storyCaption": "The audit is the entry point, not the product: two complete free audits before any ask."
 }

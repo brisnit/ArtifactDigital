@@ -6,6 +6,8 @@ import Button from '../components/Button.astro';
 import CtaBand from '../components/CtaBand.astro';
 import WorkCard from '../components/WorkCard.astro';
 import { SITE, orgNode, breadcrumb, CTA } from '../data/site';
+import { METHOD } from '../data/method';
+import { sortWork } from '../lib/proof';
 
 // --- Procurement facts -------------------------------------------------------
 // Verified identifiers. Never edit these to fit a layout — they are the reason
@@ -91,99 +93,67 @@ interface Capability {
 const CAPABILITIES: Capability[] = [
   {
     n: '01',
-    title: 'Digital strategy & transformation',
-    body: 'We find where digital creates real value for the business, then turn that into a roadmap someone can actually execute.',
+    title: 'Digital & product strategy',
+    body: 'We find where purpose-built software creates real leverage for the business, and where off-the-shelf is the better call, then turn that into a plan someone can actually execute.',
     href: '/services/digital-strategy',
     linkLabel: 'Digital strategy',
     items: [
-      'Digital transformation strategy', 'Product strategy', 'Experience strategy',
-      'Digital ecosystem strategy', 'Customer journey mapping', 'Service design',
-      'Opportunity identification', 'Competitive research', 'Business requirements',
-      'Technology planning', 'Digital roadmaps', 'MVP definition',
-      'Innovation workshops', 'Discovery programs', 'Stakeholder alignment',
+      'Product strategy', 'Opportunity identification', 'Build-or-buy decisions',
+      'Business requirements', 'Service design', 'Customer journey mapping',
+      'Digital ecosystem strategy', 'Competitive research', 'Technology planning',
+      'Roadmaps', 'MVP definition', 'Discovery programs', 'Stakeholder alignment',
     ],
   },
   {
     n: '02',
-    title: 'UX, product & experience design',
-    body: 'We design complex experiences around how people actually behave, balanced against what the business needs and what the technology allows.',
+    title: 'UX, product & interaction design',
+    body: 'We turn complex workflows into software people understand and want to use, designed around how they actually behave, what the business needs and what the technology allows.',
+    note: 'Interactive and spatial work (AR, 3D interfaces, in-store and installation experiences) is part of the team’s background too, much of it led at previous agencies before Artifact existed. It now informs interaction design rather than standing as its own offer.',
     href: '/services/product-design',
     linkLabel: 'Product design',
     items: [
-      'UX strategy', 'UX research', 'User interviews', 'Persona development',
-      'Journey mapping', 'Information architecture', 'Interaction design', 'UX/UI design',
-      'Product design', 'Responsive design', 'Mobile application design', 'SaaS product design',
-      'Dashboard design', 'Enterprise application design', 'Prototyping', 'Usability testing',
-      'Design systems', 'Component libraries', 'Experience audits',
+      'UX strategy', 'UX research', 'User interviews', 'Information architecture',
+      'Interaction design', 'UX/UI design', 'Product design', 'SaaS product design',
+      'Enterprise application design', 'Dashboard design', 'Mobile application design',
+      'Responsive design', 'Motion and interaction systems', 'Data visualization',
+      'Augmented reality and spatial interfaces', 'Prototyping', 'Usability testing',
+      'Design systems', 'Component libraries',
     ],
   },
   {
     n: '03',
-    title: 'Website design & digital platforms',
-    body: 'Websites and platforms built as business infrastructure, not marketing collateral.',
-    span: true,
-    href: '/services/website-design-build',
-    linkLabel: 'Website design & build',
+    title: 'Software engineering',
+    body: 'Product thinking carried straight into production software: architecture, data, integrations, testing and deployment, by the same team that shaped the product.',
+    callout: 'The people who design the software build it. Nothing gets lost in a handoff.',
+    wide: true,
+    href: '/services/digital-product-engineering',
+    linkLabel: 'Digital product engineering',
     items: [
-      'Enterprise websites', 'Corporate websites', 'Government websites', 'Nonprofit websites',
-      'Higher education websites', 'Marketing websites', 'Editorial platforms', 'Membership platforms',
-      'Customer portals', 'Ecommerce', 'Multi-site ecosystems', 'Global websites',
-      'Website modernization', 'Website migration', 'Content architecture', 'CMS implementation',
-      'Headless CMS', 'WordPress', 'Shopify', 'Content migration', 'Search', 'Analytics',
-      'SEO foundations',
+      'Front-end engineering', 'Back-end engineering', 'Full-stack development',
+      'Web applications', 'Mobile applications', 'API development', 'Systems integration',
+      'Database architecture', 'Authentication and permissions', 'Multi-tenant applications',
+      'Payments integration', 'Cloud deployment', 'Automated testing', 'Continuous delivery',
+      'Performance optimization', 'Design-system implementation', 'Application modernization',
+      'Prototype-to-production development', 'Maintenance and enhancement',
     ],
   },
   {
     n: '04',
-    title: 'Bespoke software & application development',
-    body: 'When off-the-shelf software forces an organization to change how it works, we build software around the organization instead.',
-    callout: 'Own the software instead of renting the compromise.',
-    wide: true,
-    href: '/services/bespoke-saas',
-    linkLabel: 'Bespoke software & AI',
+    title: 'Accessibility & inclusive design',
+    body: 'Accessibility is part of the architecture, built into software from the first component rather than applied as a checklist at the end.',
+    href: '/services/accessibility',
+    linkLabel: 'Accessibility',
     items: [
-      'Custom SaaS platforms', 'Internal business applications', 'Workflow systems', 'CRM platforms',
-      'Customer portals', 'Administrative dashboards', 'Operations tools', 'Workflow automation',
-      'Data-driven applications', 'Web applications', 'Mobile applications', 'API development',
-      'Systems integration', 'Authentication and permissions', 'Multi-tenant applications',
-      'Cloud applications', 'Database architecture', 'Application modernization',
-      'Prototype-to-production development',
+      'WCAG 2.1 AA', 'WCAG 2.2', 'Section 508', 'Accessible UX design', 'Accessibility audits',
+      'Design-system accessibility', 'Keyboard navigation', 'Semantic structure', 'Color contrast',
+      'Form accessibility', 'Screen-reader considerations', 'Remediation planning',
+      'Accessible front-end development', 'Government accessibility requirements',
     ],
   },
   {
     n: '05',
-    title: 'Artificial intelligence',
-    body: 'We integrate AI where it produces measurable utility — not simply because AI is fashionable.',
-    callout: 'AI should reduce friction, increase intelligence or create an entirely new capability. Otherwise, it probably doesn’t belong there.',
-    wide: true,
-    href: '/services/ai-experience-design',
-    linkLabel: 'AI experience design',
-    items: [
-      'AI product strategy', 'AI readiness assessments', 'Generative AI experiences', 'AI agents',
-      'Agentic workflows', 'AI assistants', 'AI-powered search', 'Retrieval augmented generation / RAG',
-      'Enterprise knowledge assistants', 'AI customer service', 'AI workflow automation',
-      'AI content systems', 'Intelligent recommendations', 'Predictive experiences',
-      'Predictive learning systems', 'AI-enabled training platforms', 'Natural-language interfaces',
-      'AI prototyping', 'LLM integration', 'Private / proprietary AI systems',
-    ],
-  },
-  {
-    n: '06',
-    title: 'Digital product engineering',
-    body: 'Artifact closes the gap between design and implementation by carrying product thinking directly into working software.',
-    href: '/services/digital-product-engineering',
-    linkLabel: 'Digital product engineering',
-    items: [
-      'Front-end engineering', 'Back-end engineering', 'Full-stack development', 'APIs',
-      'Database architecture', 'Cloud deployment', 'Application integrations',
-      'Performance optimization', 'Responsive implementation', 'Design-system implementation',
-      'Continuous delivery', 'QA', 'Production hardening', 'Maintenance and enhancement',
-    ],
-  },
-  {
-    n: '07',
-    title: 'Enterprise CMS & content ecosystems',
-    body: 'We simplify large, fragmented content estates into manageable systems teams can actually govern.',
+    title: 'Enterprise CMS & content platforms',
+    body: 'Content platforms treated as part of the software ecosystem: modeled, governed and integrated with the systems around them, so teams can actually run them.',
     note: 'Principal experience: founder Britt Midgette led the consolidation of a 6,500-page enterprise ecosystem into a platform of fewer than 1,000 pages, in a director role at a previous agency. That engagement predates Artifact Digital and is not Artifact corporate past performance.',
     href: '/services/enterprise-cms',
     linkLabel: 'Enterprise CMS',
@@ -195,22 +165,42 @@ const CAPABILITIES: Capability[] = [
     ],
   },
   {
-    n: '08',
-    title: 'Accessibility & inclusive design',
-    body: 'Accessibility is part of the architecture, not a checklist applied at the end.',
-    href: '/services/accessibility',
-    linkLabel: 'Accessibility',
+    n: '06',
+    title: 'Artificial intelligence',
+    body: 'AI can live inside the software, doing work for the people who use it, or in how the software gets made. We start from the problem and decide which one it actually needs.',
+    callout: 'AI should reduce friction, increase intelligence or create an entirely new capability. Otherwise, it probably doesn’t belong there.',
+    wide: true,
+    href: '/services/ai-experience-design',
+    linkLabel: 'AI experience design',
     items: [
-      'WCAG 2.1 AA', 'WCAG 2.2', 'Section 508', 'Accessible UX design', 'Accessibility audits',
-      'Design-system accessibility', 'Keyboard navigation', 'Semantic structure', 'Color contrast',
-      'Form accessibility', 'Screen-reader considerations', 'Remediation planning',
-      'Accessible front-end development', 'Government accessibility requirements',
+      'AI product strategy', 'AI readiness assessments', 'Generative AI experiences', 'AI agents',
+      'Agentic workflows', 'AI assistants', 'AI-powered search', 'Retrieval augmented generation / RAG',
+      'Enterprise knowledge assistants', 'AI workflow automation', 'AI content systems',
+      'Intelligent recommendations', 'Predictive systems', 'Predictive learning systems',
+      'AI-enabled training platforms', 'Natural-language interfaces', 'AI prototyping',
+      'LLM integration', 'Private / proprietary AI systems',
     ],
   },
   {
-    n: '09',
-    title: 'Commerce & transactional experiences',
-    body: 'We design digital commerce around the entire customer journey — discovery, decision, transaction and retention.',
+    n: '07',
+    title: 'Websites & digital platforms',
+    body: 'Usually part of a broader engagement: the public front door to the software and services behind it, built as business infrastructure rather than marketing collateral.',
+    span: true,
+    href: '/services/website-design-build',
+    linkLabel: 'Website design & build',
+    items: [
+      'Enterprise websites', 'Corporate websites', 'Government websites', 'Nonprofit websites',
+      'Higher education websites', 'Editorial platforms', 'Membership platforms',
+      'Customer portals', 'Multi-site ecosystems', 'Global websites',
+      'Website modernization', 'Website migration', 'Content architecture', 'CMS implementation',
+      'Headless CMS', 'WordPress', 'Shopify', 'Content migration', 'Search', 'Analytics',
+      'SEO foundations',
+    ],
+  },
+  {
+    n: '08',
+    title: 'Commerce & transactions',
+    body: 'Ordering, payments and marketplace flows built into the software itself, the same kind of work behind DropQ’s live Stripe Connect marketplace.',
     items: [
       'Ecommerce strategy', 'Shopify', 'Product discovery', 'Conversion optimization',
       'Checkout experience', 'Marketplace platforms', 'Subscription experiences',
@@ -220,22 +210,9 @@ const CAPABILITIES: Capability[] = [
     ],
   },
   {
-    n: '10',
-    title: 'Immersive & interactive experiences',
-    body: 'For moments when a conventional interface is not enough, we create digital experiences that invite participation.',
-    href: '/services/digital-product-engineering',
-    linkLabel: 'Digital product engineering',
-    items: [
-      'Interactive storytelling', 'Generative interfaces', 'Augmented reality', 'Spatial experiences',
-      '3D interfaces', 'Experiential digital', 'Interactive retail', 'Motion systems',
-      'Product visualization', 'Data visualization', 'Interactive installations',
-      'Prototypes and emerging technology',
-    ],
-  },
-  {
-    n: '11',
+    n: '09',
     title: 'Research, testing & optimization',
-    body: 'Launch is the beginning of the learning cycle, not the end of the engagement.',
+    body: 'Launch starts the learning cycle. We study how the software is really used and turn it into the next round of improvements.',
     href: '/services/experience-audits',
     linkLabel: 'Experience audits',
     items: [
@@ -246,9 +223,9 @@ const CAPABILITIES: Capability[] = [
     ],
   },
   {
-    n: '12',
-    title: 'Training, enablement & change',
-    body: 'Technology succeeds when the people using it understand it, trust it and know how to make it part of their work.',
+    n: '10',
+    title: 'Training, enablement & adoption',
+    body: 'Software succeeds when the people using it understand it, trust it and know how to make it part of their work.',
     span: true,
     items: [
       'User training', 'Administrator training', 'Product onboarding', 'Documentation',
@@ -259,24 +236,31 @@ const CAPABILITIES: Capability[] = [
   },
 ];
 
-const LIFECYCLE = [
-  { n: '01', phase: 'Discover', items: ['Research', 'Stakeholders', 'Requirements', 'Business goals', 'Customer needs'] },
-  { n: '02', phase: 'Define', items: ['Strategy', 'Architecture', 'Roadmap', 'MVP', 'Success measures'] },
-  { n: '03', phase: 'Design', items: ['UX', 'UI', 'Design systems', 'Prototypes', 'Testing'] },
-  { n: '04', phase: 'Build', items: ['Engineering', 'AI', 'CMS', 'Integrations', 'Data'] },
-  { n: '05', phase: 'Launch', items: ['QA', 'Accessibility', 'Training', 'Migration', 'Deployment'] },
-  { n: '06', phase: 'Optimize', items: ['Analytics', 'Research', 'Enhancements', 'Support', 'Roadmap'] },
-];
+// The shared method (src/data/method.ts) with the disciplines at work in each
+// stage. Artifact has one process; this page shows who does what inside it
+// rather than inventing a second one.
+const DISCIPLINES_BY_STAGE: Record<string, string[]> = {
+  Understand: ['Strategy', 'User research', 'Business requirements', 'Experience audits'],
+  Prototype: ['Product & interaction design', 'Working prototypes', 'AI prototyping', 'Usability testing'],
+  Build: ['Software engineering', 'Design systems', 'AI integration', 'Accessibility', 'Content platforms'],
+  Learn: ['Analytics', 'Research', 'Usability testing', 'Optimization'],
+  Evolve: ['Enhancements', 'Training & adoption', 'Roadmap', 'Support'],
+};
+const LIFECYCLE = METHOD.map((m, i) => ({
+  n: String(i + 1).padStart(2, '0'),
+  phase: m.title,
+  items: DISCIPLINES_BY_STAGE[m.title] ?? [],
+}));
 
 const ENGAGEMENT_TYPES = [
-  { title: 'Digital modernization', body: 'Replace fragmented legacy experiences with a unified modern platform.' },
+  { title: 'Replace software you’ve outgrown', body: 'Retire the workarounds, spreadsheets and stitched-together subscriptions with software built around how you work.' },
   { title: 'New digital products', body: 'Take an idea from opportunity through working production software.' },
-  { title: 'Enterprise website transformation', body: 'Reimagine large content ecosystems around user journeys instead of organizational charts.' },
-  { title: 'AI transformation', body: 'Identify where AI actually creates value and integrate it safely into workflows and products.' },
-  { title: 'Bespoke business software', body: 'Replace disconnected subscriptions and manual processes with software designed around the organization.' },
-  { title: 'Customer experience transformation', body: 'Connect strategy, service design, UX and technology around the customer journey.' },
-  { title: 'Platform consolidation', body: 'Reduce redundant systems, content and workflows into a manageable digital ecosystem.' },
-  { title: 'Innovation prototypes', body: 'Turn uncertain ideas into working software quickly enough to learn before committing to a major investment.' },
+  { title: 'Internal platforms', body: 'Give an operation the workflow software its real processes need, from intake to approvals to reporting.' },
+  { title: 'Customer portals', body: 'Service and self-service that feel like your company, not a vendor’s template.' },
+  { title: 'AI where it earns its place', body: 'Find where AI actually creates value, and integrate it safely into real workflows and products.' },
+  { title: 'Platform consolidation', body: 'Reduce redundant systems, content and legacy software into something a team can run.' },
+  { title: 'Products to sell', body: 'Turn what your business already knows into software other organizations will pay for.' },
+  { title: 'Prototypes before big commitments', body: 'Turn uncertain ideas into working software quickly enough to learn before committing to a major investment.' },
 ];
 
 const INDUSTRIES = [
@@ -288,6 +272,7 @@ const INDUSTRIES = [
 const OPERATING_POINTS = [
   'Senior-led from discovery through delivery',
   'Strategy and execution under one team',
+  'Experienced people working with AI across research, design, engineering and testing',
   'Rapid working prototypes',
   'Design-to-code continuity',
   'Flexible specialist network when programs require additional scale',
@@ -295,14 +280,14 @@ const OPERATING_POINTS = [
 ];
 
 const PRIME = [
-  { label: 'Digital products', items: 'Concept through production software' },
   { label: 'Custom applications', items: 'Internal tools · Portals · Workflow systems' },
-  { label: 'Websites & platforms', items: 'Enterprise · Government · Editorial · Commerce' },
-  { label: 'UX transformation', items: 'Research · Architecture · Design systems' },
+  { label: 'Digital products', items: 'Concept through production software' },
+  { label: 'Prototypes / MVPs', items: 'Working software fast enough to learn from' },
   { label: 'AI initiatives', items: 'Readiness · Agentic workflows · Production integration' },
   { label: 'Experience modernization', items: 'Legacy replacement · Platform consolidation' },
-  { label: 'Prototypes / MVPs', items: 'Working software fast enough to learn from' },
+  { label: 'UX & design systems', items: 'Research · Architecture · Design systems' },
   { label: 'Research & strategy', items: 'Discovery · Roadmaps · Requirements' },
+  { label: 'Websites & platforms', items: 'Enterprise · Government · Editorial · Commerce' },
 ];
 
 // Headline specialisms a prime scans for, each with what it actually covers.
@@ -337,7 +322,7 @@ const TECH = [
 // --- Proof -------------------------------------------------------------------
 // Split on priorRole so the two kinds of credibility can never blur together.
 // That distinction is the whole point for a procurement reader.
-const allWork = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+const allWork = sortWork(await getCollection('work'));
 const artifactWork = allWork.filter((w) => !w.data.priorRole).slice(0, 3);
 const careerWork = allWork.filter((w) => w.data.priorRole).slice(0, 3);
 
@@ -348,10 +333,10 @@ const jsonLd = {
     {
       '@type': 'Service',
       '@id': `${SITE.url}${path}#service`,
-      name: 'Digital strategy, UX, AI and software engineering',
-      serviceType: 'Digital strategy, experience design, artificial intelligence and software engineering',
+      name: 'Software strategy, design, AI and engineering',
+      serviceType: 'Digital strategy, product design, software engineering and artificial intelligence',
       description:
-        'Artifact Digital delivers digital strategy, UX and product design, custom software, AI, enterprise websites, accessibility and CMS modernization under one senior team.',
+        'The expertise Artifact Digital brings to designing and building bespoke software: strategy, research, product and interaction design, software engineering, AI, accessibility and content platforms, in one senior team.',
       url: `${SITE.url}${path}`,
       provider: { '@id': `${SITE.url}/#organization` },
       areaServed: 'United States and Canada',
@@ -374,7 +359,7 @@ const jsonLd = {
 ---
 <BaseLayout
   title="Artifact Digital Capabilities | Strategy, UX, AI & Software Engineering"
-  description="Explore Artifact Digital's capabilities across digital strategy, UX/UI design, custom software, AI, enterprise websites, accessibility, CMS, product engineering and digital modernization."
+  description="The expertise behind the bespoke software Artifact Digital builds: digital strategy, UX and product design, software engineering, AI, accessibility, CMS and public-sector delivery, in one senior team."
   canonical={path}
   bodyClass="case-page capabilities"
   jsonLd={jsonLd}
@@ -385,26 +370,27 @@ const jsonLd = {
       <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Capabilities' }]} />
       <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Capabilities</span>
       <h1 class="case-title">
-        <span class="reveal-line"><span>Strategy through</span></span>
-        <span class="reveal-line italic"><span>shipped software.</span></span>
+        <span class="reveal-line"><span>The expertise</span></span>
+        <span class="reveal-line italic"><span>behind the software.</span></span>
       </h1>
       <p class="case-lede reveal">
-        Artifact Digital brings strategy, experience design, artificial intelligence and
-        engineering together under one senior team. We help organizations modernize digital
-        ecosystems, launch new products, improve customer experiences and build software
-        around the way their business actually works.
+        What We Build is the software. Capabilities are the expertise it takes to build
+        it well. Great bespoke software doesn’t come from engineering alone: it means
+        understanding the business, the people using it, the interface, the system and the
+        technology as one problem. Artifact brings those disciplines together in one senior
+        team working with AI, rather than selling them as separate departments.
       </p>
       <div class="cap-hero__actions reveal">
-        <Button href={CTA.talk.href} label="Talk to Artifact" variant="primary" />
-        <Button href="/work" label="View our work" variant="secondary" />
+        <Button href="/contact?intent=build" label="Tell Us the Problem" variant="primary" />
+        <Button href="/services" label="Explore What We Build" variant="secondary" />
       </div>
       <p class="cap-hero__arc reveal">
         <span>Strategy</span><span>Design</span><span>AI</span><span>Engineering</span>
         <span class="cap-hero__arc-tail">under one senior team</span>
       </p>
       <p class="cap-hero__xref reveal">
-        This page covers the expertise we bring. For the software and business systems
-        it produces, see <a href="/services">What We Build</a>.
+        Looking for the kinds of software this expertise produces? See
+        <a href="/services">What We Build</a>.
       </p>
     </div>
   </section>
@@ -414,10 +400,11 @@ const jsonLd = {
     <div class="container">
       <header class="section-head">
         <span class="section-tag reveal"><span class="tag-dot"></span>01 — Capabilities</span>
-        <h2 class="section-heading reveal-line" id="cap-do-heading"><span>What we can do</span></h2>
+        <h2 class="section-heading reveal-line" id="cap-do-heading"><span>Ten disciplines, one team</span></h2>
       </header>
       <p class="cap-intro reveal">
-        Twelve areas, taken on individually or as one continuous engagement.
+        Clients rarely need just one of these. Each exists to make the software better, and
+        they work best when the same people carry a problem through all of them.
       </p>
 
       <div class="cap-matrix">
@@ -457,8 +444,8 @@ const jsonLd = {
   <section class="section cap-section cap-section--ink" aria-labelledby="cap-lifecycle-heading">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>02 — Lifecycle</span>
-        <h2 class="section-heading reveal-line" id="cap-lifecycle-heading"><span>From opportunity to operation.</span></h2>
+        <span class="section-tag reveal"><span class="tag-dot"></span>02 — The method</span>
+        <h2 class="section-heading reveal-line" id="cap-lifecycle-heading"><span>One method. Every discipline in it.</span></h2>
       </header>
       <ol class="cap-flow">
         {LIFECYCLE.map((p) => (
@@ -551,26 +538,26 @@ const jsonLd = {
       </header>
 
       <div class="cap-proof__group">
-        <h3 class="cap-proof__label reveal">Artifact corporate work</h3>
+        <h3 class="cap-proof__label reveal">Built by Artifact</h3>
         <p class="cap-proof__note reveal">
-          Products Artifact Digital designed and built as a studio. This is the company's own
-          past performance.
+          Software Artifact Digital designed and built, each labelled with where it stands.
+          This is the company’s own past performance.
         </p>
-        <div class="project-grid">
-          {artifactWork.map((entry) => <WorkCard entry={entry} headingLevel="h4" />)}
+        <div class="project-grid project-grid--trio">
+          {artifactWork.map((entry) => <WorkCard entry={entry} headingLevel="h4" showTier />)}
         </div>
       </div>
 
       <div class="cap-proof__group">
-        <h3 class="cap-proof__label reveal">Principal &amp; team experience</h3>
+        <h3 class="cap-proof__label reveal">Experience behind Artifact</h3>
         <p class="cap-proof__note reveal">
-          Engagements led by founder Britt Midgette in a director role at previous agencies,
-          before Artifact Digital existed. This is the principal's track record and the judgment
-          now embedded in the studio — <strong>it is not presented as Artifact corporate past
-          performance.</strong>
+          Engagements founder Britt Midgette led in director roles at previous agencies, before
+          Artifact Digital existed, some of them with people who now work on Artifact projects.
+          Each card says which. This is the team’s track record and the judgment behind the
+          company — <strong>it is not presented as Artifact corporate past performance.</strong>
         </p>
-        <div class="project-grid">
-          {careerWork.map((entry) => <WorkCard entry={entry} headingLevel="h4" />)}
+        <div class="project-grid project-grid--trio">
+          {careerWork.map((entry) => <WorkCard entry={entry} headingLevel="h4" showTier />)}
         </div>
       </div>
 
@@ -744,9 +731,9 @@ const jsonLd = {
 
   <CtaBand
     heading="Bring us the complicated part."
-    sub={"Whether you’re modernizing a public service, replacing legacy software, launching a new digital product or figuring out where AI belongs, Artifact brings the strategy, design and engineering needed to move from uncertainty to something real."}
-    primary={{ label: 'Start a conversation', href: '/contact' }}
-    secondary={{ label: 'View our work', href: '/work' }}
+    sub={"Tell us what you’re trying to solve: software you’ve outgrown, a product you want to launch, a public service to modernize, or a question about where AI belongs. We’ll help determine whether software is the answer, then bring the strategy, design and engineering to build it."}
+    primary={{ label: 'Tell Us the Problem', href: '/contact?intent=build' }}
+    secondary={CTA.work}
   />
 </BaseLayout>
 
@@ -1021,7 +1008,7 @@ const jsonLd = {
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: clamp(0.75rem, 1.5vw, 1.25rem);
   }
   .cap-flow__step {

@@ -21,10 +21,13 @@ const work = defineCollection({
       // never imply Artifact held the engagement.
       priorRole: z.boolean().default(false),
       // True only where people who now work on Artifact projects genuinely
-      // worked on this engagement together. Unlocks "we" in the copy, and the
-      // note says plainly what "we" means. Must be true per case — if it was
-      // one person, it stays "I".
+      // worked on this engagement together. Prior work is narrated in the
+      // third person: "Britt and the team" here, "Britt" when it was one person.
       teamWork: z.boolean().default(false),
+      // Where Artifact-built software actually stands (Live, Pre-launch,
+      // Prototype). Shown beside the proof tier so a prototype never reads as
+      // a live client product.
+      status: z.string().optional(),
       // Public URL, where the work is live and safe to link.
       liveUrl: z.string().optional(),
       // Home Work grid. Image optional — a branded mark renders until art lands.
