@@ -2154,7 +2154,9 @@ button:focus-visible {
   transition: transform 0.3s var(--easing), box-shadow 0.3s var(--easing), border-color 0.3s var(--easing);
 }
 .service-link-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); border-color: rgba(17,17,17,0.2); }
-.service-link-card h3 { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1.2rem; margin: 0; }
+/* Balanced wrap: card titles are long article names, and a narrow card otherwise
+   leaves one word alone on the last line. */
+.service-link-card h3 { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1.2rem; margin: 0; text-wrap: balance; }
 .service-link-card p { color: var(--steel); margin: 0; font-size: 0.98rem; line-height: 1.5; flex: 1; }
 .service-link-card__more { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem; }
 
