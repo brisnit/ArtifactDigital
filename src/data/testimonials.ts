@@ -12,6 +12,13 @@ export interface Testimonial {
   name: string;
   role: string;
   approved: boolean;
+  /** 'software' quotes lead the homepage proof. Anything else (design and
+   *  build work) renders beneath it. Adding a software quote needs no layout
+   *  change — just an entry here. */
+  kind: 'software' | 'design';
+  /** What the work was, shown under the name so a quote is never mistaken
+   *  for evidence of a different kind of engagement. */
+  context?: string;
 }
 
 export const testimonials: Testimonial[] = [
@@ -21,6 +28,8 @@ export const testimonials: Testimonial[] = [
     name: 'Rob Chapman',
     role: 'Rob’s Brew Spot',
     approved: true,
+    kind: 'design',
+    context: 'Commerce design & build',
   },
   // Add every Artifact client here as you finish. Ask for the quote at the
   // moment they're happiest — right after launch. Real and small beats

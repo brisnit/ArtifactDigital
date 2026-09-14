@@ -436,3 +436,36 @@ document.querySelectorAll('.nav-item--has-menu').forEach((item) => {
 
   render();
 })();
+
+// ---------- Hero reel caption ----------
+// Names the product on screen and its real ownership and status, following
+// the video's clock. With reduced motion the video never loads, so the poster
+// (the first scene) and the first caption stay together.
+(function reelCaption() {
+  const vid = document.querySelector('video[data-reel]');
+  if (!vid) return;
+  let timeline;
+  try { timeline = JSON.parse(vid.dataset.reel); } catch (e) { return; }
+  const nameEl = document.querySelector('[data-reel-name]');
+  const statusEl = document.querySelector('[data-reel-status]');
+  if (!nameEl || !statusEl || !Array.isArray(timeline) || !timeline.length) return;
+  const cap = nameEl.parentElement;
+  let current = 0;
+  const pick = (t) => {
+    let idx = 0;
+    for (let i = 0; i < timeline.length; i++) if (t >= timeline[i].from) idx = i;
+    return idx;
+  };
+  vid.addEventListener('timeupdate', () => {
+    const idx = pick(vid.currentTime);
+    if (idx === current) return;
+    current = idx;
+    cap.classList.add('is-swapping');
+    setTimeout(() => {
+      nameEl.textContent = timeline[idx].name;
+      statusEl.textContent = timeline[idx].status;
+      cap.classList.remove('is-swapping');
+    }, 180);
+  });
+})();
+
