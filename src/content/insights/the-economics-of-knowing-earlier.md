@@ -40,7 +40,7 @@ That work has helped lead us toward a concept we're developing at Artifact calle
 
 The underlying idea is straightforward. What if universities could move beyond understanding what happened and become better at recognizing what appears to be happening while there is still time to respond?
 
-From a CFO's perspective, that isn't simply an educational opportunity. It's an economic one.
+From a financial perspective, that isn't simply an educational opportunity. It's an economic one.
 
 ## A Failed Outcome Has a Cost
 
@@ -186,7 +186,7 @@ That isn't just cost reduction. It's **capital allocation toward mission.**
 
 This point is critical.
 
-When CFOs build forecasts, we understand something intuitively: a forecast isn't reality. It's a model of what could happen based on what we currently know. New information changes the forecast.
+Anyone who builds financial forecasts understands something intuitively: a forecast isn't reality. It's a model of what could happen based on what is currently known. New information changes the forecast.
 
 Predictive learning should be viewed similarly.
 
