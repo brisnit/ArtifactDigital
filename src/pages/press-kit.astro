@@ -1,0 +1,1309 @@
+---
+import fs from 'node:fs';
+import nodePath from 'node:path';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Button from '../components/Button.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE, orgNode, breadcrumb } from '../data/site';
+import { AUTHORS } from '../data/authors';
+import { caseTier, tierText, sortWork, CONCEPTS, TIER_LABEL } from '../lib/proof';
+import { responsive } from '../lib/responsive';
+import { imageSize } from '../lib/imageSize';
+
+// Press kit and resource center. Every fact, product, person and asset here
+// comes from data the rest of the site already publishes: the work collection,
+// src/lib/proof.ts, src/data/authors.ts and public/brand_assets. Where the repo
+// has no verified source, the page says less rather than inventing more.
+const route = '/press-kit';
+
+const work = sortWork(await getCollection('work'));
+function byId(id: string) {
+  const entry = work.find((w) => w.id === id);
+  if (!entry) throw new Error(`press-kit: unknown case "${id}"`);
+  return entry;
+}
+function featureOf(id: string) {
+  const f = byId(id).data.feature;
+  if (!f?.image) throw new Error(`press-kit: case "${id}" has no feature image`);
+  return f as { image: string; alt: string; caption: string };
+}
+
+// --- Hero: real product screens, each carrying its real status ---------------
+const heroShots = await Promise.all(
+  ['case-benchbot', 'case-senior-living-ministry', 'case-dropq'].map(async (id) => {
+    const f = featureOf(id);
+    return { entry: byId(id), src: f.image, alt: f.alt, img: await responsive(f.image) };
+  })
+);
+
+// --- Company facts (verified: site.ts and the Capabilities procurement data) --
+const FACTS: { label: string; value: string; href?: string }[] = [
+  { label: 'Company', value: 'Artifact Digital LLC' },
+  { label: 'Category', value: 'Digital Product & Technology' },
+  { label: 'Capabilities', value: 'Strategy / UX / UI / Software / AI' },
+  { label: 'Founded', value: SITE.foundingDate },
+  { label: 'Location', value: 'San Diego, California' },
+  { label: 'Website', value: SITE.url.replace(/^https?:\/\//, ''), href: SITE.url },
+];
+
+// --- Capabilities catalog: each links to the page that goes deeper ------------
+const CATALOG = [
+  { title: 'Bespoke Software', body: 'Custom platforms designed around unique business operations.', href: '/services/bespoke-saas' },
+  { title: 'AI & Intelligent Systems', body: 'Agents, predictive experiences, intelligent workflows, and AI-enabled products.', href: '/services/ai-experience-design' },
+  { title: 'Digital Products', body: 'Customer-facing and internal applications from concept through production.', href: '/services/digital-product-engineering' },
+  { title: 'UX & Product Design', body: 'Research, strategy, information architecture, interaction design, and visual design.', href: '/services/product-design' },
+  { title: 'Websites & Digital Ecosystems', body: 'High-performance websites and interconnected digital experiences.', href: '/services/website-design-build' },
+  { title: 'Design Systems', body: 'Scalable systems connecting brand, product, design, and development.', href: '/services/design-system-maturity-model' },
+  { title: 'Digital Modernization', body: 'Transforming legacy platforms, workflows, and experiences into modern systems.', href: '/services/experience-audits' },
+  { title: 'Rapid Prototyping', body: 'Moving ideas into working software quickly enough to learn from the real experience.', href: '/how-we-work#method' },
+];
+
+// --- Selected work: prior work, anonymized exactly as its case study is -------
+const selected = await Promise.all(
+  ['case-it-training', 'case-global-nutrition', 'case-major-electronics', 'case-weather-intelligence'].map(async (id) => {
+    const entry = byId(id);
+    const f = featureOf(id);
+    return { entry, tier: caseTier(entry), src: f.image, alt: f.alt, img: await responsive(f.image) };
+  })
+);
+
+// --- Product lab: Artifact-built products, plus concepts ---------------------
+// One-line purposes restate what src/data/build.ts already publishes.
+const PURPOSE: Record<string, string> = {
+  'case-dropq': 'Timed product drops, payments and pickup for independent sellers.',
+  'case-benchbot': 'Audits a website against real competitors and turns the findings into prioritized, trackable work.',
+  'case-senior-living-ministry':
+    'A Scripture-first daily formation app for senior-living residents, with an admin portal staff run without a developer.',
+};
+const built = work.filter((w) => !w.data.priorRole);
+const products = await Promise.all(
+  built.map(async (entry) => {
+    const f = featureOf(entry.id);
+    return {
+      name: entry.data.title,
+      category: entry.data.category,
+      purpose: PURPOSE[entry.id] ?? entry.data.card.blurb,
+      chip: tierText(entry),
+      tier: caseTier(entry) as string,
+      href: `/${entry.id}`,
+      linkLabel: 'Read the case study',
+      liveUrl: entry.data.liveUrl,
+      src: f.image,
+      alt: f.alt,
+      img: await responsive(f.image),
+    };
+  })
+);
+const concepts = await Promise.all(
+  CONCEPTS.map(async (c) => ({
+    name: c.name,
+    category: c.eyebrow,
+    purpose: `${c.blurb.split('. ')[0].replace(/\.$/, '')}.`,
+    chip: `${TIER_LABEL.concept} · ${c.status}`,
+    tier: 'concept',
+    href: c.href,
+    linkLabel: 'Read the thinking',
+    liveUrl: undefined as string | undefined,
+    src: c.image,
+    alt: c.imageAlt,
+    img: await responsive(c.image),
+  }))
+);
+const lab = [...products, ...concepts];
+
+// --- Live products: only the public URLs the case studies already verify -----
+const DEMO_MEDIA: Record<string, { src: string; alt: string; cta: string }> = {
+  'case-benchbot': {
+    src: '/brand_assets/cases/benchbot-story.webp',
+    alt: "BenchBot's landing page on a laptop and a phone",
+    cta: 'Launch Demo',
+  },
+  'case-dropq': {
+    src: '/brand_assets/cases/dropq-og.webp',
+    alt: 'DropQ on three phones: a seller storefront, drop creation and a confirmed order',
+    cta: 'Visit DropQ',
+  },
+};
+const demos = await Promise.all(
+  built
+    .filter((e) => e.data.liveUrl && DEMO_MEDIA[e.id])
+    .map(async (entry) => {
+      const m = DEMO_MEDIA[entry.id];
+      const url = entry.data.liveUrl as string;
+      return {
+        entry,
+        url,
+        host: url.replace(/^https?:\/\//, '').replace(/\/$/, ''),
+        chip: tierText(entry),
+        tier: caseTier(entry) as string,
+        ...m,
+        img: await responsive(m.src),
+      };
+    })
+);
+
+// --- Leadership: current roles and portraits from src/data/authors.ts --------
+// Bios are shortened from the published ones; they add no new claims.
+const SHORT_BIO: Record<string, string> = {
+  'Britt Midgette':
+    "A multidisciplinary creative and digital product leader whose work spans design, technology, music, strategy and storytelling. Before founding Artifact, he led digital strategy and experience design in director roles at agencies, for organizations including Samsung, Levi's, Under Armour, LEGOLAND, CompTIA and SAG-AFTRA.",
+  'Jonathan Smith':
+    'Leads visual design, product thinking and AI-enabled creative workflows. He has led product and brand design for organizations including ServiceNow, Intuit, Qualcomm, Disney and Under Armour.',
+  'Erik Parr':
+    'Leads the architecture and engineering of intelligent digital products across agentic AI, spatial computing and interactive systems, built for reliability, observability and trust.',
+  'Andrew Statezny':
+    'Leads partnerships and business development, drawing on more than 35 years of work with leaders and organizations across all 50 states and 73 countries.',
+};
+const leaders = Object.keys(SHORT_BIO).map((name) => ({ ...AUTHORS[name], short: SHORT_BIO[name] }));
+
+// --- Team experience: names already published in the founder and team bios ---
+// Plain type, never logos. None of these are presented as Artifact clients.
+const EXPERIENCE = [
+  'Samsung', "Levi's", 'Under Armour', 'Philips', 'Bose', "L'Oréal", 'MAC Cosmetics', 'LEGOLAND',
+  'CompTIA', 'ADM', 'Shoe Carnival', 'SAG-AFTRA', 'ServiceNow', 'Intuit', 'Qualcomm', 'Disney',
+];
+
+// --- Media & brand assets: only files that exist in public/brand_assets ------
+async function asset(src: string, label: string, tile: 'dark' | 'light' | 'photo' = 'photo') {
+  const file = nodePath.join(process.cwd(), 'public', src.replace(/^\//, ''));
+  const size = await imageSize(src);
+  const kb = Math.max(1, Math.round(fs.statSync(file).size / 1024));
+  const ext = nodePath.extname(src).slice(1).toUpperCase();
+  return { src: encodeURI(src), label, tile, ext, meta: `${ext} · ${size ? `${size.width}×${size.height}` : ''} · ${kb} KB` };
+}
+const ASSET_GROUPS = [
+  {
+    title: 'Logos & brand marks',
+    note: 'Raster files as used on this site. Use the white lockup on dark backgrounds and the black wordmark on light ones.',
+    items: await Promise.all([
+      asset('/brand_assets/A_Logo_DT3.png', 'Logo lockup · for dark backgrounds', 'dark'),
+      asset('/brand_assets/A_Logo_Mobile3.png', 'Logo mark', 'dark'),
+      asset('/brand_assets/Logo_25.png', 'Wordmark · for light backgrounds', 'light'),
+      asset('/brand_assets/Brand Guidelines.png', 'Brand guidelines sheet', 'light'),
+    ]),
+  },
+  {
+    title: 'Leadership portraits',
+    note: 'Approved headshots of Artifact leadership.',
+    items: await Promise.all([
+      asset('/brand_assets/Britt_Midgette.webp', 'Britt Midgette · full portrait'),
+      ...leaders.map((l) => asset(l.avatar as string, `${l.name} · headshot`)),
+    ]),
+  },
+  {
+    title: 'Product screenshots',
+    note: 'Screens from Artifact-built products. Figures shown are sample or demo data.',
+    items: await Promise.all([
+      asset('/brand_assets/cases/dropq-feature.webp', 'DropQ · vendor and buyer flow'),
+      asset('/brand_assets/cases/benchbot-feature.webp', 'BenchBot · mobile screens'),
+      asset('/brand_assets/cases/benchbot-story.webp', 'BenchBot · desktop and mobile'),
+      asset('/brand_assets/cases/ministry-feature.webp', 'Senior-Living Ministry · admin portal'),
+    ]),
+  },
+];
+const COLORS = [
+  { name: 'Ink', hex: '#111111', light: false },
+  { name: 'Stone', hex: '#F4F4F4', light: true },
+  { name: 'Steel', hex: '#6B6B6B', light: false },
+  { name: 'Blush', hex: '#FFC9C4', light: true },
+  { name: 'Accent', hex: '#FF2D72', light: false },
+];
+
+// --- Latest from Artifact: there is no external press yet, so Insights ------
+const latest = (await getCollection('insights', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+const latestMedia = new Map<string, Awaited<ReturnType<typeof responsive>>>();
+for (const p of latest) if (p.data.heroImage) latestMedia.set(p.data.heroImage, await responsive(p.data.heroImage));
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+
+const JUMP = [
+  { href: '#company', label: 'Company' },
+  { href: '#capabilities', label: 'Capabilities' },
+  { href: '#selected-work', label: 'Selected work' },
+  { href: '#product-lab', label: 'Product lab' },
+  { href: '#leadership', label: 'Leadership' },
+  { href: '#assets', label: 'Brand assets' },
+  { href: '#latest', label: 'Latest' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      '@id': `${SITE.url}${route}#page`,
+      url: `${SITE.url}${route}`,
+      name: 'Press Kit & Product Showcase',
+      description:
+        'Company facts, capabilities, products, leadership, brand assets and latest thinking from Artifact Digital.',
+      isPartOf: { '@id': `${SITE.url}/#website` },
+      about: { '@id': `${SITE.url}/#organization` },
+    },
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'Press Kit', path: route },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title="Press Kit & Product Showcase | Artifact Digital"
+  description="The Artifact Digital press kit: a strategy, design, software and AI company. Company facts, capabilities, products and live demos, leadership, brand assets and our latest thinking."
+  canonical={route}
+  ogImageAlt="Artifact Digital press kit"
+  bodyClass="case-page press-kit"
+  preloadImage="/brand_assets/cases/dropq-feature-960w.webp"
+  jsonLd={jsonLd}
+>
+  <!-- 1. HERO -->
+  <section class="pk-hero" aria-labelledby="pk-title">
+    <div class="container pk-hero__grid">
+      <div class="pk-hero__copy">
+        <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Press Kit' }]} />
+        <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Artifact Digital / Press Kit</span>
+        <h1 class="case-title pk-hero__title" id="pk-title">
+          <span class="reveal-line"><span>We build what</span></span>
+          <span class="reveal-line italic"><span>doesn’t exist yet.</span></span>
+        </h1>
+        <p class="pk-hero__lede reveal">
+          Artifact Digital is a strategy, design, and technology company creating bespoke
+          software, intelligent digital products, and modern experiences built around the way
+          organizations actually work.
+        </p>
+        <div class="hero-actions pk-hero__actions reveal">
+          <Button href="/work" label="Explore our work" variant="primary" />
+          <Button href="#company" label="Company information" variant="secondary" />
+        </div>
+      </div>
+
+      <div class="pk-stack reveal" role="group" aria-label="Screens from software Artifact built">
+        {heroShots.map((s, i) => (
+          <figure class="pk-frame">
+            <img
+              src={s.src}
+              alt={s.alt}
+              width={s.img.width}
+              height={s.img.height}
+              srcset={s.img.srcset}
+              sizes="(max-width: 900px) 90vw, 520px"
+              loading={i === heroShots.length - 1 ? 'eager' : 'lazy'}
+              fetchpriority={i === heroShots.length - 1 ? 'high' : undefined}
+              decoding="async"
+            />
+            <figcaption class="pk-frame__label">
+              <span>{s.entry.data.title}</span>
+              {s.entry.data.status && <span class="pk-frame__status">{s.entry.data.status}</span>}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <nav class="pk-jump" aria-label="On this page">
+    <div class="container">
+      <ul class="pk-jump__list">
+        {JUMP.map((j) => <li><a href={j.href}>{j.label}</a></li>)}
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 2. COMPANY OVERVIEW -->
+  <section class="section pk-section" id="company" aria-labelledby="pk-company-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>01 — Company</span>
+        <h2 class="section-heading reveal-line" id="pk-company-heading"><span>Software built around your business.</span></h2>
+      </header>
+      <div class="pk-overview">
+        <div class="pk-overview__copy">
+          <p class="pk-overview__lead reveal">
+            Most organizations are forced to adapt their business to their software. Artifact
+            reverses that relationship.
+          </p>
+          <p class="reveal">
+            We combine strategy, experience design, visual design, engineering, and AI to create
+            digital products and platforms tailored to the people and organizations that use them.
+          </p>
+        </div>
+        <dl class="pk-facts">
+          {FACTS.map((f) => (
+            <div class="pk-fact reveal-card">
+              <dt>{f.label}</dt>
+              <dd>{f.href ? <a href={f.href}>{f.value}</a> : f.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. CAPABILITIES CATALOG -->
+  <section class="section pk-section pk-section--stone" id="capabilities" aria-labelledby="pk-cap-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>02 — Capabilities</span>
+        <h2 class="section-heading reveal-line" id="pk-cap-heading"><span>What we make</span></h2>
+      </header>
+      <ul class="pk-cat">
+        {CATALOG.map((c, i) => (
+          <li class="reveal-card">
+            <a class="pk-cat__item" href={c.href}>
+              <span class="pk-cat__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="pk-cat__title">{c.title}</h3>
+              <p class="pk-cat__body">{c.body}</p>
+              <span class="pk-cat__more" aria-hidden="true">Explore →</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4. SELECTED WORK -->
+  <section class="section pk-section" id="selected-work" aria-labelledby="pk-work-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>03 — Selected work</span>
+        <h2 class="section-heading reveal-line" id="pk-work-heading"><span>Experience at scale</span></h2>
+      </header>
+      <p class="pk-intro reveal">
+        Before Artifact, our founder and team led digital platforms and ecosystems for major
+        organizations, in director and senior roles at other agencies. These engagements belonged
+        to those agencies and their clients, so each is labelled that way and the clients stay
+        anonymized, as they are across this site.
+      </p>
+      <ol class="pk-work">
+        {selected.map((s, i) => (
+          <li class="pk-work__row">
+            <a class="pk-work__media reveal-card" href={`/${s.entry.id}`} tabindex="-1" aria-hidden="true">
+              <img
+                src={s.src}
+                alt=""
+                width={s.img.width}
+                height={s.img.height}
+                srcset={s.img.srcset}
+                sizes="(max-width: 860px) 100vw, 60vw"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <div class="pk-work__text reveal">
+              <span class="pk-work__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <span class={`tier-chip tier-chip--${s.tier}`}>{TIER_LABEL[s.tier]}</span>
+              <p class="pk-work__eyebrow">{s.entry.data.card.eyebrow} · {s.entry.data.year}</p>
+              <h3 class="pk-work__title">{s.entry.data.title}</h3>
+              <p class="pk-work__blurb">{s.entry.data.card.blurb}</p>
+              <ul class="project-card__tags">{s.entry.data.card.tags.map((t) => <li>{t}</li>)}</ul>
+              <a class="pk-link" href={`/${s.entry.id}`}>Read the case study<span class="sr-only">: {s.entry.data.title}</span> →</a>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <p class="pk-more reveal"><a class="pk-link" href="/work">All work, including what Artifact has built →</a></p>
+    </div>
+  </section>
+
+  <!-- 5 + 6. PRODUCT LAB AND LIVE DEMOS -->
+  <section class="section pk-section pk-dark" id="product-lab" aria-labelledby="pk-lab-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>04 — Product lab</span>
+        <h2 class="section-heading reveal-line" id="pk-lab-heading"><span>Ideas become software.</span></h2>
+      </header>
+      <p class="pk-intro reveal">
+        Artifact doesn’t only build for clients. We design and build our own products and
+        prototypes, which is where much of how we work gets tested first. Each one is labelled with
+        where it actually stands.
+      </p>
+
+      <ul class="pk-lab">
+        {lab.map((p) => (
+          <li class="pk-product reveal-card">
+            <div class="pk-product__media">
+              <img
+                src={p.src}
+                alt={p.alt}
+                width={p.img.width}
+                height={p.img.height}
+                srcset={p.img.srcset}
+                sizes="(max-width: 900px) 100vw, 600px"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="pk-product__body">
+              <span class={`tier-chip tier-chip--${p.tier}`}>{p.chip}</span>
+              <h3 class="pk-product__name">{p.name}</h3>
+              <p class="pk-product__cat">{p.category}</p>
+              <p class="pk-product__purpose">{p.purpose}</p>
+              <div class="pk-product__actions">
+                <a class="pk-link pk-link--light" href={p.href}>{p.linkLabel}<span class="sr-only">: {p.name}</span> →</a>
+                {p.liveUrl && (
+                  <a class="pk-link pk-link--light" href={p.liveUrl} target="_blank" rel="noopener noreferrer">
+                    Open live product<span class="sr-only">: {p.name} (opens in a new tab)</span> ↗
+                  </a>
+                )}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      {demos.length > 0 && (
+        <div class="pk-demos" id="demos">
+          <h3 class="pk-demos__title reveal">Try it live</h3>
+          <p class="pk-demos__note reveal">
+            Public products you can use today. Each opens in a new tab.
+          </p>
+          {demos.map((d) => (
+            <article class="pk-demo reveal-card" aria-labelledby={`demo-${d.entry.id}`}>
+              <div class="pk-browser">
+                <div class="pk-browser__bar" aria-hidden="true">
+                  <span class="pk-browser__dots"><i></i><i></i><i></i></span>
+                  <span class="pk-browser__url">{d.host}</span>
+                </div>
+                <img
+                  src={d.src}
+                  alt={d.alt}
+                  width={d.img.width}
+                  height={d.img.height}
+                  srcset={d.img.srcset}
+                  sizes="(max-width: 900px) 100vw, 760px"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="pk-demo__text">
+                <span class={`tier-chip tier-chip--${d.tier}`}>{d.chip}</span>
+                <h4 class="pk-demo__name" id={`demo-${d.entry.id}`}>{d.entry.data.title}</h4>
+                <p class="pk-demo__desc">{d.entry.data.card.blurb}</p>
+                <a class="btn btn-primary" href={d.url} target="_blank" rel="noopener noreferrer">
+                  {d.cta} <span aria-hidden="true">↗</span>
+                  <span class="sr-only">(opens {d.host} in a new tab)</span>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- 7. LEADERSHIP -->
+  <section class="section pk-section" id="leadership" aria-labelledby="pk-lead-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>05 — Leadership</span>
+        <h2 class="section-heading reveal-line" id="pk-lead-heading"><span>The people behind it</span></h2>
+      </header>
+      <ul class="pk-leaders">
+        {leaders.map((l) => (
+          <li class="pk-leader reveal-card">
+            <img class="pk-leader__photo" src={l.avatar} alt={`${l.name}, ${l.jobTitle}`} width="240" height="240" loading="lazy" decoding="async" />
+            <h3 class="pk-leader__name">{l.name}</h3>
+            <p class="pk-leader__role">{l.jobTitle}</p>
+            <p class="pk-leader__bio">{l.short}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 8. EXPERIENCE STRIP -->
+  <section class="pk-experience" aria-labelledby="pk-exp-heading">
+    <div class="container">
+      <h2 class="pk-experience__label" id="pk-exp-heading">Selected team experience</h2>
+      <ul class="pk-experience__list">
+        {EXPERIENCE.map((n) => <li>{n}</li>)}
+      </ul>
+      <p class="pk-experience__note">
+        Organizations our founder and team worked with in previous roles, before or outside
+        Artifact Digital. This is not a list of Artifact Digital clients.
+      </p>
+    </div>
+  </section>
+
+  <!-- 9. MEDIA & BRAND ASSETS -->
+  <section class="section pk-section" id="assets" aria-labelledby="pk-assets-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>06 — Media &amp; brand assets</span>
+        <h2 class="section-heading reveal-line" id="pk-assets-heading"><span>Approved materials</span></h2>
+      </header>
+
+      {ASSET_GROUPS.map((g) => (
+        <div class="pk-assets__group">
+          <h3 class="pk-assets__title reveal">{g.title}</h3>
+          <p class="pk-assets__note reveal">{g.note}</p>
+          <ul class="pk-assets">
+            {g.items.map((a) => (
+              <li class="pk-asset reveal-card">
+                <div class={`pk-asset__preview pk-asset__preview--${a.tile}`}>
+                  <img src={a.src} alt="" loading="lazy" decoding="async" />
+                </div>
+                <p class="pk-asset__label">{a.label}</p>
+                <p class="pk-asset__meta">{a.meta}</p>
+                <a class="pk-link" href={a.src} download>
+                  Download {a.ext}<span class="sr-only">: {a.label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <div class="pk-assets__group">
+        <h3 class="pk-assets__title reveal">Brand colors</h3>
+        <p class="pk-assets__note reveal">From the Artifact brand guidelines.</p>
+        <ul class="pk-colors">
+          {COLORS.map((c) => (
+            <li class="pk-color reveal-card">
+              <span class:list={['pk-color__swatch', c.light && 'pk-color__swatch--light']} style={`background:${c.hex}`} aria-hidden="true"></span>
+              <span class="pk-color__name">{c.name}</span>
+              <button class="pk-color__copy" type="button" data-copy={c.hex} aria-label={`Copy ${c.name} ${c.hex}`}>{c.hex}</button>
+            </li>
+          ))}
+        </ul>
+        <p class="sr-only" aria-live="polite" data-copy-status></p>
+      </div>
+
+      <div class="pk-assets__group">
+        <h3 class="pk-assets__title reveal">Company overview</h3>
+        <p class="pk-assets__note reveal">There isn’t a downloadable overview document yet. These pages cover it in full.</p>
+        <ul class="pk-overview-links">
+          <li><a class="pk-link" href="/about">About Artifact →</a></li>
+          <li><a class="pk-link" href="/capabilities#public-sector">Business and procurement details (UEI, CAGE, NAICS) →</a></li>
+          <li><a class="pk-link" href="/how-we-work">How we work →</a></li>
+        </ul>
+      </div>
+
+      <aside class="pk-contact reveal" aria-label="Media contact">
+        <p class="pk-contact__text">
+          For editorial, partnership, or speaking inquiries, contact Artifact Digital.
+        </p>
+        <div class="pk-contact__actions">
+          <a class="pk-contact__email" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+          <Button href="/contact?intent=general" label="Contact form" variant="primary" />
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 10. LATEST FROM ARTIFACT (no external press yet) -->
+  <section class="section pk-section pk-section--stone" id="latest" aria-labelledby="pk-latest-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>07 — News</span>
+        <h2 class="section-heading reveal-line" id="pk-latest-heading"><span>Latest from Artifact</span></h2>
+      </header>
+      <div class="insights-grid">
+        {latest.map((p) => (
+          <a class:list={['insight-card', 'reveal-card', p.data.heroImage && 'insight-card--has-media']} href={`/insights/${p.id}`}>
+            {p.data.heroImage && (
+              <div class="insight-card__media">
+                <img
+                  src={p.data.heroImage}
+                  alt=""
+                  width={latestMedia.get(p.data.heroImage)?.width}
+                  height={latestMedia.get(p.data.heroImage)?.height}
+                  srcset={latestMedia.get(p.data.heroImage)?.srcset}
+                  sizes="(max-width: 760px) 100vw, (max-width: 1280px) 50vw, 400px"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            )}
+            <div class="insight-card__meta">
+              <span>{p.data.cluster}</span>
+              <span>{fmtDate(p.data.pubDate)}</span>
+            </div>
+            <h3 class="insight-card__title">{p.data.title}</h3>
+            <p class="insight-card__excerpt">{p.data.description}</p>
+            <span class="insight-card__more">Read the essay →</span>
+          </a>
+        ))}
+      </div>
+      <p class="pk-more reveal"><a class="pk-link" href="/insights">All insights →</a></p>
+    </div>
+  </section>
+
+  <!-- 11. FINAL CTA -->
+  <CtaBand
+    heading="Let’s build what’s next."
+    sub="Whether you’re covering Artifact, exploring a partnership, evaluating us for a project, or simply curious about what we’re building, we’d like to hear from you."
+    primary={{ label: 'Contact Artifact', href: '/contact' }}
+    secondary={{ label: 'Email us', href: `mailto:${SITE.email}` }}
+  />
+</BaseLayout>
+
+<script>
+  // Brand color swatches copy their hex value. Buttons, so keyboard users get it too.
+  const status = document.querySelector<HTMLElement>('[data-copy-status]');
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const value = btn.dataset.copy ?? '';
+      try {
+        await navigator.clipboard.writeText(value);
+        btn.classList.add('is-copied');
+        if (status) status.textContent = `${value} copied`;
+        setTimeout(() => btn.classList.remove('is-copied'), 1400);
+      } catch {
+        if (status) status.textContent = `Copy ${value} manually`;
+      }
+    });
+  });
+</script>
+
+<style>
+  /* ============================================================
+     Press kit — page-scoped. Shared patterns (section-head, reveal,
+     btn, tier-chip, project-card__tags, insight-card) come from
+     global.css; nothing here restyles them elsewhere.
+     ============================================================ */
+
+  /* -------------------- Hero -------------------- */
+  .pk-hero {
+    background: var(--ink);
+    color: #fff;
+    padding: clamp(7rem, 13vw, 10rem) 0 clamp(3.5rem, 7vw, 6rem);
+    overflow: hidden;
+  }
+  .pk-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: center;
+  }
+  .pk-hero :global(.breadcrumbs),
+  .pk-hero :global(.breadcrumbs a) { color: rgba(255, 255, 255, 0.6); }
+  .pk-hero :global(.breadcrumbs [aria-current]) { color: rgba(255, 255, 255, 0.85); }
+  .pk-hero .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(255, 255, 255, 0.66);
+  }
+  /* Sized so each of the two lines holds together beside the product stack. */
+  .pk-hero__title { color: #fff; font-size: clamp(2.6rem, 5vw, 5.25rem); }
+  .pk-hero__title .italic { color: rgba(255, 255, 255, 0.62); }
+  .pk-hero__lede {
+    max-width: 54ch;
+    margin: 1.5rem 0 0;
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.74);
+  }
+  .pk-hero__actions { margin-top: 2.25rem; }
+
+  /* Three real product screens, overlapped like prints on a desk. */
+  .pk-stack {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 6 / 5;
+  }
+  .pk-frame {
+    position: absolute;
+    width: 82%;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-media);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: #0a0a0a;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    transition: transform 0.9s var(--easing);
+  }
+  .pk-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 21 / 9;
+    object-fit: cover;
+  }
+  .pk-frame:nth-child(1) { top: 0; right: 0; z-index: 1; }
+  .pk-frame:nth-child(2) { top: 33%; left: 0; z-index: 2; }
+  .pk-frame:nth-child(3) { bottom: 0; right: 5%; z-index: 3; }
+  .pk-stack:hover .pk-frame:nth-child(1) { transform: translate(10px, -8px); }
+  .pk-stack:hover .pk-frame:nth-child(2) { transform: translate(-10px, 0); }
+  .pk-stack:hover .pk-frame:nth-child(3) { transform: translate(6px, 8px); }
+  /* Top-left: the one corner of each frame the overlap never covers. */
+  .pk-frame__label {
+    position: absolute;
+    left: 0.6rem;
+    top: 0.6rem;
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(10, 10, 10, 0.78);
+    backdrop-filter: blur(6px);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    color: #fff;
+  }
+  .pk-frame__status { color: var(--blush); }
+
+  /* -------------------- Jump links -------------------- */
+  .pk-jump {
+    border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+    background: #fff;
+  }
+  .pk-jump__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 0.25rem 1.75rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .pk-jump__list::-webkit-scrollbar { display: none; }
+  .pk-jump__list a {
+    display: inline-block;
+    padding: 1.1rem 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--steel);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.25s var(--easing), border-color 0.25s var(--easing);
+  }
+  .pk-jump__list a:hover,
+  .pk-jump__list a:focus-visible { color: var(--ink); border-bottom-color: var(--accent); }
+
+  /* -------------------- Shared section bits -------------------- */
+  .pk-section--stone { background: var(--stone); }
+  .pk-intro {
+    max-width: 64ch;
+    margin: -0.5rem 0 clamp(2.5rem, 5vw, 4rem);
+    color: var(--steel);
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
+    line-height: 1.65;
+  }
+  .pk-link {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--accent-strong);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .pk-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .pk-link--light { color: var(--blush); }
+  .pk-more { margin: clamp(2rem, 4vw, 3rem) 0 0; }
+
+  /* -------------------- Company overview -------------------- */
+  .pk-overview {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+  .pk-overview__copy p { margin: 0 0 1.1rem; color: var(--steel); line-height: 1.7; max-width: 52ch; font-size: 1.05rem; }
+  .pk-overview__copy .pk-overview__lead {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: clamp(1.3rem, 2.3vw, 1.75rem);
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .pk-facts {
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: rgba(17, 17, 17, 0.1);
+    border: 1px solid rgba(17, 17, 17, 0.1);
+    border-radius: var(--radius-media);
+    overflow: hidden;
+  }
+  .pk-fact { background: #fff; padding: clamp(1.1rem, 2vw, 1.5rem); }
+  .pk-fact dt {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--steel-soft);
+    margin: 0 0 0.45rem;
+  }
+  .pk-fact dd {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    color: var(--ink);
+    overflow-wrap: anywhere;
+  }
+  .pk-fact dd a { color: var(--accent-strong); text-decoration: none; }
+  .pk-fact dd a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  /* -------------------- Capabilities catalog -------------------- */
+  .pk-cat {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  }
+  .pk-cat li { display: flex; }
+  .pk-cat__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    width: 100%;
+    padding: clamp(1.4rem, 2.4vw, 1.9rem);
+    background: #fff;
+    border: 1px solid rgba(17, 17, 17, 0.08);
+    border-radius: var(--radius-media);
+    color: var(--ink);
+    text-decoration: none;
+    overflow: hidden;
+    transition: background 0.4s var(--easing), color 0.4s var(--easing), transform 0.4s var(--easing);
+  }
+  .pk-cat__item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s var(--easing);
+  }
+  .pk-cat__item:hover,
+  .pk-cat__item:focus-visible { background: var(--ink); color: #fff; transform: translateY(-3px); }
+  .pk-cat__item:hover::after,
+  .pk-cat__item:focus-visible::after { transform: scaleX(1); }
+  .pk-cat__num {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    color: var(--accent-strong);
+  }
+  .pk-cat__item:hover .pk-cat__num,
+  .pk-cat__item:focus-visible .pk-cat__num { color: var(--blush); }
+  .pk-cat__title {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  .pk-cat__body { margin: 0; color: var(--steel); line-height: 1.55; font-size: 0.95rem; flex: 1; }
+  .pk-cat__item:hover .pk-cat__body,
+  .pk-cat__item:focus-visible .pk-cat__body { color: rgba(255, 255, 255, 0.74); }
+  .pk-cat__more {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    color: var(--steel-soft);
+    transition: color 0.3s var(--easing);
+  }
+  .pk-cat__item:hover .pk-cat__more,
+  .pk-cat__item:focus-visible .pk-cat__more { color: #fff; }
+
+  /* -------------------- Selected work -------------------- */
+  .pk-work { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(3.5rem, 7vw, 6rem); }
+  .pk-work__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: clamp(1.75rem, 4vw, 4rem);
+    align-items: center;
+  }
+  .pk-work__row:nth-child(even) .pk-work__media { order: 2; }
+  .pk-work__media {
+    display: block;
+    overflow: hidden;
+    border-radius: var(--radius-media);
+    background: var(--stone);
+  }
+  .pk-work__media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transition: transform 1.4s var(--easing);
+  }
+  .pk-work__row:hover .pk-work__media img { transform: scale(1.04); }
+  .pk-work__text { display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+  .pk-work__num {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: rgba(17, 17, 17, 0.1);
+  }
+  .pk-work__eyebrow {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--steel);
+  }
+  .pk-work__title {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+  .pk-work__blurb { margin: 0; color: var(--steel); line-height: 1.6; max-width: 46ch; }
+
+  /* -------------------- Product lab (dark) -------------------- */
+  .pk-dark { background: var(--ink); color: #fff; }
+  .pk-dark .section-heading { color: #fff; }
+  .pk-dark .section-tag { color: rgba(255, 255, 255, 0.66); }
+  .pk-dark .pk-intro { color: rgba(255, 255, 255, 0.72); }
+  .pk-dark .tier-chip { color: rgba(255, 255, 255, 0.82); border-color: rgba(255, 255, 255, 0.3); }
+  .pk-dark .tier-chip--artifact,
+  .pk-dark .tier-chip--own { color: var(--blush); border-color: currentColor; }
+  .pk-dark .tier-chip--concept { border-style: dashed; }
+
+  .pk-lab {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+  .pk-product {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-media);
+    overflow: hidden;
+    transition: border-color 0.4s var(--easing), transform 0.4s var(--easing);
+  }
+  .pk-product:hover,
+  .pk-product:focus-within { border-color: rgba(255, 255, 255, 0.28); transform: translateY(-3px); }
+  .pk-product__media { overflow: hidden; background: #0a0a0a; }
+  .pk-product__media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transition: transform 1.4s var(--easing);
+  }
+  .pk-product:hover .pk-product__media img { transform: scale(1.04); }
+  .pk-product__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding: clamp(1.25rem, 2.4vw, 1.9rem);
+    flex: 1;
+  }
+  .pk-product__name {
+    margin: 0.2rem 0 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+    letter-spacing: -0.02em;
+  }
+  .pk-product__cat {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .pk-product__purpose { margin: 0.4rem 0 0; color: rgba(255, 255, 255, 0.76); line-height: 1.6; flex: 1; }
+  .pk-product__actions { display: flex; flex-wrap: wrap; gap: 0 1.5rem; margin-top: 0.5rem; }
+
+  /* Live products in browser frames */
+  .pk-demos { margin-top: clamp(4rem, 8vw, 6.5rem); }
+  .pk-demos__title {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    letter-spacing: -0.03em;
+  }
+  .pk-demos__note { margin: 0.6rem 0 clamp(2rem, 4vw, 3rem); color: rgba(255, 255, 255, 0.66); }
+  .pk-demo {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: clamp(1.75rem, 4vw, 3.5rem);
+    align-items: center;
+  }
+  .pk-demo + .pk-demo { margin-top: clamp(3rem, 6vw, 5rem); }
+  .pk-demo:nth-of-type(even) .pk-browser { order: 2; }
+  .pk-browser {
+    border-radius: 10px;
+    overflow: hidden;
+    background: #1c1c1c;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.55);
+    transition: transform 0.8s var(--easing);
+  }
+  .pk-demo:hover .pk-browser,
+  .pk-demo:focus-within .pk-browser { transform: translateY(-6px); }
+  .pk-browser__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.65rem 0.9rem;
+    background: #232323;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .pk-browser__dots { display: inline-flex; gap: 6px; flex: none; }
+  .pk-browser__dots i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); }
+  .pk-browser__url {
+    flex: 1;
+    min-width: 0;
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    font-family: 'Space Grotesk', monospace;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.66);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .pk-browser img { display: block; width: 100%; height: auto; }
+  .pk-demo__text { display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+  .pk-demo__name {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    letter-spacing: -0.03em;
+  }
+  .pk-demo__desc { margin: 0 0 0.8rem; color: rgba(255, 255, 255, 0.74); line-height: 1.6; max-width: 42ch; }
+
+  /* -------------------- Leadership -------------------- */
+  .pk-leaders {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .pk-leader { display: flex; flex-direction: column; }
+  .pk-leader__photo {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.25rem;
+    filter: grayscale(1);
+    transition: filter 0.6s var(--easing);
+  }
+  .pk-leader:hover .pk-leader__photo { filter: none; }
+  .pk-leader__name {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.015em;
+  }
+  .pk-leader__role {
+    margin: 0.3rem 0 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+  }
+  .pk-leader__bio { margin: 0; color: var(--steel); line-height: 1.6; font-size: 0.95rem; }
+
+  /* -------------------- Experience strip -------------------- */
+  .pk-experience {
+    background: var(--stone);
+    padding: clamp(3rem, 6vw, 4.5rem) 0;
+    border-top: 1px solid rgba(17, 17, 17, 0.08);
+    border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+  }
+  .pk-experience__label {
+    margin: 0 0 1.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .pk-experience__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem clamp(1.25rem, 2.6vw, 2.25rem);
+  }
+  .pk-experience__list li {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.05rem, 1.9vw, 1.5rem);
+    letter-spacing: -0.02em;
+    color: rgba(17, 17, 17, 0.55);
+  }
+  .pk-experience__note { margin: 1.5rem 0 0; max-width: 70ch; color: var(--steel); font-size: 0.9rem; line-height: 1.6; }
+
+  /* -------------------- Assets -------------------- */
+  .pk-assets__group + .pk-assets__group { margin-top: clamp(3rem, 6vw, 4.5rem); }
+  .pk-assets__title {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    letter-spacing: -0.02em;
+  }
+  .pk-assets__note { margin: 0.4rem 0 1.5rem; color: var(--steel); font-size: 0.95rem; }
+  .pk-assets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+  .pk-asset { display: flex; flex-direction: column; }
+  .pk-asset__preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 4 / 3;
+    padding: 1.25rem;
+    border-radius: var(--radius-media);
+    border: 1px solid rgba(17, 17, 17, 0.08);
+    overflow: hidden;
+    margin-bottom: 0.85rem;
+  }
+  .pk-asset__preview img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .pk-asset__preview--dark { background: var(--ink); }
+  .pk-asset__preview--light { background: #fff; }
+  .pk-asset__preview--photo { background: var(--stone); padding: 0; }
+  .pk-asset__preview--photo img { width: 100%; height: 100%; object-fit: cover; }
+  .pk-asset__label { margin: 0; font-family: 'DM Sans', sans-serif; font-weight: 500; color: var(--ink); }
+  .pk-asset__meta { margin: 0.2rem 0 0.1rem; font-size: 0.8rem; color: var(--steel-soft); }
+
+  .pk-colors {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  }
+  .pk-color { display: flex; flex-direction: column; gap: 0.4rem; }
+  .pk-color__swatch { display: block; aspect-ratio: 1 / 1; border-radius: var(--radius-media); }
+  .pk-color__swatch--light { box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.12); }
+  .pk-color__name { font-family: 'DM Sans', sans-serif; font-weight: 700; margin-top: 0.3rem; }
+  .pk-color__copy {
+    align-self: flex-start;
+    min-height: 44px;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-family: 'Space Grotesk', monospace;
+    font-size: 0.9rem;
+    color: var(--steel);
+    cursor: pointer;
+    text-align: left;
+  }
+  .pk-color__copy:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .pk-color__copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+  .pk-color__copy.is-copied::after { content: ' · copied'; color: var(--accent-strong); }
+
+  .pk-overview-links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 2rem; }
+
+  .pk-contact {
+    margin-top: clamp(3.5rem, 7vw, 5rem);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem 3rem;
+    padding: clamp(1.75rem, 3.5vw, 2.75rem);
+    border-radius: var(--radius-media);
+    background: var(--ink);
+    color: #fff;
+  }
+  .pk-contact__text {
+    margin: 0;
+    max-width: 34ch;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+  .pk-contact__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; }
+  .pk-contact__email {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 2px;
+    overflow-wrap: anywhere;
+  }
+
+  /* The shared insights grid has a 320px column floor; let it shrink here so
+     a 320px phone never scrolls sideways. /insights itself is unchanged. */
+  #latest :global(.insights-grid) { grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+
+  /* -------------------- Responsive -------------------- */
+  @media (max-width: 1080px) {
+    .pk-cat { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pk-leaders { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 900px) {
+    .pk-hero__grid { grid-template-columns: 1fr; }
+    .pk-stack { max-width: 560px; }
+    .pk-overview { grid-template-columns: 1fr; }
+    .pk-lab { grid-template-columns: 1fr; }
+    .pk-demo { grid-template-columns: 1fr; }
+    .pk-demo:nth-of-type(even) .pk-browser { order: 0; }
+  }
+  @media (max-width: 860px) {
+    .pk-work__row { grid-template-columns: 1fr; }
+    .pk-work__row:nth-child(even) .pk-work__media { order: 0; }
+  }
+  @media (max-width: 760px) {
+    .pk-colors { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .pk-hero__actions :global(.btn) { flex: 1 1 100%; justify-content: center; }
+  }
+  @media (max-width: 560px) {
+    .pk-cat { grid-template-columns: 1fr; }
+    .pk-leaders { grid-template-columns: 1fr; }
+    .pk-facts { grid-template-columns: 1fr; }
+    .pk-frame__label { font-size: 0.64rem; left: 0.4rem; top: 0.4rem; padding: 0.22rem 0.5rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pk-frame, .pk-cat__item, .pk-cat__item::after, .pk-work__media img, .pk-product,
+    .pk-product__media img, .pk-browser, .pk-leader__photo { transition: none; }
+    .pk-stack:hover .pk-frame, .pk-demo:hover .pk-browser, .pk-product:hover { transform: none; }
+  }
+</style>
