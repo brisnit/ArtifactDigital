@@ -53,8 +53,8 @@ const jsonLd = {
 };
 ---
 <BaseLayout
-  title="Case Studies · Software We've Built · Artifact Digital"
-  description="Software Artifact Digital has designed and built, labelled by where each product stands, and the enterprise experience our founder and team led before Artifact existed."
+  title="Our Work · Websites, Apps & Platforms · Artifact Digital"
+  description="Websites, web apps and mobile apps Artifact Digital has designed and built, labelled by where each one stands — plus the enterprise work our founder and team led before Artifact."
   canonical="/work"
   bodyClass="case-page work-index"
   jsonLd={jsonLd}
@@ -64,14 +64,14 @@ const jsonLd = {
       <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Work' }]} />
       <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Work</span>
       <h1 class="case-title">
-        <span class="reveal-line"><span>We build software.</span></span>
-        <span class="reveal-line italic"><span>Here’s the proof.</span></span>
+        <span class="reveal-line"><span>Sites, apps</span></span>
+        <span class="reveal-line italic"><span>and the thinking behind them.</span></span>
       </h1>
       <p class="case-lede reveal">
         Artifact is a newer company, built by people who spent years designing and
-        delivering sophisticated digital systems for major organizations. This page
-        shows both: the software we’ve built since, labelled by where each product
-        actually stands, and the experience behind it, labelled by who did the work.
+        delivering digital platforms for major organizations. This page shows both: what
+        we’ve built since, labelled by where each one actually stands, and the experience
+        behind it, labelled by who did the work.
       </p>
     </div>
   </section>
@@ -81,7 +81,7 @@ const jsonLd = {
     <div class="container">
       <header class="section-head">
         <span class="section-tag reveal"><span class="tag-dot"></span>Built at Artifact</span>
-        <h2 class="section-heading reveal-line" id="work-built-heading"><span>Software we’ve built</span></h2>
+        <h2 class="section-heading reveal-line" id="work-built-heading"><span>What we’ve built</span></h2>
       </header>
       <p class="work-attribution reveal">
         Products, platforms and prototypes this company designed and built. One is live
@@ -130,8 +130,8 @@ const jsonLd = {
       </div>
       <div class="service-prose service-section__body">
         <p class="reveal">
-          Bespoke software is only as good as the understanding behind it. None of this
-          work came from engineering alone. It came from the same combination, every time:
+          A site or an app is only as good as the understanding behind it. None of this work
+          came from engineering alone. It came from the same combination, every time:
         </p>
         <ul class="work-draws__list">
           {INGREDIENTS.map((i) => (
@@ -182,9 +182,9 @@ const jsonLd = {
   </section>
 
   <CtaBand
-    heading="Have a problem worth building software for?"
-    sub="Tell us what you’re trying to solve. We’ll help you work out whether software is the answer, and what a first working version could look like."
-    primary={{ label: 'Tell Us the Problem', href: '/contact?intent=build' }}
+    heading="Have something you want to build?"
+    sub="Tell us what you’re trying to create, fix or grow. We’ll help you figure out the smartest way to get it live."
+    primary={{ label: 'Tell Us About Your Project', href: '/contact?intent=build' }}
     secondary={{ label: 'See How We Work', href: '/how-we-work' }}
   />
 </BaseLayout>

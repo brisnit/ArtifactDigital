@@ -24,8 +24,8 @@ const jsonLd = {
 };
 ---
 <BaseLayout
-  title="Contact · Build Something · Artifact Digital"
-  description="Tell Artifact Digital what your business needs software to do. A principal reads every message and replies within two business days."
+  title="Start a Project · Contact Artifact Digital"
+  description="Tell Artifact Digital about your website, web app or mobile app project. A senior person reads every message and replies within two business days."
   canonical="/contact"
   bodyClass="case-page contact-page"
   jsonLd={jsonLd}
@@ -35,12 +35,12 @@ const jsonLd = {
     <div class="container">
       <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Contact</span>
       <h1 class="case-title">
-        <span class="reveal-line"><span>Tell us what your software</span></span>
-        <span class="reveal-line italic"><span>needs to do.</span></span>
+        <span class="reveal-line"><span>Tell us about</span></span>
+        <span class="reveal-line italic"><span>your project.</span></span>
       </h1>
       <p class="case-lede reveal">
-        A principal — not a pipeline — reads every message. You\'ll hear back
-        within two business days.
+        A few sentences is plenty — what you\'re trying to create, fix or grow. A senior
+        person reads every message, and you\'ll hear back within two business days.
       </p>
     </div>
   </section>
@@ -92,23 +92,25 @@ const jsonLd = {
           <div class="field">
             <label for="intent">How can we help?</label>
             <select id="intent" name="intent">
-              <option value="build">Build bespoke software</option>
-              <option value="replace">Replace software we've outgrown</option>
-              <option value="mvp">Build an MVP</option>
-              <option value="ai-assessment">Assess an AI project</option>
-              <option value="discovery">Run a discovery engagement</option>
-              <option value="audit">Request a software &amp; experience audit</option>
-              <option value="design-system">Review our design system</option>
+              <option value="build">A new website</option>
+              <option value="web-app">A web app or portal</option>
+              <option value="mobile-app">A mobile app</option>
+              <option value="ecommerce">An online store</option>
+              <option value="seo">SEO &amp; AI search</option>
+              <option value="support">Hosting, support or improvements</option>
+              <option value="audit">A website or UX audit</option>
+              <option value="ai-assessment">An AI idea</option>
+              <option value="not-sure">Not sure yet — help me figure it out</option>
               <option value="teaming">Teaming or subcontracting</option>
               <option value="general">Something else</option>
             </select>
           </div>
 
           <div class="field">
-            <label for="message">Project / message <span class="req" aria-hidden="true">*</span></label>
+            <label for="message">About your project <span class="req" aria-hidden="true">*</span></label>
             <textarea id="message" name="message" rows="6" required aria-required="true"
               aria-describedby="message-error"
-              placeholder="A few sentences on what you're trying to do, and by when."></textarea>
+              placeholder="What are you trying to create, fix or grow? A few sentences is plenty — and if you have a deadline or a budget in mind, that helps too."></textarea>
             <p class="field-error" id="message-error" aria-live="polite"></p>
           </div>
 

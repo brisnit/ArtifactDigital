@@ -1,0 +1,91 @@
+{
+  "title": "Web App Development",
+  "navLabel": "Web apps",
+  "metaTitle": "Web App Development · Artifact Digital",
+  "description": "Web app design and development for founders and growing businesses — customer portals, internal tools, dashboards, software products and AI tools. Have an idea? We'll help you figure out what to build, then build it.",
+  "order": 2,
+  "eyebrow": "What we do · Web apps",
+  "heroTitleLines": [
+    { "text": "Have an idea?" },
+    { "text": "We'll help you build it.", "italic": true }
+  ],
+  "lede": "Customer portals, internal tools, dashboards, software products and AI tools. We work out what's actually worth building with you, then design and build it as one team.",
+  "summary": "Portals, internal tools, dashboards, software products and AI tools.",
+  "intro": [
+    "Most app projects go wrong long before anyone writes code. A team builds everything they can think of, runs out of money before the part that mattered, and finds out too late that customers wanted something simpler.",
+    "So we start by separating the idea from the assumptions. What has to be true for this to work? What's the smallest version that proves it? What can wait until people are actually using it? You'll get straight answers, including when we think the answer is to build less, or nothing at all.",
+    "Then we build. Real screens early, working software soon after, and architecture that can grow without being rewritten the first time you succeed."
+  ],
+  "sections": [
+    {
+      "heading": "Software shaped around your business",
+      "body": [
+        "Off-the-shelf tools are built for the average company, so most businesses end up bending their process to fit them: the workaround everyone knows, the spreadsheet that quietly became critical, the subscription nobody can cancel.",
+        "When the thing you do differently is the reason customers choose you, generic software is a bad place to keep it. A custom app can hold your actual process, in your language, for your people — and you own it. [Custom software and SaaS products](/services/bespoke-saas) goes deeper on when that's worth it, and when it isn't."
+      ]
+    },
+    {
+      "heading": "AI where it earns its place",
+      "body": [
+        "AI belongs in an app when it removes real work: summarizing, drafting, sorting, spotting what a person would miss. It doesn't belong there because it's expected, and a chatbot in the corner is rarely the answer.",
+        "We'll tell you which parts of your idea genuinely benefit from AI and which are better as ordinary, reliable software. Where it earns its place, we build it with the boring safeguards that keep it trustworthy."
+      ]
+    },
+    {
+      "heading": "Built to still be there in three years",
+      "body": [
+        "The fastest possible build and the right build are not the same thing. We use AI heavily to move quickly, then spend the time we save on the parts that decide whether an app survives: the data model, permissions, payments, tests and the edge cases nobody demos.",
+        "You get working software, documentation that means something, and code your next engineer can pick up."
+      ]
+    }
+  ],
+  "inMethod": [
+    { "stage": "Understand", "body": "The business case, the users, and what has to be true for the idea to work — before deciding what to build." },
+    { "stage": "Design", "body": "The flow, the screens and the first real version of the experience, compared against alternatives while changing course is cheap." },
+    { "stage": "Build", "body": "Production software: data model, integrations, permissions, payments and automated tests, by the team that designed it." },
+    { "stage": "Launch", "body": "Deployment, monitoring, accessibility and performance checks, and a plan for the first real users." },
+    { "stage": "Grow", "body": "What people do in the app decides the next release. We measure it instead of guessing." }
+  ],
+  "deliverables": [
+    "An honest read on what's worth building, and what isn't",
+    "Clickable screens before anything is committed to code",
+    "A working app, deployed, with accounts, permissions and the integrations it needs",
+    "Automated tests, monitoring and documentation you can hand to anyone",
+    "Accessibility and performance built in, not retrofitted",
+    "A roadmap for what comes after the first release"
+  ],
+  "whoFor": [
+    "Founders with an idea who need someone to help shape it and then build it",
+    "Businesses running critical work in spreadsheets and email threads",
+    "Teams paying for several tools that still don't do what they need",
+    "Companies with data or know-how that no tool they can buy puts to work"
+  ],
+  "faq": [
+    {
+      "q": "I have an idea but I'm not sure what to build. Can you help?",
+      "a": "That's most of the conversations we have. We'll work through what the idea depends on, what the first version needs to include, and what it would take to get it in front of real people. Sometimes the useful answer is that a simpler tool already does the job, and we'll say so."
+    },
+    {
+      "q": "What does a web app cost?",
+      "a": "A focused first version is a much smaller number than a full platform, and the honest answer depends on what the app has to do. We'll give you a range early, and a clear view of what changes it."
+    },
+    {
+      "q": "Do we own the code?",
+      "a": "Yes. You own the code, the design files and the accounts. We set them up in your name where we can, so nothing important lives only with us."
+    },
+    {
+      "q": "Can you work with our existing engineers?",
+      "a": "Yes. We can take a project end to end, or bring strategy, design and front-end work to a team that already has engineers, and hand over cleanly."
+    },
+    {
+      "q": "Is this the same as a mobile app?",
+      "a": "A web app runs in the browser on any device; a mobile app lives on the phone and can use its hardware and notifications. Plenty of products need one, not both. See [mobile apps](/services/mobile-apps) for the difference, or ask us and we'll tell you which one your idea needs."
+    }
+  ],
+  "relatedTags": ["Product", "SaaS", "Platform"],
+  "relatedServices": ["bespoke-saas", "product-design", "front-end-engineering"],
+  "buildsWith": ["web-apps", "mobile-apps"],
+  "cta": { "primary": "build", "secondary": "how-we-work" },
+  "ctaHeading": "Have an idea you want to get built?",
+  "ctaSub": "Tell us what you're trying to make possible. We'll help you work out what to build first, and what it would take to get it live."
+}

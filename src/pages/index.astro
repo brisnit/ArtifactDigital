@@ -6,40 +6,78 @@ import WorkCard from '../components/WorkCard.astro';
 import { SITE, orgNode, websiteNode, CTA } from '../data/site';
 import { testimonials } from '../data/testimonials';
 import { BUILD_CLUSTERS, buildPath } from '../data/build';
-import { METHOD, MODEL_COMPARISON } from '../data/method';
+import { METHOD } from '../data/method';
 import { caseTier, sortWork } from '../lib/proof';
 
-// Two proofs, kept apart: software Artifact built, and the software platforms
-// our founder led before Artifact existed. Order comes from src/lib/proof.ts;
-// every case, including the team's prior work, is on /work.
+// The homepage answers one question in the first five seconds: what do these
+// people make? Websites and apps, and help finding you. Everything deeper —
+// SaaS products, AI tools, portals — is discovered from there, never required
+// to understand this page.
+
 const allWork = sortWork(await getCollection('work'));
-const artifactWork = allWork.filter((p) => !p.data.priorRole);
-const careerWork = allWork.filter((p) => caseTier(p) === 'founder');
+const artifactWork = allWork.filter((p) => !p.data.priorRole).slice(0, 3);
+const careerWork = allWork.filter((p) => caseTier(p) === 'founder').slice(0, 3);
 
-// Quotes about software lead the proof; other client quotes sit beneath it.
 const live = testimonials.filter((t) => t.approved);
-const softwareQuotes = live.filter((t) => t.kind === 'software');
-const otherQuotes = live.filter((t) => t.kind !== 'software');
 
-// The hero footage is illustrative: generated concept interfaces, not screens
-// from real products. The caption says so for the whole clip, so the hero never
-// implies a product, client or status that doesn't exist. The caption script
-// still follows this timeline, so real product scenes can be named again later.
+// The five product screens in the hero reel, with their real status. The
+// caption follows this timeline, so the reel never implies more than is true.
 const REEL = [
   { from: 0, name: 'Illustrative footage', status: 'Concept interfaces · not client or live products' },
 ];
 
-const MODEL_ROWS = MODEL_COMPARISON;
+// Section 2: what a visitor is here for, in their words.
+const NEEDS = [
+  {
+    id: 'websites',
+    label: 'A website',
+    body: 'A site that explains what you do, earns trust and is easy to update.',
+    examples: 'Business sites · Ecommerce · Content platforms',
+  },
+  {
+    id: 'web-apps',
+    label: 'A web app',
+    body: 'A portal, dashboard, internal tool or software product people log into.',
+    examples: 'Portals · Dashboards · SaaS · AI tools',
+  },
+  {
+    id: 'mobile-apps',
+    label: 'A mobile app',
+    body: 'Something on the phone, designed for one hand and small moments.',
+    examples: 'iOS & Android · Prototypes',
+  },
+  {
+    id: 'seo-ai-search',
+    label: 'To be found',
+    body: 'Search and AI assistants sending the right people your way.',
+    examples: 'SEO · AI search (GEO) · Analytics',
+  },
+];
 
-// What bespoke software is for — not results Artifact has measured. No
-// outcome figures appear until there are real ones to cite.
-const OUTCOMES = [
-  { title: 'Efficiency', body: 'Fewer workarounds, less manual effort, and teams back on the work they were hired to do.' },
-  { title: 'Revenue', body: 'New ways to earn from what your business already does well.' },
-  { title: 'Intelligence', body: "A clearer view of what's happening across the business, and what's likely next." },
-  { title: 'Differentiation', body: "Your way of doing things, built into software competitors can't buy." },
-  { title: 'Customer experience', body: 'Service that is consistent, responsive and unmistakably yours.' },
-  { title: 'Ownership', body: 'A business asset you control, extend and improve on your own terms.' },
+// Section 5: the part AI genuinely doesn't do for you.
+const NOT_AUTOMATIC = [
+  'Knowing what the business actually needs',
+  'Understanding the customer',
+  'Deciding what goes where, and what to cut',
+  'Making it work for everyone, including assistive technology',
+  'Design judgment, and a brand that looks like you',
+  'Knowing which shortcut becomes next year’s problem',
+];
+
+// Section 7 + 8: growth and support, in plain terms.
+const GROWTH = [
+  'Technical SEO: speed, structure, crawlability and the groundwork search needs',
+  'AI search (GEO): being understood and accurately described by AI assistants',
+  'Content built on the questions your buyers actually ask',
+  'Structured data, so machines read your pages correctly',
+  'Analytics that show what people do, not just how many arrived',
+];
+const SUPPORT = [
+  'Hosting, domains, backups and monitoring, in accounts you own',
+  'Updates and security, applied and tested',
+  'Improvements shipped in small, regular cycles',
+  'Search, analytics and reporting in plain language',
+  'A senior contact who knows your business, for the decisions in between',
 ];
 
 const serviceNode = {
@@ -50,69 +88,70 @@ const serviceNode = {
   image: `${SITE.url}${SITE.ogImage}`,
   parentOrganization: { '@id': `${SITE.url}/#organization` },
   areaServed: 'Worldwide',
-  slogan: 'Software built around your business. Not the other way around.',
+  slogan: 'We design, build and grow websites & apps.',
   description: SITE.description,
   knowsAbout: [
-    'Custom software development',
-    'Bespoke SaaS',
-    'SaaS product development',
-    'AI application development',
-    'Product strategy',
-    'UX research',
-    'Product design',
-    'Software engineering',
-    'Design systems',
+    'Web design',
+    'Web development',
+    'Web app development',
+    'Mobile app development',
+    'Ecommerce',
+    'SEO',
+    'AI search optimization',
+    'UX design',
     'Accessibility',
+    'Website hosting and support',
   ],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'What we build',
-    itemListElement: [
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Bespoke SaaS', url: `${SITE.url}/services/bespoke-saas` } },
-      ...BUILD_CLUSTERS.map((c) => ({
-        '@type': 'Offer',
-        itemOffered: { '@type': 'Service', name: c.label, description: c.summary },
-      })),
-    ],
+    name: 'What we do',
+    itemListElement: BUILD_CLUSTERS.map((c) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: c.label,
+        description: c.summary,
+        url: `${SITE.url}${buildPath(c.id)}`,
+      },
+    })),
   },
 };
 
 const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNode, websiteNode] };
 ---
 <BaseLayout
-  title="Artifact Digital — Bespoke SaaS & Custom Software Development"
-  description="Artifact Digital designs and builds bespoke SaaS for companies with problems off-the-shelf software can't solve: senior product thinking, design, engineering and AI in one team."
+  title="Web Design, Web Apps & Mobile Apps | Artifact Digital"
+  description="Artifact Digital designs, builds and grows websites, web apps and mobile apps for founders and growing businesses — strategy, UX, design, development, hosting, SEO and AI search."
   canonical="/"
   preloadImage="/brand_assets/hero-cinematic.webp"
   jsonLd={jsonLd}
 >
-  <!-- 1. BESPOKE SAAS -->
+  <!-- 1. HERO -->
   <section class="hero" id="home">
     <div class="container hero-inner">
       <div class="hero-copy">
         <div class="hero-meta">
-          <span class="eyebrow"><span class="eyebrow-dot"></span>The bespoke SaaS agency</span>
+          <span class="eyebrow"><span class="eyebrow-dot"></span>Digital studio · Founders & growing businesses</span>
         </div>
 
         <h1 class="hero-heading hero-heading--long">
-          <span class="line"><span class="reveal-word"><span>Software built</span></span></span>
-          <span class="line"><span class="reveal-word"><span>around your business.</span></span></span>
-          <span class="line italic"><span class="reveal-word"><span>Not the other</span></span></span>
-          <span class="line italic"><span class="reveal-word"><span>way around.</span></span></span>
+          <span class="line"><span class="reveal-word"><span>We design, build</span></span></span>
+          <span class="line"><span class="reveal-word"><span>and grow websites</span></span></span>
+          <span class="line italic"><span class="reveal-word"><span>&amp; apps.</span></span></span>
         </h1>
 
         <div class="hero-foot">
           <p class="hero-lede">
-            Artifact Digital designs and builds bespoke SaaS and custom software for
-            businesses. We pair experienced product, design and engineering people
-            with AI, so a small senior team can apply far more thinking and building
-            to your problem. The result is better software, built faster, around the
-            business itself.
+            Beautiful, accessible digital products for founders and growing businesses —
+            from strategy and UX to development, hosting, SEO and AI search.
           </p>
           <div class="hero-actions">
             <Button href={CTA.primary.href} label={CTA.primary.label} variant="primary" />
             <Button href={CTA.work.href} label={CTA.work.label} variant="secondary" />
           </div>
+          <ul class="hero-offer" aria-label="What we do">
+            {BUILD_CLUSTERS.map((c) => <li><a href={buildPath(c.id)}>{c.label}</a></li>)}
+          </ul>
         </div>
       </div>
 
@@ -138,166 +177,80 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
     </div>
   </section>
 
-  <!-- 2. THE PROBLEM -->
-  <section class="section intro" id="problem">
-    <div class="container intro-grid">
-      <div class="intro-label reveal">
-        <span class="section-tag"><span class="tag-dot"></span>The problem</span>
-      </div>
-      <div class="intro-body">
-        <h2 class="intro-heading">
-          <span class="reveal-line"><span>Your business shouldn't</span></span>
-          <span class="reveal-line"><span>have to fit inside</span></span>
-          <span class="reveal-line"><span><em>somebody else's</em> software.</span></span>
-        </h2>
-        <p class="intro-copy reveal">
-          Off-the-shelf software is built for the average company, so every company
-          bends to fit it: the workaround everyone knows and nobody wrote down, the
-          spreadsheet that quietly became mission-critical, a dozen subscriptions
-          stitched together, and a team trained to think the way a vendor's product
-          thinks. The parts of your business that make you different are exactly the
-          parts generic software can't hold.
-        </p>
-      </div>
+  <!-- 2. WHAT DO YOU NEED? -->
+  <section class="section needs" id="what-you-need" aria-labelledby="needs-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Where to start</span>
+        <h2 class="section-heading reveal-line" id="needs-heading"><span>What do you need?</span></h2>
+      </header>
+      <ul class="need-grid">
+        {NEEDS.map((n, i) => (
+          <li class="reveal-card">
+            <a class="need-card" href={buildPath(n.id)}>
+              <span class="need-card__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="need-card__title">{n.label}</h3>
+              <p class="need-card__body">{n.body}</p>
+              <span class="need-card__examples">{n.examples}</span>
+              <span class="need-card__more" aria-hidden="true">Start here →</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <a class="need-wide reveal-card" href={buildPath('hosting-support')}>
+        <span class="need-wide__copy">
+          <strong>Already have a site or app?</strong> We host, maintain, improve and grow what
+          you already run — the outside digital team for businesses that don’t have one.
+        </span>
+        <span class="need-wide__more" aria-hidden="true">Hosting &amp; support →</span>
+      </a>
     </div>
   </section>
 
-  <!-- 3. WHY NOW -->
-  <section class="speed-module speed-module--reverse" aria-labelledby="why-now-heading">
-    <div class="container speed-module__inner">
-      <div class="speed-module__copy">
-        <span class="section-tag"><span class="tag-dot"></span>Why now</span>
-        <h2 class="speed-module__heading" id="why-now-heading">
-          AI changed the economics of <em>custom software.</em>
-        </h2>
-        <p class="speed-module__lede">
-          Building software around one company used to take the kind of team and
-          timeline few businesses could justify, so most adapted to generic tools and
-          worked around the gaps. That has changed. The thinking and building an
-          experienced team can apply to a problem has multiplied, and software designed
-          around how your business actually works is now a realistic investment.
-        </p>
-        <ul class="speed-module__points">
-          <li>Shaped around your workflows, your language and your customers</li>
-          <li>More options explored before you commit to one</li>
-          <li>Software that keeps improving as the business changes</li>
-        </ul>
-        <div class="speed-module__actions">
-          <Button href="/how-we-work" label="How we work" variant="primary" />
-          <Button href="/insights/bespoke-saas" label="Read the thinking" variant="secondary" />
-        </div>
-      </div>
-
-      <div class="speed-module__media">
-        <img
-          class="speed-module__img speed-module__img--main"
-          src="/brand_assets/insights/bespoke-module.webp"
-          srcset="/brand_assets/insights/bespoke-module-480w.webp 480w, /brand_assets/insights/bespoke-module.webp 634w"
-          sizes="(max-width: 900px) 100vw, 560px"
-          alt="Modular blocks locking together into a single system"
-          width="634" height="473" loading="lazy" decoding="async"
-        />
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. THE ARTIFACT MODEL -->
-  <section class="section model" id="model" aria-labelledby="model-heading">
+  <!-- 3. WHY ARTIFACT -->
+  <section class="section model" id="why-artifact" aria-labelledby="why-heading">
     <div class="container model-grid">
       <div class="model-copy">
-        <span class="section-tag reveal"><span class="tag-dot"></span>The Artifact model</span>
-        <h2 class="model-heading reveal" id="model-heading">More thinking. More building. <em>Less overhead.</em></h2>
+        <span class="section-tag reveal"><span class="tag-dot"></span>Why Artifact</span>
+        <h2 class="model-heading reveal" id="why-heading">Big-agency thinking. <em>Small senior team.</em></h2>
         <p class="model-lede reveal">
-          Agencies have always grown what they can do by adding people. That model
-          has produced great work, and it's where our team comes from. Artifact is
-          built on a different equation: experienced people working with AI to explore
-          more possibilities, prototype more ideas, test more approaches and iterate
-          further than team size alone allows. AI isn't what we sell. It's what lets
-          a senior team put far more into the work that matters.
+          Our team has designed and built digital platforms, products and design systems for
+          some of the largest organizations in the world. Artifact brings that level of
+          thinking to founders and growing businesses — without the layers, the handoffs or
+          the overhead that usually come with it.
         </p>
+        <p class="model-lede reveal">
+          You work directly with senior people. The ones who scope the work are the ones who
+          do it.
+        </p>
+        <p class="reveal"><a class="home-more__link" href="/why-artifact">Why Artifact<span aria-hidden="true"> →</span></a></p>
       </div>
-      <div class="model-table-wrap reveal">
-        <table class="model-table">
-          <caption class="sr-only">How the traditional agency model and the Artifact model add capability</caption>
-          <thead>
-            <tr><th scope="col"><span class="sr-only">Aspect</span></th><th scope="col">Traditional agency model</th><th scope="col">The Artifact model</th></tr>
-          </thead>
-          <tbody>
-            {MODEL_ROWS.map(([label, before, after]) => (
-              <tr><th scope="row">{label}</th><td data-label="Traditional">{before}</td><td data-label="Artifact">{after}</td></tr>
-            ))}
-          </tbody>
-        </table>
+      <div class="model-pillars reveal">
+        <ul class="why-list">
+          <li><strong>Strategy first.</strong> We work out what you actually need before designing anything.</li>
+          <li><strong>Accessible by default.</strong> Built to work for everyone, on every device, from the start.</li>
+          <li><strong>AI without the slop.</strong> AI for speed, experienced people for judgment.</li>
+          <li><strong>Senior team.</strong> No juniors learning on your budget, no account layer in between.</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- 5. WHAT WE BUILD -->
-  <section class="section services" id="what-we-build">
-    <div class="container">
-      <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>What we build</span>
-        <h2 class="section-heading reveal-line"><span>Software that fits</span></h2>
-      </header>
-      <p class="home-lede reveal">
-        Every company has workflows, customers, data and know-how no generic platform
-        was built for. This is what becomes possible when the software is designed
-        around them.
-      </p>
-
-      <ol class="service-list">
-        {BUILD_CLUSTERS.map((c, i) => (
-          <li class="service-row reveal-row">
-            <a class="service-row__link" href={buildPath(c.id)} aria-label={c.label}></a>
-            <span class="service-row__num">{String(i + 1).padStart(2, '0')}</span>
-            <div class="service-row__body">
-              <h3 class="service-row__title">{c.label}</h3>
-              <p class="service-row__desc">{c.summary}</p>
-            </div>
-            <ul class="service-row__tags">{c.examples.slice(0, 3).map((e) => <li>{e}</li>)}</ul>
-          </li>
-        ))}
-      </ol>
-      <p class="home-more reveal"><a class="home-more__link" href="/services/bespoke-saas">Bespoke SaaS, explained<span aria-hidden="true"> →</span></a></p>
-    </div>
-  </section>
-
-  <!-- 6. HOW WE WORK -->
-  <section class="section approach" id="approach">
-    <div class="container">
-      <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>How we work</span>
-        <h2 class="section-heading reveal-line"><span>Learn before you commit</span></h2>
-      </header>
-
-      <ol class="approach-grid approach-grid--five">
-        {METHOD.map((m, i) => (
-          <li class="approach-card reveal-card">
-            <span class="approach-card__num">{String(i + 1).padStart(2, '0')}</span>
-            <h3>{m.title}</h3>
-            <p>{m.body}</p>
-          </li>
-        ))}
-      </ol>
-      <p class="approach-more reveal"><a href="/how-we-work">How we work, in full<span aria-hidden="true"> →</span></a></p>
-    </div>
-  </section>
-
-  <!-- 7. PROOF -->
+  <!-- 4. WORK -->
   <section class="section work" id="work">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>Proof</span>
-        <h2 class="section-heading reveal-line"><span>Software we've built</span></h2>
+        <span class="section-tag reveal"><span class="tag-dot"></span>Work</span>
+        <h2 class="section-heading reveal-line"><span>What we’ve built</span></h2>
       </header>
 
       <div class="project-grid project-grid--trio">
         {artifactWork.map((p) => <WorkCard entry={p} showTier />)}
       </div>
 
-      {softwareQuotes.length > 0 && (
+      {live.length > 0 && (
         <div class="testimonial-grid">
-          {softwareQuotes.map((t) => (
+          {live.map((t) => (
             <figure class="testimonial reveal-card">
               <blockquote>{t.quote}</blockquote>
               <figcaption>
@@ -316,81 +269,158 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
     <div class="container">
       <header class="section-head">
         <span class="section-tag reveal"><span class="tag-dot"></span>Before Artifact</span>
-        <h2 class="section-heading reveal-line"><span>Our founder’s work</span></h2>
+        <h2 class="section-heading reveal-line"><span>Where the experience comes from</span></h2>
       </header>
       <p class="work-attribution reveal">
-        Software platforms our founder, Britt Midgette, led in director roles at
-        previous agencies, before Artifact existed. They were not Artifact engagements.
-        Client names, branding and proprietary assets have been removed, while the
-        thinking and design approach behind the work are described as they happened.
+        Platforms our founder led in director roles at previous agencies, before Artifact
+        existed. They were not Artifact engagements. Client names, branding and proprietary
+        assets have been removed, while the thinking behind the work is described as it happened.
       </p>
 
       <div class="project-grid project-grid--trio">
-        {careerWork.map((p) => <WorkCard entry={p} />)}
+        {careerWork.map((p) => <WorkCard entry={p} showTier />)}
       </div>
       <p class="home-more reveal"><a class="home-more__link" href="/work">See all work<span aria-hidden="true"> →</span></a></p>
     </div>
   </section>
 
-  {otherQuotes.length > 0 && (
-    <section class="section clients" aria-labelledby="clients-heading">
-      <div class="container">
-        <header class="section-head">
-          <span class="section-tag reveal"><span class="tag-dot"></span>Artifact's clients</span>
-          <h2 class="section-heading reveal-line" id="clients-heading"><span>In their words</span></h2>
-        </header>
-        <div class="testimonial-grid">
-          {otherQuotes.map((t) => (
-            <figure class="testimonial reveal-card">
-              <blockquote>{t.quote}</blockquote>
-              <figcaption>
-                <span class="testimonial__role">{t.name}</span>
-                <span class="testimonial__sector">{t.role}</span>
-                {t.context && <span class="testimonial__context">{t.context}</span>}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- 8. BUSINESS OUTCOMES -->
-  <section class="section outcomes" aria-labelledby="outcomes-heading">
+  <!-- 5. AI WITHOUT THE SLOP -->
+  <section class="section slop" id="ai" aria-labelledby="slop-heading">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>Outcomes</span>
-        <h2 class="section-heading reveal-line" id="outcomes-heading"><span>What bespoke software is for</span></h2>
+        <span class="section-tag reveal"><span class="tag-dot"></span>AI without the slop</span>
+        <h2 class="slop-heading reveal-line" id="slop-heading">
+          <span>AI made building faster.</span>
+          <span class="italic">It didn’t make good thinking automatic.</span>
+        </h2>
       </header>
-      <ul class="outcome-grid">
-        {OUTCOMES.map((o) => (
-          <li class="outcome reveal-card">
-            <h3>{o.title}</h3>
-            <p>{o.body}</p>
-          </li>
-        ))}
-      </ul>
+      <div class="slop-grid">
+        <div class="slop-copy">
+          <p class="reveal">
+            Anyone can prompt a website into existence now. That doesn’t mean it has the right
+            strategy, structure, content, accessibility or technology behind it — and the
+            difference shows up in whether it actually works.
+          </p>
+          <p class="reveal">
+            We use AI aggressively, because it lets a small senior team do far more: explore
+            more directions, build faster, test more, ship sooner. Then experienced people
+            decide what’s right, which is the part that never became automatic.
+          </p>
+          <p class="slop-line reveal">AI helps us move faster. Experience tells us where to go.</p>
+          <p class="reveal"><a class="home-more__link" href="/why-artifact#ai-without-the-slop">Our position on AI<span aria-hidden="true"> →</span></a></p>
+        </div>
+        <div class="slop-list-wrap reveal">
+          <h3 class="slop-list__title">What AI still doesn’t do for you</h3>
+          <ul class="slop-list">
+            {NOT_AUTOMATIC.map((n) => <li>{n}</li>)}
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- 9. CTA -->
+  <!-- 6. HOW WE WORK -->
+  <section class="section approach" id="approach">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>How we work</span>
+        <h2 class="section-heading reveal-line"><span>Five steps, no mystery</span></h2>
+      </header>
+
+      <ol class="approach-grid approach-grid--five">
+        {METHOD.map((m, i) => (
+          <li class="approach-card reveal-card">
+            <span class="approach-card__num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{m.title}</h3>
+            <p>{m.body}</p>
+          </li>
+        ))}
+      </ol>
+      <p class="approach-more reveal"><a href="/how-we-work">How we work, in full<span aria-hidden="true"> →</span></a></p>
+    </div>
+  </section>
+
+  <!-- 7. SEO + GEO -->
+  <section class="speed-module" id="growth" aria-labelledby="growth-heading">
+    <div class="container speed-module__inner">
+      <div class="speed-module__copy">
+        <span class="section-tag"><span class="tag-dot"></span>SEO + AI search</span>
+        <h2 class="speed-module__heading" id="growth-heading">
+          Build something great. <em>Then make sure people can find it.</em>
+        </h2>
+        <p class="speed-module__lede">
+          People still search on Google, and a growing number now ask ChatGPT, Gemini or
+          Perplexity instead. Both work the same way underneath: they reward sites that are
+          fast, clearly structured and genuinely useful. That’s the work.
+        </p>
+        <ul class="speed-module__points">
+          {GROWTH.map((g) => <li>{g}</li>)}
+        </ul>
+        <p class="growth-note">
+          What we won’t do is promise you a position. Nobody controls those results — we
+          improve what’s actually in your control, and show you what changed.
+        </p>
+        <div class="speed-module__actions">
+          <Button href="/services/seo-ai-search" label="SEO + AI search" variant="primary" />
+          <Button href={CTA.audit.href} label={CTA.audit.label} variant="secondary" />
+        </div>
+      </div>
+
+      <div class="speed-module__media">
+        <img
+          class="speed-module__img speed-module__img--main"
+          src="/brand_assets/insights/bespoke-module.webp"
+          srcset="/brand_assets/insights/bespoke-module-480w.webp 480w, /brand_assets/insights/bespoke-module.webp 634w"
+          sizes="(max-width: 900px) 100vw, 560px"
+          alt="Modular blocks locking together into a single system"
+          width="634" height="473" loading="lazy" decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. YOUR DIGITAL TEAM -->
+  <section class="section digital-team" id="support" aria-labelledby="support-heading">
+    <div class="container digital-team__grid">
+      <div>
+        <span class="section-tag reveal"><span class="tag-dot"></span>Hosting &amp; support</span>
+        <h2 class="section-heading reveal-line" id="support-heading">
+          <span>You don’t need an internal</span>
+          <span>digital team. <em>We can be yours.</em></span>
+        </h2>
+      </div>
+      <div>
+        <p class="digital-team__lede reveal">
+          Most digital work is sold as a project with an end date, and then nothing happens
+          for two years. We stay on where it helps, so what we built keeps getting better
+          instead of quietly falling behind.
+        </p>
+        <ul class="ticklist">
+          {SUPPORT.map((s) => <li class="reveal">{s}</li>)}
+        </ul>
+        <p class="reveal" style="margin-top: 1.75rem;">
+          <a class="home-more__link" href="/services/hosting-support">Hosting &amp; support<span aria-hidden="true"> →</span></a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. FINAL CTA -->
   <section class="section contact" id="contact">
     <div class="container contact-inner">
-      <span class="section-tag reveal"><span class="tag-dot"></span>Build something</span>
+      <span class="section-tag reveal"><span class="tag-dot"></span>Start a project</span>
 
       <h2 class="contact-heading">
-        <span class="reveal-line"><span>What could your company</span></span>
-        <span class="reveal-line"><span>do if the software were</span></span>
-        <span class="reveal-line"><span><em>built around you?</em></span></span>
+        <span class="reveal-line"><span>Have something</span></span>
+        <span class="reveal-line"><span><em>you want to build?</em></span></span>
       </h2>
       <p class="contact-sub reveal">
-        Tell us about the workflow you've outgrown, the spreadsheet running a critical
-        process, or the product you haven't been able to build. We'll tell you honestly
-        whether bespoke software is the answer, and what the first few weeks would look like.
+        Tell us what you’re trying to create, fix or grow. We’ll help you figure out the
+        smartest way to get it live — including when the simplest option is the right one.
       </p>
 
       <div class="hero-actions reveal" style="margin: 2rem 0 2.5rem;">
-        <Button href={CTA.primary.href} label={CTA.primary.label} variant="primary" />
+        <Button href={CTA.primary.href} label="Tell Us About Your Project" variant="primary" />
         <Button href={CTA.work.href} label={CTA.work.label} variant="secondary" />
       </div>
 

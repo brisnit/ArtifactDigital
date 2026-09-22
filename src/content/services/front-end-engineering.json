@@ -3,11 +3,16 @@
   "navLabel": "Front-End Engineering",
   "metaTitle": "Front-End Engineering Services · Artifact Digital",
   "description": "Front-end engineering that protects the design intent — fast, accessible, component-driven interfaces for SaaS platforms, applications and websites, built by the team that designed them.",
-  "order": 8,
+  "order": 18,
   "eyebrow": "Capability · Front-End Engineering",
   "heroTitleLines": [
-    { "text": "Where the design" },
-    { "text": "survives or dies.", "italic": true }
+    {
+      "text": "Where the design"
+    },
+    {
+      "text": "survives or dies.",
+      "italic": true
+    }
   ],
   "lede": "The front end is the last mile between well-designed software and the thing people actually touch. It's where intent gets protected or quietly lost, so we treat it as craft, not translation.",
   "summary": "Fast, accessible, component-driven interfaces that protect the design intent.",
@@ -40,9 +45,18 @@
     }
   ],
   "inMethod": [
-    { "stage": "Prototype", "body": "Working prototypes are built in real components, so the interactions people test are the ones that ship." },
-    { "stage": "Build", "body": "The component system, performance budgets and accessibility are set early and held, with design and engineering in the same loop." },
-    { "stage": "Evolve", "body": "A documented component system lets the fiftieth screen feel as considered as the first, whoever builds it." }
+    {
+      "stage": "Design",
+      "body": "Working prototypes are built in real components, so the interactions people test are the ones that ship."
+    },
+    {
+      "stage": "Build",
+      "body": "The component system, performance budgets and accessibility are set early and held, with design and engineering in the same loop."
+    },
+    {
+      "stage": "Grow",
+      "body": "A documented component system lets the fiftieth screen feel as considered as the first, whoever builds it."
+    }
   ],
   "deliverables": [
     "Production front-end code that matches the design intent, not an approximation of it",
@@ -59,14 +73,40 @@
     "Anyone inheriting a front-end codebase that's become expensive to change"
   ],
   "faq": [
-    { "q": "Do you work with our existing engineering team?", "a": "Frequently. We often act as the senior front-end layer — setting the patterns, building the hard parts, and reviewing — while your team owns the rest. We're just as happy handing off cleanly as staying on. What we won't do is build something only we can maintain." },
-    { "q": "What do you build with?", "a": "Whatever genuinely fits — modern component frameworks, static site generators, or the front end of an enterprise CMS. The right answer depends on your content, your team's skills, and your roadmap. We're happy to explain the tradeoffs and let you make the call." },
-    { "q": "Can you just build a design someone else made?", "a": "Yes, and we'll do it faithfully. We'll also tell you where the design will break under real data, edge cases, or small screens — because a comp can't answer those questions and production will. Most clients find that the useful part." },
-    { "q": "How does AI-assisted development fit in?", "a": "It removes repetitive work and lets us explore and test more before committing. The standards don't move: the same component system, the same performance and accessibility budgets, the same critical review. AI is leverage, and leverage only helps if you're pointed the right way." }
+    {
+      "q": "Do you work with our existing engineering team?",
+      "a": "Frequently. We often act as the senior front-end layer — setting the patterns, building the hard parts, and reviewing — while your team owns the rest. We're just as happy handing off cleanly as staying on. What we won't do is build something only we can maintain."
+    },
+    {
+      "q": "What do you build with?",
+      "a": "Whatever genuinely fits — modern component frameworks, static site generators, or the front end of an enterprise CMS. The right answer depends on your content, your team's skills, and your roadmap. We're happy to explain the tradeoffs and let you make the call."
+    },
+    {
+      "q": "Can you just build a design someone else made?",
+      "a": "Yes, and we'll do it faithfully. We'll also tell you where the design will break under real data, edge cases, or small screens — because a comp can't answer those questions and production will. Most clients find that the useful part."
+    },
+    {
+      "q": "How does AI-assisted development fit in?",
+      "a": "It removes repetitive work and lets us explore and test more before committing. The standards don't move: the same component system, the same performance and accessibility budgets, the same critical review. AI is leverage, and leverage only helps if you're pointed the right way."
+    }
   ],
-  "relatedTags": ["Web", "UX/UI", "Design"],
-  "relatedServices": ["digital-product-engineering", "ux-ui-design", "accessibility"],
-  "buildsWith": ["serve-your-customers", "build-a-product-to-sell"],
-  "cta": { "primary": "build", "secondary": "how-we-work" },
+  "relatedTags": [
+    "Web",
+    "UX/UI",
+    "Design"
+  ],
+  "relatedServices": [
+    "web-apps",
+    "ux-ui-design",
+    "accessibility"
+  ],
+  "buildsWith": [
+    "websites",
+    "web-apps"
+  ],
+  "cta": {
+    "primary": "build",
+    "secondary": "how-we-work"
+  },
   "ctaHeading": "Want a build that protects the design instead of diluting it?"
 }

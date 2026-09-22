@@ -1,0 +1,91 @@
+{
+  "title": "SEO & AI Search Optimization",
+  "navLabel": "SEO + AI search",
+  "metaTitle": "SEO & AI Search Optimization (GEO) · Artifact Digital",
+  "description": "SEO and AI search optimization for growing businesses — technical SEO, content structure, structured data, analytics and visibility in AI assistants like ChatGPT, Gemini and Perplexity.",
+  "order": 4,
+  "eyebrow": "What we do · SEO + AI search",
+  "heroTitleLines": [
+    { "text": "Getting online isn't enough." },
+    { "text": "We help people find you.", "italic": true }
+  ],
+  "lede": "Traditional search still matters, and a growing share of people now ask an AI assistant instead. We work on both: the technical groundwork, the content structure and the analytics to see what's actually working.",
+  "summary": "SEO, AI search visibility (GEO), analytics and conversion.",
+  "intro": [
+    "For twenty years, being findable meant ranking on Google. That hasn't stopped mattering, but it's no longer the whole picture. People now ask ChatGPT, Gemini, Perplexity and the AI summaries inside search engines for a recommendation, and those systems answer by reading and repeating what they can understand.",
+    "That's what people mean by GEO — generative engine optimization. It's a new phrase for a familiar job: making sure a machine reading your site comes away with a clear, accurate, quotable understanding of what you do, who you serve and why you're credible.",
+    "The good news is that most of the work helps both. Clean structure, fast pages, plain language, real expertise and honest answers to the questions people actually ask are what both a search engine and an assistant reward."
+  ],
+  "sections": [
+    {
+      "heading": "The technical groundwork",
+      "body": [
+        "Plenty of sites are invisible for boring reasons: pages that can't be crawled, headings that don't describe anything, slow loading on a phone, missing structured data, duplicate URLs, a sitemap nobody updated since launch.",
+        "We fix that layer first, because content strategy on a broken foundation is wasted money. It's also the part that quietly improves conversion, since fast, well-structured pages are easier for people to use too."
+      ]
+    },
+    {
+      "heading": "Content people and machines both understand",
+      "body": [
+        "Then we work on what your site actually says. What questions do buyers ask before they're ready? Which pages should exist, and which three should be merged into one good one? Where is your real expertise hiding in a PDF nobody can read?",
+        "We structure answers so a person can skim them and an assistant can quote them: clear headings, direct answers near the top, specifics instead of adjectives, and schema markup that tells machines what your pages are."
+      ]
+    },
+    {
+      "heading": "Measuring what changed",
+      "body": [
+        "We set up analytics so you can see which pages bring people in, what they do next, and where they give up. For AI search we track how assistants describe your business and whether they cite you at all.",
+        "What we won't do is promise a position. Nobody controls Google's results or what a model says, and anyone guaranteeing a ranking is selling you something they can't deliver. We'll show you what moved, what didn't, and what to do next."
+      ]
+    }
+  ],
+  "inMethod": [
+    { "stage": "Understand", "body": "How people currently find you, what they search for, and how AI assistants describe your business today." },
+    { "stage": "Design", "body": "The pages worth having, the questions they answer, and the structure that makes them easy to read and to quote." },
+    { "stage": "Build", "body": "Technical fixes, structured data, performance and accessibility work, and the content itself." },
+    { "stage": "Launch", "body": "Analytics, search consoles and tracking in place so results are visible from the start." },
+    { "stage": "Grow", "body": "A regular cycle of measuring, improving and adding — search visibility compounds or it decays." }
+  ],
+  "deliverables": [
+    "A technical audit of what's holding your site back, in priority order",
+    "Fixes to structure, speed, metadata, schema and crawlability",
+    "A content plan built on the questions your buyers actually ask",
+    "Structured data that describes your business accurately to machines",
+    "Analytics and search console setup, with a report you can read",
+    "A view of how AI assistants currently describe you, and what improves it"
+  ],
+  "whoFor": [
+    "Businesses with a decent site that almost nobody finds",
+    "Founders whose competitors keep showing up in AI answers instead of them",
+    "Companies who've been sold SEO before and have nothing to show for it",
+    "Teams getting traffic that never turns into enquiries"
+  ],
+  "faq": [
+    {
+      "q": "What is GEO, in plain English?",
+      "a": "It's making sure AI assistants can find, understand and accurately describe your business when someone asks them for a recommendation. The work overlaps heavily with good SEO: clear structure, fast pages, plain language and genuine expertise published where a machine can read it."
+    },
+    {
+      "q": "Can you guarantee we'll rank first?",
+      "a": "No, and neither can anyone else. We can improve the things that are within your control — the technical foundation, the structure, the content, the credibility signals — and show you honestly what changed."
+    },
+    {
+      "q": "How long before we see results?",
+      "a": "Technical fixes can show up in weeks. Content and authority usually take months, and the compounding kind takes longer still. We'll tell you which category the work you need falls into before you start."
+    },
+    {
+      "q": "Do we need this if you built our site?",
+      "a": "Every site we build ships with the technical groundwork in place. This service is the ongoing part: content, measurement and improvement after launch, which is where most of the visibility actually comes from."
+    },
+    {
+      "q": "Do you write the content too?",
+      "a": "We can, working from your expertise, or we can give your team the structure, briefs and guidance to write it. What we won't do is publish generated filler, which is exactly what search engines and assistants have learned to ignore."
+    }
+  ],
+  "relatedTags": ["Strategy", "Web", "Research"],
+  "relatedServices": ["enterprise-cms", "experience-audits", "digital-strategy"],
+  "buildsWith": ["seo-ai-search", "hosting-support"],
+  "cta": { "primary": "audit", "secondary": "what-we-build" },
+  "ctaHeading": "Built something good that nobody finds?",
+  "ctaSub": "Tell us your site and what you'd like to be found for. We'll tell you what's holding it back, in plain language."
+}

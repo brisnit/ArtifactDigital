@@ -1,13 +1,18 @@
 {
   "title": "Digital & Product Strategy",
-  "navLabel": "Digital & Product Strategy",
+  "navLabel": "Strategy",
   "metaTitle": "Digital & Product Strategy Consulting · Artifact Digital",
   "description": "Digital and product strategy that finds where purpose-built software can create real business leverage — then decides what to build first, what to defer, and why.",
-  "order": 1,
+  "order": 11,
   "eyebrow": "Capability · Digital & Product Strategy",
   "heroTitleLines": [
-    { "text": "Find the leverage" },
-    { "text": "before you build.", "italic": true }
+    {
+      "text": "Find the leverage"
+    },
+    {
+      "text": "before you build.",
+      "italic": true
+    }
   ],
   "lede": "Strategy is how we identify where purpose-built software can create meaningful business leverage — the workflow, the knowledge, the customer experience or the product opportunity worth building for — and turn it into choices a team can act on.",
   "summary": "Where purpose-built software creates business leverage, and what to build first.",
@@ -47,10 +52,22 @@
     }
   ],
   "inMethod": [
-    { "stage": "Understand", "body": "We find where software can create real leverage — the workflow that costs the most, the knowledge nobody's tools use, the product no one has built yet — and what has to be true for it to pay off." },
-    { "stage": "Prototype", "body": "Strategy gets tested as working software, not defended in a deck. Early prototypes show whether the opportunity holds up before a major budget is committed." },
-    { "stage": "Learn", "body": "We tie what the software should achieve to measures leadership already cares about, and read real usage against them." },
-    { "stage": "Evolve", "body": "The roadmap stays a set of deliberate choices — what's next, what waits, what stops — as the business and the software change." }
+    {
+      "stage": "Understand",
+      "body": "We find where software can create real leverage — the workflow that costs the most, the knowledge nobody's tools use, the product no one has built yet — and what has to be true for it to pay off."
+    },
+    {
+      "stage": "Design",
+      "body": "Strategy gets tested as working software, not defended in a deck. Early prototypes show whether the opportunity holds up before a major budget is committed."
+    },
+    {
+      "stage": "Launch",
+      "body": "We tie what the software should achieve to measures leadership already cares about, and read real usage against them."
+    },
+    {
+      "stage": "Grow",
+      "body": "The roadmap stays a set of deliberate choices — what's next, what waits, what stops — as the business and the software change."
+    }
   ],
   "deliverables": [
     "A clear view of where software can create leverage, and what it must achieve for the business",
@@ -67,14 +84,39 @@
     "Brands with strong equity that hasn't yet been carried into their software"
   ],
   "faq": [
-    { "q": "How is this different from a marketing or SEO strategy?", "a": "Marketing strategy is about how you reach and persuade an audience. Digital and product strategy is about what an organization builds and delivers — the software and experiences people actually use — and how that serves the business. Marketing and SEO are inputs to it, not substitutes for it." },
-    { "q": "Do we need to have our goals figured out before we start?", "a": "No. Half the value of the work is helping leadership get honest and specific about goals. Most teams have goals — they just haven't reconciled the competing ones or made the tradeoffs explicit. That reconciliation is part of the work." },
-    { "q": "How long does strategy work take?", "a": "Long enough to make the hard decisions, and no longer. Scope depends on the size of the organization and how much research already exists, and we'll propose a timeline once we understand it. Strategy work that drags on for months usually means the hard decisions are being avoided." },
-    { "q": "What happens after the strategy is delivered?", "a": "It keeps going. Because the same senior team carries it into research, design and engineering, there's no handoff cliff — the strategy usually becomes the first prototype. We can also support your internal teams, or hand off a plan clear enough that someone else can run it." }
+    {
+      "q": "How is this different from a marketing or SEO strategy?",
+      "a": "Marketing strategy is about how you reach and persuade an audience. Digital and product strategy is about what an organization builds and delivers — the software and experiences people actually use — and how that serves the business. Marketing and SEO are inputs to it, not substitutes for it."
+    },
+    {
+      "q": "Do we need to have our goals figured out before we start?",
+      "a": "No. Half the value of the work is helping leadership get honest and specific about goals. Most teams have goals — they just haven't reconciled the competing ones or made the tradeoffs explicit. That reconciliation is part of the work."
+    },
+    {
+      "q": "How long does strategy work take?",
+      "a": "Long enough to make the hard decisions, and no longer. Scope depends on the size of the organization and how much research already exists, and we'll propose a timeline once we understand it. Strategy work that drags on for months usually means the hard decisions are being avoided."
+    },
+    {
+      "q": "What happens after the strategy is delivered?",
+      "a": "It keeps going. Because the same senior team carries it into research, design and engineering, there's no handoff cliff — the strategy usually becomes the first prototype. We can also support your internal teams, or hand off a plan clear enough that someone else can run it."
+    }
   ],
-  "relatedTags": ["Strategy", "UX/UI", "Web"],
-  "relatedServices": ["ux-strategy", "ux-research", "experience-audits"],
-  "buildsWith": ["run-the-business", "see-whats-coming", "build-a-product-to-sell"],
-  "cta": { "primary": "problem", "secondary": "what-we-build" },
+  "relatedTags": [
+    "Strategy",
+    "UX/UI",
+    "Web"
+  ],
+  "relatedServices": [
+    "ux-strategy",
+    "ux-research",
+    "experience-audits"
+  ],
+  "buildsWith": [
+    "web-apps"
+  ],
+  "cta": {
+    "primary": "problem",
+    "secondary": "what-we-build"
+  },
   "ctaHeading": "Not sure where software could make the biggest difference?"
 }

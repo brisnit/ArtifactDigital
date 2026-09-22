@@ -1,11 +1,11 @@
 {
-  "title": "Bespoke SaaS",
-  "navLabel": "Bespoke SaaS",
-  "metaTitle": "Bespoke SaaS & Custom Software Development · Artifact Digital",
+  "title": "Custom Software & SaaS Products",
+  "navLabel": "Custom software",
+  "metaTitle": "Custom Software & SaaS Product Development · Artifact Digital",
   "description": "Bespoke SaaS: software designed around how your business works, built by a senior team using AI to apply far more thinking and building to the problem — and owned by you, not rented.",
-  "order": 0,
-  "flagship": true,
-  "eyebrow": "What we build · Bespoke SaaS",
+  "order": 10,
+  "flagship": false,
+  "eyebrow": "What we do · Web apps",
   "heroTitleLines": [
     {
       "text": "Stop renting software"
@@ -16,7 +16,7 @@
     }
   ],
   "lede": "For decades, businesses bought software built for millions of companies and spent years bending it to fit one. AI changed the economics. Now software can be designed around the way you work — and you can own it.",
-  "summary": "Custom software designed around your business, with AI working inside it where it helps — owned, not rented.",
+  "summary": "Software built around your business, when what you can buy no longer fits.",
   "intro": [
     "Most companies don't run on one system. They run on a dozen — sales in one platform, finance in three, a spreadsheet that quietly became mission-critical, and a stack of integrations holding it all together. Every one of those tools was built for millions of other companies, and every one asks your business to conform to it. You pay for that compromise every year, per seat.",
     "Bespoke SaaS is the alternative: software designed around your business, your people and your customers, with AI working inside it where it genuinely helps. Not a chatbot bolted into a corner — intelligence built into the workflows, decisions and processes your organization actually runs on.",
@@ -91,14 +91,16 @@
     "Engineering"
   ],
   "relatedServices": [
-    "digital-strategy",
+    "web-apps",
     "product-design",
-    "ai-experience-design",
-    "digital-product-engineering"
+    "ai-experience-design"
   ],
   "ctaHeading": "Tired of renting a compromise? Let's build something you own.",
   "cta": {
     "primary": "build",
     "secondary": "work"
-  }
+  },
+  "buildsWith": [
+    "web-apps"
+  ]
 }

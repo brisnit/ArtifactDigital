@@ -3,11 +3,16 @@
   "navLabel": "Back-End Engineering",
   "metaTitle": "Back-End Engineering Services · Artifact Digital",
   "description": "Data models, APIs, auth, payments and integrations built to be correct under load — the invisible half of software that decides whether the visible half can be trusted.",
-  "order": 9,
+  "order": 19,
   "eyebrow": "Capability · Back-End Engineering",
   "heroTitleLines": [
-    { "text": "Nobody sees it." },
-    { "text": "Everybody feels it.", "italic": true }
+    {
+      "text": "Nobody sees it."
+    },
+    {
+      "text": "Everybody feels it.",
+      "italic": true
+    }
   ],
   "lede": "The back end is the half of your software no user will ever look at and every user will judge you by. When it's right, the experience feels solid. When it's wrong, no amount of design will save it.",
   "summary": "Data models, APIs, auth, payments and integrations, built to be correct.",
@@ -48,9 +53,18 @@
     }
   ],
   "inMethod": [
-    { "stage": "Understand", "body": "We model the data and the seams first — entities, relationships, source of truth — because everything downstream inherits those decisions." },
-    { "stage": "Build", "body": "Correctness under concurrency, auth and permissions, money, time and integrations: the things that must not be wrong get built first and deliberately." },
-    { "stage": "Evolve", "body": "Migrations, observability and documentation aimed at whoever inherits the system. If only we can run it, we've failed." }
+    {
+      "stage": "Understand",
+      "body": "We model the data and the seams first — entities, relationships, source of truth — because everything downstream inherits those decisions."
+    },
+    {
+      "stage": "Build",
+      "body": "Correctness under concurrency, auth and permissions, money, time and integrations: the things that must not be wrong get built first and deliberately."
+    },
+    {
+      "stage": "Grow",
+      "body": "Migrations, observability and documentation aimed at whoever inherits the system. If only we can run it, we've failed."
+    }
   ],
   "deliverables": [
     "A data model designed to make future features easier, not harder",
@@ -67,14 +81,40 @@
     "Anyone who has inherited a schema that now fights every new feature"
   ],
   "faq": [
-    { "q": "Do you really do back-end, or do you subcontract it?", "a": "We really do it. Our engineers built DropQ's entire stack — data model, Stripe Connect payments, messaging, scheduling and auth — front and back. Where a project needs specialist depth we'll say so plainly rather than quietly hand it off." },
-    { "q": "What do you build on?", "a": "Typically TypeScript end to end, Postgres with an ORM, and server-side rendering frameworks like Next.js — plus the services that fit the job: Stripe for payments, Twilio and Resend for messaging, and managed Postgres. We're not dogmatic; the stack should follow the problem and your team's ability to maintain it." },
-    { "q": "Can you work with our existing back-end team?", "a": "Yes. We're just as happy building against your APIs, or acting as a senior layer that designs the model and the hard parts while your team owns the rest. What we won't do is build something only we can maintain." },
-    { "q": "Do you do CMS development too?", "a": "Yes — content modeling, templates, components, integrations and migrations, across traditional enterprise platforms as well as headless and composable stacks. See Enterprise CMS for the detail." }
+    {
+      "q": "Do you really do back-end, or do you subcontract it?",
+      "a": "We really do it. Our engineers built DropQ's entire stack — data model, Stripe Connect payments, messaging, scheduling and auth — front and back. Where a project needs specialist depth we'll say so plainly rather than quietly hand it off."
+    },
+    {
+      "q": "What do you build on?",
+      "a": "Typically TypeScript end to end, Postgres with an ORM, and server-side rendering frameworks like Next.js — plus the services that fit the job: Stripe for payments, Twilio and Resend for messaging, and managed Postgres. We're not dogmatic; the stack should follow the problem and your team's ability to maintain it."
+    },
+    {
+      "q": "Can you work with our existing back-end team?",
+      "a": "Yes. We're just as happy building against your APIs, or acting as a senior layer that designs the model and the hard parts while your team owns the rest. What we won't do is build something only we can maintain."
+    },
+    {
+      "q": "Do you do CMS development too?",
+      "a": "Yes — content modeling, templates, components, integrations and migrations, across traditional enterprise platforms as well as headless and composable stacks. See Enterprise CMS for the detail."
+    }
   ],
-  "relatedTags": ["Commerce", "Payments", "Web", "Product"],
-  "relatedServices": ["digital-product-engineering", "front-end-engineering", "enterprise-cms"],
-  "buildsWith": ["run-the-business", "see-whats-coming", "build-a-product-to-sell"],
-  "cta": { "primary": "build", "secondary": "work" },
+  "relatedTags": [
+    "Commerce",
+    "Payments",
+    "Web",
+    "Product"
+  ],
+  "relatedServices": [
+    "web-apps",
+    "front-end-engineering",
+    "enterprise-cms"
+  ],
+  "buildsWith": [
+    "web-apps"
+  ],
+  "cta": {
+    "primary": "build",
+    "secondary": "work"
+  },
   "ctaHeading": "Need the whole product built, not just the surface?"
 }

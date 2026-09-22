@@ -1,0 +1,87 @@
+{
+  "title": "Website Hosting & Support",
+  "navLabel": "Hosting & support",
+  "metaTitle": "Website Hosting, Maintenance & Support · Artifact Digital",
+  "description": "Hosting, maintenance, updates, analytics and ongoing improvements for websites and apps — an outside digital team for businesses that don't have one in-house.",
+  "order": 5,
+  "eyebrow": "What we do · Hosting & support",
+  "heroTitleLines": [
+    { "text": "You don't need an internal digital team." },
+    { "text": "We can be yours.", "italic": true }
+  ],
+  "lede": "Hosting, maintenance, updates, analytics, search and steady improvement — so the thing we built keeps getting better instead of slowly falling behind.",
+  "summary": "Hosting, maintenance, improvements, analytics and ongoing strategy.",
+  "intro": [
+    "Most digital work is sold as a project with an end date. The site launches, everyone celebrates, and then nothing happens for two years while the business changes around it.",
+    "That's how sites get slow, content goes stale, integrations quietly break and a company ends up paying to rebuild something that only needed steady attention. It's also how a good launch fails to turn into actual growth.",
+    "We stay on where it helps: hosting the site, keeping it current and secure, watching what people do, and making improvements in small regular cycles. You get the effect of an internal digital team without hiring one."
+  ],
+  "sections": [
+    {
+      "heading": "The unglamorous parts, handled",
+      "body": [
+        "Hosting, domains, certificates, backups, uptime monitoring, platform and dependency updates, form and integration checks, and someone to call when something looks wrong.",
+        "None of it is exciting and all of it is the difference between a site that's fine in three years and one that's a liability. We set it up in your accounts, so you're never locked in."
+      ]
+    },
+    {
+      "heading": "Steady improvement, not a rebuild every three years",
+      "body": [
+        "Every month there's evidence about what to do next: pages people leave, forms they abandon, searches that bring the wrong visitors, a feature people keep asking for.",
+        "We work through that in small cycles — a content fix here, a conversion change there, a new section when the business adds one — so the site keeps pace with the company instead of falling a rebuild behind."
+      ]
+    },
+    {
+      "heading": "A digital partner, not just a vendor",
+      "body": [
+        "Growing a business means a steady stream of technology decisions: which CRM, whether to automate something, what to do with AI, whether that platform is worth its subscription, what to build and what to buy.",
+        "We help you decide, honestly, including when the answer is to spend nothing. We're not your accountant, your lawyer or your IT help desk — we're the people you ask before making a digital decision you'd have to live with."
+      ]
+    }
+  ],
+  "inMethod": [
+    { "stage": "Understand", "body": "What you already have, what it costs, what's fragile and what's actually working." },
+    { "stage": "Design", "body": "A short list of improvements worth making, in the order that gets you the most value first." },
+    { "stage": "Build", "body": "Changes shipped in small, regular cycles, with the same standards as the original build." },
+    { "stage": "Launch", "body": "Hosting, monitoring, backups and updates handled, in accounts that belong to you." },
+    { "stage": "Grow", "body": "Analytics, search visibility and a running conversation about what's next." }
+  ],
+  "deliverables": [
+    "Hosting, domains, certificates, backups and uptime monitoring",
+    "Platform, dependency and security updates, applied and tested",
+    "A regular cycle of content and conversion improvements",
+    "Analytics and search reporting written in plain language",
+    "A named senior contact who knows your business, not a ticket queue",
+    "Honest guidance on the digital decisions in front of you"
+  ],
+  "whoFor": [
+    "Businesses with no in-house digital team and no plans to build one",
+    "Founders who don't want to spend their week on plugin updates",
+    "Companies whose site launched well and then stood still",
+    "Teams who need someone senior to ask before making technology decisions"
+  ],
+  "faq": [
+    {
+      "q": "Do we have to have built with you?",
+      "a": "No. We take on sites and apps other people built, once we've looked at what's there. Occasionally we'll find something we can't responsibly maintain, and we'll tell you that instead of taking the work."
+    },
+    {
+      "q": "How does this work month to month?",
+      "a": "Hosting and maintenance run in the background. Beyond that you have an agreed amount of time each month for improvements, and we agree together what it goes on. Unused time isn't a game we play — we'd rather suggest something useful."
+    },
+    {
+      "q": "Are we locked in?",
+      "a": "No. Hosting, domains and accounts are set up in your name, the code is yours, and you can leave with everything. Support arrangements run month to month unless you'd prefer a longer commitment."
+    },
+    {
+      "q": "What if something breaks at 9pm?",
+      "a": "Monitoring tells us before most people notice, and you have a real person to contact rather than a ticket form. We'll be straight with you about response times before you sign anything."
+    }
+  ],
+  "relatedTags": ["Platform", "Web", "Product"],
+  "relatedServices": ["experience-audits", "accessibility", "digital-strategy"],
+  "buildsWith": ["hosting-support", "seo-ai-search"],
+  "cta": { "primary": "talk", "secondary": "how-we-work" },
+  "ctaHeading": "Want someone senior looking after it?",
+  "ctaSub": "Tell us what you've got and what keeps going wrong. We'll tell you what it would take to keep it healthy and improving."
+}

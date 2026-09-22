@@ -3,11 +3,16 @@
   "navLabel": "Product Design",
   "metaTitle": "Product Design Services · Artifact Digital",
   "description": "Product design for software people rely on — SaaS platforms, dashboards, internal tools and customer-facing apps designed for clarity under real complexity, by a team that also builds them.",
-  "order": 4,
+  "order": 14,
   "eyebrow": "Capability · Product Design",
   "heroTitleLines": [
-    { "text": "Complex software," },
-    { "text": "made to feel simple.", "italic": true }
+    {
+      "text": "Complex software,"
+    },
+    {
+      "text": "made to feel simple.",
+      "italic": true
+    }
   ],
   "lede": "Product design is how we turn complex business workflows into software people understand and want to use — and keep it that way, release after release, as the product and the stakes grow.",
   "summary": "Complex workflows turned into software people understand and want to use.",
@@ -40,10 +45,22 @@
     }
   ],
   "inMethod": [
-    { "stage": "Understand", "body": "We learn the real jobs, data and conditions the software will operate under — permissions, edge cases, messy data and tired users included." },
-    { "stage": "Prototype", "body": "We establish the system of patterns first, then prove the flows with working prototypes under realistic complexity." },
-    { "stage": "Build", "body": "Designers stay in the build loop, so states, details and intent survive to production instead of getting lost in a handoff." },
-    { "stage": "Evolve", "body": "The design system keeps the product clear release after release, as features and scale accumulate." }
+    {
+      "stage": "Understand",
+      "body": "We learn the real jobs, data and conditions the software will operate under — permissions, edge cases, messy data and tired users included."
+    },
+    {
+      "stage": "Design",
+      "body": "We establish the system of patterns first, then prove the flows with working prototypes under realistic complexity."
+    },
+    {
+      "stage": "Build",
+      "body": "Designers stay in the build loop, so states, details and intent survive to production instead of getting lost in a handoff."
+    },
+    {
+      "stage": "Grow",
+      "body": "The design system keeps the product clear release after release, as features and scale accumulate."
+    }
   ],
   "deliverables": [
     "End-to-end flows designed for real data, states, and edge cases",
@@ -60,14 +77,40 @@
     "Founders who need product design and engineering to be a durable capability"
   ],
   "faq": [
-    { "q": "How is product design different from UX/UI design?", "a": "They overlap heavily, but product design emphasizes the ongoing, systemic nature of software — designing for many releases, real data, and accumulating complexity, rather than a single polished deliverable. In practice we bring the same craft to both; the difference is the time horizon and the operational reality we design against." },
-    { "q": "Do you design and build, or just design?", "a": "Both. Our team includes engineers who build front end and back end, so designs are grounded in what's actually buildable. We can own the whole path from research to shipped software, or plug into your team at the point where you need senior help." },
-    { "q": "Do you work embedded with our product team?", "a": "Often, yes. Product design works best close to engineering and product management, so we frequently operate as a senior, embedded part of your team — in your rituals, your tools, and your roadmap — rather than at arm's length." },
-    { "q": "Can you help us build a design system?", "a": "Yes. For most products past a certain size, a design system isn't optional — it's how you keep quality consistent as more people ship more surface area. We design systems that are practical and adopted, not a pristine library nobody uses." }
+    {
+      "q": "How is product design different from UX/UI design?",
+      "a": "They overlap heavily, but product design emphasizes the ongoing, systemic nature of software — designing for many releases, real data, and accumulating complexity, rather than a single polished deliverable. In practice we bring the same craft to both; the difference is the time horizon and the operational reality we design against."
+    },
+    {
+      "q": "Do you design and build, or just design?",
+      "a": "Both. Our team includes engineers who build front end and back end, so designs are grounded in what's actually buildable. We can own the whole path from research to shipped software, or plug into your team at the point where you need senior help."
+    },
+    {
+      "q": "Do you work embedded with our product team?",
+      "a": "Often, yes. Product design works best close to engineering and product management, so we frequently operate as a senior, embedded part of your team — in your rituals, your tools, and your roadmap — rather than at arm's length."
+    },
+    {
+      "q": "Can you help us build a design system?",
+      "a": "Yes. For most products past a certain size, a design system isn't optional — it's how you keep quality consistent as more people ship more surface area. We design systems that are practical and adopted, not a pristine library nobody uses."
+    }
   ],
-  "relatedTags": ["UX/UI", "UX", "Experience"],
-  "relatedServices": ["ux-ui-design", "ux-research", "digital-product-engineering"],
-  "buildsWith": ["run-the-business", "serve-your-customers", "see-whats-coming"],
-  "cta": { "primary": "build", "secondary": "work" },
+  "relatedTags": [
+    "UX/UI",
+    "UX",
+    "Experience"
+  ],
+  "relatedServices": [
+    "ux-ui-design",
+    "ux-research",
+    "web-apps"
+  ],
+  "buildsWith": [
+    "web-apps",
+    "websites"
+  ],
+  "cta": {
+    "primary": "build",
+    "secondary": "work"
+  },
   "ctaHeading": "Has your software grown complex faster than it's stayed clear?"
 }

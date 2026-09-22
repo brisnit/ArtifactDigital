@@ -1,13 +1,18 @@
 {
   "title": "Enterprise CMS",
-  "navLabel": "Enterprise CMS",
+  "navLabel": "Website platforms & CMS",
   "metaTitle": "Enterprise CMS Strategy & Implementation · Artifact Digital",
   "description": "Enterprise CMS strategy, content modeling and implementation — Optimizely, Sitecore and composable/headless — for content platforms that connect to the rest of your software and that teams can actually run.",
-  "order": 10,
+  "order": 20,
   "eyebrow": "Capability · Enterprise CMS",
   "heroTitleLines": [
-    { "text": "A content platform" },
-    { "text": "your team can run.", "italic": true }
+    {
+      "text": "A content platform"
+    },
+    {
+      "text": "your team can run.",
+      "italic": true
+    }
   ],
   "lede": "Content platforms are part of the software ecosystem a business runs on. They rarely fail because of the technology — they fail because the content model was an afterthought and the people who'd use the system daily were never in the room. We design for both.",
   "summary": "Content platforms modeled around the business and connected to the software around them.",
@@ -40,9 +45,18 @@
     }
   ],
   "inMethod": [
-    { "stage": "Understand", "body": "We audit content and operations, then model the content around how the business and its audiences actually work." },
-    { "stage": "Build", "body": "Implementation on the platform that fits your team, integrated with the systems around it, with a migration that consolidates instead of copying the old mess." },
-    { "stage": "Evolve", "body": "An authoring experience and governance designed so the people who run the platform every day can do it well without us." }
+    {
+      "stage": "Understand",
+      "body": "We audit content and operations, then model the content around how the business and its audiences actually work."
+    },
+    {
+      "stage": "Build",
+      "body": "Implementation on the platform that fits your team, integrated with the systems around it, with a migration that consolidates instead of copying the old mess."
+    },
+    {
+      "stage": "Grow",
+      "body": "An authoring experience and governance designed so the people who run the platform every day can do it well without us."
+    }
   ],
   "deliverables": [
     "A content model grounded in your business and audience, not your old sitemap",
@@ -59,13 +73,36 @@
     "Companies with content sprawl across many business units or regions"
   ],
   "faq": [
-    { "q": "Should we go headless or stick with a traditional CMS?", "a": "It depends on your content, your team's skills, and your roadmap — not on what's trendy. Headless and composable offer flexibility and clean multichannel delivery, but shift more responsibility onto engineering. Traditional DXPs give marketers more out of the box at the cost of some rigidity. We'll help you weigh it against your actual situation." },
-    { "q": "Do you work with our existing platform, or only greenfield builds?", "a": "Both. Some of the highest-value CMS work is making an already-chosen platform perform — fixing the content model, improving the authoring experience, cleaning up a migration that went sideways. We don't insist on starting over." },
-    { "q": "How do you handle content migration?", "a": "Deliberately, and as an opportunity. Migration is the rare moment when you're touching everything, so it's the best time to consolidate, retire dead content, and restructure around the new model. We plan it so you don't simply move the old mess into a new box." }
+    {
+      "q": "Should we go headless or stick with a traditional CMS?",
+      "a": "It depends on your content, your team's skills, and your roadmap — not on what's trendy. Headless and composable offer flexibility and clean multichannel delivery, but shift more responsibility onto engineering. Traditional DXPs give marketers more out of the box at the cost of some rigidity. We'll help you weigh it against your actual situation."
+    },
+    {
+      "q": "Do you work with our existing platform, or only greenfield builds?",
+      "a": "Both. Some of the highest-value CMS work is making an already-chosen platform perform — fixing the content model, improving the authoring experience, cleaning up a migration that went sideways. We don't insist on starting over."
+    },
+    {
+      "q": "How do you handle content migration?",
+      "a": "Deliberately, and as an opportunity. Migration is the rare moment when you're touching everything, so it's the best time to consolidate, retire dead content, and restructure around the new model. We plan it so you don't simply move the old mess into a new box."
+    }
   ],
-  "relatedTags": ["Strategy", "Web", "UX/UI"],
-  "relatedServices": ["back-end-engineering", "website-design-build", "experience-audits"],
-  "buildsWith": ["serve-your-customers", "grow-your-people"],
-  "cta": { "primary": "problem", "secondary": "what-we-build" },
+  "relatedTags": [
+    "Strategy",
+    "Web",
+    "UX/UI"
+  ],
+  "relatedServices": [
+    "back-end-engineering",
+    "websites",
+    "experience-audits"
+  ],
+  "buildsWith": [
+    "websites",
+    "web-apps"
+  ],
+  "cta": {
+    "primary": "problem",
+    "secondary": "what-we-build"
+  },
   "ctaHeading": "Is your CMS working for your team, or against it?"
 }

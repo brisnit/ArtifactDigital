@@ -26,12 +26,10 @@ const related = d.relatedServices.length
   ? allServices.filter((s) => d.relatedServices.includes(s.id))
   : allServices.filter((s) => s.id !== entry.id && !s.data.flagship).slice(0, 3);
 
-// The flagship offer lives under What We Build and presents the whole method.
-// Every other page is a capability: it lives under Capabilities and says what
-// its discipline contributes to that one method — never a process of its own.
-const parent = d.flagship
-  ? { name: 'What We Build', href: '/services' }
-  : { name: 'Capabilities', href: '/capabilities' };
+// Every service page hangs off the same parent: What We Do. The five primary
+// services are the front door; everything else is depth reached from them, and
+// each says what it contributes to the one method — never a process of its own.
+const parent = { name: 'What We Do', href: '/services' };
 const methodFit = d.inMethod
   .map((m) => ({ ...m, n: METHOD.findIndex((s) => s.title === m.stage) + 1 }))
   .sort((a, b) => a.n - b.n);
@@ -53,12 +51,13 @@ const linkify = (text: string) =>
 // Varied, positioning-aligned calls to action, chosen per page in its JSON.
 const PRIMARY = {
   build: CTA.primary,
-  problem: { label: 'Tell Us the Problem', href: '/contact?intent=build' },
-  audit: { label: 'Request an Audit', href: '/contact?intent=audit' },
+  problem: { label: 'Tell Us About Your Project', href: '/contact?intent=build' },
+  audit: CTA.audit,
   ai: { label: 'Talk Through an AI Idea', href: '/contact?intent=ai-assessment' },
+  talk: CTA.talk,
 };
 const SECONDARY = {
-  'what-we-build': { label: 'Explore What We Build', href: '/services' },
+  'what-we-build': { label: 'See What We Do', href: '/services' },
   'how-we-work': { label: 'See How We Work', href: '/how-we-work' },
   work: CTA.work,
   audit: CTA.audit,
@@ -147,27 +146,6 @@ const jsonLd = {
       </div>
     </section>
   ))}
-
-  <!-- FIVE KINDS OF SOFTWARE (flagship only) -->
-  {d.flagship && (
-    <section class="section service-clusters">
-      <div class="container">
-        <header class="section-head">
-          <span class="section-tag reveal"><span class="tag-dot"></span>What we build</span>
-          <h2 class="section-heading reveal-line"><span>Five kinds of bespoke software</span></h2>
-        </header>
-        <div class="service-link-grid">
-          {BUILD_CLUSTERS.map((c) => (
-            <a class="service-link-card reveal-card" href={buildPath(c.id)}>
-              <h3>{c.label}</h3>
-              <p>{c.summary}</p>
-              <span class="service-link-card__more">See examples →</span>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
 
   <!-- WHAT THIS COVERS (optional) -->
   {d.capabilities && d.capabilities.length > 0 && (

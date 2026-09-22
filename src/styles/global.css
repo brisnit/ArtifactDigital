@@ -2207,7 +2207,7 @@ button:focus-visible {
   font-size: clamp(1.8rem, 4vw, 3rem); letter-spacing: -0.03em; margin: 0;
 }
 .footer-nav {
-  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(2rem, 4vw, 3rem); padding: clamp(2.5rem, 5vw, 4rem) 0;
 }
 /* Long links (the email address) wrap instead of widening a 320px page. */
@@ -3804,4 +3804,242 @@ html:not(.js) .nav-item--has-menu:focus-within .nav-mega {
   .service-clusters .service-link-grid { grid-template-columns: 1fr; }
   .service-clusters .service-link-card,
   .service-clusters .service-link-card:nth-child(n + 4) { grid-column: auto; }
+}
+
+/* ============================================================
+   Repositioning: websites, apps, growth, support.
+   New homepage sections + the What We Do nav panel.
+   ============================================================ */
+
+/* -------------------- Hero offer strip -------------------- */
+.hero-offer {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid rgba(17, 17, 17, 0.12);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  align-items: baseline;
+}
+.hero-offer li { display: flex; align-items: baseline; gap: 1.25rem; }
+.hero-offer li + li::before { content: '·'; color: var(--accent); }
+.hero-offer a {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--steel);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+}
+.hero-offer a:hover, .hero-offer a:focus-visible { color: var(--ink); }
+
+/* -------------------- What do you need? -------------------- */
+.need-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+}
+.need-grid > li { display: flex; }
+.need-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+  padding: clamp(1.5rem, 2.6vw, 2.25rem);
+  background: #fff;
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  border-radius: var(--radius-media);
+  color: var(--ink);
+  text-decoration: none;
+  overflow: hidden;
+  transition: background 0.4s var(--easing), color 0.4s var(--easing), transform 0.4s var(--easing);
+}
+.need-card::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--easing);
+}
+.need-card:hover, .need-card:focus-visible { background: var(--ink); color: #fff; transform: translateY(-4px); }
+.need-card:hover::after, .need-card:focus-visible::after { transform: scaleX(1); }
+.need-card__num {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-strong);
+}
+.need-card:hover .need-card__num, .need-card:focus-visible .need-card__num { color: var(--blush); }
+.need-card__title {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+.need-card__body { margin: 0; color: var(--steel); line-height: 1.55; flex: 1; }
+.need-card:hover .need-card__body, .need-card:focus-visible .need-card__body { color: rgba(255, 255, 255, 0.78); }
+.need-card__examples {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--steel-soft);
+}
+.need-card:hover .need-card__examples, .need-card:focus-visible .need-card__examples { color: rgba(255, 255, 255, 0.6); }
+.need-card__more { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; color: var(--steel-soft); }
+.need-card:hover .need-card__more, .need-card:focus-visible .need-card__more { color: #fff; }
+
+.need-wide {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-top: clamp(0.75rem, 1.5vw, 1.25rem);
+  padding: clamp(1.25rem, 2.4vw, 1.9rem) clamp(1.5rem, 2.6vw, 2.25rem);
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  border-radius: var(--radius-media);
+  background: var(--stone);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.35s var(--easing), background 0.35s var(--easing);
+}
+.need-wide:hover, .need-wide:focus-visible { border-color: rgba(17, 17, 17, 0.28); background: #fff; }
+.need-wide__copy { max-width: 62ch; line-height: 1.6; color: var(--steel); }
+.need-wide__copy strong { color: var(--ink); }
+.need-wide__more { font-family: 'DM Sans', sans-serif; font-weight: 500; color: var(--accent-strong); white-space: nowrap; }
+
+/* -------------------- Why Artifact list -------------------- */
+.why-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+.why-list li {
+  padding: 1.1rem 1.25rem;
+  background: #fff;
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  border-radius: var(--radius-media);
+  color: var(--steel);
+  line-height: 1.6;
+}
+.why-list strong { color: var(--ink); font-family: 'DM Sans', sans-serif; font-weight: 700; }
+
+/* -------------------- AI without the slop -------------------- */
+.slop { background: var(--ink); color: #fff; }
+.slop .section-tag { color: rgba(255, 255, 255, 0.66); }
+.slop-heading {
+  display: grid;
+  gap: 0.2rem;
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.9rem, 5vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.slop-heading .italic { font-style: italic; font-weight: 400; color: rgba(255, 255, 255, 0.6); }
+.slop-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+.slop-copy p { margin: 0 0 1.25rem; color: rgba(255, 255, 255, 0.76); line-height: 1.7; max-width: 56ch; }
+.slop-line {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.2rem, 2.2vw, 1.65rem) !important;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: #fff !important;
+  padding-left: 1.1rem;
+  border-left: 3px solid var(--accent);
+}
+.slop-list-wrap {
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-media);
+  background: rgba(255, 255, 255, 0.035);
+}
+.slop-list__title {
+  margin: 0 0 1.25rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blush);
+}
+.slop-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.85rem; }
+.slop-list li {
+  position: relative;
+  padding-left: 1.4rem;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.5;
+}
+.slop-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+}
+
+/* -------------------- Growth + support -------------------- */
+.growth-note { margin: 1.25rem 0 0; color: var(--steel); font-size: 0.92rem; line-height: 1.6; max-width: 56ch; }
+.digital-team { background: var(--stone); }
+.digital-team__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+.digital-team__lede { margin: 0 0 1.75rem; color: var(--steel); line-height: 1.7; font-size: 1.05rem; max-width: 56ch; }
+
+/* -------------------- What We Do nav panel -------------------- */
+.nav-mega__list--rich li a { display: block; padding: 0.4rem 0; }
+.nav-mega__item-label { display: block; font-weight: 500; }
+.nav-mega__item-sub {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 34ch;
+}
+.nav-mega__title--spaced { margin-top: 2rem; }
+.mobile-nav__cta { margin-top: 2rem; align-self: flex-start; }
+.wwb-cluster__link { margin: 1.25rem 0 0; }
+
+/* -------------------- Responsive -------------------- */
+@media (max-width: 1080px) {
+  .need-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .slop-grid { grid-template-columns: 1fr; }
+  .digital-team__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .need-grid { grid-template-columns: 1fr; }
+  /* Separators can land at the start of a wrapped line; drop them on phones. */
+  .hero-offer { gap: 0 1.25rem; }
+  .hero-offer li + li::before { content: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .need-card, .need-card::after, .need-wide { transition: none; }
+  .need-card:hover, .need-card:focus-visible { transform: none; }
 }

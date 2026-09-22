@@ -1,13 +1,18 @@
 {
   "title": "Experience Audits",
-  "navLabel": "Experience Audits",
+  "navLabel": "Website & UX audits",
   "metaTitle": "Experience Audit Services · Artifact Digital",
   "description": "A software and experience audit that tells you the truth about what you already have — where it's costing you, why, and whether to fix, extend or replace it, prioritized by impact.",
-  "order": 13,
+  "order": 23,
   "eyebrow": "Capability · Software & Experience Audits",
   "heroTitleLines": [
-    { "text": "The truth about" },
-    { "text": "what you already have.", "italic": true }
+    {
+      "text": "The truth about"
+    },
+    {
+      "text": "what you already have.",
+      "italic": true
+    }
   ],
   "lede": "Sometimes you don't need new software. You need an honest, expert read on what's wrong with what you have, why it's costing you, and what to fix first — before deciding whether to fix it, extend it or replace it.",
   "summary": "An expert diagnosis of existing software: what's wrong, why, and what to fix first.",
@@ -33,8 +38,14 @@
     }
   ],
   "inMethod": [
-    { "stage": "Understand", "body": "An audit is often where the method starts: an evidence-based read on existing software before deciding what to fix, extend or replace." },
-    { "stage": "Learn", "body": "After launch, the same approach measures whether the software is doing its job and ranks what to improve next." }
+    {
+      "stage": "Understand",
+      "body": "An audit is often where the method starts: an evidence-based read on existing software before deciding what to fix, extend or replace."
+    },
+    {
+      "stage": "Launch",
+      "body": "After launch, the same approach measures whether the software is doing its job and ranks what to improve next."
+    }
   ],
   "deliverables": [
     "A clear, prioritized assessment of what's working and what isn't",
@@ -51,13 +62,36 @@
     "Organizations whose people have built workarounds around the systems they were given"
   ],
   "faq": [
-    { "q": "How long does an audit take?", "a": "It depends on the size of what we're reviewing and how much analytics and research already exist, but audits are deliberately lighter than a full engagement. We'll scope it with you up front — the point is a timely, clear diagnosis you can act on." },
-    { "q": "Will you just tell us to rebuild everything?", "a": "No. We're genuinely agnostic about the answer, and often the honest recommendation is a set of targeted fixes rather than new software. We'd rather give you the truth and earn the next engagement than manufacture a bigger project." },
-    { "q": "What do we get at the end?", "a": "A prioritized findings document you can act on immediately: the issues that matter most, the evidence behind each, and a clear, sequenced recommendation for what to fix first. It's built to be shared with leadership and handed to whoever does the work." }
+    {
+      "q": "How long does an audit take?",
+      "a": "It depends on the size of what we're reviewing and how much analytics and research already exist, but audits are deliberately lighter than a full engagement. We'll scope it with you up front — the point is a timely, clear diagnosis you can act on."
+    },
+    {
+      "q": "Will you just tell us to rebuild everything?",
+      "a": "No. We're genuinely agnostic about the answer, and often the honest recommendation is a set of targeted fixes rather than new software. We'd rather give you the truth and earn the next engagement than manufacture a bigger project."
+    },
+    {
+      "q": "What do we get at the end?",
+      "a": "A prioritized findings document you can act on immediately: the issues that matter most, the evidence behind each, and a clear, sequenced recommendation for what to fix first. It's built to be shared with leadership and handed to whoever does the work."
+    }
   ],
-  "relatedTags": ["Strategy", "UX/UI", "Research"],
-  "relatedServices": ["ux-research", "accessibility", "digital-strategy"],
-  "buildsWith": ["run-the-business", "serve-your-customers"],
-  "cta": { "primary": "audit", "secondary": "what-we-build" },
+  "relatedTags": [
+    "Strategy",
+    "UX/UI",
+    "Research"
+  ],
+  "relatedServices": [
+    "ux-research",
+    "accessibility",
+    "digital-strategy"
+  ],
+  "buildsWith": [
+    "web-apps",
+    "websites"
+  ],
+  "cta": {
+    "primary": "audit",
+    "secondary": "what-we-build"
+  },
   "ctaHeading": "Want an honest read on what's really wrong?"
 }

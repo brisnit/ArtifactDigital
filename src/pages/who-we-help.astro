@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE, orgNode, breadcrumb } from '../data/site';
+
+// Who we help. Written so a visitor recognizes their own situation in the first
+// two lines of one of these, then knows exactly where to go next.
+const route = '/who-we-help';
+
+const GROUPS = [
+  {
+    id: 'founders',
+    label: 'Founders',
+    heading: 'You have an idea and need it to exist.',
+    body: [
+      'You need something real enough to show customers, investors or a first hire — and you need it without spending a year or a fortune finding out whether the idea works.',
+      'We help you decide what the first version actually has to include, design it, and build it. Often that’s smaller than people expect, and getting it in front of real people sooner is worth more than getting everything in.',
+    ],
+    typical: ['A site that makes you look real before your first sales calls', 'A first version of the product, built to learn from', 'A prototype you can put in front of customers or investors'],
+    links: [
+      { label: 'Web apps', href: '/services/web-apps' },
+      { label: 'Mobile apps', href: '/services/mobile-apps' },
+      { label: 'Websites', href: '/services/websites' },
+    ],
+  },
+  {
+    id: 'small-businesses',
+    label: 'Small businesses',
+    heading: 'Your website is doing less than it should.',
+    body: [
+      'The site was fine when you built it. Now it’s slow, awkward to update, invisible in search, and doesn’t look like the business you’ve become.',
+      'We rebuild it around what customers actually need to know and do, make it easy for your team to run, and make sure people can find it. Then, if you want, we keep it healthy so it doesn’t drift again.',
+    ],
+    typical: ['A rebuilt site that explains what you do in seconds', 'Being found in search and in AI assistants', 'Someone senior to call when something breaks'],
+    links: [
+      { label: 'Websites', href: '/services/websites' },
+      { label: 'SEO + AI search', href: '/services/seo-ai-search' },
+      { label: 'Hosting & support', href: '/services/hosting-support' },
+    ],
+  },
+  {
+    id: 'growing-companies',
+    label: 'Growing companies',
+    heading: 'You’ve outgrown the tools you started on.',
+    body: [
+      'Critical work runs through spreadsheets nobody documented. You’re paying for four tools that still don’t do the thing you need. Onboarding a new person takes a week of tribal knowledge.',
+      'We work out what’s worth building, what’s worth buying and what’s worth deleting — then build the parts that are genuinely yours: portals, internal tools, dashboards, or a product you can sell.',
+    ],
+    typical: ['A portal or internal tool shaped around how you actually work', 'Systems that talk to each other instead of to a spreadsheet', 'A plan for what to build, buy or drop'],
+    links: [
+      { label: 'Web apps', href: '/services/web-apps' },
+      { label: 'Custom software', href: '/services/bespoke-saas' },
+      { label: 'Strategy', href: '/services/digital-strategy' },
+    ],
+  },
+  {
+    id: 'nonprofits',
+    label: 'Nonprofits',
+    heading: 'Every dollar has to work twice.',
+    body: [
+      'You’re serving people with real needs, often on a budget that leaves no room for a redo, and frequently for audiences that mainstream digital design ignores: older people, people on slow connections, people using assistive technology.',
+      'That’s work we care about and are good at. Accessible by default isn’t an upsell here — it’s how we build, and it’s usually what the mission requires.',
+    ],
+    typical: ['Sites and apps that work for every visitor, not most of them', 'Tools your staff can run without a developer', 'Clear, honest measurement of what’s working'],
+    links: [
+      { label: 'Websites', href: '/services/websites' },
+      { label: 'Accessibility', href: '/services/accessibility' },
+      { label: 'Mobile apps', href: '/services/mobile-apps' },
+    ],
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': `${SITE.url}${route}#page`,
+      url: `${SITE.url}${route}`,
+      name: 'Who we help',
+      description:
+        'Artifact Digital works with founders, small businesses, growing companies and nonprofits on websites, web apps, mobile apps and growth.',
+      isPartOf: { '@id': `${SITE.url}/#website` },
+      about: { '@id': `${SITE.url}/#organization` },
+    },
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'Who We Help', path: route },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title="Who We Help · Founders, Small Businesses & Growing Companies · Artifact Digital"
+  description="Artifact Digital works with founders, small businesses, growing companies and nonprofits — designing, building and growing websites, web apps and mobile apps."
+  canonical={route}
+  bodyClass="case-page"
+  jsonLd={jsonLd}
+>
+  <section class="case-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Who We Help' }]} />
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Who we help</span>
+      <h1 class="case-title">
+        <span class="reveal-line"><span>Senior digital work,</span></span>
+        <span class="reveal-line italic"><span>without the giant agency.</span></span>
+      </h1>
+      <p class="case-lede reveal">
+        Most of our clients don’t have an in-house digital team, and don’t want to hire a
+        fifty-person agency to get a good website or app. Find yourself below.
+      </p>
+      <nav class="wwh-jump" aria-label="Who we help">
+        <ul>
+          {GROUPS.map((g) => <li><a href={`#${g.id}`}>{g.label}</a></li>)}
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  {GROUPS.map((g, i) => (
+    <section class:list={['section', 'service-section', i % 2 === 1 && 'wwh-section--alt']} id={g.id} aria-labelledby={`${g.id}-heading`}>
+      <div class="container service-section__grid">
+        <div class="service-section__head">
+          <span class="section-tag"><span class="tag-dot"></span>{g.label}</span>
+          <h2 class="service-section__heading reveal-line" id={`${g.id}-heading`}><span>{g.heading}</span></h2>
+        </div>
+        <div class="service-prose service-section__body">
+          {g.body.map((p) => <p class="reveal">{p}</p>)}
+          <h3 class="wwh-typical__title">What that usually looks like</h3>
+          <ul class="ticklist">
+            {g.typical.map((t) => <li class="reveal">{t}</li>)}
+          </ul>
+          <ul class="wwh-links" aria-label={`Services for ${g.label.toLowerCase()}`}>
+            {g.links.map((l) => <li><a href={l.href}>{l.label}<span aria-hidden="true"> →</span></a></li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <CtaBand
+    heading="Sound like you?"
+    sub="Tell us what you’re trying to create, fix or grow. We’ll tell you what it would take, and whether we’re the right people for it."
+  />
+</BaseLayout>
+
+<style>
+  .wwh-jump { margin-top: 2rem; }
+  .wwh-jump ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .wwh-jump a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(17, 17, 17, 0.18);
+    border-radius: 999px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--ink);
+    text-decoration: none;
+    transition: background 0.25s var(--easing), color 0.25s var(--easing), border-color 0.25s var(--easing);
+  }
+  .wwh-jump a:hover, .wwh-jump a:focus-visible { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .wwh-section--alt { background: var(--stone); }
+  .wwh-typical__title {
+    margin: clamp(1.75rem, 3vw, 2.5rem) 0 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--steel-soft);
+  }
+  .wwh-links { list-style: none; margin: 2rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.75rem 1.75rem; }
+  .wwh-links a {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    color: var(--accent-strong);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .wwh-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  @media (prefers-reduced-motion: reduce) { .wwh-jump a { transition: none; } }
+</style>

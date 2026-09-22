@@ -146,7 +146,7 @@ const services = defineCollection({
     ctaSub: z.string().optional(),
     cta: z
       .object({
-        primary: z.enum(['build', 'problem', 'audit', 'ai']).default('build'),
+        primary: z.enum(['build', 'problem', 'audit', 'ai', 'talk']).default('build'),
         secondary: z.enum(['what-we-build', 'how-we-work', 'work', 'audit']).default('what-we-build'),
       })
       .default({}),

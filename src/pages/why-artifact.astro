@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE, orgNode, breadcrumb, WHY_ARTIFACT } from '../data/site';
+import { MODEL_COMPARISON } from '../data/method';
+
+// Four reasons, stated plainly. Each one is something a client can check against
+// the site itself — which is the point.
+const route = '/why-artifact';
+
+const REASONS = [
+  {
+    id: 'strategy-first',
+    label: 'Strategy first',
+    heading: 'We work out what you need before we design anything.',
+    body: [
+      'Most disappointing digital projects were decided before design started: the wrong thing got built, beautifully. So we spend the first part of any engagement on the business and the people using it — what has to be true, who it serves, what would actually change if it worked.',
+      'That’s also where we’ll tell you to spend less. A smaller site, an existing tool, a simpler first version. It costs us revenue and saves you money, and it’s the reason clients come back.',
+    ],
+  },
+  {
+    id: 'accessible-by-default',
+    label: 'Accessible by default',
+    heading: 'Built to work for everyone, from the first component.',
+    body: [
+      'Accessibility isn’t a phase at the end or a line item you add. It’s semantic structure, keyboard support, real contrast, text that scales, labels that make sense to a screen reader, and motion that respects someone’s reduced-motion setting.',
+      'Done from the start it costs almost nothing and makes the product better for everyone. Retrofitted later it’s expensive, which is why so many sites never do it. We don’t make compliance guarantees — we build it in, and we test it.',
+    ],
+  },
+  {
+    id: 'ai-without-the-slop',
+    label: 'AI without the slop',
+    heading: 'AI made building faster. It didn’t make good thinking automatic.',
+    body: [
+      'Anyone can prompt a website into existence now. That’s genuinely good — it removed a lot of expensive drudgery. But generating something quickly isn’t the same as making something good, and the gap shows up in strategy, structure, content, accessibility and judgment.',
+      'We use AI aggressively: exploring more directions, building faster, testing more than a team our size otherwise could. Then experienced people decide what’s right. AI helps us move faster; experience tells us where to go.',
+    ],
+  },
+  {
+    id: 'senior-team',
+    label: 'Senior team',
+    heading: 'The people who scope the work are the people who do it.',
+    body: [
+      'The traditional agency model sells you senior people and staffs the work with whoever is available. It’s not dishonesty, it’s arithmetic — a large team has to be kept busy.',
+      'We stay small on purpose. Our team has designed and built platforms, products and design systems for some of the largest organizations in the world, and that’s who you actually get: no account layer, no handoff to a junior team, no translation loss between the person who understood the problem and the person building the answer.',
+    ],
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': `${SITE.url}${route}#page`,
+      url: `${SITE.url}${route}`,
+      name: 'Why Artifact',
+      description:
+        'Strategy first, accessible by default, AI without the slop, and a senior team that does the work it sells.',
+      isPartOf: { '@id': `${SITE.url}/#website` },
+      about: { '@id': `${SITE.url}/#organization` },
+    },
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'Why Artifact', path: route },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title="Why Artifact · Strategy, Accessibility, AI & a Senior Team · Artifact Digital"
+  description="Big-agency thinking, small senior team: strategy before design, accessibility by default, AI used for speed rather than judgment, and senior people doing the actual work."
+  canonical={route}
+  bodyClass="case-page"
+  jsonLd={jsonLd}
+>
+  <section class="case-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Why Artifact' }]} />
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Why Artifact</span>
+      <h1 class="case-title">
+        <span class="reveal-line"><span>Big-agency thinking.</span></span>
+        <span class="reveal-line italic"><span>Small senior team.</span></span>
+      </h1>
+      <p class="case-lede reveal">
+        Four things that decide whether digital work is any good. You can check all of them
+        against this site before you ever talk to us.
+      </p>
+      <nav class="wa-jump" aria-label="On this page">
+        <ul>
+          {WHY_ARTIFACT.map((r) => <li><a href={r.href.replace(route, '')}>{r.label}</a></li>)}
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  {REASONS.map((r, i) => (
+    <section class:list={['section', 'service-section', i % 2 === 1 && 'wa-section--alt']} id={r.id} aria-labelledby={`${r.id}-heading`}>
+      <div class="container service-section__grid">
+        <div class="service-section__head">
+          <span class="section-tag"><span class="tag-dot"></span>{String(i + 1).padStart(2, '0')} — {r.label}</span>
+          <h2 class="service-section__heading reveal-line" id={`${r.id}-heading`}><span>{r.heading}</span></h2>
+        </div>
+        <div class="service-prose service-section__body">
+          {r.body.map((p) => <p class="reveal">{p}</p>)}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- The structural difference, stated without insulting anyone -->
+  <section class="section model" aria-labelledby="wa-model-heading">
+    <div class="container model-grid">
+      <div class="model-copy">
+        <span class="section-tag reveal"><span class="tag-dot"></span>The difference</span>
+        <h2 class="model-heading reveal" id="wa-model-heading">Same craft. <em>Different structure.</em></h2>
+        <p class="model-lede reveal">
+          The traditional agency model was built for a time when capability came from
+          headcount. It produced a lot of great work, and it’s where our team learned the
+          craft. What changed is how much a small, experienced team can now do.
+        </p>
+        <p class="reveal"><a class="home-more__link" href="/how-we-work">How we work<span aria-hidden="true"> →</span></a></p>
+      </div>
+      <div class="model-table-wrap reveal">
+        <table class="model-table">
+          <caption class="sr-only">How the traditional agency model and the Artifact model compare</caption>
+          <thead>
+            <tr><th scope="col"><span class="sr-only">Aspect</span></th><th scope="col">Traditional agency</th><th scope="col">Artifact</th></tr>
+          </thead>
+          <tbody>
+            {MODEL_COMPARISON.map(([label, before, after]) => (
+              <tr><th scope="row">{label}</th><td data-label="Traditional">{before}</td><td data-label="Artifact">{after}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Want to put that to the test?"
+    sub="Tell us what you’re trying to create, fix or grow. You’ll get a straight answer about what it needs, from the people who’d do the work."
+  />
+</BaseLayout>
+
+<style>
+  .wa-jump { margin-top: 2rem; }
+  .wa-jump ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .wa-jump a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(17, 17, 17, 0.18);
+    border-radius: 999px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--ink);
+    text-decoration: none;
+    transition: background 0.25s var(--easing), color 0.25s var(--easing), border-color 0.25s var(--easing);
+  }
+  .wa-jump a:hover, .wa-jump a:focus-visible { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .wa-section--alt { background: var(--stone); }
+  @media (prefers-reduced-motion: reduce) { .wa-jump a { transition: none; } }
+</style>

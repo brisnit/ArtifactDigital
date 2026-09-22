@@ -8,9 +8,9 @@ export const SITE = {
   url: 'https://www.artifactdigital.co',
   domain: 'artifactdigital.co',
   email: 'hello@artifactdigital.co',
-  tagline: 'The Bespoke SaaS Agency',
+  tagline: 'We design, build and grow websites & apps',
   description:
-    'Artifact Digital designs and builds bespoke SaaS for businesses — software built around how a company works, by a senior team using AI as a force multiplier.',
+    'Artifact Digital designs, builds and grows websites, web apps and mobile apps for founders and growing businesses — from strategy and UX to development, hosting, SEO and AI search.',
   foundingDate: '2021',
   location: 'San Diego, CA',
   linkedin: 'https://www.linkedin.com/company/artifact-digital-co/',
@@ -40,42 +40,56 @@ export const ANALYTICS = {
   ga4: '',
 } as const;
 
-// Primary navigation — page-based IA.
+// Primary navigation — five plain entries. A visitor should find their own
+// situation in the first one they read.
 export interface NavItem {
   label: string;
   href: string;
-  /** Desktop: opens the full-width Services mega panel, built in Header.astro
-   *  from the services collection + the playbooks list. */
+  /** Desktop: opens the full-width What We Do panel, built in Header.astro. */
   mega?: boolean;
-  /** Mobile: nested links under the parent, where a mega panel won't fit. */
+  /** Mobile, and the desktop panel columns: nested links under the parent. */
   children?: { label: string; href: string }[];
 }
 
+export const WHO_WE_HELP = [
+  { label: 'Founders', href: '/who-we-help#founders' },
+  { label: 'Small businesses', href: '/who-we-help#small-businesses' },
+  { label: 'Growing companies', href: '/who-we-help#growing-companies' },
+  { label: 'Nonprofits', href: '/who-we-help#nonprofits' },
+];
+
+export const WHY_ARTIFACT = [
+  { label: 'Strategy first', href: '/why-artifact#strategy-first' },
+  { label: 'Accessible by default', href: '/why-artifact#accessible-by-default' },
+  { label: 'AI without the slop', href: '/why-artifact#ai-without-the-slop' },
+  { label: 'Senior team', href: '/why-artifact#senior-team' },
+];
+
 export const NAV: readonly NavItem[] = [
   {
-    label: 'What We Build',
+    label: 'What We Do',
     href: '/services',
     mega: true,
     children: [
-      { label: 'Bespoke SaaS', href: '/services/bespoke-saas' },
       ...BUILD_CLUSTERS.map((c) => ({ label: c.label, href: buildPath(c.id) })),
+      { label: 'Everything we do', href: '/services' },
     ],
   },
-  { label: 'How We Work', href: '/how-we-work' },
+  { label: 'Who We Help', href: '/who-we-help', children: WHO_WE_HELP },
   { label: 'Work', href: '/work' },
-  { label: 'Capabilities', href: '/capabilities' },
+  { label: 'Why Artifact', href: '/why-artifact', children: WHY_ARTIFACT },
   { label: 'Insights', href: '/insights' },
   { label: 'About', href: '/about' },
 ];
 
-// Standardized CTA language. One vocabulary across the whole site so the
-// primary ask is always consistent and intentional.
+// Standardized CTA language. Plain, human, and the same everywhere: a visitor
+// should never be asked to book a "strategic digital transformation session".
 export const CTA = {
-  primary: { label: 'Build Something', href: '/contact' },
-  audit: { label: 'Request a Software & Experience Audit', href: '/contact?intent=audit' },
-  talk: { label: 'Talk With Artifact', href: '/contact' },
-  build: { label: 'Build Something', href: '/contact' },
-  work: { label: "See What We've Built", href: '/work' },
+  primary: { label: 'Start a Project', href: '/contact' },
+  audit: { label: 'Request a Website Audit', href: '/contact?intent=audit' },
+  talk: { label: 'Tell Us About Your Project', href: '/contact' },
+  build: { label: 'Start a Project', href: '/contact' },
+  work: { label: 'See Our Work', href: '/work' },
 } as const;
 
 const abs = (path: string) => (path.startsWith('http') ? path : `${SITE.url}${path}`);

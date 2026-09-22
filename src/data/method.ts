@@ -1,5 +1,6 @@
-// One process, used everywhere the site describes how Artifact works. The
-// site previously ran four different models; everything now reads from here.
+// One process, used everywhere the site describes how Artifact works. Five
+// plain stages, in the order they actually happen. No proprietary methodology,
+// no invented vocabulary — the simplicity is the point.
 
 export interface MethodStage {
   title: string;
@@ -12,33 +13,33 @@ export interface MethodStage {
 export const METHOD: readonly MethodStage[] = [
   {
     title: 'Understand',
-    body: 'How the work actually flows — the approvals, handoffs, data and friction — before deciding what software should exist.',
+    body: 'What the business needs, who it serves, and what the site or app actually has to do. Before anything gets designed.',
     leverage:
-      'AI lets us take in far more of your documentation, data and research than discovery usually allows, so senior people spend their time on the conversations and judgment calls that need them.',
+      'AI lets us take in far more of your material — research, analytics, content, competitors — than a discovery phase usually allows, so our time goes to the judgment calls that need a person.',
   },
   {
-    title: 'Prototype',
-    body: 'Working software in front of real users in weeks, not months, while being wrong is still cheap.',
+    title: 'Design',
+    body: 'Structure first, then the look: what goes where, how it works, and how it feels to use. You see real screens early.',
     leverage:
-      'Prototyping used to cost enough that teams picked one direction early. Now we can build and compare several working approaches, and let real users show which one holds up.',
+      'We can explore and compare more directions than a small team could before, then put the strongest in front of you while changing course is still cheap.',
   },
   {
     title: 'Build',
-    body: 'Production software on architecture that can grow, designed and engineered by the same team.',
+    body: 'Designers and engineers on the same team, so what gets built is what was designed — fast, accessible and maintainable.',
     leverage:
-      "AI takes on a large share of the code, tests and documentation. The senior team's attention goes to architecture, experience quality and the edge cases that decide whether software gets used.",
+      'AI takes on a large share of the code, tests and documentation. Our attention goes to architecture, experience quality and the edge cases that decide whether people keep using it.',
   },
   {
-    title: 'Learn',
-    body: 'Real usage tells us what to change. We measure it instead of guessing.',
+    title: 'Launch',
+    body: 'Testing, performance, accessibility, analytics, search and the unglamorous checks that make a launch boring in the best way.',
     leverage:
-      'We can study far more usage, feedback and behavior than a traditional project budgets for, and turn what we find into changes while they still matter.',
+      'Far more of the pre-launch checklist can be automated and repeated, so quality checks stop competing with the deadline.',
   },
   {
-    title: 'Evolve',
-    body: 'Your software grows with the business. It is infrastructure, not a one-time project.',
+    title: 'Grow',
+    body: "Real usage tells us what to change next: search visibility, conversion, new features, and the things you couldn't know before people arrived.",
     leverage:
-      'When change costs less to make, software can keep pace with the business instead of freezing at launch.',
+      'We can study more usage and feedback than a traditional retainer budgets for, and turn what we find into changes while they still matter.',
   },
 ];
 
@@ -47,7 +48,7 @@ export const METHOD: readonly MethodStage[] = [
 export const MODEL_COMPARISON: readonly (readonly [string, string, string])[] = [
   ['Capability grows by', 'Adding people and specialist roles', 'Experienced people, multiplied by AI'],
   ['Before committing', 'A few directions, chosen early', 'Many directions, explored and tested'],
-  ['Ideas are proven with', 'Documents and static designs', 'Working prototypes'],
+  ['Ideas are proven with', 'Documents and static designs', 'Real screens and working software'],
   ['The work moves through', 'Specialist teams and handoffs', 'One senior team, strategy to code'],
-  ['Effort goes to', 'The work, and coordinating it', 'Thinking, building and iteration'],
+  ['Who you actually get', 'Senior people in the pitch, juniors on the work', 'The people you meet do the work'],
 ];

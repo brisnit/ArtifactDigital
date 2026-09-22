@@ -3,11 +3,16 @@
   "navLabel": "UX/UI Design",
   "metaTitle": "UX/UI Design Services · Artifact Digital",
   "description": "UX/UI design that's both usable and unmistakable — software with clear structure, considered interaction, a strong visual signature, and craft in every detail.",
-  "order": 5,
+  "order": 15,
   "eyebrow": "Capability · UX/UI Design",
   "heroTitleLines": [
-    { "text": "Usable and" },
-    { "text": "unmistakable.", "italic": true }
+    {
+      "text": "Usable and"
+    },
+    {
+      "text": "unmistakable.",
+      "italic": true
+    }
   ],
   "lede": "UX/UI design is the difference between software that works and software people actually want to use: structure clear enough to be effortless, interaction that feels considered, and a visual signature distinctive enough to be yours.",
   "summary": "Clear structure, considered interaction, and a visual signature that's yours.",
@@ -40,9 +45,18 @@
     }
   ],
   "inMethod": [
-    { "stage": "Understand", "body": "Structure comes first: flows, information architecture and hierarchy resolved around what people are actually trying to do." },
-    { "stage": "Prototype", "body": "The visual and interaction language gets established in prototypes you can use, not static comps you can only review." },
-    { "stage": "Build", "body": "Real screens — empty states, errors and edge cases included — designed alongside engineering and turned into a reusable component system." }
+    {
+      "stage": "Understand",
+      "body": "Structure comes first: flows, information architecture and hierarchy resolved around what people are actually trying to do."
+    },
+    {
+      "stage": "Design",
+      "body": "The visual and interaction language gets established in prototypes you can use, not static comps you can only review."
+    },
+    {
+      "stage": "Build",
+      "body": "Real screens — empty states, errors and edge cases included — designed alongside engineering and turned into a reusable component system."
+    }
   ],
   "deliverables": [
     "Task flows and information architecture that hold up under real complexity",
@@ -59,13 +73,36 @@
     "Organizations that need design quality to survive scale, not just a launch"
   ],
   "faq": [
-    { "q": "Do you design in Figma?", "a": "Yes. We work in Figma and hand off structured, well-organized files with a real component system — not a pile of disconnected artboards. Your engineers get specs they can build from and a system they can extend." },
-    { "q": "Can you work with our existing brand?", "a": "Absolutely. We frequently carry an established brand into software — extending it thoughtfully into type, color, motion, and interaction rather than reinventing it. When the brand needs to stretch to work on screen, we'll show you where and why." },
-    { "q": "Do you build what you design?", "a": "Often, yes — our team includes engineers who build both front end and back end, which means our designs are grounded in what's actually buildable. When you have your own engineering team, we design for a clean handoff and stay close through build to protect the details." }
+    {
+      "q": "Do you design in Figma?",
+      "a": "Yes. We work in Figma and hand off structured, well-organized files with a real component system — not a pile of disconnected artboards. Your engineers get specs they can build from and a system they can extend."
+    },
+    {
+      "q": "Can you work with our existing brand?",
+      "a": "Absolutely. We frequently carry an established brand into software — extending it thoughtfully into type, color, motion, and interaction rather than reinventing it. When the brand needs to stretch to work on screen, we'll show you where and why."
+    },
+    {
+      "q": "Do you build what you design?",
+      "a": "Often, yes — our team includes engineers who build both front end and back end, which means our designs are grounded in what's actually buildable. When you have your own engineering team, we design for a clean handoff and stay close through build to protect the details."
+    }
   ],
-  "relatedTags": ["UX/UI", "Design", "Web"],
-  "relatedServices": ["product-design", "ux-strategy", "accessibility"],
-  "buildsWith": ["serve-your-customers", "build-a-product-to-sell"],
-  "cta": { "primary": "build", "secondary": "work" },
+  "relatedTags": [
+    "UX/UI",
+    "Design",
+    "Web"
+  ],
+  "relatedServices": [
+    "product-design",
+    "ux-strategy",
+    "accessibility"
+  ],
+  "buildsWith": [
+    "websites",
+    "web-apps"
+  ],
+  "cta": {
+    "primary": "build",
+    "secondary": "work"
+  },
   "ctaHeading": "Want software that's a pleasure to use and impossible to mistake?"
 }

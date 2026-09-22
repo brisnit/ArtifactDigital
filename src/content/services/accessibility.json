@@ -3,11 +3,16 @@
   "navLabel": "Accessibility",
   "metaTitle": "Digital Accessibility Services (WCAG) · Artifact Digital",
   "description": "Accessibility done as design and engineering, not a compliance checklist. We build software that works for everyone and targets WCAG — because accessible software is simply better software.",
-  "order": 12,
+  "order": 22,
   "eyebrow": "Capability · Accessibility",
   "heroTitleLines": [
-    { "text": "Accessible is just" },
-    { "text": "better design.", "italic": true }
+    {
+      "text": "Accessible is just"
+    },
+    {
+      "text": "better design.",
+      "italic": true
+    }
   ],
   "lede": "Accessibility gets treated as a compliance tax bolted on at the end. That's exactly why it goes wrong. Built into software from the first component, it makes the experience clearer, sturdier and better for everyone — not just the people it's legally meant to protect.",
   "summary": "Accessibility built into software from the first component, not a last-minute checklist.",
@@ -33,9 +38,18 @@
     }
   ],
   "inMethod": [
-    { "stage": "Understand", "body": "Where software already exists, we assess it against WCAG with manual review, automated tools and assistive-technology testing where it counts." },
-    { "stage": "Build", "body": "Semantic structure, focus order, contrast, labels and keyboard support built in from the first component, not remediated later." },
-    { "stage": "Evolve", "body": "Accessible patterns and standards your team can reuse, so the bar holds as the software grows." }
+    {
+      "stage": "Understand",
+      "body": "Where software already exists, we assess it against WCAG with manual review, automated tools and assistive-technology testing where it counts."
+    },
+    {
+      "stage": "Build",
+      "body": "Semantic structure, focus order, contrast, labels and keyboard support built in from the first component, not remediated later."
+    },
+    {
+      "stage": "Grow",
+      "body": "Accessible patterns and standards your team can reuse, so the bar holds as the software grows."
+    }
   ],
   "deliverables": [
     "A WCAG assessment grounded in manual and automated testing",
@@ -52,13 +66,36 @@
     "Companies that see accessibility as a quality standard, not just compliance"
   ],
   "faq": [
-    { "q": "What WCAG level should we target?", "a": "WCAG 2.1 or 2.2 Level AA is the practical standard most organizations should aim for, and what most regulations and procurement processes reference. AAA is appropriate for specific high-stakes contexts but is rarely required wholesale. We'll help you set the right target for your risk and audience." },
-    { "q": "Isn't an automated accessibility tool enough?", "a": "No — and relying on one is a common, costly mistake. Automated tools catch only the mechanical portion of issues. The problems that most affect real users — confusing structure, unusable keyboard flows, meaningless labels — need expert manual evaluation and, ideally, testing with assistive-technology users." },
-    { "q": "We're launching soon. Is it too late?", "a": "It's never too late to improve, though it's cheaper the earlier you start. If you're close to launch we'll triage by impact — fix the barriers that actually harm users first — and give you a realistic plan to reach your target without derailing your timeline." }
+    {
+      "q": "What WCAG level should we target?",
+      "a": "WCAG 2.1 or 2.2 Level AA is the practical standard most organizations should aim for, and what most regulations and procurement processes reference. AAA is appropriate for specific high-stakes contexts but is rarely required wholesale. We'll help you set the right target for your risk and audience."
+    },
+    {
+      "q": "Isn't an automated accessibility tool enough?",
+      "a": "No — and relying on one is a common, costly mistake. Automated tools catch only the mechanical portion of issues. The problems that most affect real users — confusing structure, unusable keyboard flows, meaningless labels — need expert manual evaluation and, ideally, testing with assistive-technology users."
+    },
+    {
+      "q": "We're launching soon. Is it too late?",
+      "a": "It's never too late to improve, though it's cheaper the earlier you start. If you're close to launch we'll triage by impact — fix the barriers that actually harm users first — and give you a realistic plan to reach your target without derailing your timeline."
+    }
   ],
-  "relatedTags": ["UX/UI", "Research", "Strategy"],
-  "relatedServices": ["front-end-engineering", "ux-ui-design", "experience-audits"],
-  "buildsWith": ["serve-your-customers", "grow-your-people"],
-  "cta": { "primary": "audit", "secondary": "how-we-work" },
+  "relatedTags": [
+    "UX/UI",
+    "Research",
+    "Strategy"
+  ],
+  "relatedServices": [
+    "front-end-engineering",
+    "ux-ui-design",
+    "experience-audits"
+  ],
+  "buildsWith": [
+    "websites",
+    "web-apps"
+  ],
+  "cta": {
+    "primary": "audit",
+    "secondary": "how-we-work"
+  },
   "ctaHeading": "Want software that works for everyone — and meets the bar?"
 }

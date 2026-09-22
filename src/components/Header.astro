@@ -1,21 +1,16 @@
 ---
-import { getCollection } from 'astro:content';
-import { NAV, CTA } from '../data/site';
-import { PLAYBOOKS, playbookPath } from '../data/playbooks';
+import { NAV, CTA, WHO_WE_HELP, WHY_ARTIFACT } from '../data/site';
 import { BUILD_CLUSTERS, buildPath } from '../data/build';
 import ArrowIcon from './ArrowIcon.astro';
 
-// The panel mirrors the What We Build hub: the software first, the practice
-// that builds it second, the method written down last. Adding a practice page
-// or a playbook puts it here with no edit to this file.
-const practice = (await getCollection('services'))
-  .filter((s) => s.id !== 'bespoke-saas')
-  .sort((a, b) => a.data.order - b.data.order);
+// One panel, opened from What We Do: the five things people come here for,
+// who we help, and why us. Everything deeper is reached from those pages, so
+// the nav never becomes a directory of internal vocabulary.
 ---
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="page-header is-stuck" id="pageHeader">
   <div class="container navbar">
-    <a class="brand" href="/#home" aria-label="Artifact Digital home">
+    <a class="brand" href="/" aria-label="Artifact Digital home">
       <picture>
         <source media="(max-width: 760px)" srcset="/brand_assets/A_Logo_Mobile3.png" />
         <img src="/brand_assets/A_Logo_DT3.png" alt="Artifact Digital" class="brand-logo" width="171" height="57" />
@@ -32,48 +27,47 @@ const practice = (await getCollection('services'))
             <div class="nav-mega">
               <div class="container nav-mega__inner">
                 <div class="nav-mega__col">
-                  <h2 class="nav-mega__title">Software we build</h2>
-                  <ul class="nav-mega__list">
+                  <h2 class="nav-mega__title">What we do</h2>
+                  <ul class="nav-mega__list nav-mega__list--rich">
                     {BUILD_CLUSTERS.map((c) => (
-                      <li><a href={buildPath(c.id)}>{c.label}</a></li>
+                      <li>
+                        <a href={buildPath(c.id)}>
+                          <span class="nav-mega__item-label">{c.label}</span>
+                          <span class="nav-mega__item-sub">{c.summary}</span>
+                        </a>
+                      </li>
                     ))}
                   </ul>
                   {/* Kept on one line: a newline here becomes a text node that
                       Chrome counts as a flex item, offsetting the label. */}
-                  <a class="nav-mega__all" href="/services"><span>All of what we build</span><span class="nav-mega__arrow" aria-hidden="true">→</span></a>
-
-                  <a class="nav-mega__promo" href="/services/bespoke-saas">
-                    <span class="nav-mega__promo-title">Bespoke SaaS, explained</span>
-                    <span class="nav-mega__promo-sub">
-                      Why software built around your business can now make more sense
-                      than renting software that doesn't fit — and what changed.
-                    </span>
-                    <span class="nav-mega__promo-cta"><span>Read the case for it</span><span class="nav-mega__arrow" aria-hidden="true">→</span></span>
-                  </a>
+                  <a class="nav-mega__all" href="/services"><span>Everything we do</span><span class="nav-mega__arrow" aria-hidden="true">→</span></a>
                 </div>
 
                 <div class="nav-mega__col">
-                  <h2 class="nav-mega__title">Capabilities</h2>
-                  <ul class="nav-mega__list nav-mega__list--two">
-                    {practice.map((s) => (
-                      <li><a href={`/services/${s.id}`}>{s.data.navLabel}</a></li>
+                  <h2 class="nav-mega__title">Who we help</h2>
+                  <ul class="nav-mega__list">
+                    {WHO_WE_HELP.map((w) => (
+                      <li><a href={w.href}>{w.label}</a></li>
+                    ))}
+                  </ul>
+                  <h2 class="nav-mega__title nav-mega__title--spaced">Why Artifact</h2>
+                  <ul class="nav-mega__list">
+                    {WHY_ARTIFACT.map((w) => (
+                      <li><a href={w.href}>{w.label}</a></li>
                     ))}
                   </ul>
                 </div>
 
                 <div class="nav-mega__col nav-mega__col--feature">
-                  <h2 class="nav-mega__title">Playbooks</h2>
-                  <p class="nav-mega__note">The method, written down.</p>
-                  <ul class="nav-mega__cards">
-                    {PLAYBOOKS.map((p) => (
-                      <li>
-                        <a href={playbookPath(p.slug)}>
-                          <span class="nav-mega__card-title">{p.navLabel}</span>
-                          <span class="nav-mega__card-sub">{p.summary}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+                  <a class="nav-mega__promo" href="/why-artifact#ai-without-the-slop">
+                    <span class="nav-mega__promo-title">AI without the slop</span>
+                    <span class="nav-mega__promo-sub">
+                      AI made building faster. It didn't make good thinking automatic. How we
+                      use it, and where experience still decides.
+                    </span>
+                    <span class="nav-mega__promo-cta"><span>Read our position</span><span class="nav-mega__arrow" aria-hidden="true">→</span></span>
+                  </a>
+                  <a class="nav-mega__all" href="/work"><span>See our work</span><span class="nav-mega__arrow" aria-hidden="true">→</span></a>
                 </div>
               </div>
             </div>
@@ -118,5 +112,6 @@ const practice = (await getCollection('services'))
         <a class="mobile-nav__link" href={item.href}>{item.label}</a>
       )
     )}
+    <a class="mobile-nav__cta btn btn-primary" href={CTA.primary.href}>{CTA.primary.label}</a>
   </nav>
 </div>

@@ -1,0 +1,87 @@
+{
+  "title": "Mobile App Design & Development",
+  "navLabel": "Mobile apps",
+  "metaTitle": "Mobile App Design & Development · Artifact Digital",
+  "description": "Mobile app design and development for iOS and Android — from an idea and a prototype through to a designed, accessible app people keep on their phone.",
+  "order": 3,
+  "eyebrow": "What we do · Mobile apps",
+  "heroTitleLines": [
+    { "text": "Apps people keep" },
+    { "text": "on their phone.", "italic": true }
+  ],
+  "lede": "iOS and Android apps, designed and built end to end. We start with what someone opens the app to do, then make that the easiest thing in it.",
+  "summary": "iOS and Android apps, designed and built end to end.",
+  "intro": [
+    "A phone is an unforgiving place to put an idea. People use apps standing up, one-handed, distracted, in bad light, often for less than a minute. Anything confusing gets deleted, and nobody writes to tell you why.",
+    "So we design for the one thing someone opens your app to do, and make everything else get out of its way. Fewer screens, bigger targets, clearer language, and a first run that doesn't demand a tutorial.",
+    "Sometimes the right answer isn't an app at all. A mobile website or a web app can do the job for a fraction of the cost, and we'll tell you when that's true before you spend the money."
+  ],
+  "sections": [
+    {
+      "heading": "Designed for real hands and real conditions",
+      "body": [
+        "We build the experience around how people actually hold a phone: thumb-reachable actions, type that survives sunlight, targets you can hit while walking, and states for slow connections and no connection at all.",
+        "Accessibility is part of that, not a later pass. Proper contrast, text that scales when someone has increased their font size, labels that make sense to a screen reader, and motion that respects a reduced-motion setting."
+      ]
+    },
+    {
+      "heading": "Prove the idea before the full build",
+      "body": [
+        "You can learn most of what matters from a version people can hold and tap, long before the app is finished. We build that early — real screens, real flows, on a real device — and put it in front of the people you're building for.",
+        "It's the cheapest moment to be wrong. Every change after the store release costs more, and a review takes days rather than minutes."
+      ]
+    },
+    {
+      "heading": "Getting it into the stores, and keeping it there",
+      "body": [
+        "Shipping a mobile app includes the parts nobody enjoys: developer accounts, provisioning, store listings, screenshots, privacy disclosures, review feedback and the update cycle after launch.",
+        "We handle that with you, set up the accounts in your name, and keep the app working as the platforms change underneath it."
+      ]
+    }
+  ],
+  "inMethod": [
+    { "stage": "Understand", "body": "Who opens the app, what for, and whether a mobile app is genuinely the right shape for the idea." },
+    { "stage": "Design", "body": "The core flow designed for one hand and small moments, then tested on an actual phone." },
+    { "stage": "Build", "body": "A production app for iOS and Android, with offline behavior, notifications and the integrations it needs." },
+    { "stage": "Launch", "body": "Store setup, listings, review, accessibility and device testing, and analytics from the first install." },
+    { "stage": "Grow", "body": "What people do after install decides what ships next — and what gets removed." }
+  ],
+  "deliverables": [
+    "A clear decision on whether you need a mobile app, a web app, or both",
+    "A designed, testable version on a real device early",
+    "An accessible iOS and Android app, built from one codebase where that fits",
+    "App Store and Google Play setup, submission and review support, in your accounts",
+    "Analytics that show what people actually do after install",
+    "A release plan for updates after launch"
+  ],
+  "whoFor": [
+    "Founders whose idea only makes sense in someone's pocket",
+    "Businesses whose customers are already on their phone all day",
+    "Teams with staff working away from a desk who need tools that travel",
+    "Organizations serving people the app stores usually design past"
+  ],
+  "faq": [
+    {
+      "q": "Do I need a mobile app or a web app?",
+      "a": "If people need notifications, offline use, the camera or a home-screen icon they open daily, a mobile app earns its cost. If they'd use it occasionally on a laptop, a web app is usually faster and cheaper to build and change. We'll tell you which one your idea actually needs."
+    },
+    {
+      "q": "Do you build for both iOS and Android?",
+      "a": "Yes, usually from one codebase so you're not paying twice for every feature. Where an app genuinely needs platform-specific work, we'll explain the trade-off before committing."
+    },
+    {
+      "q": "Can you get it into the App Store for us?",
+      "a": "Yes. We set up the developer accounts in your name, prepare the listing and screenshots, submit, and handle review feedback. You keep the accounts and the keys."
+    },
+    {
+      "q": "What if I just want to test the idea first?",
+      "a": "That's often the smartest first step. We can build a version real people can use on their phone without going through store release, learn from it, and only then decide what's worth building fully."
+    }
+  ],
+  "relatedTags": ["Mobile", "Accessibility", "Product"],
+  "relatedServices": ["product-design", "ux-ui-design", "accessibility"],
+  "buildsWith": ["mobile-apps", "web-apps"],
+  "cta": { "primary": "build", "secondary": "work" },
+  "ctaHeading": "Got an app idea worth testing?",
+  "ctaSub": "Tell us what someone would open it to do. We'll help you work out whether it needs an app, and what the first version should be."
+}

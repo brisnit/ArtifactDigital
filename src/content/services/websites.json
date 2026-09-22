@@ -1,0 +1,91 @@
+{
+  "title": "Web Design & Development",
+  "navLabel": "Websites",
+  "metaTitle": "Web Design & Development · Artifact Digital",
+  "description": "Website design and development for founders and growing businesses — strategy, UX, design, CMS, ecommerce and accessibility. From a simple business website to a complex digital platform.",
+  "order": 1,
+  "eyebrow": "What we do · Websites",
+  "heroTitleLines": [
+    { "text": "From a simple business website" },
+    { "text": "to a complex digital platform.", "italic": true }
+  ],
+  "lede": "We design and build websites that look like you, work for the people using them, and are straightforward for your team to run. Strategy and UX first, then design, then a fast, accessible build.",
+  "summary": "Strategy, UX, design, development, CMS, ecommerce and accessibility.",
+  "intro": [
+    "Your website is usually the first real impression anyone gets of your business, and often the only one they get before deciding whether to contact you. It has to say what you do in seconds, make the next step obvious, and hold up on a phone in bad light.",
+    "We don't treat a business website as beneath us, and we don't treat it as a template exercise either. The same thinking goes into a ten-page site as into a platform: what the business needs, who it's for, what people are trying to do, and what would make them trust you.",
+    "Then we build it properly. Fast pages, real accessibility, clean content structure, and a CMS your team can actually use without calling us every time a price changes."
+  ],
+  "sections": [
+    {
+      "heading": "A site that looks like you, not like a theme",
+      "body": [
+        "Most sites now look the same, because most are assembled from the same parts. That sameness is a wasted opportunity: your site is the one place you can look and sound like no one else in your market.",
+        "We design a real visual direction — type with a point of view, considered color and space, motion that has a reason — while keeping the structure clear and the pages quick. Distinctive and usable were never in conflict."
+      ]
+    },
+    {
+      "heading": "Built for the people who have to run it",
+      "body": [
+        "A site nobody can update is a site that quietly goes stale. So we design the editing experience as carefully as the public one, on a platform that fits your team rather than the other way round.",
+        "That might be a modern headless setup, a familiar CMS, or a commerce platform if you're selling. We model the content around how your business actually works, then give your team guardrails that prevent mistakes without getting in the way."
+      ]
+    },
+    {
+      "heading": "Ready to be found",
+      "body": [
+        "A beautiful site nobody can find isn't finished. Every site we build ships with the technical groundwork search engines and AI assistants need: sensible URLs, clean headings, fast pages, structured data and content organized around what people actually search for.",
+        "If you want to go further, [SEO and AI search](/services/seo-ai-search) picks up where launch leaves off."
+      ]
+    }
+  ],
+  "inMethod": [
+    { "stage": "Understand", "body": "Who the site is for, what it has to achieve, and what your content and business actually need it to do." },
+    { "stage": "Design", "body": "Structure and page flow first, then a visual direction you see on real screens rather than in abstract." },
+    { "stage": "Build", "body": "A fast, accessible, responsive build on the right CMS or commerce platform, connected to whatever sits behind it." },
+    { "stage": "Launch", "body": "Migration, testing across devices and assistive technology, analytics, and the search groundwork in place on day one." },
+    { "stage": "Grow", "body": "What people actually do on the site tells us what to improve next." }
+  ],
+  "deliverables": [
+    "A clear site structure based on what your customers are trying to do",
+    "A distinctive visual direction, not a themed template",
+    "A fast, accessible, responsive website",
+    "A CMS or commerce setup your team can run without us",
+    "Technical SEO foundations, analytics and structured data at launch",
+    "A migration and launch plan, including redirects for your existing pages"
+  ],
+  "whoFor": [
+    "Founders who need a credible site before their first serious sales conversations",
+    "Businesses whose current site no longer reflects how good they are",
+    "Companies selling online who need the storefront to work as hard as the product",
+    "Teams whose site has become slow, fragile or impossible to update"
+  ],
+  "faq": [
+    {
+      "q": "How much does a website cost?",
+      "a": "It depends on the size of the site and how much strategy, design and content work it needs. A focused marketing site is a very different number from a platform with accounts, payments and integrations. Tell us what you're trying to do and we'll give you an honest range early, before you've invested much time."
+    },
+    {
+      "q": "How long does it take?",
+      "a": "Most websites take somewhere between a few weeks and a few months, depending on scope and how quickly content and feedback come back. You'll see real screens within the first weeks rather than waiting until the end."
+    },
+    {
+      "q": "Can you work with our existing brand?",
+      "a": "Yes, and we often do. We'll extend what you have thoughtfully rather than reinventing it, and we'll tell you where it needs to stretch to work well on screen."
+    },
+    {
+      "q": "Do we have to move to a new platform?",
+      "a": "Not necessarily. If what you have fits your team and your roadmap, we'll build on it. If it's actively costing you time or money, we'll say so and show you the trade-offs before anyone commits."
+    },
+    {
+      "q": "What happens after launch?",
+      "a": "Whatever you want to happen. Some clients take the keys and run it themselves; others keep us on for [hosting, updates and ongoing improvements](/services/hosting-support). Both are fine, and you can change your mind later."
+    }
+  ],
+  "relatedTags": ["Web", "UX/UI", "Strategy"],
+  "relatedServices": ["ux-ui-design", "enterprise-cms", "accessibility"],
+  "buildsWith": ["websites", "seo-ai-search"],
+  "cta": { "primary": "build", "secondary": "work" },
+  "ctaHeading": "Need a website that does more than exist?",
+  "ctaSub": "Tell us what your business does and who you're trying to reach. We'll tell you what the site needs to do, and what it would take."
+}

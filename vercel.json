@@ -25,6 +25,16 @@
       "source": "/services/digital-products-ux",
       "destination": "/services/product-design",
       "statusCode": 301
+    },
+    {
+      "source": "/services/website-design-build",
+      "destination": "/services/websites",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/digital-product-engineering",
+      "destination": "/services/web-apps",
+      "statusCode": 301
     }
   ]
 }

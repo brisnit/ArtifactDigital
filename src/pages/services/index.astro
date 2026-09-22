@@ -6,37 +6,35 @@ import Button from '../../components/Button.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { SITE, orgNode, breadcrumb, CTA } from '../../data/site';
 import { PLAYBOOKS, playbookPath } from '../../data/playbooks';
-import { BUILD_CLUSTERS, BUILD_PROOF, type BuildProof } from '../../data/build';
+import { BUILD_CLUSTERS, BUILD_PROOF, buildPath, type BuildProof } from '../../data/build';
 import { caseTier, TIER_LABEL, type Tier } from '../../lib/proof';
 
-// What We Build: the software clients hire Artifact to create. The expertise
-// behind it (the practice pages, and /capabilities) sits below, clearly second.
+// What We Do: five plain services, each a real page. Everything else is depth
+// reached from them — the deeper pages are listed below, not competing for
+// attention at the top.
 
 const work = await getCollection('work');
-const practice = (await getCollection('services'))
-  .filter((s) => s.id !== 'bespoke-saas')
-  .sort((a, b) => a.data.order - b.data.order);
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const primaryIds = BUILD_CLUSTERS.map((c) => c.id);
+const primary = primaryIds
+  .map((id) => services.find((s) => s.id === id))
+  .filter((s): s is NonNullable<typeof s> => Boolean(s));
+const deeper = services.filter((s) => !primaryIds.includes(s.id));
 
 // Proof tiers come from the case itself (src/lib/proof.ts), never from this
 // page's copy, so prior-agency work can't be relabeled as Artifact's.
 function resolve(p: BuildProof) {
-  if (!p.caseId) return { ...p, tier: 'concept' as Tier, label: TIER_LABEL.concept, href: p.href };
+  if (!p.caseId) return { ...p, tier: 'concept' as Tier, label: null, href: p.href };
   const entry = work.find((w) => w.id === p.caseId);
-  if (!entry) throw new Error(`What We Build: unknown case "${p.caseId}"`);
+  if (!entry) throw new Error(`What We Do: unknown case "${p.caseId}"`);
   const tier = caseTier(entry);
-  return { ...p, tier, label: TIER_LABEL[tier], href: `/${entry.id}`, detail: p.detail ?? entry.data.description };
+  return { ...p, tier, label: TIER_LABEL[tier], href: `/${entry.id}` };
 }
-const clusters = BUILD_CLUSTERS.map((c) => ({ ...c, proof: (BUILD_PROOF[c.id] ?? []).map(resolve) }));
-
-const PROBLEMS = [
-  'A workflow that doesn’t fit the software you can buy',
-  'An operation carrying more manual effort than it should',
-  'Institutional knowledge that isn’t being put to work',
-  'A customer experience that could be transformed',
-  'An opportunity to own a capability competitors can’t buy',
-  'A new product or revenue line waiting to be built',
-  'Something strategically important that generic SaaS can’t adequately solve',
-];
+const clusters = BUILD_CLUSTERS.map((c) => ({
+  ...c,
+  page: primary.find((s) => s.id === c.id),
+  proof: (BUILD_PROOF[c.id] ?? []).map(resolve),
+}));
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -44,105 +42,85 @@ const jsonLd = {
     {
       '@type': 'ItemList',
       '@id': `${SITE.url}/services#list`,
-      name: 'Software Artifact Digital designs and builds',
-      itemListElement: clusters.map((c, i) => ({
+      name: 'What Artifact Digital does',
+      itemListElement: BUILD_CLUSTERS.map((c, i) => ({
         '@type': 'ListItem',
         position: i + 1,
         name: c.label,
         description: c.summary,
-        url: `${SITE.url}/services#${c.id}`,
+        url: `${SITE.url}${buildPath(c.id)}`,
       })),
     },
     orgNode,
     breadcrumb([
       { name: 'Home', path: '/' },
-      { name: 'What We Build', path: '/services' },
+      { name: 'What We Do', path: '/services' },
     ]),
   ],
 };
 ---
 <BaseLayout
-  title="What We Build · Bespoke SaaS & Custom Software · Artifact Digital"
-  description="Internal platforms, customer portals, learning platforms, predictive systems and new SaaS products — custom software designed and built around how your business works."
+  title="What We Do · Websites, Apps, SEO & Support · Artifact Digital"
+  description="Website design and development, web apps, mobile apps, SEO and AI search optimization, hosting and ongoing support — for founders and growing businesses."
   canonical="/services"
   bodyClass="case-page services-hub"
   jsonLd={jsonLd}
 >
   <section class="case-hero">
     <div class="container">
-      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'What We Build' }]} />
-      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>What we build</span>
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'What We Do' }]} />
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>What we do</span>
       <h1 class="case-title">
-        <span class="reveal-line"><span>Software designed around</span></span>
-        <span class="reveal-line italic"><span>the business it runs.</span></span>
+        <span class="reveal-line"><span>Websites, apps, and</span></span>
+        <span class="reveal-line italic"><span>the growth after launch.</span></span>
       </h1>
       <p class="case-lede reveal">
-        Every company has workflows, customers, data and know-how no generic platform
-        was built for. These are the kinds of software we design and build around
-        them, from internal platforms to products you can sell.
+        Five things, in plain terms. Most clients start with one and add another later —
+        a site that needs a portal behind it, or an app that needs people to find it.
       </p>
       <div class="wwb-hero-actions reveal">
         <Button href={CTA.primary.href} label={CTA.primary.label} variant="primary" />
-        <a class="home-more__link" href="/services/bespoke-saas">Bespoke SaaS, explained<span aria-hidden="true"> →</span></a>
-      </div>
-      <p class="wwb-xref reveal">
-        This page is about the software. For the expertise we bring to building it —
-        strategy, research, design, engineering and AI — see <a href="/capabilities">Capabilities</a>.
-      </p>
-    </div>
-  </section>
-
-  <!-- THE PROBLEM COMES FIRST -->
-  <section class="section service-section wwb-problems">
-    <div class="container service-section__grid">
-      <div class="service-section__head">
-        <h2 class="service-section__heading reveal-line"><span>The problem comes first</span></h2>
-      </div>
-      <div class="service-prose service-section__body">
-        <p class="reveal">
-          We don't build software because the technology is interesting. We build it
-          because a company has something worth solving:
-        </p>
-        <ul class="ticklist ticklist--two">
-          {PROBLEMS.map((p) => <li class="reveal">{p}</li>)}
-        </ul>
-        <p class="reveal">
-          AI changes what a small, experienced team can do about those problems. It
-          doesn't change where we start.
-        </p>
+        <a class="home-more__link" href="/how-we-work">See how we work<span aria-hidden="true"> →</span></a>
       </div>
     </div>
   </section>
 
-  <!-- FIVE KINDS OF SOFTWARE -->
+  <!-- THE FIVE -->
   <section class="section wwb-clusters" aria-labelledby="wwb-clusters-heading">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>Five kinds of software</span>
-        <h2 class="section-heading reveal-line" id="wwb-clusters-heading"><span>What we build</span></h2>
+        <span class="section-tag reveal"><span class="tag-dot"></span>Services</span>
+        <h2 class="section-heading reveal-line" id="wwb-clusters-heading"><span>Where to start</span></h2>
       </header>
-      <p class="home-lede reveal">
-        Grouped by what the software does for a business. Every one is bespoke SaaS:
-        designed around one company, and owned by it.
-      </p>
 
       <ol class="wwb-cluster-list">
         {clusters.map((c, i) => (
           <li class="wwb-cluster" id={c.id}>
             <div class="wwb-cluster__main reveal">
               <span class="wwb-cluster__num">{String(i + 1).padStart(2, '0')}</span>
-              <h3 class="wwb-cluster__title">{c.label}</h3>
+              <h3 class="wwb-cluster__title">
+                {c.page ? <a href={buildPath(c.id)}>{c.label}</a> : c.label}
+              </h3>
               <p class="wwb-cluster__summary">{c.summary}</p>
-              <ul class="wwb-tags" aria-label={`Examples of ${c.label.toLowerCase()} software`}>
+              <ul class="wwb-tags" aria-label={`Examples of ${c.label.toLowerCase()} work`}>
                 {c.examples.map((e) => <li>{e}</li>)}
               </ul>
+              {c.page && (
+                <p class="wwb-cluster__link">
+                  <a class="home-more__link" href={buildPath(c.id)}>
+                    {c.page.data.title}<span class="sr-only"> — {c.label}</span><span aria-hidden="true"> →</span>
+                  </a>
+                </p>
+              )}
             </div>
             <div class="wwb-cluster__proof reveal">
               <h4 class="wwb-proof__title">Evidence</h4>
               <ul class="wwb-proof">
                 {c.proof.map((p) => (
                   <li class="wwb-proof__item">
-                    <span class={`tier-chip tier-chip--${p.tier}`}>{p.label}{p.status ? ` · ${p.status}` : ''}</span>
+                    {p.label && (
+                      <span class={`tier-chip tier-chip--${p.tier}`}>{p.label}{p.status ? ` · ${p.status}` : ''}</span>
+                    )}
                     <a class="wwb-proof__name" href={p.href}>{p.name}</a>
                     <p class="wwb-proof__detail">{p.detail}</p>
                   </li>
@@ -154,47 +132,27 @@ const jsonLd = {
       </ol>
 
       <p class="wwb-legend reveal">
-        <strong>Built by Artifact</strong> is software this company designed and built.
+        <strong>Built by Artifact</strong> is work this company designed and built.
         <strong> Our founder’s work</strong> and <strong>our team’s prior work</strong> were
         led at a previous agency, before Artifact existed, and their clients aren’t named.
-        An <strong>Artifact concept</strong> is a platform we’re developing, not a client product.
       </p>
     </div>
   </section>
 
-  <!-- HOW IT GETS BUILT -->
-  <section class="section service-section wwb-model">
-    <div class="container service-section__grid">
-      <div class="service-section__head">
-        <h2 class="service-section__heading reveal-line"><span>More thinking. More building. Less overhead.</span></h2>
-      </div>
-      <div class="service-prose service-section__body">
-        <p class="reveal">
-          Software this specific used to take the kind of team few businesses could
-          justify. Our model is different: experienced people working with AI,
-          exploring more possibilities, prototyping more ideas and testing more
-          approaches than team size alone allows — then building the answer on
-          architecture that can grow.
-        </p>
-        <p class="reveal"><a class="home-more__link" href="/how-we-work">How we work<span aria-hidden="true"> →</span></a></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- THE PRACTICE -->
+  <!-- GO DEEPER -->
   <section class="section wwb-practice" aria-labelledby="wwb-practice-heading">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>Capabilities</span>
+        <span class="section-tag reveal"><span class="tag-dot"></span>Go deeper</span>
         <h2 class="section-heading reveal-line" id="wwb-practice-heading"><span>The expertise behind it</span></h2>
       </header>
       <p class="home-lede reveal">
-        What we build is software. What we bring to it is a senior practice: strategy,
-        research, design, engineering and AI in one team. Each discipline has its own
-        page, and <a href="/capabilities">Capabilities</a> brings them together in one place.
+        Under every project sits the same senior practice: strategy, research, design,
+        engineering, accessibility and AI. These pages go into each one, for anyone who
+        wants the detail before they get in touch.
       </p>
       <ul class="wwb-practice__list">
-        {practice.map((s) => (
+        {deeper.map((s) => (
           <li><a href={`/services/${s.id}`}>{s.data.navLabel}<span aria-hidden="true">→</span></a></li>
         ))}
       </ul>
@@ -206,12 +164,11 @@ const jsonLd = {
     <div class="container">
       <header class="section-head">
         <span class="section-tag reveal"><span class="tag-dot"></span>Playbooks</span>
-        <h2 class="section-heading reveal-line"><span>The method, written down</span></h2>
+        <h2 class="section-heading reveal-line"><span>How we think, written down</span></h2>
       </header>
       <p class="pb-section-lede reveal">
-        Nothing here is a line item you buy. It's how we think, written down — the
-        questions we ask, the checks we run, and the answers that make us tell you
-        not to build something. Read it before you talk to us.
+        Nothing here is something you buy. It’s how we work — the questions we ask, the
+        checks we run, and the answers that make us tell you not to build something.
       </p>
       <div class="service-link-grid">
         {PLAYBOOKS.map((p) => (
@@ -226,7 +183,7 @@ const jsonLd = {
   </section>
 
   <CtaBand
-    heading="Not sure what you need built?"
-    sub="That's a good reason to talk. Tell us the problem and we'll tell you honestly where to start — including when off-the-shelf software is the better answer."
+    heading="Not sure which one you need?"
+    sub="That’s a normal place to start. Tell us what you’re trying to do and we’ll tell you honestly what it needs — including when it’s smaller than you thought."
   />
 </BaseLayout>
