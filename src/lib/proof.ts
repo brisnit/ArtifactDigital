@@ -32,6 +32,7 @@ export function tierText(entry: CollectionEntry<'work'>): string {
 // still renders, after these, in its own `order`.
 export const WORK_ORDER = [
   'case-ithink',
+  'case-left-coast-printing-pros',
   'case-tiny-crm',
   'case-phoenix-rising',
   'case-dropq',

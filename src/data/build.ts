@@ -68,7 +68,7 @@ export const BUILD_PROOF: Record<string, BuildProof[]> = {
   websites: [
     { caseId: 'case-ithink', name: 'iThink Big', detail: 'A live assembly program, led by real footage and built around one action: book an assembly.', status: 'Live' },
     { caseId: 'case-phoenix-rising', name: 'Phoenix Rising', detail: 'A digital front door for a manufacturing business working across California and Guangzhou.', status: 'Pre-launch' },
-    { caseId: 'case-it-training', name: 'IT Training & Certification School', detail: 'A learning platform and site restructured around how people actually choose a certification.' },
+    { caseId: 'case-left-coast-printing-pros', name: 'Left Coast Printing Pros', detail: 'A print shop site with a design studio: place the artwork, see the price, send a request the shop can produce.', status: 'Prototype' },
   ],
   'web-apps': [
     { caseId: 'case-tiny-crm', name: 'Tiny CRM', detail: 'Projects, contacts, deals, RFPs and tasks in one workspace, opening on what needs attention today.', status: 'Pre-launch' },

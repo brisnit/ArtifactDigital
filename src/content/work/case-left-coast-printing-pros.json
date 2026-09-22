@@ -1,0 +1,87 @@
+{
+  "title": "Left Coast Printing Pros",
+  "metaTitle": "Left Coast Printing Pros — Print Shop Website & Design Studio · Artifact Digital",
+  "description": "A website and custom print configurator for a San Diego print shop: upload artwork, place it on the garment, watch the price update, and send a request the shop can actually produce from.",
+  "order": 2,
+  "year": "2026",
+  "category": "Website & custom web tool",
+  "priorRole": false,
+  "teamWork": true,
+  "status": "Prototype",
+  "card": {
+    "eyebrow": "Website & custom web tool",
+    "blurb": "A print shop site where customers place their own artwork on the garment — and the order arrives ready to produce.",
+    "tags": ["Web", "Commerce", "UX/UI"],
+    "wide": false,
+    "image": "/brand_assets/cases/cards/left-coast.webp",
+    "imageAlt": "The Left Coast Printing Pros website on a laptop and a phone, showing the custom apparel homepage."
+  },
+  "heroEyebrow": "Case study · Website + web app",
+  "titleLines": [
+    { "text": "Don't just show customers what you print." },
+    { "text": "Let them show you what they want.", "italic": true }
+  ],
+  "lede": "Left Coast Printing Pros is a San Diego print shop. The brief looked like a website. The opportunity was the ordering itself — so we built a design studio where a customer uploads their artwork, places it on the shirt, watches the price change as they decide, and sends a request the shop can actually produce from.",
+  "meta": [
+    { "label": "Client", "value": "Left Coast Printing Pros" },
+    { "label": "Year", "value": "2026" },
+    { "label": "Scope", "value": "Strategy · Brand · UX/UI · Build" },
+    { "label": "Status", "value": "Prototype · seeded catalog and pricing" }
+  ],
+  "pillarsTag": "The problem",
+  "pillarsHeading": "The order was an email thread.",
+  "pillars": [
+    {
+      "title": "“Put it about here”",
+      "body": "Artwork arrives as an attachment with a description. Where on the shirt, how big, which sleeve, what color garment — all of it gets settled over several emails, screenshots and a phone call, and any one of them can be misread."
+    },
+    {
+      "title": "Price was a conversation",
+      "body": "Quantity, print method, number of colors and how many locations all move the number. A customer can't self-serve that, so every casual enquiry costs someone at the shop twenty minutes before it's even a real job."
+    },
+    {
+      "title": "Print has rules a generic store can't express",
+      "body": "Screen printing has minimums and a setup charge per color per location. Digital printing doesn't. A checkout built for mugs and t-shirt blanks quietly hides the constraints the press actually runs on."
+    }
+  ],
+  "storyTag": "The reframe",
+  "storyHeadingLines": [
+    { "text": "The website shouldn't describe the work." },
+    { "text": "It should start it.", "italic": true }
+  ],
+  "storyParagraphs": [
+    "So the centre of the site isn't a gallery, it's a design studio. A customer picks the garment and colorway, uploads their artwork, and drags it into place on the front, back or a sleeve. The canvas reports the printed size in inches as they scale it, because “about this big” is the single most expensive sentence in custom printing. What the shop receives is a placement, not a paragraph.",
+    "The price moves with the decisions. Print method, quantity, colors and locations all feed a pricing engine that recalculates as the customer works, with screen-print setup charged per color per location and waived at volume, minimums stated up front, and local pickup priced honestly. The catalog quotes every blank at the same basis — per piece at 24 units with a one-color front print — so people compare real numbers instead of teaser prices.",
+    "The brand does the rest. A California green and gold palette and condensed type give a small shop the confidence of a much larger one, and the garment mockups are drawn as original SVG silhouettes tinted per colorway rather than licensed vendor photography — which keeps the color honest, the page fast, and the whole catalog consistent as products change.",
+    "It's also built to be handed over. Pricing, catalog, colors and sizes are data rather than markup, so the shop's real numbers replace the seeded ones without touching the interface. Saved designs go through a storage driver that can point at an API instead of the browser. Checkout submits an order for artwork review and invoicing — no card details are collected and no payment is simulated, because that's the workflow this shop actually runs.",
+    "The same discipline applies to proof. There are no invented production statistics, no borrowed client logos, and the review section is a labelled placeholder with the rating markup deliberately left out of the structured data until the shop has real ratings to publish."
+  ],
+  "storyImage": "/brand_assets/cases/left-coast-story.webp",
+  "storyImageAlt": "Four phone screens: the homepage, product search, the catalog with per-piece pricing, and the design studio with artwork placed on a shirt.",
+  "storyCaption": "The studio on a phone: front, back and sleeve views, artwork placed by hand, printed size in inches.",
+  "highlights": [
+    {
+      "title": "A print request instead of an email thread",
+      "body": "Garment, colorway, placement, printed size and files arrive together, in a form the shop can produce from."
+    },
+    {
+      "title": "Pricing that answers itself",
+      "body": "Method, quantity, colors and locations recalculate live, with setup charges and minimums stated rather than hidden."
+    },
+    {
+      "title": "Built around real print rules",
+      "body": "Screen print, DTF and embroidery are priced on their own terms, including per-location setup and volume waivers."
+    },
+    {
+      "title": "Ready for the shop's real numbers",
+      "body": "Catalog, pricing, storage and payments are swappable data and drivers, so going live doesn't mean a rebuild."
+    }
+  ],
+  "ctaHeading": "Could your website do part of the work?",
+  "ogImage": "/brand_assets/cases/left-coast-og.webp",
+  "feature": {
+    "image": "/brand_assets/cases/left-coast-feature.webp",
+    "alt": "The Left Coast Printing Pros homepage on a laptop and a phone: 'Custom gear. Printed on the Left Coast', with Start Designing as the first action.",
+    "caption": "One action leads the page: start designing. Everything else is in service of that."
+  }
+}
