@@ -66,20 +66,13 @@ const NOT_AUTOMATIC = [
   'Knowing which shortcut becomes next year’s problem',
 ];
 
-// Section 7 + 8: growth and support, in plain terms.
+// Section 7: growth, in plain terms.
 const GROWTH = [
   'Technical SEO: speed, structure, crawlability and the groundwork search needs',
   'AI search (GEO): being understood and accurately described by AI assistants',
   'Content built on the questions your buyers actually ask',
   'Structured data, so machines read your pages correctly',
   'Analytics that show what people do, not just how many arrived',
-];
-const SUPPORT = [
-  'Hosting, domains, backups and monitoring, in accounts you own',
-  'Updates and security, applied and tested',
-  'Improvements shipped in small, regular cycles',
-  'Search, analytics and reporting in plain language',
-  'A senior contact who knows your business, for the decisions in between',
 ];
 
 const serviceNode = {
@@ -428,33 +421,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
     </div>
   </section>
 
-  <!-- 8. YOUR DIGITAL TEAM -->
-  <section class="section digital-team" id="support" aria-labelledby="support-heading">
-    <div class="container digital-team__grid">
-      <div>
-        <span class="section-tag reveal"><span class="tag-dot"></span>Hosting &amp; support</span>
-        <h2 class="section-heading reveal-line" id="support-heading">
-          <span>You don’t need an internal</span>
-          <span>digital team. <em>We can be yours.</em></span>
-        </h2>
-      </div>
-      <div>
-        <p class="digital-team__lede reveal">
-          Most digital work is sold as a project with an end date, and then nothing happens
-          for two years. We stay on where it helps, so what we built keeps getting better
-          instead of quietly falling behind.
-        </p>
-        <ul class="ticklist">
-          {SUPPORT.map((s) => <li class="reveal">{s}</li>)}
-        </ul>
-        <p class="reveal" style="margin-top: 1.75rem;">
-          <a class="home-more__link" href="/services/hosting-support">Hosting &amp; support<span aria-hidden="true"> →</span></a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 9. FINAL CTA -->
+  <!-- 8. FINAL CTA -->
   <section class="section contact" id="contact">
     <div class="container contact-inner">
       <span class="section-tag reveal"><span class="tag-dot"></span>Start a project</span>

@@ -4100,15 +4100,6 @@ html:not(.js) .nav-item--has-menu:focus-within .nav-mega {
 
 /* -------------------- Growth + support -------------------- */
 .growth-note { margin: 1.25rem 0 0; color: var(--steel); font-size: 0.92rem; line-height: 1.6; max-width: 56ch; }
-.digital-team { background: var(--stone); }
-.digital-team__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  gap: clamp(2rem, 5vw, 4.5rem);
-  align-items: start;
-}
-.digital-team__lede { margin: 0 0 1.75rem; color: var(--steel); line-height: 1.7; font-size: 1.05rem; max-width: 56ch; }
-
 /* -------------------- What We Do nav panel -------------------- */
 .nav-mega__list--rich li a { display: block; padding: 0.4rem 0; }
 .nav-mega__item-label { display: block; font-weight: 500; }
@@ -4130,7 +4121,6 @@ html:not(.js) .nav-item--has-menu:focus-within .nav-mega {
 }
 @media (max-width: 900px) {
   .slop-grid { grid-template-columns: 1fr; }
-  .digital-team__grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 620px) {
   .need-grid { grid-template-columns: 1fr; }
