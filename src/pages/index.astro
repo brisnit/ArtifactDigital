@@ -20,10 +20,11 @@ const careerWork = allWork.filter((p) => caseTier(p) === 'founder').slice(0, 3);
 
 const live = testimonials.filter((t) => t.approved);
 
-// The five product screens in the hero reel, with their real status. The
-// caption follows this timeline, so the reel never implies more than is true.
+// The hero footage is illustrative: design and build work, not screens from
+// real client projects. The caption says so for the whole clip, so the hero
+// never implies a client, product or result that doesn't exist.
 const REEL = [
-  { from: 0, name: 'Illustrative footage', status: 'Concept interfaces · not client or live products' },
+  { from: 0, name: 'Illustrative footage', status: 'Not client work or live products' },
 ];
 
 // Section 2: what a visitor is here for, in their words.
@@ -123,7 +124,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
   title="Web Design, Web Apps & Mobile Apps | Artifact Digital"
   description="Artifact Digital designs, builds and grows websites, web apps and mobile apps for founders and growing businesses — strategy, UX, design, development, hosting, SEO and AI search."
   canonical="/"
-  preloadImage="/brand_assets/hero-cinematic.webp"
+  preloadImage="/brand_assets/hero-reel.webp"
   jsonLd={jsonLd}
 >
   <!-- 1. HERO -->
@@ -158,12 +159,12 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
       <div class="hero-visual">
         <video
           class="hero-video"
-          data-src="/brand_assets/hero-cinematic.mp4"
-          data-src-mobile="/brand_assets/hero-cinematic-mobile.mp4"
+          data-src="/brand_assets/hero-reel.mp4"
+          data-src-mobile="/brand_assets/hero-reel-mobile.mp4"
           data-reel={JSON.stringify(REEL)}
-          poster="/brand_assets/hero-cinematic.webp"
+          poster="/brand_assets/hero-reel.webp"
           muted loop playsinline autoplay preload="metadata"
-          aria-label="Illustrative footage of software interfaces"
+          aria-label="Illustrative footage of design and build work"
           aria-describedby="heroReelList"
         ></video>
         <p class="hero-reel-caption" aria-hidden="true">
