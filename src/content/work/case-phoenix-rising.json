@@ -1,0 +1,86 @@
+{
+  "title": "Phoenix Rising",
+  "metaTitle": "Phoenix Rising — Product Development & Manufacturing Site · Artifact Digital",
+  "description": "A digital front door for a product development and manufacturing company working across California and Guangzhou — organized around what happens to a product, not a service menu.",
+  "order": 3,
+  "year": "2026",
+  "category": "Website & digital presence",
+  "priorRole": false,
+  "teamWork": true,
+  "status": "Pre-launch",
+  "card": {
+    "eyebrow": "Website & digital presence",
+    "blurb": "Years of manufacturing relationships across two continents, turned into a digital front door that earns trust before the first call.",
+    "tags": ["Web", "UX/UI", "Accessibility"],
+    "wide": false,
+    "image": "/brand_assets/cases/cards/phoenix-rising.webp",
+    "imageAlt": "The Phoenix Rising website on a laptop and a phone, showing the headline 'From idea to reality'."
+  },
+  "heroEyebrow": "Case study · Website",
+  "titleLines": [
+    { "text": "Years of relationships." },
+    { "text": "One digital front door.", "italic": true }
+  ],
+  "lede": "Phoenix Rising connects product thinking, engineering and manufacturing across California and Guangzhou. The expertise was never in doubt; it just wasn't visible to anyone who hadn't already been introduced.",
+  "meta": [
+    { "label": "Client", "value": "Phoenix Rising Trading Company, Ltd." },
+    { "label": "Year", "value": "2026" },
+    { "label": "Scope", "value": "Strategy · Design · Build" },
+    { "label": "Status", "value": "Pre-launch" }
+  ],
+  "pillarsTag": "The problem",
+  "pillarsHeading": "A business built on introductions, invisible to everyone else.",
+  "pillars": [
+    {
+      "title": "The business was stronger than its digital presence",
+      "body": "Sourcing judgment, factory relationships and the operational knowledge of moving a product from drawing to container are hard to see from outside, and impossible to infer from a thin website."
+    },
+    {
+      "title": "Trust has to cross borders",
+      "body": "A company working between the United States and China is asking someone to commit tooling money to a partner they have never met. That confidence has to be established before the first conversation, not during it."
+    },
+    {
+      "title": "Complexity needed clarity",
+      "body": "Development, prototyping, production and delivery are genuinely complicated. Explaining all of it at once reads as noise; explaining none of it reads as vague."
+    }
+  ],
+  "storyTag": "The reframe",
+  "storyHeadingLines": [
+    { "text": "Don't make the business look complicated." },
+    { "text": "Make the expertise obvious.", "italic": true }
+  ],
+  "storyParagraphs": [
+    "The site is organized around what has to happen to a product — develop, prototype, produce, deliver — rather than a list of services. That single decision does the explaining: a visitor with a sketch and a visitor with a finished design both find their own starting point, and the company's range becomes visible without a paragraph claiming it.",
+    "The company story carries the geography rather than decorating it. One product, two worlds: the market it is meant to serve, and the factory floor that has to build it. California and Guangzhou are presented as the two ends of the same process, which is the actual argument for working with Phoenix Rising, told without a single stock photograph of a cargo ship.",
+    "Two things on the site do more than describe. An ideation workspace turns a rough idea into a project brief the visitor keeps — and everything typed into it stays in their own browser session, which the interface says plainly. Ask Phoenix answers questions about the company and how it works, in a panel available from every page. A trading business runs on responsiveness, and the site behaves the same way.",
+    "The part we're most pleased with is a page most agencies would never ship. The projects section is an evidence library rather than a portfolio, and while it is empty it says so, and says why. The build enforces that honesty: the test suite includes a claim guard and an approved-fact ledger, so an unverified claim about the company fails the build rather than quietly going live."
+  ],
+  "storyImage": "/brand_assets/cases/phoenix-rising-story.webp",
+  "storyImageAlt": "Four phone screens from the Phoenix Rising site: the hero, the evidence section, the ideation workspace, and the Ask Phoenix panel.",
+  "storyCaption": "The full experience on a phone, including the ideation workspace and the question panel.",
+  "highlights": [
+    {
+      "title": "A credible digital front door",
+      "body": "A first impression that matches the quality of the operation behind it, for buyers who arrive before any introduction."
+    },
+    {
+      "title": "The offer, explained as a process",
+      "body": "Develop, prototype, produce, deliver — so range is obvious and a visitor can find where they are in it."
+    },
+    {
+      "title": "Tools, not just pages",
+      "body": "An ideation workspace that turns an idea into a brief the visitor owns, kept in their own browser, plus a question panel on every page."
+    },
+    {
+      "title": "Honest by construction",
+      "body": "Sixteen routes tested for accessibility, motion and overflow at six breakpoints, with a claim guard that fails the build on an unapproved claim."
+    }
+  ],
+  "ctaHeading": "Is your business better than your website makes it look?",
+  "ogImage": "/brand_assets/cases/phoenix-rising-og.webp",
+  "feature": {
+    "image": "/brand_assets/cases/phoenix-rising-feature.webp",
+    "alt": "The Phoenix Rising homepage on a laptop and a phone: 'From idea to reality', with Start a Project and How We Build as the two actions.",
+    "caption": "One line does the work of a paragraph: from idea to reality, on any screen."
+  }
+}

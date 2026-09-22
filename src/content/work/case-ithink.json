@@ -1,0 +1,87 @@
+{
+  "title": "iThink Big",
+  "metaTitle": "iThink Big — School Assembly Website · Artifact Digital",
+  "description": "A website for a live school assembly program: video-led, built around one action — book an assembly — and designed for school leaders reading it on a phone between classes.",
+  "order": 1,
+  "year": "2026",
+  "category": "Website & digital experience",
+  "priorRole": false,
+  "teamWork": true,
+  "status": "Live",
+  "liveUrl": "https://www.ithinkbig.org",
+  "card": {
+    "eyebrow": "Website & digital experience",
+    "blurb": "A live assembly program translated into a site that moves like the show and books like a business.",
+    "tags": ["Web", "UX/UI", "Accessibility"],
+    "wide": false,
+    "image": "/brand_assets/cases/cards/ithink.webp",
+    "imageAlt": "The iThink Big website on a laptop and a phone, showing the assembly program's homepage."
+  },
+  "heroEyebrow": "Case study · Website",
+  "titleLines": [
+    { "text": "The energy was already there." },
+    { "text": "The website needed to catch up.", "italic": true }
+  ],
+  "lede": "iThink Big has been running motivational assemblies in schools since 2000 — a loud, live, deeply human hour in a gym full of students. The website had to carry that into a browser, and then make the next step obvious: book an assembly.",
+  "meta": [
+    { "label": "Client", "value": "iThink Big" },
+    { "label": "Year", "value": "2026" },
+    { "label": "Scope", "value": "Strategy · Design · Build" },
+    { "label": "Status", "value": "Live · ithinkbig.org" }
+  ],
+  "pillarsTag": "The problem",
+  "pillarsHeading": "A live program, flattened into a web page.",
+  "pillars": [
+    {
+      "title": "The experience wasn't coming through",
+      "body": "What happens in the room is music, story and a few hundred students paying complete attention. Written down as paragraphs on a conventional education site, it becomes a description of an assembly rather than a reason to book one."
+    },
+    {
+      "title": "Several audiences, one page",
+      "body": "Principals, teachers, parents, youth pastors and partner organizations arrive with different questions, and none of them read the whole site. Each needed their answer within a screen or two of landing."
+    },
+    {
+      "title": "Decisions get made on a phone",
+      "body": "School leaders look this up between classes, standing in a hallway. A site that only works on a desktop is a site that gets closed and forgotten."
+    }
+  ],
+  "storyTag": "The reframe",
+  "storyHeadingLines": [
+    { "text": "Don't explain the energy." },
+    { "text": "Show it.", "italic": true }
+  ],
+  "storyParagraphs": [
+    "The decision that shaped everything else was to lead with footage from real assemblies rather than a photograph of a building. The first thing a visitor sees is the room itself — the stage, the crowd, the moment — with the headline and the booking button sitting over it. Nothing has to describe the atmosphere, because you're already looking at it.",
+    "Underneath that, the page is disciplined. One primary action, Book an Assembly, repeats down the page and stays reachable in the mobile header. The organization's own record — students reached, years running, schools and districts served — is stated once, high up, in its own words, then left alone. Credibility comes from named references and the people who actually run the program rather than from adjectives.",
+    "Video hero sections usually break two things: legibility and accessibility. So the type sits on a controlled overlay that holds contrast wherever the footage goes bright, motion respects a reduced-motion preference, and every action is reachable by keyboard with a visible focus state. The energy is the point, but nobody has to fight it to find the phone number.",
+    "The structure then makes room for the parts of the organization that a single page usually buries: what the programs actually include, who the team is, the references schools ask for, and the work in Mexico, which gets its own place in the navigation rather than a paragraph at the bottom."
+  ],
+  "storyImage": "/brand_assets/cases/ithink-story.webp",
+  "storyImageAlt": "Three phone screens: the video hero with Book an Assembly, a school leader's testimonial, and the founder's profile.",
+  "storyCaption": "Mobile isn't the reduced version. It's where most school leaders meet the program.",
+  "highlights": [
+    {
+      "title": "A site that feels like the room",
+      "body": "Real assembly footage leads, so the tone is set before anyone reads a word."
+    },
+    {
+      "title": "One obvious next step",
+      "body": "Book an Assembly is the only primary action, repeated as the page moves and pinned within reach on mobile."
+    },
+    {
+      "title": "Legible over video, and keyboard-friendly",
+      "body": "Controlled contrast over moving footage, visible focus states, and motion that respects a reduced-motion setting."
+    },
+    {
+      "title": "Room to grow",
+      "body": "Programs, references, team and the Mexico work each have a home, so the site can expand without a redesign."
+    }
+  ],
+  "ctaHeading": "Need your website to catch up with your business?",
+  "ogImage": "/brand_assets/cases/ithink-og.webp",
+  "feature": {
+    "image": "/brand_assets/cases/ithink-feature.webp",
+    "alt": "The iThink Big homepage on a laptop and a phone: video of a live assembly behind the headline 'Inspire the Young to Think Big', with Book an Assembly as the first action.",
+    "caption": "Desktop and mobile share one hierarchy: what it is, who it's for, and how to book."
+  }
+}

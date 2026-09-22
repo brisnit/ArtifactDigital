@@ -66,10 +66,12 @@ export interface BuildProof {
 
 export const BUILD_PROOF: Record<string, BuildProof[]> = {
   websites: [
+    { caseId: 'case-ithink', name: 'iThink Big', detail: 'A live assembly program, led by real footage and built around one action: book an assembly.', status: 'Live' },
+    { caseId: 'case-phoenix-rising', name: 'Phoenix Rising', detail: 'A digital front door for a manufacturing business working across California and Guangzhou.', status: 'Pre-launch' },
     { caseId: 'case-it-training', name: 'IT Training & Certification School', detail: 'A learning platform and site restructured around how people actually choose a certification.' },
-    { caseId: 'case-global-nutrition', name: 'American Big Food', detail: 'One design system and content model across 15+ business units and six continents.' },
   ],
   'web-apps': [
+    { caseId: 'case-tiny-crm', name: 'Tiny CRM', detail: 'Projects, contacts, deals, RFPs and tasks in one workspace, opening on what needs attention today.', status: 'Pre-launch' },
     { caseId: 'case-dropq', name: 'DropQ', detail: 'A storefront, ordering and payments platform for independent sellers.', status: 'Live' },
     { caseId: 'case-benchbot', name: 'BenchBot', detail: 'An AI tool that audits a website against its competitors and turns findings into tasks.', status: 'Pre-launch' },
     { caseId: 'case-senior-living-ministry', name: 'Senior-Living Ministry · admin portal', detail: 'The portal staff use to run content, events and messaging without a developer.', status: 'Prototype' },

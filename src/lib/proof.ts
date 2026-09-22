@@ -13,7 +13,7 @@ export const TIER_LABEL: Record<Tier, string> = {
 };
 
 // Products Artifact owns outright, rather than built for a client.
-const OWN_PRODUCTS = new Set(['case-benchbot']);
+const OWN_PRODUCTS = new Set(['case-benchbot', 'case-tiny-crm']);
 
 export function caseTier(entry: CollectionEntry<'work'>): Exclude<Tier, 'concept'> {
   if (entry.data.priorRole) return entry.data.teamWork ? 'team' : 'founder';
@@ -31,6 +31,9 @@ export function tierText(entry: CollectionEntry<'work'>): string {
 // the team's prior work, then the founder's. A case missing from this list
 // still renders, after these, in its own `order`.
 export const WORK_ORDER = [
+  'case-ithink',
+  'case-tiny-crm',
+  'case-phoenix-rising',
   'case-dropq',
   'case-benchbot',
   'case-senior-living-ministry',

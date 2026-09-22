@@ -4132,3 +4132,39 @@ html:not(.js) .nav-item--has-menu:focus-within .nav-mega {
   .need-card, .need-card::after, .need-wide { transition: none; }
   .need-card:hover, .need-card:focus-visible { transform: none; }
 }
+
+/* -------------------- Case study: next case -------------------- */
+.case-next { border-top: 1px solid rgba(17, 17, 17, 0.1); background: var(--stone); }
+.case-next__link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0.35rem 2rem;
+  padding: clamp(2rem, 4vw, 3rem) var(--page-padding);
+  text-decoration: none;
+  color: var(--ink);
+}
+.case-next__label {
+  grid-column: 1 / -1;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--steel-soft);
+}
+.case-next__title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3.4vw, 2.6rem);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  transition: color 0.3s var(--easing);
+}
+.case-next__link:hover .case-next__title,
+.case-next__link:focus-visible .case-next__title { color: var(--accent-strong); }
+.case-next__meta { font-family: 'DM Sans', sans-serif; font-size: 0.92rem; color: var(--steel); white-space: nowrap; }
+@media (max-width: 620px) {
+  .case-next__link { grid-template-columns: 1fr; }
+  .case-next__meta { white-space: normal; }
+}
+@media (prefers-reduced-motion: reduce) { .case-next__title { transition: none; } }

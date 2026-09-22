@@ -5,7 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import { SITE, orgNode, breadcrumb, CTA } from '../data/site';
 import { responsive } from '../lib/responsive';
-import { caseTier, tierText } from '../lib/proof';
+import { caseTier, tierText, sortWork } from '../lib/proof';
 
 export const getStaticPaths = (async () => {
   const cases = await getCollection('work');
@@ -13,6 +13,9 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { entry } = Astro.props;
+// Somewhere to go at the end of the story, in the same order /work uses.
+const ordered = sortWork(await getCollection('work'));
+const nextCase = ordered[(ordered.findIndex((c) => c.id === entry.id) + 1) % ordered.length];
 const d = entry.data;
 const path = `/${entry.id}`;
 const feature = await responsive(d.feature?.image);
@@ -193,6 +196,17 @@ const jsonLd = {
       </ul>
     </div>
   </section>
+
+  <!-- NEXT CASE -->
+  {nextCase && nextCase.id !== entry.id && (
+    <nav class="case-next" aria-label="Next case study">
+      <a class="container case-next__link" href={`/${nextCase.id}`}>
+        <span class="case-next__label">Next case study</span>
+        <span class="case-next__title">{nextCase.data.title}</span>
+        <span class="case-next__meta">{nextCase.data.card.eyebrow}<span aria-hidden="true"> →</span></span>
+      </a>
+    </nav>
+  )}
 
   <!-- CTA -->
   <section class="section case-cta">

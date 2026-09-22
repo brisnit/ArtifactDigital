@@ -1,0 +1,86 @@
+{
+  "title": "Tiny CRM",
+  "metaTitle": "Tiny CRM — A CRM for Small Teams · Artifact Digital",
+  "description": "Our own product: projects, contacts, deals, RFPs, tasks and notes in one workspace, built around a single question — what needs my attention today?",
+  "order": 2,
+  "year": "2026",
+  "category": "CRM & productivity platform",
+  "priorRole": false,
+  "teamWork": true,
+  "status": "Pre-launch",
+  "card": {
+    "eyebrow": "Web app · Our own product",
+    "blurb": "A CRM for people running the whole business, not a sales department — with the day's priorities on the first screen.",
+    "tags": ["Product", "SaaS", "AI"],
+    "wide": false,
+    "image": "/brand_assets/cases/cards/tiny-crm.webp",
+    "imageAlt": "Tiny CRM on a laptop and a phone, showing the marketing site and the daily brief dashboard."
+  },
+  "heroEyebrow": "Case study · Web app",
+  "titleLines": [
+    { "text": "CRM got complicated." },
+    { "text": "The work didn't.", "italic": true }
+  ],
+  "lede": "Tiny CRM pulls projects, contacts, companies, deals, RFPs, tasks and notes into one workspace, and opens on the only question that matters on a Monday: what needs my attention today? We designed and built it as our own product.",
+  "meta": [
+    { "label": "Client", "value": "Artifact Digital (our own product)" },
+    { "label": "Year", "value": "2026" },
+    { "label": "Scope", "value": "Product · Design · Full-stack build" },
+    { "label": "Status", "value": "Pre-launch · 41 screens" }
+  ],
+  "pillarsTag": "The problem",
+  "pillarsHeading": "Small teams get the leftovers of enterprise software.",
+  "pillars": [
+    {
+      "title": "Everything lived somewhere else",
+      "body": "Projects in one tool, contacts in another, tasks in a third, RFPs in a spreadsheet, and the notes that explain any of it wherever someone happened to type them."
+    },
+    {
+      "title": "Enterprise CRM became the default",
+      "body": "The big platforms are built for sales organizations with an administrator to run them. A team of two or five inherits all of that structure and none of the staff to maintain it."
+    },
+    {
+      "title": "The dashboard answered the wrong question",
+      "body": "Most dashboards report how many. The person running the business needs to know which thing is slipping, who has gone quiet, and what to do before lunch."
+    }
+  ],
+  "storyTag": "The reframe",
+  "storyHeadingLines": [
+    { "text": "The CRM shouldn't be the work." },
+    { "text": "It should tell you where the work is.", "italic": true }
+  ],
+  "storyParagraphs": [
+    "Every screen in Tiny answers one of four questions: what is happening, who is involved, what needs my attention, and what should I do next. That constraint did more than any feature decision. Where a bigger product would offer a settings page, Tiny picks a sensible default, and the surface stays small enough to hold in your head.",
+    "The product opens on a Daily Brief rather than a chart: the deals losing momentum, the project at risk, the contacts who have gone quiet, the RFP whose questions deadline is today. It reads your own data and tells you where to start, which is the difference between a system of record and something you actually open on a Monday morning.",
+    "Tiny AI follows the same rule. It runs on a built-in reasoning engine over your own contacts, deals, projects and activity, and answers the questions people actually ask — what do I need to do today, which deals need attention, who haven't I talked to in 30 days. It sits behind a keyboard shortcut and the command bar instead of a chat bubble parked on every screen. AI where it earns its place, not AI as decoration.",
+    "Underneath, it's built like software meant to last: a fifty-model data model, Postgres with row-level security and per-record grants so a workspace can only ever see its own rows, and a test suite of seventy-five files covering security, integration, browser behaviour and data portability. It runs on SQLite locally so the whole product, with a realistic demo workspace, spins up with one command."
+  ],
+  "storyImage": "/brand_assets/cases/tiny-crm-story.webp",
+  "storyImageAlt": "Five phone screens from Tiny CRM: Tiny AI, the daily brief, opportunities, projects, and quick add.",
+  "storyCaption": "The same product on a phone — brief, pipeline, opportunities, projects, quick add. Figures shown are demo data.",
+  "highlights": [
+    {
+      "title": "One place to run the work",
+      "body": "Projects, contacts, companies, deals, RFPs, tasks, notes, calendar and files reference each other instead of living in separate tools."
+    },
+    {
+      "title": "AI that reads your own data",
+      "body": "The Daily Brief and Tiny AI surface what needs attention, behind ⌘K and a keyboard shortcut rather than a chatbot on every screen."
+    },
+    {
+      "title": "Security treated as a feature",
+      "body": "Row-level security, workspace isolation and per-record grants, with a security test suite that runs alongside the rest."
+    },
+    {
+      "title": "Built to keep evolving",
+      "body": "Forty-one screens and ten API routes on one data model, so new workflows get added without rebuilding the product."
+    }
+  ],
+  "ctaHeading": "Have an app you've been trying to get out of your head?",
+  "ogImage": "/brand_assets/cases/tiny-crm-og.webp",
+  "feature": {
+    "image": "/brand_assets/cases/tiny-crm-feature.webp",
+    "alt": "Tiny CRM on a laptop and a phone: the marketing page above the product, showing the daily brief, pipeline and this week's calendar.",
+    "caption": "The pitch and the product share a promise: your whole business, organized. Figures shown are demo data."
+  }
+}
