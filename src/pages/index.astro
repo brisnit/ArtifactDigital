@@ -48,6 +48,14 @@ const NEEDS = [
   },
 ];
 
+// The tout's four chips: what ongoing support actually covers.
+const TOUT_CHIPS = [
+  { label: 'Host', icon: 'M4 5h16v5H4zM4 14h16v5H4M8 7.5h.01M8 16.5h.01' },
+  { label: 'Maintain', icon: 'M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2z' },
+  { label: 'Improve', icon: 'M6 20V10M12 20V4M18 20v-6M3 10h6M9 4h6M15 14h6' },
+  { label: 'Grow', icon: 'M3 17l6-6 4 4 8-8M15 7h6v6' },
+];
+
 // Section 5: the part AI genuinely doesn't do for you.
 const NOT_AUTOMATIC = [
   'Knowing what the business actually needs',
@@ -182,13 +190,69 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
           </li>
         ))}
       </ul>
-      <a class="need-wide reveal-card" href={buildPath('hosting-support')}>
-        <span class="need-wide__copy">
-          <strong>Already have a site or app?</strong> We host, maintain, improve and grow what
-          you already run — the outside digital team for businesses that don’t have one.
+    </div>
+  </section>
+
+  <!-- 2b. ALREADY HAVE A SITE OR APP? (full-bleed tout) -->
+  <section class="tout" aria-labelledby="tout-heading">
+    <div class="tout__copy">
+      <div class="tout__copy-inner">
+        <h2 class="tout__heading reveal-line" id="tout-heading">
+          <span>Already have a site <em>or app?</em></span>
+        </h2>
+        <p class="tout__lede reveal">
+          We host, maintain, improve and grow what you already run — the outside digital
+          team for businesses that don’t have one.
+        </p>
+        <ul class="tout__chips reveal">
+          {TOUT_CHIPS.map((c) => (
+            <li class="tout__chip">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d={c.icon} />
+              </svg>
+              {c.label}
+            </li>
+          ))}
+        </ul>
+        <div class="tout__action reveal">
+          <Button href={buildPath('hosting-support')} label="Hosting & support" variant="primary" />
+        </div>
+      </div>
+    </div>
+
+    <div class="tout__media">
+      <img
+        src="/brand_assets/insights/ai-behind-the-scenes.webp"
+        srcset="/brand_assets/insights/ai-behind-the-scenes-480w.webp 480w, /brand_assets/insights/ai-behind-the-scenes-960w.webp 960w, /brand_assets/insights/ai-behind-the-scenes.webp 1208w"
+        sizes="(max-width: 900px) 100vw, 50vw"
+        alt=""
+        width="1208" height="604" loading="lazy" decoding="async"
+      />
+      {/* Decorative mock of what ongoing support looks like. Hidden from
+          assistive tech: the chips above already say it in words. */}
+      <div class="tout__card" aria-hidden="true">
+        <div class="tout__card-head">
+          <span class="tout__card-site">yoursite.com</span>
+          <span class="tout__card-status"><i></i>Online</span>
+        </div>
+        <svg class="tout__pulse" viewBox="0 0 220 40" fill="none" aria-hidden="true">
+          <path d="M2 24h44l10-16 9 28 8-20 10 8h30l10-14 9 24 8-18 10 8h58" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <dl class="tout__card-stats">
+          <div><dt>Hosted</dt><dd>Server</dd></div>
+          <div><dt>Backed up</dt><dd>Data</dd></div>
+          <div><dt>Patched</dt><dd>Updates</dd></div>
+        </dl>
+      </div>
+      <div class="tout__toast" aria-hidden="true">
+        <span class="tout__toast-icon">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
         </span>
-        <span class="need-wide__more" aria-hidden="true">Hosting &amp; support →</span>
-      </a>
+        <span class="tout__toast-copy">
+          <strong>Improvements shipped</strong>
+          <span>Change log sent to you</span>
+        </span>
+      </div>
     </div>
   </section>
 
