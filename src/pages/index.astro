@@ -20,13 +20,6 @@ const careerWork = allWork.filter((p) => caseTier(p) === 'founder').slice(0, 3);
 
 const live = testimonials.filter((t) => t.approved);
 
-// The hero footage is illustrative: design and build work, not screens from
-// real client projects. The caption says so for the whole clip, so the hero
-// never implies a client, product or result that doesn't exist.
-const REEL = [
-  { from: 0, name: 'Illustrative footage', status: 'Not client work or live products' },
-];
-
 // Section 2: what a visitor is here for, in their words.
 const NEEDS = [
   {
@@ -161,19 +154,10 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
           class="hero-video"
           data-src="/brand_assets/hero-reel.mp4"
           data-src-mobile="/brand_assets/hero-reel-mobile.mp4"
-          data-reel={JSON.stringify(REEL)}
           poster="/brand_assets/hero-reel.webp"
           muted loop playsinline autoplay preload="metadata"
-          aria-label="Illustrative footage of design and build work"
-          aria-describedby="heroReelList"
+          aria-label="Sketching wireframes on paper, notes on a wall, and a storefront on a phone"
         ></video>
-        <p class="hero-reel-caption" aria-hidden="true">
-          <span class="hero-reel-caption__name" data-reel-name>{REEL[0].name}</span>
-          <span class="hero-reel-caption__status" data-reel-status>{REEL[0].status}</span>
-        </p>
-        <ul class="sr-only" id="heroReelList">
-          {REEL.map((r) => <li>{r.name}: {r.status}</li>)}
-        </ul>
       </div>
     </div>
   </section>
