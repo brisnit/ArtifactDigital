@@ -76,11 +76,8 @@
     }
   ],
   "storyParagraphs": [
-    "So the centre of the site isn't a gallery, it's a design studio. A customer picks the garment and colorway, uploads their artwork, and drags it into place on the front, back or a sleeve. The canvas reports the printed size in inches as they scale it, because “about this big” is the single most expensive sentence in custom printing. What the shop receives is a placement, not a paragraph.",
-    "The price moves with the decisions. Print method, quantity, colors and locations all feed a pricing engine that recalculates as the customer works, with screen-print setup charged per color per location and waived at volume, minimums stated up front, and local pickup priced honestly. The catalog quotes every blank at the same basis — per piece at 24 units with a one-color front print — so people compare real numbers instead of teaser prices.",
-    "The brand does the rest. A California green and gold palette and condensed type give a small shop the confidence of a much larger one, and the garment mockups are drawn as original SVG silhouettes tinted per colorway rather than licensed vendor photography — which keeps the color honest, the page fast, and the whole catalog consistent as products change.",
-    "It's also built to be handed over. Pricing, catalog, colors and sizes are data rather than markup, so the shop's real numbers replace the seeded ones without touching the interface. Saved designs go through a storage driver that can point at an API instead of the browser. Checkout submits an order for artwork review and invoicing — no card details are collected and no payment is simulated, because that's the workflow this shop actually runs.",
-    "The same discipline applies to proof. There are no invented production statistics, no borrowed client logos, and the review section is a labelled placeholder with the rating markup deliberately left out of the structured data until the shop has real ratings to publish."
+    "The centre of the site isn't a gallery, it's a design studio: pick the garment, upload the artwork, drag it onto the front, back or a sleeve, and watch the printed size in inches as you scale it. The shop receives a placement, not a paragraph.",
+    "Price moves with those decisions, with setup charges and minimums stated rather than buried. Garment mockups are drawn as SVG silhouettes instead of licensed photography, and pricing, catalog and storage are swappable data — so the shop's real numbers replace the seeded ones without touching the interface."
   ],
   "storyImage": "/brand_assets/cases/left-coast-story.webp",
   "storyImageAlt": "The Left Coast Printing Pros homepage on a laptop and a phone: 'Custom gear. Printed on the Left Coast.'",

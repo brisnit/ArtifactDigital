@@ -76,10 +76,8 @@
     }
   ],
   "storyParagraphs": [
-    "Every screen in Tiny answers one of four questions: what is happening, who is involved, what needs my attention, and what should I do next. That constraint did more than any feature decision. Where a bigger product would offer a settings page, Tiny picks a sensible default, and the surface stays small enough to hold in your head.",
-    "The product opens on a Daily Brief rather than a chart: the deals losing momentum, the project at risk, the contacts who have gone quiet, the RFP whose questions deadline is today. It reads your own data and tells you where to start, which is the difference between a system of record and something you actually open on a Monday morning.",
-    "Tiny AI follows the same rule. It runs on a built-in reasoning engine over your own contacts, deals, projects and activity, and answers the questions people actually ask — what do I need to do today, which deals need attention, who haven't I talked to in 30 days. It sits behind a keyboard shortcut and the command bar instead of a chat bubble parked on every screen. AI where it earns its place, not AI as decoration.",
-    "Underneath, it's built like software meant to last: a fifty-model data model, Postgres with row-level security and per-record grants so a workspace can only ever see its own rows, and a test suite of seventy-five files covering security, integration, browser behaviour and data portability. It runs on SQLite locally so the whole product, with a realistic demo workspace, spins up with one command."
+    "Every screen answers one of four questions: what is happening, who is involved, what needs my attention, what should I do next. Where a bigger product offers a settings page, Tiny picks a default.",
+    "So it opens on a Daily Brief rather than a chart, and Tiny AI reads your own data from behind a keyboard shortcut instead of a chat bubble on every screen. Underneath: Postgres with row-level security, per-record grants, and a security suite among seventy-five test files."
   ],
   "storyImage": "/brand_assets/cases/tiny-crm-story.webp",
   "storyImageAlt": "Tiny CRM on a laptop and a phone: the marketing page above the product, showing the daily brief and pipeline.",
