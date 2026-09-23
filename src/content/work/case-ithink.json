@@ -78,7 +78,7 @@
   ],
   "storyParagraphs": [
     "The decision that shaped everything else was to lead with footage from real assemblies rather than a photograph of a building. The first thing a visitor sees is the room itself — the stage, the crowd, the moment — with the headline and the booking button sitting over it. Nothing has to describe the atmosphere, because you're already looking at it.",
-    "Underneath that, the page is disciplined. One primary action, Book an Assembly, repeats down the page and stays reachable in the mobile header. The organization's own record — students reached, years running, schools and districts served — is stated once, high up, in its own words, then left alone. Credibility comes from named references and the people who actually run the program rather than from adjectives.",
+    "Underneath, the page is disciplined: one action, Book an Assembly, repeated as you scroll and pinned within reach on mobile. The program's own record is stated once, then left alone.",
     "Video hero sections usually break two things: legibility and accessibility. So the type sits on a controlled overlay that holds contrast wherever the footage goes bright, motion respects a reduced-motion preference, and every action is reachable by keyboard with a visible focus state. The energy is the point, but nobody has to fight it to find the phone number.",
     "The structure then makes room for the parts of the organization that a single page usually buries: what the programs actually include, who the team is, the references schools ask for, and the work in Mexico, which gets its own place in the navigation rather than a paragraph at the bottom."
   ],
