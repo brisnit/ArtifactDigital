@@ -4467,8 +4467,9 @@ html:not(.js) .nav-item--has-menu:focus-within .nav-mega {
   position: relative;
   display: flex;
   align-items: flex-end;
-  /* Ends at the fold: the viewport minus the fixed header, on any screen. */
-  min-height: calc(100svh - var(--header-h));
+  /* The header is fixed, so the hero starts at the top of the viewport: a full
+     viewport tall ends it exactly at the fold. Top padding clears the header. */
+  min-height: 100svh;
   padding: clamp(6rem, 12vw, 9rem) 0 clamp(3rem, 7vw, 5.5rem);
   background: #0a0a0a;
   overflow: hidden;
@@ -4541,7 +4542,7 @@ html:not(.js) .nav-item--has-menu:focus-within .nav-mega {
 .btn-ghost:hover, .btn-ghost:focus-visible { background: #fff; color: var(--ink); border-color: #fff; }
 
 @media (max-width: 760px) {
-  .hero-film { min-height: calc(100svh - var(--header-h)); align-items: flex-end; }
+  .hero-film { min-height: 100svh; align-items: flex-end; }
   .hero-film__title { max-width: none; }
   .hero-film__actions .btn { flex: 1 1 100%; justify-content: center; }
   .hero-film__scrim {
