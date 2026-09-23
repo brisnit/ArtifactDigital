@@ -77,9 +77,8 @@
     }
   ],
   "storyParagraphs": [
-    "The strategic move wasn't a feature. It was realising the audit isn't the product — it's the entry point. A one-off report is something you buy once and file. Continuous improvement, tracked over time, is something you keep. That single reframe changed the positioning from \"website audit tool\" to \"AI website improvement platform,\" and everything downstream followed from it.",
-    "So the free tier gives you two complete audits — not a crippled trial. The value has to land before the ask. If the thing is good, two real audits will prove it; if it isn't, no amount of paywalling will save it.",
-    "Under the hood it's a full pipeline: crawl the site, capture real screenshots at desktop and mobile with Playwright, run structured AI analysis, and assemble a branded report and deck. Competitive audits seed a real-time collaborative canvas, so findings become something a team works on rather than something they read."
+    "The audit isn’t the product — it’s the entry point. A one-off report is bought once and filed; continuous improvement, tracked over time, is something you keep. That reframe turned a website audit tool into an AI website improvement platform, and the free tier follows from it: two complete audits, not a crippled trial.",
+    "Underneath is a full pipeline — crawl the site, capture real desktop and mobile screenshots with Playwright, run structured AI analysis, assemble a branded report and deck. Competitive audits seed a real-time collaborative canvas, so findings become something a team works on rather than something they read."
   ],
   "highlights": [
     {

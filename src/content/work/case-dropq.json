@@ -80,10 +80,8 @@
     }
   ],
   "storyParagraphs": [
-    "The first commit landed on 11 June. Fourteen calendar days and 131 commits later there was a live MVP: storefronts, drops, inventory, Stripe Connect payments. Two weeks, zero to working marketplace — which sounds like the headline, but isn't.",
-    "The headline is what happened on 4 July. The first real drop went live and took real money, and instead of celebrating we ran a full UX audit across the entire experience — drop creation, through purchase, through pickup. The biggest finding wasn't in the checkout everyone worries about. It was the breakdown in communication between customer and vendor at pickup: people standing in a parking lot, holding a paid order, unable to find the person they'd bought it from.",
-    "That became the next build cycle. Pickup windows. \"How to find us\" descriptions. Open-in-Maps. Opt-in vendor contact. Vendor check-in broadcasts. Customer \"I'm here\" arrival. Shipped within a week of the audit.",
-    "That's the whole argument for shipping fast, and the honest admission of what shipping fast costs. Speed got us to a real transaction. Only a real transaction could tell us what was actually broken. And when you compress design and build that hard, QA becomes the thing that saves you — because the gaps don't hide inside any one role, they hide in the seams between admin, vendor and customer."
+    "Fourteen days and 131 commits in, there was a live MVP: storefronts, drops, inventory, Stripe Connect payments. The first real drop took real money on 4 July, and instead of celebrating we audited the whole experience. The worst break wasn’t checkout. It was pickup — people standing in a parking lot, holding a paid order, unable to find the vendor.",
+    "That became the next build cycle: pickup windows, “how to find us” directions, open-in-Maps, opt-in vendor contact, vendor check-in, customer arrival — shipped within a week. Speed got us to a real transaction, and only a real transaction could tell us what was actually broken."
   ],
   "highlights": [
     {

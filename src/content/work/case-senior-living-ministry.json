@@ -79,10 +79,8 @@
     }
   ],
   "storyParagraphs": [
-    "The first brief pointed at YouVersion. It's the category leader, so it's the natural reference — and it was exactly wrong. YouVersion is dense, young, gamified and feature-forward. A pastoral senior-living ministry should feel like the opposite: warm, unhurried, quiet. Everything got better the moment we threw the comparison out and started from the ministry's own identity instead. Competitor-shaped is not the same as user-shaped.",
-    "The home screen had eight tiles and six competing cards. We cut it to one primary action — \"Continue Reading,\" set over Scripture imagery. That single act of subtraction did more for the product than any feature we could have added. For an audience of 70+, the question isn't \"what can they do?\" It's \"do they know what to do first?\"",
-    "The architectural decision that carried everything was a provider seam: content flows through swappable providers, and the whole thing runs, demos and deploys on a mock data layer designed as a drop-in for a real database. Full SQL migrations and row-level security policies are written and waiting. That let us ship something real and shareable before any backend existed — which is also the honest limitation. It's a fully-formed prototype without a persistent spine. Connecting the database is the difference between demo and product, and we say so plainly.",
-    "One more decision worth naming: we bundled the entire KJV — all 66 books, 4.3 MB — instead of calling a Bible API. That removed the network, rate limits, licensing exposure and latency in a single move. It works in airplane mode. The primitive choice was the right one."
+    "The brief pointed at YouVersion — the natural reference, and exactly wrong. It’s dense, young and gamified where a pastoral ministry needs warm and unhurried, so we started from the ministry’s own identity instead and cut a home screen of eight tiles and six cards down to one action: “Continue Reading.” For an audience of 70+, the question isn’t what they can do. It’s whether they know what to do first.",
+    "Content runs through swappable providers on a mock data layer, with full SQL migrations and row-level security written and waiting — an honest prototype without a persistent spine. And the whole KJV is bundled rather than fetched from a Bible API, so it works in airplane mode."
   ],
   "highlights": [
     {
