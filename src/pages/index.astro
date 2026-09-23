@@ -5,6 +5,7 @@ import Button from '../components/Button.astro';
 import WorkCard from '../components/WorkCard.astro';
 import { SITE, orgNode, websiteNode, CTA } from '../data/site';
 import { testimonials } from '../data/testimonials';
+import PullQuote from '../components/PullQuote.astro';
 import { DOORS } from '../data/doors';
 import { METHOD } from '../data/method';
 import { sortWork } from '../lib/proof';
@@ -161,22 +162,10 @@ const jsonLd = {
         {proof.slice(0, 6).map((p) => <WorkCard entry={p} showTier showProblem />)}
       </div>
       <p class="home-more reveal"><a class="home-more__link" href="/work">See all work<span aria-hidden="true"> →</span></a></p>
-
-      {live.length > 0 && (
-        <div class="testimonial-grid">
-          {live.map((t) => (
-            <figure class="testimonial reveal-card">
-              <blockquote>{t.quote}</blockquote>
-              <figcaption>
-                <span class="testimonial__role">{t.name}</span>
-                <span class="testimonial__sector">{t.role}</span>
-                {t.context && <span class="testimonial__context">{t.context}</span>}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      )}
     </div>
+
+    {/* Outside .container on purpose: the pull quote runs full width. */}
+    {live.map((t) => <PullQuote testimonial={t} />)}
   </section>
 
   <!-- 05 / HOW WE THINK -->

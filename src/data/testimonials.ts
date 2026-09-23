@@ -19,6 +19,12 @@ export interface Testimonial {
   /** What the work was, shown under the name so a quote is never mistaken
    *  for evidence of a different kind of engagement. */
   context?: string;
+  /** A photograph of the person who said it. Optional: without one the pull
+   *  quote renders as a single panel rather than a split, so a client who
+   *  won't be photographed still gets the same treatment. Never use a stock
+   *  portrait here - it has to be the actual person. */
+  image?: string;
+  imageAlt?: string;
 }
 
 export const testimonials: Testimonial[] = [
@@ -30,6 +36,8 @@ export const testimonials: Testimonial[] = [
     approved: true,
     kind: 'design',
     context: 'Commerce design & build',
+    image: '/brand_assets/clients/rob-chapman.webp',
+    imageAlt: 'Rob Chapman at a table in his coffee shop, holding a latte.',
   },
   // Add every Artifact client here as you finish. Ask for the quote at the
   // moment they're happiest — right after launch. Real and small beats

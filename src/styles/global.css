@@ -1891,28 +1891,133 @@ button:focus-visible {
   border: 1px solid rgba(17, 17, 17, 0.14);
   border-radius: 999px;
 }
-.testimonial-grid {
+/* -------------------- Pull quote -------------------- */
+/* A client's own words get the same weight as a case study: full-bleed band,
+   their photograph at half the viewport, the quote set as display type. It
+   renders outside .container, so it must carry its own edge treatment. */
+.pullquote {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: clamp(1.25rem, 2.5vw, 2rem);
-  margin: clamp(2.5rem, 5vw, 4rem) 0 0;
-}
-.testimonial {
-  margin: 0;
-  padding: clamp(1.5rem, 2.5vw, 2.25rem);
-  border-radius: var(--radius-media);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  margin: clamp(3.5rem, 7vw, 6rem) 0 0;
   background: var(--stone);
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
 }
-.testimonial blockquote {
+/* No photograph: one panel, same typography, nothing looking like a gap. */
+.pullquote--solo { grid-template-columns: 1fr; }
+.pullquote--solo .pullquote__panel { justify-content: center; }
+.pullquote--solo .pullquote__inner { max-width: 46rem; }
+
+/* The portrait is 3:4, so a short band would crop the head off the top. This
+   floor keeps the band roughly square at desktop - deep enough for the face and
+   the mug both. Deliberately not `aspect-ratio`: on a grid item that stretches,
+   the ratio feeds the height back into the width and the columns stop being
+   halves. */
+.pullquote__media {
+  position: relative;
+  min-height: min(46vw, 40rem);
+  background: #0a0a0a;
+}
+.pullquote__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 22%;
+  display: block;
+}
+
+.pullquote__panel {
+  display: flex;
+  align-items: center;
+  padding: clamp(2.75rem, 5vw, 5rem) clamp(1.5rem, 4vw, 4.5rem);
+}
+.pullquote__inner { width: 100%; max-width: 34rem; }
+
+.pullquote__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+.pullquote__rule {
+  flex: none;
+  width: 34px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+/* The glyph carries its own leading, hence the tight line-height and the
+   optical nudge left so it hangs on the same edge as the quote below it. */
+.pullquote__mark {
+  display: block;
+  margin: clamp(1.5rem, 3vw, 2.25rem) 0 clamp(0.5rem, 1.2vw, 0.9rem) -0.06em;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(4.25rem, 7vw, 6.25rem);
+  line-height: 0.72;
+  color: var(--accent-strong);
+}
+
+.pullquote__quote {
   margin: 0;
   font-family: 'DM Sans', sans-serif;
-  font-size: 1.2rem;
-  line-height: 1.45;
-  letter-spacing: -0.01em;
+  font-weight: 400;
+  font-size: clamp(1.45rem, 2.3vw, 2.1rem);
+  line-height: 1.24;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  text-wrap: pretty;
 }
-.testimonial figcaption { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.15rem; }
-.testimonial__role { font-weight: 500; }
-.testimonial__sector { color: var(--steel); font-size: 0.9rem; }
+
+.pullquote__foot {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding-top: clamp(1.25rem, 2vw, 1.75rem);
+  border-top: 1px solid rgba(17, 17, 17, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  flex-wrap: wrap;
+}
+.pullquote__who { display: grid; gap: 0.15rem; }
+.pullquote__name { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1.02rem; color: var(--ink); }
+.pullquote__org { font-size: 0.95rem; color: var(--steel); }
+.pullquote__chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid rgba(17, 17, 17, 0.16);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* Stacked. The photo turns landscape and gets capped, or it eats the fold on
+   a tablet, and the quote keeps a readable measure rather than running the
+   full width of the panel. */
+@media (max-width: 900px) {
+  .pullquote { grid-template-columns: 1fr; }
+  /* Stacked, so the ratio is safe here - nothing else shares the row. */
+  .pullquote__media { aspect-ratio: 16 / 9; min-height: 0; }
+  .pullquote__panel { padding: clamp(2.5rem, 8vw, 3.5rem) var(--page-padding); }
+  .pullquote__inner { max-width: 36rem; }
+}
+@media (max-width: 560px) {
+  .pullquote__media { aspect-ratio: 4 / 3; }
+}
+@media (max-width: 480px) {
+  .pullquote__foot { align-items: flex-start; flex-direction: column; }
+}
 
 /* -------------------- Sticky mobile CTA -------------------- */
 .sticky-cta {
@@ -3539,7 +3644,6 @@ html:not(.js) .nav-item--has-menu:focus-within .nav-mega {
   font-size: clamp(1rem, 1.3vw, 1.15rem);
   line-height: 1.6;
 }
-.testimonial__context { font-size: 0.8rem; letter-spacing: 0.02em; color: var(--steel); }
 
 /* The positioning headline runs longer than the old one; a step down keeps
    "around your business." on one line beside the reel. */

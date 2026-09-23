@@ -1,0 +1,51 @@
+---
+import { responsive } from '../lib/responsive';
+import type { Testimonial } from '../data/testimonials';
+
+interface Props {
+  testimonial: Testimonial;
+  /** The label over the rule. 'Client story' unless a page needs its own. */
+  eyebrow?: string;
+}
+const { testimonial: t, eyebrow = 'Client story' } = Astro.props;
+
+// Full-bleed by design: this renders as a direct child of a .section, outside
+// .container, so the photograph runs to the edge of the viewport.
+const photo = t.image ? await responsive(t.image) : null;
+---
+<figure class:list={['pullquote', !t.image && 'pullquote--solo']}>
+  {t.image && (
+    <div class="pullquote__media">
+      <img
+        src={t.image}
+        alt={t.imageAlt ?? ''}
+        width={photo?.width}
+        height={photo?.height}
+        srcset={photo?.srcset}
+        sizes="(max-width: 900px) 100vw, 50vw"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  )}
+
+  <div class="pullquote__panel">
+    <div class="pullquote__inner">
+      <span class="pullquote__eyebrow reveal">
+        <span class="pullquote__rule" aria-hidden="true"></span>{eyebrow}
+      </span>
+
+      <span class="pullquote__mark reveal" aria-hidden="true">&ldquo;</span>
+
+      <blockquote class="pullquote__quote reveal">{t.quote}</blockquote>
+
+      <figcaption class="pullquote__foot reveal">
+        <span class="pullquote__who">
+          <span class="pullquote__name">{t.name}</span>
+          <span class="pullquote__org">{t.role}</span>
+        </span>
+        {t.context && <span class="pullquote__chip">{t.context}</span>}
+      </figcaption>
+    </div>
+  </div>
+</figure>
