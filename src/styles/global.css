@@ -22,6 +22,7 @@
   --accent-strong: #d6004a;       /* WCAG AA for white TEXT on top (5.31:1) — buttons, pills, sticky CTA */
   --accent-soft: rgba(255, 45, 114, 0.12);
   --page-padding: clamp(1.25rem, 3vw, 3.5rem);
+  --header-h: 90px;           /* fixed header; the hero subtracts it */
   --radius-sm: 12px;
   --radius-md: 18px;
   --radius-lg: 28px;
@@ -4466,7 +4467,8 @@ html:not(.js) .nav-item--has-menu:focus-within .nav-mega {
   position: relative;
   display: flex;
   align-items: flex-end;
-  min-height: min(84svh, 46rem);
+  /* Ends at the fold: the viewport minus the fixed header, on any screen. */
+  min-height: calc(100svh - var(--header-h));
   padding: clamp(6rem, 12vw, 9rem) 0 clamp(3rem, 7vw, 5.5rem);
   background: #0a0a0a;
   overflow: hidden;
@@ -4539,7 +4541,7 @@ html:not(.js) .nav-item--has-menu:focus-within .nav-mega {
 .btn-ghost:hover, .btn-ghost:focus-visible { background: #fff; color: var(--ink); border-color: #fff; }
 
 @media (max-width: 760px) {
-  .hero-film { min-height: min(80svh, 34rem); align-items: flex-end; }
+  .hero-film { min-height: calc(100svh - var(--header-h)); align-items: flex-end; }
   .hero-film__title { max-width: none; }
   .hero-film__actions .btn { flex: 1 1 100%; justify-content: center; }
   .hero-film__scrim {
