@@ -12,22 +12,43 @@
   "card": {
     "eyebrow": "Website & digital experience",
     "blurb": "A live assembly program translated into a site that moves like the show and books like a business.",
-    "tags": ["Web", "UX/UI", "Accessibility"],
+    "tags": [
+      "Web",
+      "UX/UI",
+      "Accessibility"
+    ],
     "wide": false,
     "image": "/brand_assets/cases/cards/ithink.webp",
-    "imageAlt": "The iThink Big website on a laptop and a phone, showing the assembly program's homepage."
+    "imageAlt": "Phone screens from the iThink Big site over an audience of students at a school assembly."
   },
   "heroEyebrow": "Case study · Website",
   "titleLines": [
-    { "text": "The energy was already there." },
-    { "text": "The website needed to catch up.", "italic": true }
+    {
+      "text": "The energy was already there."
+    },
+    {
+      "text": "The website needed to catch up.",
+      "italic": true
+    }
   ],
   "lede": "iThink Big has been running motivational assemblies in schools since 2000 — a loud, live, deeply human hour in a gym full of students. The website had to carry that into a browser, and then make the next step obvious: book an assembly.",
   "meta": [
-    { "label": "Client", "value": "iThink Big" },
-    { "label": "Year", "value": "2026" },
-    { "label": "Scope", "value": "Strategy · Design · Build" },
-    { "label": "Status", "value": "Live · ithinkbig.org" }
+    {
+      "label": "Client",
+      "value": "iThink Big"
+    },
+    {
+      "label": "Year",
+      "value": "2026"
+    },
+    {
+      "label": "Scope",
+      "value": "Strategy · Design · Build"
+    },
+    {
+      "label": "Status",
+      "value": "Live · ithinkbig.org"
+    }
   ],
   "pillarsTag": "The problem",
   "pillarsHeading": "A live program, flattened into a web page.",
@@ -47,8 +68,13 @@
   ],
   "storyTag": "The reframe",
   "storyHeadingLines": [
-    { "text": "Don't explain the energy." },
-    { "text": "Show it.", "italic": true }
+    {
+      "text": "Don't explain the energy."
+    },
+    {
+      "text": "Show it.",
+      "italic": true
+    }
   ],
   "storyParagraphs": [
     "The decision that shaped everything else was to lead with footage from real assemblies rather than a photograph of a building. The first thing a visitor sees is the room itself — the stage, the crowd, the moment — with the headline and the booking button sitting over it. Nothing has to describe the atmosphere, because you're already looking at it.",
@@ -57,8 +83,8 @@
     "The structure then makes room for the parts of the organization that a single page usually buries: what the programs actually include, who the team is, the references schools ask for, and the work in Mexico, which gets its own place in the navigation rather than a paragraph at the bottom."
   ],
   "storyImage": "/brand_assets/cases/ithink-story.webp",
-  "storyImageAlt": "Three phone screens: the video hero with Book an Assembly, a school leader's testimonial, and the founder's profile.",
-  "storyCaption": "Mobile isn't the reduced version. It's where most school leaders meet the program.",
+  "storyImageAlt": "The iThink Big homepage on a laptop and a phone, with footage of a live assembly behind the headline.",
+  "storyCaption": "Desktop and mobile share one hierarchy: what it is, who it’s for, and how to book.",
   "highlights": [
     {
       "title": "A site that feels like the room",
@@ -81,7 +107,7 @@
   "ogImage": "/brand_assets/cases/ithink-og.webp",
   "feature": {
     "image": "/brand_assets/cases/ithink-feature.webp",
-    "alt": "The iThink Big homepage on a laptop and a phone: video of a live assembly behind the headline 'Inspire the Young to Think Big', with Book an Assembly as the first action.",
-    "caption": "Desktop and mobile share one hierarchy: what it is, who it's for, and how to book."
+    "alt": "Three phone screens from the iThink Big site — the video hero, a school leader's testimonial and the founder's profile — over a hall of students watching an assembly.",
+    "caption": "The site as most people meet it: on a phone, about a room like this one."
   }
 }

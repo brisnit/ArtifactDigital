@@ -11,22 +11,43 @@
   "card": {
     "eyebrow": "Web app · Our own product",
     "blurb": "A CRM for people running the whole business, not a sales department — with the day's priorities on the first screen.",
-    "tags": ["Product", "SaaS", "AI"],
+    "tags": [
+      "Product",
+      "SaaS",
+      "AI"
+    ],
     "wide": false,
     "image": "/brand_assets/cases/cards/tiny-crm.webp",
-    "imageAlt": "Tiny CRM on a laptop and a phone, showing the marketing site and the daily brief dashboard."
+    "imageAlt": "Phone screens from Tiny CRM showing the daily brief, opportunities and projects."
   },
   "heroEyebrow": "Case study · Web app",
   "titleLines": [
-    { "text": "CRM got complicated." },
-    { "text": "The work didn't.", "italic": true }
+    {
+      "text": "CRM got complicated."
+    },
+    {
+      "text": "The work didn't.",
+      "italic": true
+    }
   ],
   "lede": "Tiny CRM pulls projects, contacts, companies, deals, RFPs, tasks and notes into one workspace, and opens on the only question that matters on a Monday: what needs my attention today? We designed and built it as our own product.",
   "meta": [
-    { "label": "Client", "value": "Artifact Digital (our own product)" },
-    { "label": "Year", "value": "2026" },
-    { "label": "Scope", "value": "Product · Design · Full-stack build" },
-    { "label": "Status", "value": "Pre-launch · 41 screens" }
+    {
+      "label": "Client",
+      "value": "Artifact Digital (our own product)"
+    },
+    {
+      "label": "Year",
+      "value": "2026"
+    },
+    {
+      "label": "Scope",
+      "value": "Product · Design · Full-stack build"
+    },
+    {
+      "label": "Status",
+      "value": "Pre-launch · 41 screens"
+    }
   ],
   "pillarsTag": "The problem",
   "pillarsHeading": "Small teams get the leftovers of enterprise software.",
@@ -46,8 +67,13 @@
   ],
   "storyTag": "The reframe",
   "storyHeadingLines": [
-    { "text": "The CRM shouldn't be the work." },
-    { "text": "It should tell you where the work is.", "italic": true }
+    {
+      "text": "The CRM shouldn't be the work."
+    },
+    {
+      "text": "It should tell you where the work is.",
+      "italic": true
+    }
   ],
   "storyParagraphs": [
     "Every screen in Tiny answers one of four questions: what is happening, who is involved, what needs my attention, and what should I do next. That constraint did more than any feature decision. Where a bigger product would offer a settings page, Tiny picks a sensible default, and the surface stays small enough to hold in your head.",
@@ -56,8 +82,8 @@
     "Underneath, it's built like software meant to last: a fifty-model data model, Postgres with row-level security and per-record grants so a workspace can only ever see its own rows, and a test suite of seventy-five files covering security, integration, browser behaviour and data portability. It runs on SQLite locally so the whole product, with a realistic demo workspace, spins up with one command."
   ],
   "storyImage": "/brand_assets/cases/tiny-crm-story.webp",
-  "storyImageAlt": "Five phone screens from Tiny CRM: Tiny AI, the daily brief, opportunities, projects, and quick add.",
-  "storyCaption": "The same product on a phone — brief, pipeline, opportunities, projects, quick add. Figures shown are demo data.",
+  "storyImageAlt": "Tiny CRM on a laptop and a phone: the marketing page above the product, showing the daily brief and pipeline.",
+  "storyCaption": "The pitch and the product share a promise: your whole business, organized. Figures shown are demo data.",
   "highlights": [
     {
       "title": "One place to run the work",
@@ -80,7 +106,7 @@
   "ogImage": "/brand_assets/cases/tiny-crm-og.webp",
   "feature": {
     "image": "/brand_assets/cases/tiny-crm-feature.webp",
-    "alt": "Tiny CRM on a laptop and a phone: the marketing page above the product, showing the daily brief, pipeline and this week's calendar.",
-    "caption": "The pitch and the product share a promise: your whole business, organized. Figures shown are demo data."
+    "alt": "Five phone screens from Tiny CRM: Tiny AI, the daily brief, opportunities, quick add and projects.",
+    "caption": "The whole product on a phone — brief, pipeline, opportunities, quick add. Figures shown are demo data."
   }
 }

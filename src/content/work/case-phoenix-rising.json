@@ -11,22 +11,43 @@
   "card": {
     "eyebrow": "Website & digital presence",
     "blurb": "Years of manufacturing relationships across two continents, turned into a digital front door that earns trust before the first call.",
-    "tags": ["Web", "UX/UI", "Accessibility"],
+    "tags": [
+      "Web",
+      "UX/UI",
+      "Accessibility"
+    ],
     "wide": false,
     "image": "/brand_assets/cases/cards/phoenix-rising.webp",
-    "imageAlt": "The Phoenix Rising website on a laptop and a phone, showing the headline 'From idea to reality'."
+    "imageAlt": "Phone screens from the Phoenix Rising site showing the hero, evidence and Ask Phoenix."
   },
   "heroEyebrow": "Case study · Website",
   "titleLines": [
-    { "text": "Years of relationships." },
-    { "text": "One digital front door.", "italic": true }
+    {
+      "text": "Years of relationships."
+    },
+    {
+      "text": "One digital front door.",
+      "italic": true
+    }
   ],
   "lede": "Phoenix Rising connects product thinking, engineering and manufacturing across California and Guangzhou. The expertise was never in doubt; it just wasn't visible to anyone who hadn't already been introduced.",
   "meta": [
-    { "label": "Client", "value": "Phoenix Rising Trading Company, Ltd." },
-    { "label": "Year", "value": "2026" },
-    { "label": "Scope", "value": "Strategy · Design · Build" },
-    { "label": "Status", "value": "Pre-launch" }
+    {
+      "label": "Client",
+      "value": "Phoenix Rising Trading Company, Ltd."
+    },
+    {
+      "label": "Year",
+      "value": "2026"
+    },
+    {
+      "label": "Scope",
+      "value": "Strategy · Design · Build"
+    },
+    {
+      "label": "Status",
+      "value": "Pre-launch"
+    }
   ],
   "pillarsTag": "The problem",
   "pillarsHeading": "A business built on introductions, invisible to everyone else.",
@@ -46,8 +67,13 @@
   ],
   "storyTag": "The reframe",
   "storyHeadingLines": [
-    { "text": "Don't make the business look complicated." },
-    { "text": "Make the expertise obvious.", "italic": true }
+    {
+      "text": "Don't make the business look complicated."
+    },
+    {
+      "text": "Make the expertise obvious.",
+      "italic": true
+    }
   ],
   "storyParagraphs": [
     "The site is organized around what has to happen to a product — develop, prototype, produce, deliver — rather than a list of services. That single decision does the explaining: a visitor with a sketch and a visitor with a finished design both find their own starting point, and the company's range becomes visible without a paragraph claiming it.",
@@ -56,8 +82,8 @@
     "The part we're most pleased with is a page most agencies would never ship. The projects section is an evidence library rather than a portfolio, and while it is empty it says so, and says why. The build enforces that honesty: the test suite includes a claim guard and an approved-fact ledger, so an unverified claim about the company fails the build rather than quietly going live."
   ],
   "storyImage": "/brand_assets/cases/phoenix-rising-story.webp",
-  "storyImageAlt": "Four phone screens from the Phoenix Rising site: the hero, the evidence section, the ideation workspace, and the Ask Phoenix panel.",
-  "storyCaption": "The full experience on a phone, including the ideation workspace and the question panel.",
+  "storyImageAlt": "The Phoenix Rising homepage on a laptop and a phone: 'From idea to reality'.",
+  "storyCaption": "One line does the work of a paragraph: from idea to reality, on any screen.",
   "highlights": [
     {
       "title": "A credible digital front door",
@@ -80,7 +106,8 @@
   "ogImage": "/brand_assets/cases/phoenix-rising-og.webp",
   "feature": {
     "image": "/brand_assets/cases/phoenix-rising-feature.webp",
-    "alt": "The Phoenix Rising homepage on a laptop and a phone: 'From idea to reality', with Start a Project and How We Build as the two actions.",
-    "caption": "One line does the work of a paragraph: from idea to reality, on any screen."
-  }
+    "alt": "Four phone screens from the Phoenix Rising site: the hero, the evidence section, the ideation workspace and the Ask Phoenix panel.",
+    "caption": "The full experience on a phone, including the ideation workspace and the question panel."
+  },
+  "liveUrl": "https://phoenixrising-seven.vercel.app"
 }
