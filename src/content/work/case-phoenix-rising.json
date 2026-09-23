@@ -77,7 +77,7 @@
   ],
   "storyParagraphs": [
     "The site is organized around what has to happen to a product — develop, prototype, produce, deliver — rather than a list of services. That single decision does the explaining: a visitor with a sketch and a visitor with a finished design both find their own starting point, and the company's range becomes visible without a paragraph claiming it.",
-    "The geography carries the argument. One product, two worlds: the market it serves and the factory that builds it, California and Guangzhou as two ends of one process.",
+    "The company story carries the geography rather than decorating it. One product, two worlds: the market it is meant to serve, and the factory floor that has to build it. California and Guangzhou are presented as the two ends of the same process, which is the actual argument for working with Phoenix Rising, told without a single stock photograph of a cargo ship.",
     "Two things on the site do more than describe. An ideation workspace turns a rough idea into a project brief the visitor keeps — and everything typed into it stays in their own browser session, which the interface says plainly. Ask Phoenix answers questions about the company and how it works, in a panel available from every page. A trading business runs on responsiveness, and the site behaves the same way.",
     "The part we're most pleased with is a page most agencies would never ship. The projects section is an evidence library rather than a portfolio, and while it is empty it says so, and says why. The build enforces that honesty: the test suite includes a claim guard and an approved-fact ledger, so an unverified claim about the company fails the build rather than quietly going live."
   ],
