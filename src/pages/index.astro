@@ -5,7 +5,6 @@ import Button from '../components/Button.astro';
 import WorkCard from '../components/WorkCard.astro';
 import { SITE, orgNode, websiteNode, CTA } from '../data/site';
 import { testimonials } from '../data/testimonials';
-import { BUILD_CLUSTERS, buildPath } from '../data/build';
 import { DOORS } from '../data/doors';
 import { METHOD } from '../data/method';
 import { sortWork } from '../lib/proof';
@@ -79,47 +78,33 @@ const jsonLd = {
   title="Artifact Digital · Software, Websites & AI for Growing Companies"
   description="Your business has outgrown the way you're running it. Artifact Digital helps growing companies fix broken digital experiences, build better software and use AI where it actually makes sense."
   canonical="/"
-  preloadImage="/brand_assets/hero-reel.webp"
+  preloadImage="/brand_assets/hero-motion.webp"
   jsonLd={jsonLd}
 >
   <!-- 01 / HERO -->
-  <section class="hero" id="home">
-    <div class="container hero-inner">
-      <div class="hero-copy">
-        <div class="hero-meta">
-          <span class="eyebrow"><span class="eyebrow-dot"></span>Digital studio · San Diego</span>
-        </div>
+  <section class="hero-film" id="home" aria-labelledby="hero-heading">
+    <video
+      class="hero-film__video"
+      data-src="/brand_assets/hero-motion.mp4"
+      data-src-mobile="/brand_assets/hero-motion-mobile.mp4"
+      poster="/brand_assets/hero-motion.webp"
+      muted loop playsinline autoplay preload="metadata"
+      aria-hidden="true" tabindex="-1"
+    ></video>
+    <div class="hero-film__scrim" aria-hidden="true"></div>
 
-        <h1 class="hero-heading hero-heading--long">
-          <span class="line"><span class="reveal-word"><span>Your business has</span></span></span>
-          <span class="line"><span class="reveal-word"><span>outgrown the way</span></span></span>
-          <span class="line italic"><span class="reveal-word"><span>you’re running it.</span></span></span>
-        </h1>
-
-        <div class="hero-foot">
-          <p class="hero-lede">
-            We design and build the websites, applications and AI systems that help growing
-            companies get to the next stage.
-          </p>
-          <div class="hero-actions">
-            <Button href={CTA.problem.href} label={CTA.problem.label} variant="primary" />
-            <Button href={CTA.work.href} label={CTA.work.label} variant="secondary" />
-          </div>
-          <ul class="hero-offer" aria-label="What we work on">
-            {BUILD_CLUSTERS.map((c) => <li><a href={buildPath(c.id)}>{c.label}</a></li>)}
-          </ul>
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <video
-          class="hero-video"
-          data-src="/brand_assets/hero-reel.mp4"
-          data-src-mobile="/brand_assets/hero-reel-mobile.mp4"
-          poster="/brand_assets/hero-reel.webp"
-          muted loop playsinline autoplay preload="metadata"
-          aria-label="Sketching wireframes on paper, notes on a wall, and a storefront on a phone"
-        ></video>
+    <div class="container hero-film__inner">
+      <h1 class="hero-film__title" id="hero-heading">
+        <span class="line">Bring us the problem.</span>
+        <span class="line">We’ll build what solves it.</span>
+      </h1>
+      <p class="hero-film__lede">
+        Websites, apps, custom software and AI tools designed around your business,
+        not the other way around.
+      </p>
+      <div class="hero-film__actions">
+        <a class="btn btn-primary" href={CTA.problem.href}>Let’s Build the Solution <span aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href={CTA.work.href}>See our work <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>

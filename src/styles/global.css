@@ -4458,3 +4458,93 @@ html:not(.js) .nav-item--has-menu:focus-within .nav-mega {
   .door-card, .door-card::after { transition: none; }
   .door-card:hover, .door-card:focus-visible { transform: none; }
 }
+
+/* ============================================================
+   Hero: full-bleed film, copy in the lower left.
+   ============================================================ */
+.hero-film {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: min(84svh, 46rem);
+  padding: clamp(6rem, 12vw, 9rem) 0 clamp(3rem, 7vw, 5.5rem);
+  background: #0a0a0a;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero-film__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 1.2s var(--easing);
+}
+.hero-film__video.is-loaded { opacity: 1; }
+/* The poster carries the first paint, so the section is never a black box. */
+.hero-film::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background: url('/brand_assets/hero-motion.webp') center / cover no-repeat;
+}
+/* A diagonal scrim: dense behind the copy, clearing toward the top right. */
+.hero-film__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(115deg, rgba(8, 8, 8, 0.94) 0%, rgba(8, 8, 8, 0.82) 28%, rgba(8, 8, 8, 0.45) 58%, rgba(8, 8, 8, 0.18) 100%),
+    linear-gradient(to top, rgba(8, 8, 8, 0.7) 0%, rgba(8, 8, 8, 0) 45%);
+}
+/* No width override here: .container's own inset is what aligns the copy
+   with every other section on the page. */
+.hero-film__inner { position: relative; }
+.hero-film__title {
+  margin: 0;
+  display: grid;
+  gap: 0.1em;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.3rem, 5.4vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: #fff;
+  text-wrap: balance;
+  max-width: 18ch;
+}
+.hero-film__lede {
+  margin: clamp(1.25rem, 2.5vw, 1.75rem) 0 0;
+  max-width: 46ch;
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.86);
+}
+.hero-film__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: clamp(1.75rem, 3vw, 2.5rem);
+}
+/* Ghost button: the dark pill from the hero comp, legible on film. */
+.btn-ghost {
+  background: rgba(10, 10, 10, 0.72);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(6px);
+}
+.btn-ghost:hover, .btn-ghost:focus-visible { background: #fff; color: var(--ink); border-color: #fff; }
+
+@media (max-width: 760px) {
+  .hero-film { min-height: min(80svh, 34rem); align-items: flex-end; }
+  .hero-film__title { max-width: none; }
+  .hero-film__actions .btn { flex: 1 1 100%; justify-content: center; }
+  .hero-film__scrim {
+    background:
+      linear-gradient(to top, rgba(8, 8, 8, 0.92) 0%, rgba(8, 8, 8, 0.72) 45%, rgba(8, 8, 8, 0.4) 100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) { .hero-film__video { transition: none; } }
