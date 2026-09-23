@@ -4173,3 +4173,288 @@ html:not(.js) .nav-item--has-menu:focus-within .nav-mega {
 @media (min-width: 901px) {
   .pk-lab > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
+
+/* ============================================================
+   Positioning rebuild: the moment, the three doors, pricing.
+   ============================================================ */
+
+/* -------------------- 02 The moment -------------------- */
+.moment { background: var(--stone); }
+.moment-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid rgba(17, 17, 17, 0.12);
+}
+.moment-list li {
+  padding: clamp(1.1rem, 2vw, 1.5rem) 0;
+  padding-right: clamp(1rem, 3vw, 3rem);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.12);
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.moment-turn {
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  letter-spacing: -0.03em;
+  color: var(--accent-strong);
+}
+
+/* -------------------- 03 The three doors -------------------- */
+.door-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+}
+.door-grid > li { display: flex; }
+.door-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  background: #fff;
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  border-radius: var(--radius-media);
+  color: var(--ink);
+  text-decoration: none;
+  overflow: hidden;
+  transition: background 0.4s var(--easing), color 0.4s var(--easing), transform 0.4s var(--easing);
+}
+.door-card::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--easing);
+}
+.door-card:hover, .door-card:focus-visible { background: var(--ink); color: #fff; transform: translateY(-4px); }
+.door-card:hover::after, .door-card:focus-visible::after { transform: scaleX(1); }
+.door-card__num {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-strong);
+}
+.door-card:hover .door-card__num, .door-card:focus-visible .door-card__num { color: var(--blush); }
+.door-card__title {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.3rem, 2.1vw, 1.7rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.door-card__price {
+  margin: 0.2rem 0 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--accent-strong);
+}
+.door-card:hover .door-card__price, .door-card:focus-visible .door-card__price { color: var(--blush); }
+.door-card__body { margin: 0; color: var(--steel); line-height: 1.55; flex: 1; }
+.door-card:hover .door-card__body, .door-card:focus-visible .door-card__body { color: rgba(255, 255, 255, 0.78); }
+.door-card__more { font-family: 'DM Sans', sans-serif; font-size: 0.88rem; color: var(--steel-soft); }
+.door-card:hover .door-card__more, .door-card:focus-visible .door-card__more { color: #fff; }
+
+/* Proof cards that lead with the problem name the client underneath. */
+.project-card__client { font-family: 'DM Sans', sans-serif; font-weight: 700; color: var(--ink); }
+
+/* -------------------- 05 How we think -------------------- */
+.decide-label {
+  margin: 0 0 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--steel-soft);
+}
+.decide-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.decide-list li {
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(17, 17, 17, 0.14);
+  border-radius: 999px;
+  background: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--ink);
+}
+.decide-list li:last-child { border-style: dashed; color: var(--steel); }
+.decide-note { margin: 1.5rem 0 0; color: var(--steel); line-height: 1.6; max-width: 46ch; }
+
+/* -------------------- Door pages -------------------- */
+.door-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 1rem;
+  margin: 1.75rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(17, 17, 17, 0.12);
+}
+.door-price__range {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.door-price__note { color: var(--steel); font-size: 0.95rem; }
+.door-price__note a { color: var(--accent-strong); text-underline-offset: 3px; }
+
+.door-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid rgba(17, 17, 17, 0.12);
+}
+.door-list li {
+  position: relative;
+  padding: clamp(1rem, 1.8vw, 1.35rem) clamp(1rem, 3vw, 3rem) clamp(1rem, 1.8vw, 1.35rem) 1.9rem;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.12);
+  color: var(--ink);
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+  line-height: 1.5;
+}
+.door-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: calc(clamp(1rem, 1.8vw, 1.35rem) + 0.55em);
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+}
+
+.door-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid rgba(17, 17, 17, 0.12); }
+.door-step {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 0 clamp(1rem, 2.5vw, 2rem);
+  padding: clamp(1.4rem, 2.6vw, 2rem) 0;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.12);
+}
+.door-step__num {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-strong);
+  padding-top: 0.35rem;
+}
+.door-step__title {
+  margin: 0 0 0.4rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.door-step__body { margin: 0; color: var(--steel); line-height: 1.65; max-width: 62ch; }
+.door-others { background: var(--stone); }
+
+/* -------------------- Pricing -------------------- */
+.price-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+.price-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  background: #fff;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: var(--radius-media);
+}
+.price-card__num {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-strong);
+}
+.price-card__title {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.price-card__range {
+  margin: 0.5rem 0 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.price-card__note { margin: 0.15rem 0 0.9rem; font-size: 0.85rem; color: var(--steel-soft); }
+.price-card__body { margin: 0 0 1.1rem; color: var(--steel); line-height: 1.6; }
+.price-card__list { list-style: none; margin: 0 0 1.5rem; padding: 0; display: grid; gap: 0.5rem; flex: 1; }
+.price-card__list li {
+  position: relative;
+  padding-left: 1.4rem;
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+.price-card__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+}
+.price-card__link {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  color: var(--accent-strong);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.price-card__link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.pricing-note { margin: clamp(2rem, 4vw, 3rem) 0 0; max-width: 72ch; color: var(--steel); line-height: 1.7; }
+
+/* -------------------- Responsive -------------------- */
+@media (max-width: 960px) {
+  .door-grid, .price-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .moment-list, .door-list { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .door-card, .door-card::after { transition: none; }
+  .door-card:hover, .door-card:focus-visible { transform: none; }
+}

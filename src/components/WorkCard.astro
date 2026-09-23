@@ -15,8 +15,10 @@ interface Props {
   /** Full-width card. Overrides the case's own setting, so one page can lead
    *  with a case without changing how every other page lays it out. */
   wide?: boolean;
+  /** Lead with the business problem this case solved, not the project name. */
+  showProblem?: boolean;
 }
-const { entry, headingLevel = 'h3', priority = false, showTier = false, wide } = Astro.props;
+const { entry, headingLevel = 'h3', priority = false, showTier = false, wide, showProblem = false } = Astro.props;
 const tier = showTier ? caseTier(entry) : null;
 const d = entry.data;
 const Heading = headingLevel;
@@ -78,8 +80,17 @@ const mark = d.title
       <span>{d.year}</span>
     </div>
     {tier && <span class={`tier-chip tier-chip--${tier} project-card__tier`}>{tierText(entry)}</span>}
-    <Heading class="project-card__title">{d.title}</Heading>
-    <p class="project-card__copy">{d.card.blurb}</p>
+    {showProblem && d.problem ? (
+      <>
+        <Heading class="project-card__title">{d.problem}</Heading>
+        <p class="project-card__copy"><span class="project-card__client">{d.title}</span> {d.card.blurb}</p>
+      </>
+    ) : (
+      <>
+        <Heading class="project-card__title">{d.title}</Heading>
+        <p class="project-card__copy">{d.card.blurb}</p>
+      </>
+    )}
     <ul class="project-card__tags">{d.card.tags.map((t) => <li>{t}</li>)}</ul>
   </article>
 </a>

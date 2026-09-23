@@ -106,5 +106,6 @@
     "image": "/brand_assets/cases/tiny-crm-feature.webp",
     "alt": "Five phone screens from Tiny CRM: Tiny AI, the daily brief, opportunities, quick add and projects.",
     "caption": "The whole product on a phone — brief, pipeline, opportunities, quick add. Figures shown are demo data."
-  }
+  },
+  "problem": "Building a CRM a small team could actually use"
 }

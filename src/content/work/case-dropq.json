@@ -116,5 +116,6 @@
     "image": "/brand_assets/cases/dropq-feature.webp",
     "alt": "The DropQ vendor flow — login, dashboard, creating a drop, and a confirmed order with pickup details",
     "caption": "Vendor to buyer, end to end: create the drop, take the order, hand it over. Customer details blurred."
-  }
+  },
+  "problem": "Replacing DMs, forms and spreadsheets with a real marketplace"
 }

@@ -108,5 +108,6 @@
   },
   "storyImage": "/brand_assets/cases/benchbot-story.webp",
   "storyImageAlt": "BenchBot's landing page on a laptop and a phone",
-  "storyCaption": "The audit is the entry point, not the product: two complete free audits before any ask."
+  "storyCaption": "The audit is the entry point, not the product: two complete free audits before any ask.",
+  "problem": "Turning days of manual research into a product"
 }

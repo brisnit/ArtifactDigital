@@ -24,6 +24,9 @@ const work = defineCollection({
       // worked on this engagement together. Prior work is narrated in the
       // third person: "Britt and the team" here, "Britt" when it was one person.
       teamWork: z.boolean().default(false),
+      // The business problem this case solves, in a client's words. Used where
+      // work is presented as proof rather than as a portfolio.
+      problem: z.string().optional(),
       // Where Artifact-built software actually stands (Live, Pre-launch,
       // Prototype). Shown beside the proof tier so a prototype never reads as
       // a live client product.

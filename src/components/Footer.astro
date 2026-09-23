@@ -1,5 +1,6 @@
 ---
-import { SITE, CTA, WHO_WE_HELP } from '../data/site';
+import { SITE, CTA } from '../data/site';
+import { DOORS } from '../data/doors';
 import { BUILD_CLUSTERS, buildPath } from '../data/build';
 
 const year = new Date().getFullYear();
@@ -18,16 +19,17 @@ const year = new Date().getFullYear();
 
     <nav class="footer-nav" aria-label="Footer">
       <div class="footer-col">
-        <h3>What we do</h3>
+        <h3>How we help</h3>
         <ul>
-          {BUILD_CLUSTERS.map((c) => <li><a href={buildPath(c.id)}>{c.label}</a></li>)}
+          {DOORS.map((d) => <li><a href={d.href}>{d.label}</a></li>)}
+          <li><a href="/pricing">Pricing</a></li>
           <li><a href="/services">Everything we do →</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h3>Who we help</h3>
+        <h3>Services</h3>
         <ul>
-          {WHO_WE_HELP.map((w) => <li><a href={w.href}>{w.label}</a></li>)}
+          {BUILD_CLUSTERS.map((c) => <li><a href={buildPath(c.id)}>{c.label}</a></li>)}
         </ul>
       </div>
       <div class="footer-col">
@@ -35,6 +37,7 @@ const year = new Date().getFullYear();
         <ul>
           <li><a href="/work">Work</a></li>
           <li><a href="/why-artifact">Why Artifact</a></li>
+          <li><a href="/who-we-help">Who we help</a></li>
           <li><a href="/how-we-work">How we work</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/insights">Insights</a></li>

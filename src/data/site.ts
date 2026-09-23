@@ -2,15 +2,16 @@
 // Single source of truth so every page emits consistent metadata/schema.
 
 import { BUILD_CLUSTERS, buildPath } from './build';
+import { DOORS } from './doors';
 
 export const SITE = {
   name: 'Artifact Digital',
   url: 'https://www.artifactdigital.co',
   domain: 'artifactdigital.co',
   email: 'hello@artifactdigital.co',
-  tagline: 'We design, build and grow websites & apps',
+  tagline: 'Software, websites and AI systems for growing companies',
   description:
-    'Artifact Digital designs, builds and grows websites, web apps and mobile apps for founders and growing businesses — from strategy and UX to development, hosting, SEO and AI search.',
+    'Artifact Digital helps growing companies fix broken digital experiences, build better software and use AI where it actually makes sense.',
   foundingDate: '2021',
   location: 'San Diego, CA',
   linkedin: 'https://www.linkedin.com/company/artifact-digital-co/',
@@ -67,16 +68,17 @@ export const WHY_ARTIFACT = [
 
 export const NAV: readonly NavItem[] = [
   {
-    label: 'What We Do',
+    label: 'How We Help',
     href: '/services',
     mega: true,
     children: [
+      ...DOORS.map((d) => ({ label: d.label, href: d.href })),
       ...BUILD_CLUSTERS.map((c) => ({ label: c.label, href: buildPath(c.id) })),
       { label: 'Everything we do', href: '/services' },
     ],
   },
-  { label: 'Who We Help', href: '/who-we-help', children: WHO_WE_HELP },
   { label: 'Work', href: '/work' },
+  { label: 'Pricing', href: '/pricing' },
   { label: 'Why Artifact', href: '/why-artifact', children: WHY_ARTIFACT },
   { label: 'Insights', href: '/insights' },
   { label: 'About', href: '/about' },
@@ -86,10 +88,12 @@ export const NAV: readonly NavItem[] = [
 // should never be asked to book a "strategic digital transformation session".
 export const CTA = {
   primary: { label: 'Start a Project', href: '/contact' },
+  problem: { label: 'Tell Us What’s Not Working', href: '/contact?intent=fix' },
   audit: { label: 'Request a Website Audit', href: '/contact?intent=audit' },
   talk: { label: 'Tell Us About Your Project', href: '/contact' },
   build: { label: 'Start a Project', href: '/contact' },
   work: { label: 'See Our Work', href: '/work' },
+  pricing: { label: 'See Pricing', href: '/pricing' },
 } as const;
 
 const abs = (path: string) => (path.startsWith('http') ? path : `${SITE.url}${path}`);

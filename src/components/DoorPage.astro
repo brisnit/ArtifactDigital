@@ -1,0 +1,176 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+import Button from './Button.astro';
+import CtaBand from './CtaBand.astro';
+import WorkCard from './WorkCard.astro';
+import { SITE, orgNode, breadcrumb, CTA } from '../data/site';
+import { DOORS, doorById } from '../data/doors';
+import { METHOD } from '../data/method';
+
+// One template for all three doors. They differ in content, not in shape: the
+// situation, what the work involves, the proof, the range, and one next step.
+interface Props {
+  door: string;
+}
+const door = doorById(Astro.props.door);
+const others = DOORS.filter((d) => d.id !== door.id);
+
+const work = await getCollection('work');
+const proof = door.proof
+  .map((id) => work.find((w) => w.id === id))
+  .filter((w): w is NonNullable<typeof w> => Boolean(w));
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      '@id': `${SITE.url}${door.href}#service`,
+      name: door.label,
+      serviceType: door.label,
+      description: door.metaDescription,
+      url: `${SITE.url}${door.href}`,
+      provider: { '@id': `${SITE.url}/#organization` },
+      areaServed: 'United States',
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: 'USD',
+        description: `${door.priceRange} — ${door.priceNote}`,
+        url: `${SITE.url}/pricing`,
+      },
+    },
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'How We Help', path: '/services' },
+      { name: door.label, path: door.href },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title={door.metaTitle}
+  description={door.metaDescription}
+  canonical={door.href}
+  bodyClass="case-page door-page"
+  jsonLd={jsonLd}
+>
+  <!-- HERO -->
+  <section class="case-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'How We Help', href: '/services' }, { name: door.label }]} />
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>{door.num} · {door.label}</span>
+      <h1 class="case-title">
+        {door.heroLines.map((l) => (
+          <span class:list={['reveal-line', l.italic && 'italic']}><span>{l.text}</span></span>
+        ))}
+      </h1>
+      <p class="case-lede reveal">{door.lede}</p>
+      <div class="door-price reveal">
+        <span class="door-price__range">{door.priceRange}</span>
+        <span class="door-price__note">{door.priceNote} <a href="/pricing">How pricing works</a></span>
+      </div>
+      <div class="hero-actions reveal">
+        <Button href={door.cta.href} label={door.cta.label} variant="primary" />
+        <Button href={CTA.work.href} label={CTA.work.label} variant="secondary" />
+      </div>
+    </div>
+  </section>
+
+  <!-- SOUND FAMILIAR -->
+  <section class="section door-recognize" aria-labelledby="door-recognize-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Sound familiar?</span>
+        <h2 class="section-heading reveal-line" id="door-recognize-heading"><span>You’re probably here because</span></h2>
+      </header>
+      <ul class="door-list">
+        {door.recognize.map((r) => <li class="reveal">{r}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- WHAT THE WORK INVOLVES -->
+  <section class="section door-includes" aria-labelledby="door-includes-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>What happens</span>
+        <h2 class="section-heading reveal-line" id="door-includes-heading"><span>What the work involves</span></h2>
+      </header>
+      <ol class="door-steps">
+        {door.includes.map((i, n) => (
+          <li class="door-step reveal">
+            <span class="door-step__num" aria-hidden="true">{String(n + 1).padStart(2, '0')}</span>
+            <div>
+              <h3 class="door-step__title">{i.title}</h3>
+              <p class="door-step__body">{i.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  {proof.length > 0 && (
+    <section class="section work" aria-labelledby="door-proof-heading">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-tag reveal"><span class="tag-dot"></span>Proof</span>
+          <h2 class="section-heading reveal-line" id="door-proof-heading"><span>Work like this</span></h2>
+        </header>
+        <div class="project-grid project-grid--trio">
+          {proof.slice(0, 3).map((p) => <WorkCard entry={p} showTier />)}
+        </div>
+        <p class="home-more reveal"><a class="home-more__link" href="/work">See all work<span aria-hidden="true"> →</span></a></p>
+      </div>
+    </section>
+  )}
+
+  <!-- HOW IT GOES -->
+  <section class="section approach" aria-labelledby="door-process-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>How it goes</span>
+        <h2 class="section-heading reveal-line" id="door-process-heading"><span>Five steps, no mystery</span></h2>
+      </header>
+      <ol class="approach-grid approach-grid--five">
+        {METHOD.map((m, i) => (
+          <li class="approach-card reveal-card">
+            <span class="approach-card__num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{m.title}</h3>
+            <p>{m.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- THE OTHER TWO DOORS -->
+  <section class="section door-others" aria-labelledby="door-others-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Not quite it?</span>
+        <h2 class="section-heading reveal-line" id="door-others-heading"><span>Two other ways in</span></h2>
+      </header>
+      <div class="service-link-grid">
+        {others.map((o) => (
+          <a class="service-link-card reveal-card" href={o.href}>
+            <h3>{o.label}</h3>
+            <p>{o.summary}</p>
+            <span class="service-link-card__more">{o.priceRange} →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Tell us what’s going on."
+    sub="A few sentences is enough. You’ll get a straight answer about what it would take — and whether we’re the right people for it."
+    primary={door.cta}
+    secondary={CTA.pricing}
+  />
+</BaseLayout>

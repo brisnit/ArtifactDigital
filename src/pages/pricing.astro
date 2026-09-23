@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Button from '../components/Button.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE, orgNode, breadcrumb, CTA } from '../data/site';
+import { DOORS } from '../data/doors';
+
+// Ranges, not quotes. The point is to qualify honestly and remove the awkward
+// first-call question — not to look cheap, and not to look like SaaS tiers.
+const route = '/pricing';
+
+const CHANGES = [
+  { title: 'How much has to be figured out', body: 'A clear brief costs less than an idea that still needs shaping. The Opportunity Workshop exists for exactly that, and its fee comes off a project that follows.' },
+  { title: 'How many people it serves', body: 'A marketing site is a different problem from software with accounts, permissions, payments and an audit trail behind it.' },
+  { title: 'What it has to connect to', body: 'Integrations with systems you already run — a CRM, an ERP, a payment processor, a warehouse — add real work, and we price them honestly.' },
+  { title: 'How much content and data moves', body: 'Migrating a thousand pages, or years of records, is its own project inside the project.' },
+  { title: 'How fast you need it', body: 'We can compress a timeline. It costs more, because it means more people on it at once, and we will say so rather than quietly absorbing it.' },
+];
+
+const ONGOING = [
+  'Hosting, domains, backups and monitoring',
+  'Updates, security and dependency maintenance',
+  'Analytics, SEO and AI-search reporting',
+  'A regular cycle of improvements after launch',
+  'New features as the business changes',
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': `${SITE.url}${route}#page`,
+      url: `${SITE.url}${route}`,
+      name: 'Pricing',
+      description: 'What working with Artifact Digital costs: typical engagement ranges for digital fixes, product builds and strategy workshops.',
+      isPartOf: { '@id': `${SITE.url}/#website` },
+      about: { '@id': `${SITE.url}/#organization` },
+    },
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'Pricing', path: route },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title="Pricing · What Working With Artifact Costs · Artifact Digital"
+  description="Typical engagement ranges at Artifact Digital: $7.5K–$25K+ for digital fixes and redesigns, $15K–$75K+ for product builds, $2.5K–$7.5K for a fixed-scope opportunity workshop."
+  canonical={route}
+  bodyClass="case-page pricing-page"
+  jsonLd={jsonLd}
+>
+  <section class="case-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Pricing' }]} />
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Pricing</span>
+      <h1 class="case-title">
+        <span class="reveal-line"><span>Serious work.</span></span>
+        <span class="reveal-line italic"><span>Clear starting points.</span></span>
+      </h1>
+      <p class="case-lede reveal">
+        Every project is different, so nobody can quote one from a web page. But engagements
+        fall into recognizable ranges, and you deserve to know them before you spend an hour
+        on a call. Here’s where ours land.
+      </p>
+    </div>
+  </section>
+
+  <!-- THE THREE RANGES -->
+  <section class="section pricing-tiers" aria-labelledby="pricing-tiers-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Engagements</span>
+        <h2 class="section-heading reveal-line" id="pricing-tiers-heading"><span>Three ways to work together</span></h2>
+      </header>
+      <ul class="price-grid">
+        {DOORS.map((d) => (
+          <li class="price-card reveal-card">
+            <span class="price-card__num" aria-hidden="true">{d.num}</span>
+            <h3 class="price-card__title">{d.label}</h3>
+            <p class="price-card__range">{d.priceRange}</p>
+            <p class="price-card__note">{d.priceNote}</p>
+            <p class="price-card__body">{d.summary}</p>
+            <ul class="price-card__list">
+              {d.includes.slice(0, 4).map((i) => <li>{i.title}</li>)}
+            </ul>
+            <a class="price-card__link" href={d.href}>What this involves<span aria-hidden="true"> →</span></a>
+          </li>
+        ))}
+      </ul>
+      <p class="pricing-note reveal">
+        These are typical ranges, not quotes. Larger programs — a platform, a multi-site
+        rebuild, an ongoing product team — are scoped individually. We’ll give you a real
+        number once we understand the work, and we’d rather tell you it’s smaller than you
+        expected than pad it.
+      </p>
+    </div>
+  </section>
+
+  <!-- WHAT MOVES THE NUMBER -->
+  <section class="section service-section" aria-labelledby="pricing-changes-heading">
+    <div class="container service-section__grid">
+      <div class="service-section__head">
+        <span class="section-tag"><span class="tag-dot"></span>What moves the number</span>
+        <h2 class="service-section__heading reveal-line" id="pricing-changes-heading"><span>Why one website costs twice another</span></h2>
+      </div>
+      <div class="service-prose service-section__body">
+        <ol class="door-steps">
+          {CHANGES.map((c, i) => (
+            <li class="door-step reveal">
+              <span class="door-step__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h3 class="door-step__title">{c.title}</h3>
+                <p class="door-step__body">{c.body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- AFTER LAUNCH -->
+  <section class="section digital-team" aria-labelledby="pricing-ongoing-heading">
+    <div class="container digital-team__grid">
+      <div>
+        <span class="section-tag reveal"><span class="tag-dot"></span>After launch</span>
+        <h2 class="section-heading reveal-line" id="pricing-ongoing-heading">
+          <span>Launch isn’t</span>
+          <span><em>the finish line.</em></span>
+        </h2>
+      </div>
+      <div>
+        <p class="digital-team__lede reveal">
+          Most of our clients keep us on afterwards, monthly, for the things that decide
+          whether the investment holds its value. It’s optional, priced separately, and you
+          can stop whenever it stops being useful.
+        </p>
+        <ul class="ticklist">
+          {ONGOING.map((o) => <li class="reveal">{o}</li>)}
+        </ul>
+        <p class="reveal" style="margin-top: 1.75rem;">
+          <a class="home-more__link" href="/services/hosting-support">Hosting &amp; support<span aria-hidden="true"> →</span></a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HONEST NOTES -->
+  <section class="section service-section" aria-labelledby="pricing-straight-heading">
+    <div class="container service-section__grid">
+      <div class="service-section__head">
+        <h2 class="service-section__heading reveal-line" id="pricing-straight-heading"><span>Straight about the money</span></h2>
+      </div>
+      <div class="service-prose service-section__body">
+        <p class="reveal">
+          We aren’t the cheapest option, and we’re not trying to be. There are template
+          sites for a thousand dollars and offshore teams who will underbid us on any
+          project. What you’re paying for here is senior people doing the work rather than
+          selling it — the same people from the first conversation to launch.
+        </p>
+        <p class="reveal">
+          We’d also rather build the right smaller thing than the wrong large one. If a
+          tool you can buy solves your problem, we’ll tell you, and you can spend the
+          difference on something that actually needs building.
+        </p>
+        <p class="reveal">
+          Projects are usually billed in staged payments tied to milestones rather than one
+          lump sum, so the commitment matches the progress.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Want a real number?"
+    sub="Tell us what’s going on and what you’re trying to get to. We’ll come back with a range, an approach and an honest read on whether it’s worth doing."
+    primary={CTA.problem}
+    secondary={CTA.work}
+  />
+</BaseLayout>

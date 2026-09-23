@@ -7,11 +7,11 @@ import CtaBand from '../../components/CtaBand.astro';
 import { SITE, orgNode, breadcrumb, CTA } from '../../data/site';
 import { PLAYBOOKS, playbookPath } from '../../data/playbooks';
 import { BUILD_CLUSTERS, BUILD_PROOF, buildPath, type BuildProof } from '../../data/build';
+import { DOORS } from '../../data/doors';
 import { caseTier, TIER_LABEL, type Tier } from '../../lib/proof';
 
-// What We Do: five plain services, each a real page. Everything else is depth
-// reached from them — the deeper pages are listed below, not competing for
-// attention at the top.
+// How We Help: the three doors first, because people arrive with a situation.
+// The five services sit under them for anyone who wants the detail.
 
 const work = await getCollection('work');
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
@@ -54,29 +54,30 @@ const jsonLd = {
     orgNode,
     breadcrumb([
       { name: 'Home', path: '/' },
-      { name: 'What We Do', path: '/services' },
+      { name: 'How We Help', path: '/services' },
     ]),
   ],
 };
 ---
 <BaseLayout
-  title="What We Do · Websites, Apps, SEO & Support · Artifact Digital"
-  description="Website design and development, web apps, mobile apps, SEO and AI search optimization, hosting and ongoing support — for founders and growing businesses."
+  title="How We Help · Fix, Build or Figure It Out · Artifact Digital"
+  description="Three ways to work with Artifact Digital: fix a digital experience holding the business back, build the software you need, or run a workshop to find the right thing to build."
   canonical="/services"
   bodyClass="case-page services-hub"
   jsonLd={jsonLd}
 >
   <section class="case-hero">
     <div class="container">
-      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'What We Do' }]} />
-      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>What we do</span>
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'How We Help' }]} />
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>How we help</span>
       <h1 class="case-title">
-        <span class="reveal-line"><span>Websites, apps, and</span></span>
-        <span class="reveal-line italic"><span>the growth after launch.</span></span>
+        <span class="reveal-line"><span>Three ways in.</span></span>
+        <span class="reveal-line italic"><span>One senior team behind them.</span></span>
       </h1>
       <p class="case-lede reveal">
-        Five things, in plain terms. Most clients start with one and add another later —
-        a site that needs a portal behind it, or an app that needs people to find it.
+        Most people arrive with a situation rather than a spec: something isn't keeping up,
+        something needs building, or something needs figuring out first. Start there — the
+        disciplines underneath are listed below for anyone who wants the detail.
       </p>
       <div class="wwb-hero-actions reveal">
         <Button href={CTA.primary.href} label={CTA.primary.label} variant="primary" />
@@ -85,12 +86,36 @@ const jsonLd = {
     </div>
   </section>
 
+  <!-- THE THREE DOORS -->
+  <section class="section doors" aria-labelledby="hub-doors-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>How we help</span>
+        <h2 class="section-heading reveal-line" id="hub-doors-heading"><span>Where do you need help?</span></h2>
+      </header>
+      <ul class="door-grid">
+        {DOORS.map((d) => (
+          <li class="reveal-card">
+            <a class="door-card" href={d.href}>
+              <span class="door-card__num" aria-hidden="true">{d.num}</span>
+              <h3 class="door-card__title">{d.label}</h3>
+              <p class="door-card__price">{d.priceRange}</p>
+              <p class="door-card__body">{d.summary}</p>
+              <span class="door-card__more" aria-hidden="true">{d.cta.label} →</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="home-more reveal"><a class="home-more__link" href="/pricing">How pricing works<span aria-hidden="true"> →</span></a></p>
+    </div>
+  </section>
+
   <!-- THE FIVE -->
-  <section class="section wwb-clusters" aria-labelledby="wwb-clusters-heading">
+  <section class="section wwb-clusters pk-section--stone" aria-labelledby="wwb-clusters-heading">
     <div class="container">
       <header class="section-head">
         <span class="section-tag reveal"><span class="tag-dot"></span>Services</span>
-        <h2 class="section-heading reveal-line" id="wwb-clusters-heading"><span>Where to start</span></h2>
+        <h2 class="section-heading reveal-line" id="wwb-clusters-heading"><span>What we actually make</span></h2>
       </header>
 
       <ol class="wwb-cluster-list">

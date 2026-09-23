@@ -6,145 +6,106 @@ import WorkCard from '../components/WorkCard.astro';
 import { SITE, orgNode, websiteNode, CTA } from '../data/site';
 import { testimonials } from '../data/testimonials';
 import { BUILD_CLUSTERS, buildPath } from '../data/build';
+import { DOORS } from '../data/doors';
 import { METHOD } from '../data/method';
-import { caseTier, sortWork } from '../lib/proof';
+import { sortWork } from '../lib/proof';
 
-// The homepage answers one question in the first five seconds: what do these
-// people make? Websites and apps, and help finding you. Everything deeper —
-// SaaS products, AI tools, portals — is discovered from there, never required
-// to understand this page.
+// The homepage sells into a moment, not a capability list: your business has
+// outgrown the way you're running it. Recognition first, then three obvious
+// doors, then proof. Everything deeper is reached from one of those.
 
 const allWork = sortWork(await getCollection('work'));
-const artifactWork = allWork.filter((p) => !p.data.priorRole).slice(0, 3);
-const careerWork = allWork.filter((p) => caseTier(p) === 'founder').slice(0, 3);
+const proofIds = ['case-left-coast-printing-pros', 'case-tiny-crm', 'case-ithink', 'case-phoenix-rising', 'case-benchbot', 'case-dropq'];
+const proof = proofIds
+  .map((id) => allWork.find((p) => p.id === id))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p));
 
 const live = testimonials.filter((t) => t.approved);
 
-// Section 2: what a visitor is here for, in their words.
-const NEEDS = [
-  {
-    id: 'websites',
-    label: 'A website',
-    body: 'A site that explains what you do, earns trust and is easy to update.',
-    examples: 'Business sites · Ecommerce · Content platforms',
-  },
-  {
-    id: 'web-apps',
-    label: 'A web app',
-    body: 'A portal, dashboard, internal tool or software product people log into.',
-    examples: 'Portals · Dashboards · SaaS · AI tools',
-  },
-  {
-    id: 'mobile-apps',
-    label: 'A mobile app',
-    body: 'Something on the phone, designed for one hand and small moments.',
-    examples: 'iOS & Android · Prototypes',
-  },
-  {
-    id: 'seo-ai-search',
-    label: 'To be found',
-    body: 'Search and AI assistants sending the right people your way.',
-    examples: 'SEO · AI search (GEO) · Analytics',
-  },
+// Section 2: situations a buyer recognizes as their own.
+const MOMENTS = [
+  'Your website no longer reflects the company you’ve become.',
+  'A spreadsheet quietly turned into a mission-critical system.',
+  'Customers have to call because your software can’t do something.',
+  'Your team copies the same information between five tools.',
+  'You have a product idea and nobody internally can build it.',
+  'Everyone keeps saying “AI” and nobody knows where it would help.',
 ];
 
-// The tout's four chips: what ongoing support actually covers.
-const TOUT_CHIPS = [
-  { label: 'Host', icon: 'M4 5h16v5H4zM4 14h16v5H4M8 7.5h.01M8 16.5h.01' },
-  { label: 'Maintain', icon: 'M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2z' },
-  { label: 'Improve', icon: 'M6 20V10M12 20V4M18 20v-6M3 10h6M9 4h6M15 14h6' },
-  { label: 'Grow', icon: 'M3 17l6-6 4 4 8-8M15 7h6v6' },
-];
+// Section 5: what we decide before anything gets built.
+const DECISIONS = ['fixed', 'redesigned', 'automated', 'connected', 'built', 'or left alone'];
 
-// Section 5: the part AI genuinely doesn't do for you.
-const NOT_AUTOMATIC = [
-  'Knowing what the business actually needs',
-  'Understanding the customer',
-  'Deciding what goes where, and what to cut',
-  'Making it work for everyone, including assistive technology',
-  'Design judgment, and a brand that looks like you',
-  'Knowing which shortcut becomes next year’s problem',
-];
-
-// Section 7: growth, in plain terms.
-const GROWTH = [
-  'Technical SEO: speed, structure, crawlability and the groundwork search needs',
-  'AI search (GEO): being understood and accurately described by AI assistants',
-  'Content built on the questions your buyers actually ask',
-  'Structured data, so machines read your pages correctly',
-  'Analytics that show what people do, not just how many arrived',
-];
-
-const serviceNode = {
-  '@type': 'ProfessionalService',
-  '@id': `${SITE.url}/#service`,
-  name: SITE.name,
-  url: `${SITE.url}/`,
-  image: `${SITE.url}${SITE.ogImage}`,
-  parentOrganization: { '@id': `${SITE.url}/#organization` },
-  areaServed: 'Worldwide',
-  slogan: 'We design, build and grow websites & apps.',
-  description: SITE.description,
-  knowsAbout: [
-    'Web design',
-    'Web development',
-    'Web app development',
-    'Mobile app development',
-    'Ecommerce',
-    'SEO',
-    'AI search optimization',
-    'UX design',
-    'Accessibility',
-    'Website hosting and support',
-  ],
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'What we do',
-    itemListElement: BUILD_CLUSTERS.map((c) => ({
-      '@type': 'Offer',
-      itemOffered: {
-        '@type': 'Service',
-        name: c.label,
-        description: c.summary,
-        url: `${SITE.url}${buildPath(c.id)}`,
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    orgNode,
+    {
+      '@type': 'ProfessionalService',
+      '@id': `${SITE.url}/#service`,
+      name: SITE.name,
+      url: `${SITE.url}/`,
+      image: `${SITE.url}${SITE.ogImage}`,
+      parentOrganization: { '@id': `${SITE.url}/#organization` },
+      areaServed: 'United States',
+      slogan: 'Your business has outgrown the way you’re running it.',
+      description: SITE.description,
+      knowsAbout: [
+        'Website redesign',
+        'Web app development',
+        'Custom software',
+        'AI implementation',
+        'Workflow automation',
+        'Ecommerce',
+        'UX design',
+        'SEO',
+        'AI search optimization',
+        'Accessibility',
+      ],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'How we help',
+        itemListElement: DOORS.map((d) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: d.label, description: d.summary, url: `${SITE.url}${d.href}` },
+          description: d.priceRange,
+        })),
       },
-    })),
-  },
+    },
+    websiteNode,
+  ],
 };
-
-const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNode, websiteNode] };
 ---
 <BaseLayout
-  title="Web Design, Web Apps & Mobile Apps | Artifact Digital"
-  description="Artifact Digital designs, builds and grows websites, web apps and mobile apps for founders and growing businesses — strategy, UX, design, development, hosting, SEO and AI search."
+  title="Artifact Digital · Software, Websites & AI for Growing Companies"
+  description="Your business has outgrown the way you're running it. Artifact Digital helps growing companies fix broken digital experiences, build better software and use AI where it actually makes sense."
   canonical="/"
   preloadImage="/brand_assets/hero-reel.webp"
   jsonLd={jsonLd}
 >
-  <!-- 1. HERO -->
+  <!-- 01 / HERO -->
   <section class="hero" id="home">
     <div class="container hero-inner">
       <div class="hero-copy">
         <div class="hero-meta">
-          <span class="eyebrow"><span class="eyebrow-dot"></span>Digital studio · Founders & growing businesses</span>
+          <span class="eyebrow"><span class="eyebrow-dot"></span>Digital studio · San Diego</span>
         </div>
 
         <h1 class="hero-heading hero-heading--long">
-          <span class="line"><span class="reveal-word"><span>We design, build</span></span></span>
-          <span class="line"><span class="reveal-word"><span>and grow websites</span></span></span>
-          <span class="line italic"><span class="reveal-word"><span>&amp; apps.</span></span></span>
+          <span class="line"><span class="reveal-word"><span>Your business has</span></span></span>
+          <span class="line"><span class="reveal-word"><span>outgrown the way</span></span></span>
+          <span class="line italic"><span class="reveal-word"><span>you’re running it.</span></span></span>
         </h1>
 
         <div class="hero-foot">
           <p class="hero-lede">
-            Beautiful, accessible digital products for founders and growing businesses —
-            from strategy and UX to development, hosting, SEO and AI search.
+            We design and build the websites, applications and AI systems that help growing
+            companies get to the next stage.
           </p>
           <div class="hero-actions">
-            <Button href={CTA.primary.href} label={CTA.primary.label} variant="primary" />
+            <Button href={CTA.problem.href} label={CTA.problem.label} variant="primary" />
             <Button href={CTA.work.href} label={CTA.work.label} variant="secondary" />
           </div>
-          <ul class="hero-offer" aria-label="What we do">
+          <ul class="hero-offer" aria-label="What we work on">
             {BUILD_CLUSTERS.map((c) => <li><a href={buildPath(c.id)}>{c.label}</a></li>)}
           </ul>
         </div>
@@ -163,132 +124,58 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
     </div>
   </section>
 
-  <!-- 2. WHAT DO YOU NEED? -->
-  <section class="section needs" id="what-you-need" aria-labelledby="needs-heading">
+  <!-- 02 / THE MOMENT -->
+  <section class="section moment" id="the-moment" aria-labelledby="moment-heading">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>Where to start</span>
-        <h2 class="section-heading reveal-line" id="needs-heading"><span>What do you need?</span></h2>
+        <span class="section-tag reveal"><span class="tag-dot"></span>The moment</span>
+        <h2 class="section-heading reveal-line" id="moment-heading"><span>“There has to be a better way to do this.”</span></h2>
       </header>
-      <ul class="need-grid">
-        {NEEDS.map((n, i) => (
+      <ul class="moment-list">
+        {MOMENTS.map((m) => <li class="reveal">{m}</li>)}
+      </ul>
+      <p class="moment-turn reveal">That’s where we come in.</p>
+    </div>
+  </section>
+
+  <!-- 03 / THREE DOORS -->
+  <section class="section doors" id="how-we-help" aria-labelledby="doors-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>How we help</span>
+        <h2 class="section-heading reveal-line" id="doors-heading"><span>Where do you need help?</span></h2>
+      </header>
+      <ul class="door-grid">
+        {DOORS.map((d) => (
           <li class="reveal-card">
-            <a class="need-card" href={buildPath(n.id)}>
-              <span class="need-card__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-              <h3 class="need-card__title">{n.label}</h3>
-              <p class="need-card__body">{n.body}</p>
-              <span class="need-card__examples">{n.examples}</span>
-              <span class="need-card__more" aria-hidden="true">Start here →</span>
+            <a class="door-card" href={d.href}>
+              <span class="door-card__num" aria-hidden="true">{d.num}</span>
+              <h3 class="door-card__title">{d.label}</h3>
+              <p class="door-card__price">{d.priceRange}</p>
+              <p class="door-card__body">{d.summary}</p>
+              <span class="door-card__more" aria-hidden="true">{d.cta.label} →</span>
             </a>
           </li>
         ))}
       </ul>
+      <p class="home-more reveal">
+        <a class="home-more__link" href="/pricing">How pricing works<span aria-hidden="true"> →</span></a>
+      </p>
     </div>
   </section>
 
-  <!-- 2b. ALREADY HAVE A SITE OR APP? (full-bleed tout) -->
-  <section class="tout" aria-labelledby="tout-heading">
-    <div class="tout__copy">
-      <div class="tout__copy-inner">
-        <h2 class="tout__heading reveal-line" id="tout-heading">
-          <span>Already have a site <em>or app?</em></span>
-        </h2>
-        <p class="tout__lede reveal">
-          We host, maintain, improve and grow what you already run — the outside digital
-          team for businesses that don’t have one.
-        </p>
-        <ul class="tout__chips reveal">
-          {TOUT_CHIPS.map((c) => (
-            <li class="tout__chip">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d={c.icon} />
-              </svg>
-              {c.label}
-            </li>
-          ))}
-        </ul>
-        <div class="tout__action reveal">
-          <Button href={buildPath('hosting-support')} label="Hosting & support" variant="primary" />
-        </div>
-      </div>
-    </div>
-
-    <div class="tout__media">
-      <img
-        src="/brand_assets/insights/ai-behind-the-scenes.webp"
-        srcset="/brand_assets/insights/ai-behind-the-scenes-480w.webp 480w, /brand_assets/insights/ai-behind-the-scenes-960w.webp 960w, /brand_assets/insights/ai-behind-the-scenes.webp 1208w"
-        sizes="(max-width: 900px) 100vw, 50vw"
-        alt=""
-        width="1208" height="604" loading="lazy" decoding="async"
-      />
-      {/* Decorative mock of what ongoing support looks like. Hidden from
-          assistive tech: the chips above already say it in words. */}
-      <div class="tout__card" aria-hidden="true">
-        <div class="tout__card-head">
-          <span class="tout__card-site">yoursite.com</span>
-          <span class="tout__card-status"><i></i>Online</span>
-        </div>
-        <svg class="tout__pulse" viewBox="0 0 220 40" fill="none" aria-hidden="true">
-          <path d="M2 24h44l10-16 9 28 8-20 10 8h30l10-14 9 24 8-18 10 8h58" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        <dl class="tout__card-stats">
-          <div><dt>Hosted</dt><dd>Server</dd></div>
-          <div><dt>Backed up</dt><dd>Data</dd></div>
-          <div><dt>Patched</dt><dd>Updates</dd></div>
-        </dl>
-      </div>
-      <div class="tout__toast" aria-hidden="true">
-        <span class="tout__toast-icon">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
-        </span>
-        <span class="tout__toast-copy">
-          <strong>Improvements shipped</strong>
-          <span>Change log sent to you</span>
-        </span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. WHY ARTIFACT -->
-  <section class="section model" id="why-artifact" aria-labelledby="why-heading">
-    <div class="container model-grid">
-      <div class="model-copy">
-        <span class="section-tag reveal"><span class="tag-dot"></span>Why Artifact</span>
-        <h2 class="model-heading reveal" id="why-heading">Big-agency thinking. <em>Small senior team.</em></h2>
-        <p class="model-lede reveal">
-          Our team has designed and built digital platforms, products and design systems for
-          some of the largest organizations in the world. Artifact brings that level of
-          thinking to founders and growing businesses — without the layers, the handoffs or
-          the overhead that usually come with it.
-        </p>
-        <p class="model-lede reveal">
-          You work directly with senior people. The ones who scope the work are the ones who
-          do it.
-        </p>
-        <p class="reveal"><a class="home-more__link" href="/why-artifact">Why Artifact<span aria-hidden="true"> →</span></a></p>
-      </div>
-      <div class="model-pillars reveal">
-        <ul class="why-list">
-          <li><strong>Strategy first.</strong> We work out what you actually need before designing anything.</li>
-          <li><strong>Accessible by default.</strong> Built to work for everyone, on every device, from the start.</li>
-          <li><strong>AI without the slop.</strong> AI for speed, experienced people for judgment.</li>
-          <li><strong>Senior team.</strong> No juniors learning on your budget, no account layer in between.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. WORK -->
+  <!-- 04 / PROOF -->
   <section class="section work" id="work">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>Work</span>
-        <h2 class="section-heading reveal-line"><span>What we’ve built</span></h2>
+        <span class="section-tag reveal"><span class="tag-dot"></span>Proof</span>
+        <h2 class="section-heading reveal-line"><span>We don’t just talk about it. We build it.</span></h2>
       </header>
 
       <div class="project-grid project-grid--trio">
-        {artifactWork.map((p) => <WorkCard entry={p} showTier />)}
+        {proof.slice(0, 6).map((p) => <WorkCard entry={p} showTier showProblem />)}
       </div>
+      <p class="home-more reveal"><a class="home-more__link" href="/work">See all work<span aria-hidden="true"> →</span></a></p>
 
       {live.length > 0 && (
         <div class="testimonial-grid">
@@ -307,68 +194,79 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
     </div>
   </section>
 
-  <section class="section work work--career" id="career-work">
-    <div class="container">
-      <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>Before Artifact</span>
-        <h2 class="section-heading reveal-line"><span>Where the experience comes from</span></h2>
-      </header>
-      <p class="work-attribution reveal">
-        Platforms our founder led in director roles at previous agencies, before Artifact
-        existed. They were not Artifact engagements. Client names, branding and proprietary
-        assets have been removed, while the thinking behind the work is described as it happened.
-      </p>
-
-      <div class="project-grid project-grid--trio">
-        {careerWork.map((p) => <WorkCard entry={p} showTier />)}
+  <!-- 05 / HOW WE THINK -->
+  <section class="section model" id="how-we-think" aria-labelledby="think-heading">
+    <div class="container model-grid">
+      <div class="model-copy">
+        <span class="section-tag reveal"><span class="tag-dot"></span>How we think</span>
+        <h2 class="model-heading reveal" id="think-heading">Technology isn’t <em>the strategy.</em></h2>
+        <p class="model-lede reveal">
+          We start with the business — how the work actually flows, where it costs you, what
+          customers run into. Only then does anything get decided about software.
+        </p>
+        <p class="model-lede reveal">
+          Most of the value is in knowing which move to make. Plenty of companies have been
+          sold a rebuild they didn’t need, or an AI project with nowhere useful to land.
+        </p>
       </div>
-      <p class="home-more reveal"><a class="home-more__link" href="/work">See all work<span aria-hidden="true"> →</span></a></p>
+      <div class="model-pillars reveal">
+        <p class="decide-label">Then we work out what should be</p>
+        <ul class="decide-list">
+          {DECISIONS.map((d) => <li>{d}</li>)}
+        </ul>
+        <p class="decide-note">
+          “Left alone” is a real answer, and it’s the one nobody selling you software wants
+          to give.
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- 5. AI WITHOUT THE SLOP -->
+  <!-- 06 / AI -->
   <section class="section slop" id="ai" aria-labelledby="slop-heading">
     <div class="container">
       <header class="section-head">
         <span class="section-tag reveal"><span class="tag-dot"></span>AI without the slop</span>
         <h2 class="slop-heading reveal-line" id="slop-heading">
-          <span>AI made building faster.</span>
-          <span class="italic">It didn’t make good thinking automatic.</span>
+          <span>AI can make the work faster.</span>
+          <span class="italic">It can’t tell you what’s worth building.</span>
         </h2>
       </header>
       <div class="slop-grid">
         <div class="slop-copy">
           <p class="reveal">
-            Anyone can prompt a website into existence now. That doesn’t mean it has the right
-            strategy, structure, content, accessibility or technology behind it — and the
-            difference shows up in whether it actually works.
+            We use AI hard, every day, and we build AI into the systems we make for clients —
+            inside the workflow, doing real work, rather than a chatbot bolted onto a corner
+            of the screen.
           </p>
           <p class="reveal">
-            We use AI aggressively, because it lets a small senior team do far more: explore
-            more directions, build faster, test more, ship sooner. Then experienced people
-            decide what’s right, which is the part that never became automatic.
+            What it doesn’t do is decide what should exist. Anyone can generate a website
+            now; that doesn’t make it the right one. The judgment is still the job.
           </p>
-          <p class="slop-line reveal">AI helps us move faster. Experience tells us where to go.</p>
           <p class="reveal"><a class="home-more__link" href="/why-artifact#ai-without-the-slop">Our position on AI<span aria-hidden="true"> →</span></a></p>
         </div>
         <div class="slop-list-wrap reveal">
-          <h3 class="slop-list__title">What AI still doesn’t do for you</h3>
+          <h3 class="slop-list__title">Still a human call</h3>
           <ul class="slop-list">
-            {NOT_AUTOMATIC.map((n) => <li>{n}</li>)}
+            <li>What the business actually needs</li>
+            <li>What’s worth building, and what isn’t</li>
+            <li>How the experience should work</li>
+            <li>Brand, tone and design judgment</li>
+            <li>Accessibility and the edge cases</li>
+            <li>What to do first</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 6. HOW WE WORK -->
-  <section class="section approach" id="approach">
+  <!-- 07 / PROCESS -->
+  <section class="section approach" id="process">
     <div class="container">
       <header class="section-head">
-        <span class="section-tag reveal"><span class="tag-dot"></span>How we work</span>
+        <span class="section-tag reveal"><span class="tag-dot"></span>How it goes</span>
         <h2 class="section-heading reveal-line"><span>Five steps, no mystery</span></h2>
       </header>
-
       <ol class="approach-grid approach-grid--five">
         {METHOD.map((m, i) => (
           <li class="approach-card reveal-card">
@@ -382,62 +280,53 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [orgNode, serviceNo
     </div>
   </section>
 
-  <!-- 7. SEO + GEO -->
-  <section class="speed-module" id="growth" aria-labelledby="growth-heading">
-    <div class="container speed-module__inner">
-      <div class="speed-module__copy">
-        <span class="section-tag"><span class="tag-dot"></span>SEO + AI search</span>
-        <h2 class="speed-module__heading" id="growth-heading">
-          Build something great. <em>Then make sure people can find it.</em>
+  <!-- 08 / AFTER LAUNCH -->
+  <section class="section digital-team" id="after-launch" aria-labelledby="after-heading">
+    <div class="container digital-team__grid">
+      <div>
+        <span class="section-tag reveal"><span class="tag-dot"></span>After launch</span>
+        <h2 class="section-heading reveal-line" id="after-heading">
+          <span>Launch isn’t</span>
+          <span><em>the finish line.</em></span>
         </h2>
-        <p class="speed-module__lede">
-          People still search on Google, and a growing number now ask ChatGPT, Gemini or
-          Perplexity instead. Both work the same way underneath: they reward sites that are
-          fast, clearly structured and genuinely useful. That’s the work.
-        </p>
-        <ul class="speed-module__points">
-          {GROWTH.map((g) => <li>{g}</li>)}
-        </ul>
-        <p class="growth-note">
-          What we won’t do is promise you a position. Nobody controls those results — we
-          improve what’s actually in your control, and show you what changed.
-        </p>
-        <div class="speed-module__actions">
-          <Button href="/services/seo-ai-search" label="SEO + AI search" variant="primary" />
-          <Button href={CTA.audit.href} label={CTA.audit.label} variant="secondary" />
-        </div>
       </div>
-
-      <div class="speed-module__media">
-        <img
-          class="speed-module__img speed-module__img--main"
-          src="/brand_assets/insights/bespoke-module.webp"
-          srcset="/brand_assets/insights/bespoke-module-480w.webp 480w, /brand_assets/insights/bespoke-module.webp 634w"
-          sizes="(max-width: 900px) 100vw, 560px"
-          alt="Modular blocks locking together into a single system"
-          width="634" height="473" loading="lazy" decoding="async"
-        />
+      <div>
+        <p class="digital-team__lede reveal">
+          Most clients keep us on afterwards: hosting, analytics, search visibility, and a
+          steady cycle of improvements as the business changes. Optional, priced separately,
+          and easy to stop.
+        </p>
+        <ul class="ticklist">
+          <li class="reveal">Hosting, monitoring, updates and security</li>
+          <li class="reveal">Analytics, SEO and AI-search reporting</li>
+          <li class="reveal">Improvements shipped in regular cycles</li>
+          <li class="reveal">New functionality as the business grows</li>
+        </ul>
+        <p class="reveal" style="margin-top: 1.75rem;">
+          <a class="home-more__link" href="/services/hosting-support">Hosting &amp; support<span aria-hidden="true"> →</span></a>
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- 8. FINAL CTA -->
+  <!-- 09 / FINAL CTA -->
   <section class="section contact" id="contact">
     <div class="container contact-inner">
-      <span class="section-tag reveal"><span class="tag-dot"></span>Start a project</span>
+      <span class="section-tag reveal"><span class="tag-dot"></span>Start here</span>
 
       <h2 class="contact-heading">
-        <span class="reveal-line"><span>Have something</span></span>
-        <span class="reveal-line"><span><em>you want to build?</em></span></span>
+        <span class="reveal-line"><span>What’s not working</span></span>
+        <span class="reveal-line"><span><em>in your business?</em></span></span>
       </h2>
       <p class="contact-sub reveal">
-        Tell us what you’re trying to create, fix or grow. We’ll help you figure out the
-        smartest way to get it live — including when the simplest option is the right one.
+        Tell us what’s slowing you down, what you’re trying to build, or what you suspect
+        could be better. We’ll tell you what we’d do about it — including when the answer
+        costs you nothing.
       </p>
 
       <div class="hero-actions reveal" style="margin: 2rem 0 2.5rem;">
-        <Button href={CTA.primary.href} label="Tell Us About Your Project" variant="primary" />
-        <Button href={CTA.work.href} label={CTA.work.label} variant="secondary" />
+        <Button href={CTA.problem.href} label={CTA.problem.label} variant="primary" />
+        <Button href={CTA.pricing.href} label={CTA.pricing.label} variant="secondary" />
       </div>
 
       <a class="contact-email reveal" href="mailto:hello@artifactdigital.co">

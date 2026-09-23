@@ -111,5 +111,6 @@
   },
   "storyImage": "/brand_assets/cases/ministry-story.webp",
   "storyImageAlt": "Managing an event in the admin portal — registrants, details and messaging",
-  "storyCaption": "Events, content and messaging — all editable by ministry staff, no developer required."
+  "storyCaption": "Events, content and messaging — all editable by ministry staff, no developer required.",
+  "problem": "Designing for an audience most software ignores"
 }
