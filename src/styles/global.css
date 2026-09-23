@@ -4168,3 +4168,8 @@ html:not(.js) .nav-item--has-menu:focus-within .nav-mega {
   .case-next__meta { white-space: normal; }
 }
 @media (prefers-reduced-motion: reduce) { .case-next__title { transition: none; } }
+
+/* A lone last product card spans the row rather than sitting half-width. */
+@media (min-width: 901px) {
+  .pk-lab > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+}

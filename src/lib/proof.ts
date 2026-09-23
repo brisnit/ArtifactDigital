@@ -52,32 +52,3 @@ export function sortWork<T extends CollectionEntry<'work'>>(entries: T[]): T[] {
   };
   return [...entries].sort((a, b) => rank(a) - rank(b));
 }
-
-// Concepts have no case study, so they live here instead of the work
-// collection, and can only ever render as a concept.
-export interface Concept {
-  name: string;
-  href: string;
-  status: string;
-  eyebrow: string;
-  year: string;
-  blurb: string;
-  image: string;
-  imageAlt: string;
-  tags: string[];
-}
-
-export const CONCEPTS: readonly Concept[] = [
-  {
-    name: 'Predictive Learning Platform',
-    href: '/insights/if-we-cant-see-whats-happening',
-    status: 'In development',
-    eyebrow: 'Learning intelligence',
-    year: '2026',
-    blurb:
-      'A platform for seeing learner risk earlier, so educators can step in before a student falls behind. Explored in our writing; not a client product.',
-    image: '/brand_assets/insights/if-we-cant-see-whats-happening.webp',
-    imageAlt: 'A concept dashboard flagging at-risk students, shown with sample data.',
-    tags: ['AI', 'Education', 'Concept'],
-  },
-];

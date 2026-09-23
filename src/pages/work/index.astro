@@ -5,8 +5,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import WorkCard from '../../components/WorkCard.astro';
 import { SITE, orgNode, breadcrumb } from '../../data/site';
-import { caseTier, sortWork, CONCEPTS, TIER_LABEL } from '../../lib/proof';
-import { responsive } from '../../lib/responsive';
+import { caseTier, sortWork, TIER_LABEL } from '../../lib/proof';
 
 // The rest of the site makes the argument; this page proves it. Order and tiers
 // both come from src/lib/proof.ts, so the page can't quietly promote prior-agency
@@ -16,7 +15,6 @@ const built = projects.filter((p) => !p.data.priorRole);
 const [lead, ...moreBuilt] = built;
 const teamWork = projects.filter((p) => caseTier(p) === 'team');
 const founderWork = projects.filter((p) => caseTier(p) === 'founder');
-const concepts = await Promise.all(CONCEPTS.map(async (c) => ({ ...c, img: await responsive(c.image) })));
 
 // What the work draws on. Kept short: the cards carry the argument.
 const INGREDIENTS = [
@@ -91,33 +89,6 @@ const jsonLd = {
       <div class="project-grid">
         {lead && <WorkCard entry={lead} headingLevel="h3" showTier wide priority />}
         {moreBuilt.map((p) => <WorkCard entry={p} headingLevel="h3" showTier wide={false} />)}
-        {concepts.map((c) => (
-          <a class="project-card-link" href={c.href} aria-label={`Read about the ${c.name}`}>
-            <article class="project-card reveal-card">
-              <div class="project-card__media project-card__media--contain" style="--media-bg: #f4f4f4;">
-                <img
-                  src={c.image}
-                  alt={c.imageAlt}
-                  width={c.img.width}
-                  height={c.img.height}
-                  srcset={c.img.srcset}
-                  sizes="(max-width: 560px) 100vw, (max-width: 960px) 50vw, 400px"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span class="project-card__hover">Read the thinking →</span>
-              </div>
-              <div class="project-card__meta">
-                <span>{c.eyebrow}</span>
-                <span>{c.year}</span>
-              </div>
-              <span class="tier-chip tier-chip--concept project-card__tier">{TIER_LABEL.concept} · {c.status}</span>
-              <h3 class="project-card__title">{c.name}</h3>
-              <p class="project-card__copy">{c.blurb}</p>
-              <ul class="project-card__tags">{c.tags.map((t) => <li>{t}</li>)}</ul>
-            </article>
-          </a>
-        ))}
       </div>
     </div>
   </section>

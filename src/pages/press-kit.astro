@@ -8,7 +8,7 @@ import Button from '../components/Button.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { SITE, orgNode, breadcrumb } from '../data/site';
 import { AUTHORS } from '../data/authors';
-import { caseTier, tierText, sortWork, CONCEPTS, TIER_LABEL } from '../lib/proof';
+import { caseTier, tierText, sortWork, TIER_LABEL } from '../lib/proof';
 import { responsive } from '../lib/responsive';
 import { imageSize } from '../lib/imageSize';
 
@@ -96,22 +96,7 @@ const products = await Promise.all(
     };
   })
 );
-const concepts = await Promise.all(
-  CONCEPTS.map(async (c) => ({
-    name: c.name,
-    category: c.eyebrow,
-    purpose: `${c.blurb.split('. ')[0].replace(/\.$/, '')}.`,
-    chip: `${TIER_LABEL.concept} · ${c.status}`,
-    tier: 'concept',
-    href: c.href,
-    linkLabel: 'Read the thinking',
-    liveUrl: undefined as string | undefined,
-    src: c.image,
-    alt: c.imageAlt,
-    img: await responsive(c.image),
-  }))
-);
-const lab = [...products, ...concepts];
+const lab = products;
 
 // --- Live products: only the public URLs the case studies already verify -----
 const DEMO_MEDIA: Record<string, { src: string; alt: string; cta: string }> = {
