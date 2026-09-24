@@ -1937,22 +1937,13 @@ button:focus-visible {
 .pullquote__inner { width: 100%; max-width: 34rem; }
 
 .pullquote__eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
+  display: block;
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 500;
+  font-size: 17px;
+  font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--steel);
-}
-.pullquote__rule {
-  flex: none;
-  width: 34px;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--accent);
 }
 
 /* The glyph carries its own leading, hence the tight line-height and the
