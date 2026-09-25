@@ -1,0 +1,116 @@
+{
+  "title": "Northminster Presbyterian Church",
+  "metaTitle": "Northminster Presbyterian Church — Church Website · Artifact Digital",
+  "description": "A neighborhood church website built around the first-time visitor: the service time and directions on every screen, a visit page that answers the unglamorous questions, and the congregation’s own photography instead of stock.",
+  "order": 2,
+  "year": "2026",
+  "category": "Website & digital experience",
+  "priorRole": false,
+  "teamWork": true,
+  "status": "Live",
+  "liveUrl": "https://northminsterclairmont.org",
+  "card": {
+    "eyebrow": "Website & digital experience",
+    "blurb": "A neighborhood church in Clairemont since 1953, rebuilt around the question a newcomer actually has: what happens if I show up?",
+    "tags": [
+      "Web",
+      "UX/UI",
+      "Accessibility"
+    ],
+    "wide": false,
+    "image": "/brand_assets/cases/cards/northminster.webp",
+    "imageAlt": "Two phone screens from the Northminster site over a woman seated in the sanctuary during a Sunday service."
+  },
+  "heroEyebrow": "Case study · Website",
+  "titleLines": [
+    {
+      "text": "Nobody’s first question"
+    },
+    {
+      "text": "is theological.",
+      "italic": true
+    }
+  ],
+  "lede": "Northminster is a small Presbyterian church in Clairemont — about sixty people on a Sunday, in the same tented sanctuary they broke ground on in the sixties. The website’s job isn’t to explain a denomination. It’s to get a stranger from “maybe” to a seat.",
+  "meta": [
+    {
+      "label": "Client",
+      "value": "Northminster Presbyterian Church"
+    },
+    {
+      "label": "Year",
+      "value": "2026"
+    },
+    {
+      "label": "Scope",
+      "value": "Strategy · Design · Build"
+    },
+    {
+      "label": "Status",
+      "value": "Live · northminsterclairmont.org"
+    }
+  ],
+  "pillarsTag": "The problem",
+  "pillarsHeading": "A church website gets read by someone standing outside.",
+  "pillars": [
+    {
+      "title": "The real questions are logistical",
+      "body": "When does it start, how long is it, where do I park, what happens to my kids, will I be the only one who doesn’t know anyone. A site organised around ministries and committees answers none of that — and those are the questions that decide whether someone comes."
+    },
+    {
+      "title": "Sixty people and no web team",
+      "body": "A congregation this size has no communications staff. The structure has to stay right when nobody is tending it, and adding a sermon or an event can’t require a developer."
+    },
+    {
+      "title": "The decision happens on a phone",
+      "body": "Someone looks up a church on a Saturday night, or at eight on a Sunday morning in their kitchen. A site that makes them hunt for the service time is answering the wrong question slowly."
+    }
+  ],
+  "storyTag": "The reframe",
+  "storyHeadingLines": [
+    {
+      "text": "The site isn’t about the church."
+    },
+    {
+      "text": "It’s the first five minutes of a visit.",
+      "italic": true
+    }
+  ],
+  "storyParagraphs": [
+    "So the newcomer’s three facts lead everywhere: the service time and address in the header, “Plan your visit” following down the page, and a bar pinned to the bottom of every phone screen with the hour, directions and a number that dials. The visit page answers the unglamorous things — one service, about an hour, kids from three through sixth grade, coffee before and after.",
+    "The photography is theirs, not stock: their kitchen on a Wednesday night, their garden, their sanctuary. And the church is marked up as a place with a weekly service schedule, so a search for a church nearby gets back the right hour and the right address."
+  ],
+  "storyImage": "/brand_assets/cases/northminster-story.webp",
+  "storyImageAlt": "The Northminster homepage on a laptop and a phone: “There’s room at the table.”",
+  "storyCaption": "The same three facts lead on every screen: when, where, and what to do next.",
+  "highlights": [
+    {
+      "title": "The answer before the ask",
+      "body": "Service time, address and directions in the header, in the footer, and pinned to the bottom of every phone screen with a tap-to-call number."
+    },
+    {
+      "title": "Written for a first Sunday",
+      "body": "A visit page about the hour itself — how long it runs, where the kids go, what the music is like — rather than a statement of beliefs."
+    },
+    {
+      "title": "Their own faces",
+      "body": "The congregation’s photographs throughout: the Wednesday night kitchen, the community garden, the sanctuary, the people who fill them."
+    },
+    {
+      "title": "Findable on a Sunday morning",
+      "body": "Marked up as a church with a service schedule and a mapped location, so local search can return the right hour and address."
+    },
+    {
+      "title": "Light enough for a small church",
+      "body": "A static build with the stylesheet inlined and every photograph generated at six sizes, so it stays quick on a phone with one bar of signal."
+    }
+  ],
+  "ctaHeading": "Need a site that does the welcoming for you?",
+  "ogImage": "/brand_assets/cases/northminster-og.webp",
+  "feature": {
+    "image": "/brand_assets/cases/northminster-feature.webp",
+    "alt": "Four phone screens from the Northminster site — the hero, plan your visit, the leadership page and the menu — over a Sunday service in the sanctuary.",
+    "caption": "How most people meet the church: on a phone, about a room they haven’t walked into yet."
+  },
+  "problem": "Turning a first visit into something a stranger can picture"
+}
