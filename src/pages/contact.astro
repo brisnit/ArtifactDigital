@@ -194,6 +194,10 @@ const jsonLd = {
         .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
         .then(function (res) {
           if (res.ok && res.j.ok) {
+            // Counted only on a confirmed send. The intent dropdown is a
+            // category, never anything the visitor typed — no name, email,
+            // company or message leaves the page.
+            if (window.adEvent) window.adEvent('contact_submitted', { intent: data.intent || 'unspecified' });
             form.reset();
             statusEl.classList.add('is-success');
             statusEl.textContent = 'Thanks — your message is on its way. We’ll be in touch within two business days.';

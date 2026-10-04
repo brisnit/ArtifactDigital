@@ -469,3 +469,30 @@ document.querySelectorAll('.nav-item--has-menu').forEach((item) => {
   });
 })();
 
+
+/* ============================================================
+   Conversion events
+   ------------------------------------------------------------
+   The three things that count as a lead here: sending the contact
+   form (fired from contact.astro, where the result is known), and
+   clicking an email or phone link anywhere on the site.
+
+   Nothing a visitor typed is sent — not the address they clicked,
+   not a form field. Only the action, the page it happened on, and
+   which part of the page it came from.
+   ============================================================ */
+(() => {
+  const region = (el) => {
+    if (el.closest('.page-footer')) return 'footer';
+    if (el.closest('.page-header, .mobile-nav')) return 'header';
+    if (el.closest('.sticky-cta')) return 'sticky-cta';
+    return 'body';
+  };
+
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href^="mailto:"], a[href^="tel:"]');
+    if (!link || !window.adEvent) return;
+    const kind = link.getAttribute('href').startsWith('tel:') ? 'phone_click' : 'email_click';
+    window.adEvent(kind, { path: location.pathname, region: region(link) });
+  });
+})();
