@@ -4527,3 +4527,258 @@ html:not(.js) .nav-item--has-menu:focus-within .nav-mega {
   }
 }
 @media (prefers-reduced-motion: reduce) { .hero-film__video { transition: none; } }
+
+/* -------------------- Security & Trust -------------------- */
+/* No seals, shields or padlocks: status is carried by a small dot, a label and
+   a rule. The palette is the site's own — the only colour that appears is the
+   existing accent, used sparingly for "in progress". */
+.sec-hero__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem 2.5rem;
+  margin-top: clamp(1.75rem, 3vw, 2.5rem);
+}
+.sec-status {
+  margin: 0;
+  display: grid;
+  gap: 0.3rem;
+  padding-left: clamp(1rem, 2vw, 1.5rem);
+  border-left: 1px solid rgba(17, 17, 17, 0.14);
+}
+.sec-status__label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.sec-status__state {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+.sec-status__note { font-size: 0.8rem; color: var(--steel); max-width: 34ch; }
+
+/* Status dot. Shape and weight carry the meaning; colour only reinforces it. */
+.sec-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: none;
+  background: var(--steel);
+}
+.sec-dot--practice { background: #1f9d55; }
+.sec-dot--developing { background: #b8860b; }
+.sec-dot--progress { background: var(--accent-strong); }
+.sec-dot--planned { background: transparent; box-shadow: inset 0 0 0 1.5px var(--steel); }
+
+.sec-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--steel);
+  white-space: nowrap;
+}
+
+.sec-intro { max-width: 62ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.sec-note {
+  margin: clamp(1.5rem, 3vw, 2rem) 0 0;
+  max-width: 72ch;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--steel);
+}
+.sec-note strong { color: var(--ink); font-weight: 600; }
+
+/* Philosophy */
+.sec-philosophy__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+.sec-philosophy__copy .home-lede { max-width: 60ch; }
+.sec-philosophy__copy .home-lede + .home-lede { margin-top: 1.25rem; }
+.sec-principle {
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--stone);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 var(--radius-media) var(--radius-media) 0;
+}
+.sec-principle__text {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* Practices grid */
+.sec-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+.sec-card {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+  background: #fff;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: var(--radius-media);
+}
+.sec-card__title {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.sec-card__body { margin: 0; font-size: 0.95rem; line-height: 1.65; color: var(--steel); }
+
+/* Vendors */
+.sec-vendor-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0;
+  border-top: 1px solid rgba(17, 17, 17, 0.12);
+}
+.sec-vendor {
+  padding: clamp(1.5rem, 3vw, 2rem) clamp(1.25rem, 2vw, 2rem) clamp(1.5rem, 3vw, 2rem) 0;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.12);
+}
+.sec-vendor__name {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.sec-vendor__role {
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+.sec-vendor__handles { margin: 0.75rem 0 0; font-size: 0.95rem; line-height: 1.65; color: var(--steel); }
+
+/* AI */
+.sec-ai-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+.sec-ai-item { display: grid; gap: 0.5rem; align-content: start; padding-top: 1.25rem; border-top: 1px solid rgba(17, 17, 17, 0.14); }
+.sec-ai-item__title {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.02rem;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.sec-ai-item__body { margin: 0; font-size: 0.93rem; line-height: 1.65; color: var(--steel); }
+.sec-pull {
+  margin: clamp(2.5rem, 5vw, 4rem) 0 0;
+  padding-left: clamp(1rem, 2vw, 1.5rem);
+  border-left: 2px solid var(--accent);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.25rem, 2.2vw, 1.85rem);
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  max-width: 46ch;
+}
+
+/* Privacy */
+.sec-privacy__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+.sec-privacy__grid .home-lede { max-width: 60ch; }
+.sec-privacy__grid .home-lede + .home-lede { margin-top: 1.25rem; }
+.sec-links { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; }
+
+/* Roadmap table */
+.sec-table { width: 100%; border-collapse: collapse; text-align: left; }
+.sec-table thead th {
+  padding: 0 0 0.85rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--steel);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.2);
+}
+.sec-table tbody tr { border-bottom: 1px solid rgba(17, 17, 17, 0.1); }
+.sec-table td, .sec-table tbody th { padding: 1.15rem 1.5rem 1.15rem 0; vertical-align: top; }
+.sec-table tbody th.sec-table__area {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  width: 26%;
+}
+.sec-table__state { width: 22%; }
+.sec-table__note { font-size: 0.93rem; line-height: 1.6; color: var(--steel); padding-right: 0 !important; }
+
+/* Documentation */
+.sec-doc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.75rem 2rem;
+}
+.sec-doc-list li {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+  font-size: 0.98rem;
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .sec-philosophy__grid, .sec-privacy__grid { grid-template-columns: 1fr; }
+  .sec-hero__row { flex-direction: column; align-items: flex-start; }
+  .sec-status { padding-left: 0; padding-top: 1.25rem; border-left: 0; border-top: 1px solid rgba(17, 17, 17, 0.14); width: 100%; }
+  /* The roadmap stops being a table and becomes a stack of records, so no row
+     is read sideways on a phone. */
+  .sec-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .sec-table, .sec-table tbody, .sec-table tr, .sec-table td, .sec-table tbody th { display: block; width: auto; }
+  .sec-table tr { padding: 1.25rem 0; }
+  /* Scoped under .sec-table so these beat the `.sec-table td` cell padding. */
+  .sec-table tbody th.sec-table__area,
+  .sec-table .sec-table__state,
+  .sec-table .sec-table__note { width: auto; padding: 0; }
+  .sec-table .sec-table__state { margin: 0.45rem 0 0.5rem; }
+}

@@ -1,0 +1,473 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Button from '../components/Button.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE, orgNode, breadcrumb } from '../data/site';
+
+// Security & Trust.
+//
+// The rule for this page: every sentence is either something the repository and
+// our live responses can substantiate, something explicitly labelled as being
+// formalized, or a stated objective. Nothing in between, and nothing borrowed
+// from what a security page is "supposed" to say.
+//
+// Verified while writing it: HSTS on production responses, a statically
+// rendered site with no application database, form input validated and escaped
+// server-side, secrets held only as environment variables, and every production
+// change arriving through a commit and a deploy. Anything that could not be
+// checked that way is marked Developing, In progress or Planned below.
+const route = '/security';
+
+// The three states this page is allowed to describe, and the only ones used.
+// `practice` = we do this today. `developing` = real but not yet formalized or
+// evidenced. `planned` = an objective, not a control.
+type State = 'practice' | 'developing' | 'planned' | 'progress';
+const STATE_LABEL: Record<State, string> = {
+  practice: 'In practice today',
+  developing: 'Developing',
+  planned: 'Planned',
+  progress: 'In progress',
+};
+
+// --- Section 3: how we work, and how far along each part is ------------------
+const PRACTICES: { title: string; body: string; state: State }[] = [
+  {
+    title: 'Access control',
+    body: 'Access to source control, hosting and production resources is kept to the people who need it, and granted through the providers’ own identity and permission systems rather than shared credentials. The underlying principle is least privilege; writing it down as a reviewable policy is part of the compliance work below.',
+    state: 'developing',
+  },
+  {
+    title: 'Secure development',
+    body: 'Security is considered during development rather than inspected for afterwards: input is validated and escaped before it is used, secrets live in environment variables and never in the repository, and every change to production arrives through version control and an automated deploy, so what is running can be traced to the commit that put it there.',
+    state: 'practice',
+  },
+  {
+    title: 'Vulnerability management',
+    body: 'Dependencies and application behaviour are reviewed for known issues, and we keep the dependency surface deliberately small to reduce what has to be watched. Automated scanning on a fixed cadence, with a defined response window, is being put in place rather than already running.',
+    state: 'developing',
+  },
+  {
+    title: 'Data protection',
+    body: 'Traffic to our site and services is served over HTTPS, with HSTS set on production responses. On client systems, the safeguards that apply to stored data depend on the architecture and the provider chosen for that system, and are decided during implementation rather than assumed here.',
+    state: 'practice',
+  },
+  {
+    title: 'Monitoring',
+    body: 'Deployments, availability and errors are visible through our hosting platform. Broader monitoring for abnormal or security-relevant behaviour is defined per system, according to what that system does and what the customer requires, and is an area we are formalizing.',
+    state: 'developing',
+  },
+  {
+    title: 'Backups and recovery',
+    body: 'Our own site holds no application database: it is statically generated and can be rebuilt from source control. For client systems that do hold data, backup frequency and recovery expectations are set with the customer during implementation, because a recovery target is a business decision before it is a technical one.',
+    state: 'developing',
+  },
+];
+
+// --- Section 4: only providers this site and our own operations actually use --
+// Stripe and Neon are deliberately absent. Neither is part of Artifact's own
+// infrastructure; where they appear in client products they belong to that
+// product's stack, not to a claim we can make here.
+const VENDORS: { name: string; role: string; handles: string }[] = [
+  {
+    name: 'Vercel',
+    role: 'Hosting, deployment and analytics',
+    handles: 'Serves the site, runs the form endpoints, and provides cookieless usage analytics.',
+  },
+  {
+    name: 'GitHub',
+    role: 'Source control and change history',
+    handles: 'Holds the codebase and the record of every change that reached production.',
+  },
+  {
+    name: 'Resend',
+    role: 'Transactional email',
+    handles: 'Delivers contact enquiries and Insights subscriptions. Processes the details you type into those forms.',
+  },
+];
+
+// --- Section 5 -----------------------------------------------------------
+const AI_POINTS: { title: string; body: string }[] = [
+  {
+    title: 'Send less',
+    body: 'The first question about any AI feature is how little customer data it can work with, not how much it could be given.',
+  },
+  {
+    title: 'Scope what the model can reach',
+    body: 'What a model or agent is able to read is defined deliberately, so capability does not quietly become broad access to everything a system holds.',
+  },
+  {
+    title: 'Protect credentials',
+    body: 'Provider keys are held as environment secrets on the server side, never embedded in client code or committed to a repository.',
+  },
+  {
+    title: 'Decide retention on purpose',
+    body: 'How long prompts, outputs and intermediate data persist is a design decision for each system, made with the customer rather than inherited from a default.',
+  },
+  {
+    title: 'Evaluate the provider',
+    body: 'Model providers differ in what they retain, where they process it and what their terms allow. That evaluation belongs in the design of a system, not in a blanket promise on a marketing page.',
+  },
+  {
+    title: 'Keep a person in the loop',
+    body: 'Where a workflow is sensitive or irreversible, it is designed so a person approves the consequential step rather than discovering it afterwards.',
+  },
+  {
+    title: 'Separate environments',
+    body: 'Customer environments and data are kept apart where the architecture allows it, so one system’s context cannot become another’s.',
+  },
+];
+
+// --- Section 7: conservative by design ---------------------------------------
+const ROADMAP: { area: string; state: State; note: string }[] = [
+  {
+    area: 'Secure development practices',
+    state: 'practice',
+    note: 'Version-controlled change history, automated deploys, server-side validation and escaping, secrets held outside the codebase.',
+  },
+  {
+    area: 'Security program documentation',
+    state: 'developing',
+    note: 'Writing down what we already do, in a form that can be reviewed and evidenced.',
+  },
+  {
+    area: 'Vendor and subprocessor management',
+    state: 'developing',
+    note: 'A maintained inventory of providers, what each one processes, and a review before new ones are introduced.',
+  },
+  {
+    area: 'Vulnerability management',
+    state: 'developing',
+    note: 'Moving from periodic review to scheduled scanning with a defined response window.',
+  },
+  {
+    area: 'Incident response',
+    state: 'developing',
+    note: 'A documented procedure for detection, containment, customer notification and review.',
+  },
+  {
+    area: 'SOC 2 Type II',
+    state: 'progress',
+    note: 'Preparing the policies, controls and evidence an independent audit would examine. No audit has been performed and no report exists.',
+  },
+  {
+    area: 'Independent penetration testing',
+    state: 'planned',
+    note: 'Not yet performed. When it happens, this page will say when and by whom.',
+  },
+];
+
+// --- Section 8: described, never offered as downloads ------------------------
+const DOCUMENTS = [
+  'Security overview',
+  'Information security policy',
+  'Access control policy',
+  'Incident response policy',
+  'Business continuity and disaster recovery',
+  'Vulnerability management policy',
+  'Vendor and subprocessor information',
+  'Data processing addendum',
+];
+
+const title = 'Security & Trust | Artifact Digital';
+const description =
+  'How Artifact Digital approaches application security, data protection, AI security, trusted infrastructure, and our path toward SOC 2 Type II.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': `${SITE.url}${route}#page`,
+      url: `${SITE.url}${route}`,
+      name: 'Security & Trust',
+      description,
+      isPartOf: { '@id': `${SITE.url}/#website` },
+      about: { '@id': `${SITE.url}/#organization` },
+    },
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'Security & Trust', path: route },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={route}
+  bodyClass="case-page security-page"
+  jsonLd={jsonLd}
+>
+  <!-- 1 / HERO -->
+  <section class="case-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Security & Trust' }]} />
+      <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Security &amp; Trust</span>
+      <h1 class="case-title">
+        <span class="reveal-line"><span>Security built into</span></span>
+        <span class="reveal-line italic"><span>how we work.</span></span>
+      </h1>
+      <p class="case-lede reveal">
+        Artifact builds software and AI-enabled systems for organizations that trust us with
+        important business processes and data. Security, privacy and responsible data handling
+        are considered throughout how we design, build, deploy and operate software.
+      </p>
+      <div class="sec-hero__row">
+        <div class="wwb-hero-actions reveal">
+          <Button href="/contact?intent=security" label="Discuss security with us" variant="primary" />
+          <a class="home-more__link" href="#approach">View our approach<span aria-hidden="true"> →</span></a>
+        </div>
+        <!-- Deliberately a status line, not a badge: no seal, no shield, no
+             border that could be mistaken for a certification mark. -->
+        <p class="sec-status reveal">
+          <span class="sec-status__label">SOC 2 Type II</span>
+          <span class="sec-status__state"><span class="sec-dot sec-dot--progress" aria-hidden="true"></span>In progress</span>
+          <span class="sec-status__note">Preparing for audit. Not yet audited, and no report exists.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 / PHILOSOPHY -->
+  <section class="section sec-philosophy" id="approach" aria-labelledby="sec-philosophy-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Philosophy</span>
+        <h2 class="section-heading reveal-line" id="sec-philosophy-heading"><span>Security isn’t an add-on. It’s part of the architecture.</span></h2>
+      </header>
+      <div class="sec-philosophy__grid">
+        <div class="sec-philosophy__copy">
+          <p class="home-lede reveal">
+            Most security incidents involve data a company did not need to be holding, in a system
+            it did not need to have built. So the earliest decisions in a project are the ones that
+            matter most: what the system will handle, what it can avoid handling at all, and which
+            parts are better served by infrastructure built and maintained by specialists.
+          </p>
+          <p class="home-lede reveal">
+            Payment details are the clearest example. A system that routes payments through
+            established payment infrastructure, and never stores raw card details itself, removes
+            an entire category of risk rather than defending against it. The same reasoning applies
+            to authentication, file storage and email delivery.
+          </p>
+          <p class="home-lede reveal">
+            That reasoning has a limit worth stating plainly: choosing a reputable provider does
+            not make a system secure. How it is configured, what it is permitted to reach and what
+            is built around it remain our responsibility, and are where most of the real work sits.
+          </p>
+        </div>
+        <aside class="sec-principle reveal">
+          <p class="sec-principle__text">
+            Minimize what we handle.<br />
+            Protect what we must.<br />
+            Use trusted infrastructure where it makes sense.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 / PRACTICES -->
+  <section class="section sec-practices pk-section--stone" aria-labelledby="sec-practices-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Practices</span>
+        <h2 class="section-heading reveal-line" id="sec-practices-heading"><span>How we work, and how far along each part is</span></h2>
+      </header>
+      <p class="home-lede reveal sec-intro">
+        Each area below carries its own status, because they are not all at the same stage. Where
+        implementation depends on the system being built, it says so rather than implying one
+        standard applies to every engagement.
+      </p>
+      <ul class="sec-grid">
+        {PRACTICES.map((p) => (
+          <li class="sec-card reveal-card">
+            <span class={`sec-tag sec-tag--${p.state}`}>
+              <span class={`sec-dot sec-dot--${p.state}`} aria-hidden="true"></span>{STATE_LABEL[p.state]}
+            </span>
+            <h3 class="sec-card__title">{p.title}</h3>
+            <p class="sec-card__body">{p.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4 / INFRASTRUCTURE -->
+  <section class="section sec-vendors" aria-labelledby="sec-vendors-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Infrastructure</span>
+        <h2 class="section-heading reveal-line" id="sec-vendors-heading"><span>Built on trusted infrastructure.</span></h2>
+      </header>
+      <p class="home-lede reveal sec-intro">
+        We use established providers for the parts of a system where specialist operators do a
+        better job than we would, and where rebuilding would mean holding sensitive data we have
+        no reason to hold. These are the providers behind Artifact’s own site and operations.
+      </p>
+      <ul class="sec-vendor-list">
+        {VENDORS.map((v) => (
+          <li class="sec-vendor reveal">
+            <h3 class="sec-vendor__name">{v.name}</h3>
+            <p class="sec-vendor__role">{v.role}</p>
+            <p class="sec-vendor__handles">{v.handles}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="sec-note reveal">
+        Client systems are built on their own stacks, chosen for what that system has to do and for
+        the customer’s existing environment and requirements. We will tell you exactly which
+        providers a proposed system would involve, and what each would process, before it is built.
+      </p>
+      <p class="sec-note reveal">
+        Using an established provider transfers operational burden, not accountability. Every
+        provider remains part of our vendor-risk picture, and the responsibility for how a system
+        is configured and what it exposes stays with us.
+      </p>
+    </div>
+  </section>
+
+  <!-- 5 / AI -->
+  <section class="section sec-ai pk-section--stone" aria-labelledby="sec-ai-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>AI &amp; data</span>
+        <h2 class="section-heading reveal-line" id="sec-ai-heading"><span>Responsible AI starts with responsible data.</span></h2>
+      </header>
+      <p class="home-lede reveal sec-intro">
+        We build AI-enabled systems, which means customer information can end up travelling further
+        than it would in conventional software. These are the decisions we make deliberately rather
+        than by default.
+      </p>
+      <ul class="sec-ai-list">
+        {AI_POINTS.map((a) => (
+          <li class="sec-ai-item reveal">
+            <h3 class="sec-ai-item__title">{a.title}</h3>
+            <p class="sec-ai-item__body">{a.body}</p>
+          </li>
+        ))}
+      </ul>
+      <blockquote class="sec-pull reveal">
+        AI should expand what software can do without unnecessarily expanding who can access your data.
+      </blockquote>
+      <p class="sec-note reveal">
+        One thing we will not tell you in the abstract: whether a given provider trains on your
+        data. That depends on the provider, the plan and the configuration chosen for a particular
+        system, and it changes. It is something to establish and document while designing that
+        system — and we would rather confirm it for your architecture than make a promise here that
+        covers providers we have not selected yet.
+      </p>
+    </div>
+  </section>
+
+  <!-- 6 / PRIVACY -->
+  <section class="section sec-privacy" aria-labelledby="sec-privacy-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Privacy</span>
+        <h2 class="section-heading reveal-line" id="sec-privacy-heading"><span>Your data remains your data.</span></h2>
+      </header>
+      <div class="sec-privacy__grid">
+        <div>
+          <p class="home-lede reveal">
+            Customer data belongs to the customer. We hold it to do the work we have been engaged to
+            do, we keep internal access to the people doing that work, and we return or remove it
+            when an engagement ends and the customer asks.
+          </p>
+          <p class="home-lede reveal">
+            This site itself collects very little. It is statically generated with no database and
+            no accounts. If you send the contact form or subscribe to Insights, the details you type
+            reach us by email through our delivery provider; usage analytics are cookieless and
+            aggregated, which is also why you were not asked to dismiss a cookie banner.
+          </p>
+          <p class="home-lede reveal">
+            Where a system we build processes personal information, the processors involved are
+            identified during design rather than discovered later.
+          </p>
+        </div>
+        <ul class="sec-links reveal">
+          <li><a class="home-more__link" href="/privacy">Privacy Policy<span aria-hidden="true"> →</span></a></li>
+          <li><a class="home-more__link" href="/terms">Terms of Service<span aria-hidden="true"> →</span></a></li>
+          <li><a class="home-more__link" href="/capabilities">Capabilities &amp; procurement<span aria-hidden="true"> →</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 / ROADMAP -->
+  <section class="section sec-roadmap pk-section--stone" aria-labelledby="sec-roadmap-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Compliance</span>
+        <h2 class="section-heading reveal-line" id="sec-roadmap-heading"><span>Building toward independent assurance.</span></h2>
+      </header>
+      <p class="home-lede reveal sec-intro">
+        Artifact is formalizing the policies, controls, evidence and operational processes that
+        support independent security assurance. This is where each part genuinely stands today.
+      </p>
+      <table class="sec-table reveal">
+        <caption class="sr-only">Status of Artifact Digital’s security and compliance program</caption>
+        <thead>
+          <tr>
+            <th scope="col">Area</th>
+            <th scope="col">Status</th>
+            <th scope="col">What that means</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ROADMAP.map((r) => (
+            <tr>
+              <th scope="row" class="sec-table__area">{r.area}</th>
+              <td class="sec-table__state">
+                <span class={`sec-tag sec-tag--${r.state}`}>
+                  <span class={`sec-dot sec-dot--${r.state}`} aria-hidden="true"></span>{STATE_LABEL[r.state]}
+                </span>
+              </td>
+              <td class="sec-table__note">{r.note}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p class="sec-note reveal">
+        <strong>In practice today</strong> means it is how we work now. <strong>Developing</strong>
+        means it is real but not yet written down and evidenced to a standard an auditor would
+        accept. <strong>Planned</strong> means it has not happened yet. We would rather you read an
+        accurate status than an impressive one.
+      </p>
+    </div>
+  </section>
+
+  <!-- 8 / DOCUMENTATION -->
+  <section class="section sec-docs" aria-labelledby="sec-docs-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Documentation</span>
+        <h2 class="section-heading reveal-line" id="sec-docs-heading"><span>Security documentation</span></h2>
+      </header>
+      <p class="home-lede reveal sec-intro">
+        As our security program develops, documentation will be made available to qualified
+        customers under NDA as part of a security review. The set below is what that documentation
+        is being built toward — it is a roadmap, not a library, and nothing here is offered as a
+        download today.
+      </p>
+      <ul class="sec-doc-list reveal">
+        {DOCUMENTS.map((d) => <li>{d}</li>)}
+      </ul>
+      <p class="sec-note reveal">
+        Security documentation is available or being developed as part of our compliance program.
+        If your review has specific requirements — a questionnaire, a DPA, evidence of a particular
+        control — <a href="/contact?intent=security">tell us what you need</a> and we will tell you
+        what we can provide today and what is still being written.
+      </p>
+    </div>
+  </section>
+
+  <!-- 9 / CTA -->
+  <CtaBand
+    heading="Have a security requirement? Let’s talk."
+    sub="Enterprise systems don’t all carry the same risk. If your organization has specific security, privacy, procurement, infrastructure or compliance requirements, we’ll discuss them with you before implementation rather than after."
+    primary={{ label: 'Start a security conversation', href: '/contact?intent=security' }}
+    secondary={{ label: 'Capabilities & procurement', href: '/capabilities' }}
+  />
+</BaseLayout>
