@@ -19,10 +19,23 @@ export async function relatedCases(relatedTags: string[], limit = 3) {
       return { c, score };
     })
     .filter((x) => x.score > 0)
-    .sort((a, b) => b.score - a.score || a.c.data.order - b.c.data.order);
+    // Score first, then editorial order, then id. That last key matters: ties on
+    // the first two used to fall through to getCollection order, which varies
+    // between cold builds, so the case shown on a service page could change from
+    // one deploy to the next with no content change at all.
+    .sort(
+      (a, b) =>
+        b.score - a.score ||
+        a.c.data.order - b.c.data.order ||
+        a.c.id.localeCompare(b.c.id)
+    );
 
   // If nothing matched, fall back to the most recent cases so the section
   // never renders empty.
-  const chosen = scored.length ? scored.map((x) => x.c) : cases.sort((a, b) => a.data.order - b.data.order);
+  const chosen = scored.length
+    ? scored.map((x) => x.c)
+    : // Same tiebreak on the fallback path, and a copy so the collection array
+      // isn't sorted in place for whatever renders next.
+      [...cases].sort((a, b) => a.data.order - b.data.order || a.id.localeCompare(b.id));
   return chosen.slice(0, limit);
 }

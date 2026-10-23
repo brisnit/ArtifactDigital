@@ -5,8 +5,11 @@ import Newsletter from '../../components/Newsletter.astro';
 import { SITE, orgNode, breadcrumb } from '../../data/site';
 import { responsive } from '../../lib/responsive';
 
+// Newest first, then slug. Dozens of posts share a pubDate, and without the
+// second key those ties fell through to getCollection order, which varies
+// between cold builds — so the running order of the index shuffled on deploy.
 const posts = (await getCollection('insights', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime() || a.id.localeCompare(b.id)
 );
 
 const clusters = [...new Set(posts.map((p) => p.data.cluster))].sort((a, b) => a.localeCompare(b));
