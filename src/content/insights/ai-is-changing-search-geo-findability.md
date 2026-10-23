@@ -2,6 +2,7 @@
 title: "Google Isn't the Only Gatekeeper Anymore. AI Is Changing Who Gets Found, Who Gets Trusted, and Who Gets Forgotten."
 description: "Discover how AI-powered search, YouTube, and Generative Engine Optimization are changing digital visibility — and how businesses can adapt."
 metaTitle: "AI Is Changing Search: Why Businesses Need GEO | Britt Midgette"
+useMetaTitle: true
 pubDate: 2026-10-23
 author: Britt Midgette
 cluster: "Digital Strategy"

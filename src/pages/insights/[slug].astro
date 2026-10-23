@@ -67,7 +67,8 @@ const jsonLd = {
 };
 ---
 <BaseLayout
-  title={`${d.title} · Artifact Digital`}
+  title={d.useMetaTitle && d.metaTitle ? d.metaTitle : `${d.title} · Artifact Digital`}
+  ogTitle={d.useMetaTitle && d.metaTitle ? `${d.title} · Artifact Digital` : undefined}
   description={d.description}
   canonical={path}
   ogType="article"

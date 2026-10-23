@@ -85,6 +85,12 @@ const insights = defineCollection({
     title: z.string(),
     description: z.string(),
     metaTitle: z.string().optional(),
+    /** Opt in to using `metaTitle` as the <title> tag for this post. Off by
+     *  default: most posts carry a metaTitle that was never wired up, and
+     *  switching them all at once would rewrite 60+ search titles in one go.
+     *  Set true per post, deliberately. The visible headline and the social
+     *  title both stay as `title`. */
+    useMetaTitle: z.boolean().default(false),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     author: z.string().default('Britt Midgette'),

@@ -17,6 +17,10 @@ import StickyCta from '../components/StickyCta.astro';
 interface Props {
   title: string;
   description: string;
+  /** Social title, where it should differ from the <title> tag — e.g. a page
+   *  using a concise search title but wanting its full headline when shared.
+   *  Defaults to `title`, so pages that don't set it are unaffected. */
+  ogTitle?: string;
   /** Path (leading slash) or absolute URL for canonical + og:url. */
   canonical?: string;
   ogType?: string;
@@ -32,6 +36,7 @@ interface Props {
 
 const {
   title,
+  ogTitle,
   description,
   canonical = Astro.url.pathname,
   ogType = 'website',
@@ -43,6 +48,7 @@ const {
   hideStickyCta = false,
   preloadImage,
 } = Astro.props;
+const socialTitle = ogTitle ?? title;
 
 const abs = (p: string) => (p.startsWith('http') ? p : `${SITE.url}${p.startsWith('/') ? '' : '/'}${p}`);
 const canonicalUrl = abs(canonical);
@@ -72,7 +78,7 @@ const graphs = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <!-- Open Graph -->
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="Artifact Digital" />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={socialTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImageUrl} />
@@ -81,7 +87,7 @@ const graphs = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:title" content={socialTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
