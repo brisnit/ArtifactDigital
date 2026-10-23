@@ -73,6 +73,7 @@ const jsonLd = {
   canonical={path}
   ogType="article"
   ogImage={d.heroImage ?? SITE.ogImage}
+  ogImageAlt={d.heroImageAlt}
   bodyClass="case-page"
   preloadImage={d.heroImage}
   jsonLd={jsonLd}
@@ -99,7 +100,7 @@ const jsonLd = {
         <figure class="post-lead">
           <img
             src={d.heroImage}
-            alt={`Illustration for “${d.title}”`}
+            alt={d.heroImageAlt ?? `Illustration for “${d.title}”`}
             width={hero.width}
             height={hero.height}
             srcset={hero.srcset}

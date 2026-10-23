@@ -98,6 +98,9 @@ const insights = defineCollection({
     tags: z.array(z.string()).default([]),
     keywords: z.array(z.string()).default([]),
     heroImage: z.string().optional(),
+    /** Alt text for the hero. Falls back to a generated "Illustration for …"
+     *  string, which is what every post without this field still gets. */
+    heroImageAlt: z.string().optional(),
     draft: z.boolean().default(false),
   }),
 });
