@@ -1,20 +1,26 @@
 {
   "title": "SEO & AI Search Optimization",
   "navLabel": "SEO + AI search",
-  "metaTitle": "SEO & AI Search Optimization (GEO) · Artifact Digital",
+  "metaTitle": "SEO & AI Search Optimization · Artifact Digital",
   "description": "SEO and AI search optimization for growing businesses — technical SEO, content structure, structured data, analytics and visibility in AI assistants like ChatGPT, Gemini and Perplexity.",
   "order": 4,
   "eyebrow": "What we do · SEO + AI search",
   "heroTitleLines": [
-    { "text": "Getting online isn't enough." },
-    { "text": "We help people find you.", "italic": true }
+    {
+      "text": "Getting online isn't enough."
+    },
+    {
+      "text": "We help people find you.",
+      "italic": true
+    }
   ],
   "lede": "Traditional search still matters, and a growing share of people now ask an AI assistant instead. We work on both: the technical groundwork, the content structure and the analytics to see what's actually working.",
-  "summary": "SEO, AI search visibility (GEO), analytics and conversion.",
+  "summary": "SEO, AI search visibility, analytics and conversion.",
   "intro": [
     "For twenty years, being findable meant ranking on Google. That hasn't stopped mattering, but it's no longer the whole picture. People now ask ChatGPT, Gemini, Perplexity and the AI summaries inside search engines for a recommendation, and those systems answer by reading and repeating what they can understand.",
-    "That's what people mean by GEO — generative engine optimization. It's a new phrase for a familiar job: making sure a machine reading your site comes away with a clear, accurate, quotable understanding of what you do, who you serve and why you're credible.",
-    "The good news is that most of the work helps both. Clean structure, fast pages, plain language, real expertise and honest answers to the questions people actually ask are what both a search engine and an assistant reward."
+    "That's what people mean by GEO — [generative engine optimization](/services/generative-engine-optimization). It's a new phrase for a familiar job: making sure a machine reading your site comes away with a clear, accurate, quotable understanding of what you do, who you serve and why you're credible.",
+    "The good news is that most of the work helps both. Clean structure, fast pages, plain language, real expertise and honest answers to the questions people actually ask are what both a search engine and an assistant reward.",
+    "The deeper version of this work — how we research the prompts your buyers actually use, test what assistants currently say about you, and track it over time — is set out on the [Generative Engine Optimization](/services/generative-engine-optimization) page. This page is the service; that one is the method."
   ],
   "sections": [
     {
@@ -40,11 +46,26 @@
     }
   ],
   "inMethod": [
-    { "stage": "Understand", "body": "How people currently find you, what they search for, and how AI assistants describe your business today." },
-    { "stage": "Design", "body": "The pages worth having, the questions they answer, and the structure that makes them easy to read and to quote." },
-    { "stage": "Build", "body": "Technical fixes, structured data, performance and accessibility work, and the content itself." },
-    { "stage": "Launch", "body": "Analytics, search consoles and tracking in place so results are visible from the start." },
-    { "stage": "Grow", "body": "A regular cycle of measuring, improving and adding — search visibility compounds or it decays." }
+    {
+      "stage": "Understand",
+      "body": "How people currently find you, what they search for, and how AI assistants describe your business today."
+    },
+    {
+      "stage": "Design",
+      "body": "The pages worth having, the questions they answer, and the structure that makes them easy to read and to quote."
+    },
+    {
+      "stage": "Build",
+      "body": "Technical fixes, structured data, performance and accessibility work, and the content itself."
+    },
+    {
+      "stage": "Launch",
+      "body": "Analytics, search consoles and tracking in place so results are visible from the start."
+    },
+    {
+      "stage": "Grow",
+      "body": "A regular cycle of measuring, improving and adding — search visibility compounds or it decays."
+    }
   ],
   "deliverables": [
     "A technical audit of what's holding your site back, in priority order",
@@ -82,10 +103,24 @@
       "a": "We can, working from your expertise, or we can give your team the structure, briefs and guidance to write it. What we won't do is publish generated filler, which is exactly what search engines and assistants have learned to ignore."
     }
   ],
-  "relatedTags": ["Strategy", "Web", "Research"],
-  "relatedServices": ["enterprise-cms", "experience-audits", "digital-strategy"],
-  "buildsWith": ["seo-ai-search", "hosting-support"],
-  "cta": { "primary": "audit", "secondary": "what-we-build" },
+  "relatedTags": [
+    "Strategy",
+    "Web",
+    "Research"
+  ],
+  "relatedServices": [
+    "enterprise-cms",
+    "experience-audits",
+    "digital-strategy"
+  ],
+  "buildsWith": [
+    "seo-ai-search",
+    "hosting-support"
+  ],
+  "cta": {
+    "primary": "audit",
+    "secondary": "what-we-build"
+  },
   "ctaHeading": "Built something good that nobody finds?",
   "ctaSub": "Tell us your site and what you'd like to be found for. We'll tell you what's holding it back, in plain language."
 }
