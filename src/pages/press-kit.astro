@@ -32,7 +32,7 @@ function featureOf(id: string) {
 
 // --- Hero: real product screens, each carrying its real status ---------------
 const heroShots = await Promise.all(
-  ['case-benchbot', 'case-senior-living-ministry', 'case-dropq'].map(async (id) => {
+  ['case-tiny-crm', 'case-senior-living-ministry', 'case-dropq'].map(async (id) => {
     const f = featureOf(id);
     return { entry: byId(id), src: f.image, alt: f.alt, img: await responsive(f.image) };
   })
@@ -73,7 +73,6 @@ const selected = await Promise.all(
 // One-line purposes restate what src/data/build.ts already publishes.
 const PURPOSE: Record<string, string> = {
   'case-dropq': 'Timed product drops, payments and pickup for independent sellers.',
-  'case-benchbot': 'Audits a website against real competitors and turns the findings into prioritized, trackable work.',
   'case-senior-living-ministry':
     'A Scripture-first daily formation app for senior-living residents, with an admin portal staff run without a developer.',
 };
@@ -100,11 +99,6 @@ const lab = products;
 
 // --- Live products: only the public URLs the case studies already verify -----
 const DEMO_MEDIA: Record<string, { src: string; alt: string; cta: string }> = {
-  'case-benchbot': {
-    src: '/brand_assets/cases/benchbot-story.webp',
-    alt: "BenchBot's landing page on a laptop and a phone",
-    cta: 'Launch Demo',
-  },
   'case-dropq': {
     src: '/brand_assets/cases/dropq-og.webp',
     alt: 'DropQ on three phones: a seller storefront, drop creation and a confirmed order',
@@ -182,8 +176,6 @@ const ASSET_GROUPS = [
     note: 'Screens from Artifact-built products. Figures shown are sample or demo data.',
     items: await Promise.all([
       asset('/brand_assets/cases/dropq-feature.webp', 'DropQ · vendor and buyer flow'),
-      asset('/brand_assets/cases/benchbot-feature.webp', 'BenchBot · mobile screens'),
-      asset('/brand_assets/cases/benchbot-story.webp', 'BenchBot · desktop and mobile'),
       asset('/brand_assets/cases/ministry-feature.webp', 'Senior-Living Ministry · admin portal'),
     ]),
   },

@@ -88,7 +88,7 @@ export const DOORS: readonly Door[] = [
       { title: 'Put AI where it earns its place', body: 'Inside the workflow, doing real work — summarizing, drafting, flagging, sorting — rather than a chatbot bolted onto a corner of the screen.' },
       { title: 'Hand it over cleanly', body: 'Your code, your accounts, documentation that means something, and a roadmap for what comes after the first release.' },
     ],
-    proof: ['case-tiny-crm', 'case-left-coast-printing-pros', 'case-benchbot', 'case-dropq'],
+    proof: ['case-tiny-crm', 'case-left-coast-printing-pros', 'case-dropq'],
     cta: { label: 'Tell Us What You Want to Build', href: '/contact?intent=build' },
     metaTitle: 'Build My Product · Web Apps, Portals & Custom Software · Artifact Digital',
     metaDescription:

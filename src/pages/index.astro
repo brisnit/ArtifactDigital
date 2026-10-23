@@ -15,7 +15,7 @@ import { sortWork } from '../lib/proof';
 // doors, then proof. Everything deeper is reached from one of those.
 
 const allWork = sortWork(await getCollection('work'));
-const proofIds = ['case-left-coast-printing-pros', 'case-tiny-crm', 'case-ithink', 'case-phoenix-rising', 'case-benchbot', 'case-dropq'];
+const proofIds = ['case-left-coast-printing-pros', 'case-tiny-crm', 'case-ithink', 'case-phoenix-rising', 'case-northminster', 'case-dropq'];
 const proof = proofIds
   .map((id) => allWork.find((p) => p.id === id))
   .filter((p): p is NonNullable<typeof p> => Boolean(p));

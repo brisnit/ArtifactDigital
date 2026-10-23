@@ -13,7 +13,7 @@ export const TIER_LABEL: Record<Tier, string> = {
 };
 
 // Products Artifact owns outright, rather than built for a client.
-const OWN_PRODUCTS = new Set(['case-benchbot', 'case-tiny-crm']);
+const OWN_PRODUCTS = new Set(['case-tiny-crm']);
 
 export function caseTier(entry: CollectionEntry<'work'>): Exclude<Tier, 'concept'> {
   if (entry.data.priorRole) return entry.data.teamWork ? 'team' : 'founder';
@@ -37,7 +37,6 @@ export const WORK_ORDER = [
   'case-tiny-crm',
   'case-phoenix-rising',
   'case-dropq',
-  'case-benchbot',
   'case-senior-living-ministry',
   'case-major-electronics',
   'case-global-nutrition',

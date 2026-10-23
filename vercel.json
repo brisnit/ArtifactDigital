@@ -35,6 +35,11 @@
       "source": "/services/digital-product-engineering",
       "destination": "/services/web-apps",
       "statusCode": 301
+    },
+    {
+      "source": "/case-benchbot",
+      "destination": "/work",
+      "permanent": true
     }
   ]
 }
