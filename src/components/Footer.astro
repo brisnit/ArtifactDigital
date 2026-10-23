@@ -30,6 +30,7 @@ const year = new Date().getFullYear();
         <h3>Services</h3>
         <ul>
           {BUILD_CLUSTERS.map((c) => <li><a href={buildPath(c.id)}>{c.label}</a></li>)}
+          <li><a href="/services/generative-engine-optimization">Generative Engine Optimization</a></li>
         </ul>
       </div>
       <div class="footer-col">

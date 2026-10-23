@@ -1,0 +1,574 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Button from '../../components/Button.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { SITE, orgNode, breadcrumb } from '../../data/site';
+
+// Generative Engine Optimization.
+//
+// This is the deep page beneath the SEO + AI search service, not a competitor
+// to it: /services/seo-ai-search remains the service you buy, and this explains
+// the AI-findability half of it properly. Section 9 says so in the copy, and
+// both pages link to each other.
+//
+// Claim discipline, because this subject attracts invented numbers: there is
+// not a single statistic on this page, no named model's behaviour is asserted,
+// nothing is guaranteed, and the dashboard in section 6 is labelled as an
+// illustration in the markup, in its caption and in its alt-equivalent text.
+const route = '/services/generative-engine-optimization';
+const url = `${SITE.url}${route}`;
+
+const SHIFT = [
+  {
+    label: 'Traditional search',
+    body: 'People search, scan a page of results, and choose which websites to open. Position on that page decides most of what happens next.',
+  },
+  {
+    label: 'AI-powered discovery',
+    body: 'People ask a question and receive a synthesized answer drawn from several sources at once. Often they never see a results page at all.',
+  },
+  {
+    label: 'The new opportunity',
+    body: 'A business now needs to be discoverable, understandable and credible in both experiences — because the same customer uses both, often for the same decision.',
+  },
+];
+
+const PILLARS = [
+  {
+    num: '01',
+    title: 'Discoverability',
+    body: 'Make the information that matters reachable: crawlable pages, sound architecture, and content that is actually accessible to the systems doing the retrieving.',
+  },
+  {
+    num: '02',
+    title: 'Clarity',
+    body: 'Say what you do, who you do it for and what makes you different, in language a person and a machine can both parse without inference.',
+  },
+  {
+    num: '03',
+    title: 'Credibility',
+    body: 'Strengthen the quality and consistency of the information associated with your business, wherever it appears — not only on pages you own.',
+  },
+  {
+    num: '04',
+    title: 'Measurement',
+    body: 'Track how the brand shows up in relevant AI-generated answers, which sources get cited instead, and where the gaps are worth closing.',
+  },
+];
+
+const FRAMEWORK = [
+  {
+    num: '01',
+    title: 'Discover',
+    body: 'Understand how potential customers search, what they ask AI assistants, and which competitors turn up in the answers that matter to you.',
+    activities: [
+      'Customer-intent research',
+      'AI prompt discovery',
+      'Competitor visibility analysis',
+      'Search and content gap assessment',
+    ],
+  },
+  {
+    num: '02',
+    title: 'Analyze',
+    body: 'Establish a baseline: how the business is represented today, and what the current site and content make possible.',
+    activities: [
+      'AI visibility testing',
+      'Brand mention analysis',
+      'Source and citation review',
+      'Technical SEO assessment',
+      'Content quality and accessibility review',
+    ],
+  },
+  {
+    num: '03',
+    title: 'Create',
+    body: 'Develop authoritative, genuinely helpful content organized around the questions customers actually ask.',
+    activities: [
+      'Expert-led articles and resources',
+      'Website content architecture',
+      'FAQ and answer-focused content',
+      'Video and YouTube strategy',
+      'Transcripts and supporting content',
+      'Structured data where appropriate',
+    ],
+  },
+  {
+    num: '04',
+    title: 'Distribute',
+    body: 'Build a connected ecosystem of information across the channels your customers and the discovery systems both use.',
+    activities: [
+      'Website optimization',
+      'YouTube publishing',
+      'LinkedIn thought leadership',
+      'Relevant industry publications',
+      'Credible third-party mentions',
+      'Internal linking and content relationships',
+    ],
+  },
+  {
+    num: '05',
+    title: 'Measure & improve',
+    body: 'Monitor what changed, learn from it, and keep refining. This stage does not end.',
+    activities: [
+      'AI answer visibility monitoring',
+      'Brand mention tracking',
+      'Source citation analysis',
+      'Competitive benchmarking',
+      'Search and referral traffic analysis',
+      'Lead and conversion measurement',
+    ],
+  },
+];
+
+// Section 6: the tiles name what is worth monitoring. Deliberately no numbers —
+// a fabricated metric would be a fabricated result.
+const SIGNALS = [
+  { label: 'AI brand visibility', note: 'How often the brand appears in answers to the prompts you care about.' },
+  { label: 'Prompt coverage', note: 'Which customer questions you are present for, and which you are absent from.' },
+  { label: 'Source citations', note: 'Which pages and which third-party sources get referenced.' },
+  { label: 'Competitor presence', note: 'Who else is appearing in the same answers.' },
+  { label: 'Content opportunities', note: 'Questions with demand and no good answer of yours.' },
+  { label: 'Search & referral', note: 'Conventional organic performance, read alongside the rest.' },
+];
+
+const CAPABILITIES = [
+  {
+    title: 'AI search visibility',
+    body: 'Understand and improve how your brand appears in relevant AI-powered answers.',
+  },
+  {
+    title: 'Technical findability',
+    body: 'Improve crawlability, indexing, site architecture and structured information.',
+  },
+  {
+    title: 'Content & answer strategy',
+    body: 'Develop useful, authoritative content built around the questions customers actually ask.',
+  },
+  {
+    title: 'YouTube & video discoverability',
+    body: 'Turn expertise into searchable, accessible, interconnected video content.',
+  },
+  {
+    title: 'Digital authority',
+    body: 'Strengthen credibility through consistent information and relevant third-party presence.',
+  },
+  {
+    title: 'Measurement & optimization',
+    body: 'Monitor visibility, identify gaps and keep refining the strategy.',
+  },
+];
+
+const AUDIENCES = [
+  'B2B service organizations',
+  'Professional services firms',
+  'Education and training providers',
+  'Healthcare and wellness organizations',
+  'SaaS and technology companies',
+  'Growing businesses with complex products or services',
+];
+
+const COMPARE = [
+  { seo: 'Position on a results page', geo: 'Presence inside a synthesized answer' },
+  { seo: 'Keywords and queries', geo: 'Questions and conversational prompts' },
+  { seo: 'Clicks and organic sessions', geo: 'Mentions, citations and how you are described' },
+  { seo: 'Ranking against competing pages', geo: 'Appearing alongside — or instead of — competing brands' },
+  { seo: 'Technical foundations and content relevance', geo: 'The same foundations, plus clarity a machine can summarize' },
+];
+
+// FAQ: these strings are rendered visibly below and reused verbatim in the
+// FAQPage node, which is the only condition under which that markup is honest.
+const FAQ = [
+  {
+    q: 'What is Generative Engine Optimization?',
+    a: 'It is the practice of improving how your business and its expertise appear across AI-powered discovery experiences. It brings together technical SEO, content strategy, structured information, digital authority and ongoing visibility measurement.',
+  },
+  {
+    q: 'How is GEO different from SEO?',
+    a: 'SEO works toward visibility on a results page. GEO extends the same foundations into AI-generated answers: how your brand is represented, which sources are cited, and how you appear in conversational queries. Much of the underlying work overlaps, which is why we treat them as one programme rather than two.',
+  },
+  {
+    q: 'Can you guarantee that ChatGPT recommends my business?',
+    a: 'No. Nobody can, and you should treat any agency that offers that guarantee with suspicion. AI systems change their behaviour, their sources and their ranking without notice. What we can do is make your business easier to discover, understand and cite — and measure how that changes over time.',
+  },
+  {
+    q: 'Does YouTube help with AI search visibility?',
+    a: 'It can. Video platforms are one of the places discovery systems draw from, particularly for demonstrations, tutorials and explanatory content. How much any given platform contributes varies by system and changes over time, so we treat video as one channel in a connected strategy rather than a shortcut.',
+  },
+  {
+    q: 'How do you measure GEO performance?',
+    a: 'We test a defined set of prompts relevant to your customers and record whether and how your business appears, which sources are cited instead, and who else shows up. That runs alongside conventional analytics — organic search, referral traffic, enquiries and conversions — so visibility is read next to business outcomes.',
+  },
+  {
+    q: 'How long does GEO take to produce results?',
+    a: 'Technical and content foundations can be improved quickly. Changes in how AI systems describe and cite a business are slower and less predictable, because they depend on re-crawling, model updates and third-party sources outside anyone’s control. We would rather set that expectation at the start than explain it later.',
+  },
+  {
+    q: 'Do I need to redesign my website?',
+    a: 'Usually not. Most of this work happens in content, structure and technical foundations, which can be improved on the site you have. If the architecture itself is the obstacle, we will tell you — and we will tell you when it is not.',
+  },
+  {
+    q: 'Can GEO help smaller businesses compete?',
+    a: 'Sometimes meaningfully so. Specific, genuinely expert answers to narrow questions can earn visibility that broad, generic content does not, and that favours organizations with real depth over those with the largest budget. It is not a guarantee of parity with a much larger competitor, and the honest answer depends on your market.',
+  },
+];
+
+const title = 'Generative Engine Optimization (GEO) · AI Findability · Artifact Digital';
+const description =
+  'Generative Engine Optimization: improve how your business is discovered, understood and represented across AI-powered search. A five-stage, measurable approach from Artifact Digital.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      '@id': `${url}#service`,
+      name: 'Generative Engine Optimization',
+      alternateName: 'AI Findability & Visibility Strategy',
+      serviceType: 'Generative Engine Optimization',
+      description,
+      url,
+      provider: { '@id': `${SITE.url}/#organization` },
+      areaServed: 'Worldwide',
+      audience: {
+        '@type': 'BusinessAudience',
+        audienceType: 'Businesses improving discoverability in AI-powered search',
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${url}#faq`,
+      mainEntity: FAQ.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+    orgNode,
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'How We Help', path: '/services' },
+      { name: 'Generative Engine Optimization', path: route },
+    ]),
+  ],
+};
+---
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={route}
+  bodyClass="case-page geo-page"
+  jsonLd={jsonLd}
+>
+  <!-- 1 / HERO -->
+  <section class="case-hero geo-hero">
+    <div class="container geo-hero__grid">
+      <div>
+        <Breadcrumbs
+          items={[{ name: 'Home', href: '/' }, { name: 'How We Help', href: '/services' }, { name: 'Generative Engine Optimization' }]}
+        />
+        <span class="eyebrow reveal"><span class="eyebrow-dot"></span>Generative Engine Optimization</span>
+        <h1 class="case-title">
+          <span class="reveal-line"><span>Don’t just rank.</span></span>
+          <span class="reveal-line italic"><span>Become part of the answer.</span></span>
+        </h1>
+        <p class="case-lede reveal">
+          Your next customer might not start with a search engine. They might ask an AI assistant who
+          to trust, what to buy, or which company can solve their problem. We help make your business
+          easier to discover, understand and recommend across the next generation of search.
+        </p>
+        <div class="wwb-hero-actions reveal">
+          <Button href="/contact?intent=geo" label="Improve Your AI Findability" variant="primary" />
+          <a class="home-more__link" href="#approach">Explore our approach<span aria-hidden="true"> →</span></a>
+        </div>
+      </div>
+
+      <!-- Two ways of being found, drawn rather than described. Decorative: the
+           same contrast is stated in words in the next section. -->
+      <figure class="geo-viz reveal" aria-hidden="true">
+        <figcaption class="geo-viz__cap">Then</figcaption>
+        <div class="geo-viz__results">
+          <span class="geo-viz__row geo-viz__row--lead"></span>
+          <span class="geo-viz__row"></span>
+          <span class="geo-viz__row"></span>
+          <span class="geo-viz__row geo-viz__row--dim"></span>
+          <span class="geo-viz__row geo-viz__row--dim"></span>
+        </div>
+        <figcaption class="geo-viz__cap geo-viz__cap--now">Now</figcaption>
+        <div class="geo-viz__answer">
+          <ul class="geo-viz__sources">
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+          </ul>
+          <svg class="geo-viz__wires" viewBox="0 0 48 90" preserveAspectRatio="none" role="presentation" focusable="false">
+            <path d="M0 14 C 22 14, 26 45, 48 45" />
+            <path d="M0 45 L 48 45" />
+            <path d="M0 76 C 22 76, 26 45, 48 45" />
+          </svg>
+          <div class="geo-viz__card">
+            <span class="geo-viz__line"></span>
+            <span class="geo-viz__line"></span>
+            <span class="geo-viz__line geo-viz__line--short"></span>
+          </div>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 2 / THE SHIFT -->
+  <section class="section geo-shift pk-section--stone" aria-labelledby="geo-shift-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>The shift</span>
+        <h2 class="section-heading reveal-line" id="geo-shift-heading"><span>Search has changed. Your strategy should too.</span></h2>
+      </header>
+      <p class="home-lede reveal geo-intro">
+        For years, digital visibility meant competing for a position on a search results page. That
+        still matters. But discovery is expanding into AI-generated answers, conversational research
+        and recommendation-driven experiences.
+      </p>
+      <ul class="geo-shift__grid">
+        {SHIFT.map((s, i) => (
+          <li class="geo-shift__card reveal-card">
+            <span class="geo-shift__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="geo-shift__title">{s.label}</h3>
+            <p class="geo-shift__body">{s.body}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="geo-note reveal">
+        GEO does not replace search engine optimization. It extends it. The technical foundations,
+        the content quality and the site architecture that earn conventional rankings are the same
+        foundations an AI system relies on to find and understand you — which is why we run the two
+        as one programme. The broader service is <a href="/services/seo-ai-search">SEO &amp; AI search</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3 / WHAT IS GEO -->
+  <section class="section geo-what" id="approach" aria-labelledby="geo-what-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>What it is</span>
+        <h2 class="section-heading reveal-line" id="geo-what-heading"><span>Visibility is no longer just about being found. It’s about being understood.</span></h2>
+      </header>
+      <p class="home-lede reveal geo-intro">
+        Generative Engine Optimization is the practice of improving how your business and its
+        expertise appear across AI-powered discovery experiences. It brings together technical SEO,
+        content strategy, structured information, digital authority and ongoing visibility
+        measurement. It is not a way of manipulating a model, buying a recommendation or guaranteeing
+        a citation — none of which is possible, and all of which are worth being suspicious of.
+      </p>
+      <ul class="geo-pillars">
+        {PILLARS.map((p) => (
+          <li class="geo-pillar reveal">
+            <span class="geo-pillar__num" aria-hidden="true">{p.num}</span>
+            <h3 class="geo-pillar__title">{p.title}</h3>
+            <p class="geo-pillar__body">{p.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4 / FRAMEWORK -->
+  <section class="section geo-framework pk-section--stone" aria-labelledby="geo-framework-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>The framework</span>
+        <h2 class="section-heading reveal-line" id="geo-framework-heading"><span>A systematic approach to becoming discoverable.</span></h2>
+      </header>
+      <p class="home-lede reveal geo-intro">
+        Not guesswork. A measurable process for understanding, improving and tracking your visibility.
+      </p>
+      <ol class="geo-stages">
+        {FRAMEWORK.map((s) => (
+          <li class="geo-stage reveal-card" tabindex="0">
+            <span class="geo-stage__num" aria-hidden="true">{s.num}</span>
+            <h3 class="geo-stage__title">{s.title}</h3>
+            <p class="geo-stage__body">{s.body}</p>
+            <ul class="geo-stage__list">
+              {s.activities.map((a) => <li>{a}</li>)}
+            </ul>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 5 / VIDEO -->
+  <section class="section geo-video" aria-labelledby="geo-video-heading">
+    <div class="container geo-video__grid">
+      <div>
+        <header class="section-head">
+          <span class="section-tag reveal"><span class="tag-dot"></span>Video</span>
+          <h2 class="section-heading reveal-line" id="geo-video-heading"><span>Your expertise shouldn’t live on your website alone.</span></h2>
+        </header>
+        <p class="home-lede reveal">
+          AI-powered discovery draws on information from across the web, including video platforms.
+          YouTube can be an important source of referenced information, particularly for
+          demonstrations, tutorials, explanations and educational content.
+        </p>
+        <p class="home-lede reveal">
+          That creates an opportunity to turn your knowledge into a connected library of useful
+          answers — videos, transcripts, articles and supporting resources that reinforce one another
+          instead of sitting in separate places.
+        </p>
+        <p class="geo-note reveal">
+          Video visibility varies significantly across AI platforms, and no channel guarantees
+          inclusion in AI-generated answers. We treat video as one strong contributor to a connected
+          presence, not as a shortcut.
+        </p>
+      </div>
+      <ol class="geo-flow reveal" aria-label="How one question becomes several opportunities to be discovered">
+        <li class="geo-flow__step"><span class="geo-flow__label">One customer question</span></li>
+        <li class="geo-flow__step"><span class="geo-flow__label">Expert-led video</span></li>
+        <li class="geo-flow__step"><span class="geo-flow__label">Transcript and website article</span></li>
+        <li class="geo-flow__step"><span class="geo-flow__label">Insights and supporting resources</span></li>
+        <li class="geo-flow__step geo-flow__step--end"><span class="geo-flow__label">Several places to be discovered</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 6 / THE ENGINE -->
+  <section class="section geo-engine pk-section--stone" aria-labelledby="geo-engine-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>How we work</span>
+        <h2 class="section-heading reveal-line" id="geo-engine-heading"><span>From scattered content to a connected visibility system.</span></h2>
+      </header>
+      <p class="home-lede reveal geo-intro">
+        Our approach combines strategy, experience design, content architecture, technical
+        implementation and AI-assisted analysis. It is a repeatable methodology supported by
+        tooling and expert review — not a product you log into, and not a proprietary engine that
+        controls what any AI system says.
+      </p>
+
+      <figure class="geo-panel reveal">
+        <figcaption class="geo-panel__head">
+          <span class="geo-panel__title">Visibility signals we track</span>
+          <span class="geo-panel__flag">Illustrative layout · not a live dashboard</span>
+        </figcaption>
+        <ul class="geo-panel__grid">
+          {SIGNALS.map((s) => (
+            <li class="geo-panel__tile">
+              <span class="geo-panel__label">{s.label}</span>
+              <span class="geo-panel__bars" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i>
+              </span>
+              <span class="geo-panel__note">{s.note}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="geo-panel__foot">
+          An illustration of the signals a GEO programme monitors. It contains no data, represents no
+          client, and is not a commercial product.
+        </p>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 7 / CAPABILITIES -->
+  <section class="section geo-caps" aria-labelledby="geo-caps-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>What we improve</span>
+        <h2 class="section-heading reveal-line" id="geo-caps-heading"><span>One strategy. Multiple opportunities to be discovered.</span></h2>
+      </header>
+      <div class="service-link-grid">
+        {CAPABILITIES.map((c) => (
+          <article class="service-link-card reveal-card">
+            <h3>{c.title}</h3>
+            <p>{c.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 / WHO IT'S FOR -->
+  <section class="section geo-who pk-section--stone" aria-labelledby="geo-who-heading">
+    <div class="container geo-who__grid">
+      <div>
+        <header class="section-head">
+          <span class="section-tag reveal"><span class="tag-dot"></span>Who it’s for</span>
+          <h2 class="section-heading reveal-line" id="geo-who-heading"><span>Built for businesses ready to be discovered differently.</span></h2>
+        </header>
+        <p class="home-lede reveal">
+          This work pays off most where customers research before they buy, where the offer takes
+          some explaining, and where genuine expertise exists to draw on. It is a poorer fit where
+          purchases are impulsive, purely local and price-led, or where there is little to say that a
+          competitor could not say identically.
+        </p>
+      </div>
+      <ul class="geo-who__list reveal">
+        {AUDIENCES.map((a) => <li>{a}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 9 / GEO AND SEO -->
+  <section class="section geo-compare" aria-labelledby="geo-compare-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>GEO &amp; SEO</span>
+        <h2 class="section-heading reveal-line" id="geo-compare-heading"><span>SEO gets you found. GEO helps you become part of the conversation.</span></h2>
+      </header>
+      <p class="home-lede reveal geo-intro">
+        These are two ends of the same programme, and most of the underlying practice is shared.
+        Crawlable pages, clear information architecture, honest content and credible third-party
+        presence serve both. What differs is what you are optimizing toward, and how you measure it.
+      </p>
+      <table class="geo-table reveal">
+        <caption class="sr-only">How traditional SEO and Generative Engine Optimization differ in focus</caption>
+        <thead>
+          <tr>
+            <th scope="col">Traditional SEO focuses on</th>
+            <th scope="col">GEO extends this into</th>
+          </tr>
+        </thead>
+        <tbody>
+          {COMPARE.map((row) => (
+            <tr>
+              <td>{row.seo}</td>
+              <td>{row.geo}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p class="geo-note reveal">
+        If you are choosing between them, you are not choosing. Start with the foundations; the AI
+        visibility work compounds on top of them. Our broader service page covers the whole of it:
+        <a href="/services/seo-ai-search">SEO &amp; AI search</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- 10 / FAQ -->
+  <section class="section geo-faq pk-section--stone" aria-labelledby="geo-faq-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="section-tag reveal"><span class="tag-dot"></span>Questions</span>
+        <h2 class="section-heading reveal-line" id="geo-faq-heading"><span>Common questions</span></h2>
+      </header>
+      <dl class="faq-list">
+        {FAQ.map((f) => (
+          <div class="faq-item reveal">
+            <dt>{f.q}</dt>
+            <dd>{f.a}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- 11 / CTA -->
+  <CtaBand
+    heading="When customers ask AI, will they find you?"
+    sub="Let’s understand where your business stands today and build a strategy for where discovery is going next."
+    primary={{ label: 'Start an AI Visibility Conversation', href: '/contact?intent=geo' }}
+    secondary={{ label: 'See What Artifact Builds', href: '/work' }}
+  />
+</BaseLayout>
